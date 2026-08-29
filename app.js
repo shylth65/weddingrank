@@ -181,11 +181,11 @@ function route() {
 $("#search")?.addEventListener("input", render);
 $("#sido")?.addEventListener("change", render);
 window.addEventListener("hashchange", route);
-let currentUser=null, accessToken=null;
-
 parseAuthHash();
 restoreSession();
 load();
+
+let currentUser=null, accessToken=null;
 
 async function authApi(path, options={}) {
   const key=getKey(), url=`${getUrl()}/auth/v1/${path}`;
@@ -220,18 +220,7 @@ function renderAuth(){
 async function sendMagicLink(){
   const email=$("#loginEmail")?.value.trim(); if(!email)return alert("이메일을 입력해주세요.");
   try{
-   const redirectUrl = "https://shylth65.github.io/weddingrank/";
-
-await authApi(
-  "otp?redirect_to=" + encodeURIComponent(redirectUrl),
-  {
-    method:"POST",
-    body:JSON.stringify({
-      email,
-      create_user:true
-    })
-  }
-);
+    await authApi("otp",{method:"POST",body:JSON.stringify({email,create_user:true,options:{email_redirect_to:location.origin+location.pathname}})});
     alert("로그인 링크를 이메일로 보냈습니다.");
   }catch(e){alert("로그인 요청 오류: "+e.message)}
 }
@@ -265,3 +254,53 @@ async function submitReview(e){
    alert("평가가 등록되었습니다."); await showDetail(m[1]);
  }catch(err){alert("평가 등록 오류: "+err.message)}
 }
+
+
+// ===== WeddingRank v5 Rankings =====
+async function loadRankings(){
+  const view=document.querySelector("#rankingView");
+  if(!view) return;
+  view.hidden=false;
+  document.querySelector("#listView")?.setAttribute("hidden","");
+  document.querySelector("#detailView")?.setAttribute("hidden","");
+  const body=document.querySelector("#rankingBody");
+  if(body) body.innerHTML='<div class="pending">실제 이용자 평가 데이터를 불러오는 중...</div>';
+  try{
+    const rows=await api("wedding_hall_rankings?select=*&order=overall_score.desc.nullslast");
+    renderRankings(rows||[]);
+  }catch(err){
+    if(body) body.innerHTML='<div class="pending">랭킹 데이터 준비중입니다.<br>평가가 쌓이면 실제 점수만 반영됩니다.</div>';
+    console.error("ranking view",err);
+  }
+}
+function num(v){const n=Number(v);return Number.isFinite(n)?n:null}
+function rankingField(tab){
+  return ({overall:"overall_score",food:"food_score",parking:"parking_score",value:"value_score"})[tab]||"overall_score";
+}
+function renderRankings(rows){
+  const body=document.querySelector("#rankingBody"); if(!body)return;
+  const tab=document.querySelector(".rankTab.active")?.dataset.rank||"overall";
+  const region=document.querySelector("#rankingRegion")?.value||"";
+  const field=rankingField(tab);
+  let data=[...rows].filter(r=>!region || r.sido===region);
+  data=data.filter(r=>num(r[field])!==null && Number(r.review_count||0)>0)
+           .sort((a,b)=>(num(b[field])||0)-(num(a[field])||0) || Number(b.review_count||0)-Number(a.review_count||0));
+  if(!data.length){
+    body.innerHTML='<div class="rankingEmpty"><b>아직 랭킹을 산정할 평가가 충분하지 않습니다.</b><span>실제 이용자 평가가 등록된 예식장부터 순차적으로 랭킹에 반영됩니다.</span></div>';
+    return;
+  }
+  body.innerHTML=data.slice(0,100).map((r,i)=>`<article class="rankRow">
+    <div class="rankNo">${i+1}</div>
+    <div class="rankHall"><small>${esc([r.sido,r.sigungu].filter(Boolean).join(" "))}</small><b>${esc(r.name||"")}</b><span>리뷰 ${Number(r.review_count||0)}개</span></div>
+    <div class="rankScore"><strong>${num(r[field]).toFixed(2)}</strong><span>/ 5.00</span></div>
+  </article>`).join("");
+}
+function setupRankingUI(){
+  document.querySelectorAll(".rankTab").forEach(b=>b.onclick=()=>{
+    document.querySelectorAll(".rankTab").forEach(x=>x.classList.remove("active")); b.classList.add("active"); loadRankings();
+  });
+  document.querySelector("#rankingRegion")?.addEventListener("change",loadRankings);
+  document.querySelectorAll('a[href="#rankings"]').forEach(a=>a.addEventListener("click",e=>{e.preventDefault();location.hash="rankings";loadRankings()}));
+}
+window.addEventListener("hashchange",()=>{if(location.hash==="#rankings")loadRankings()});
+window.addEventListener("DOMContentLoaded",()=>{setupRankingUI();if(location.hash==="#rankings")loadRankings()});
