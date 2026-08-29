@@ -12,12 +12,12 @@ async function api(path){
 async function load(){
   try{
     if(!cfg.SUPABASE_ANON_KEY || cfg.SUPABASE_ANON_KEY.includes("여기에_")) throw new Error("KEY");
-    const cols="hall_id,legacy_code,name,branch_name,sido,sigungu,road_address,phone,website,venue_type";
+    const cols="hall_id,name,sido,sigungu,road_address,phone,website,venue_type";
     halls=await api(`wedding_halls?select=${cols}&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&order=name.asc`);
     $("#publicCount").textContent=halls.length+"곳";
     $("#status").textContent=`공개 예식장 ${halls.length}곳`;
     setupRegions(); render(); route();
-  }catch(e){$("#status").textContent="Supabase 연결을 확인해주세요";}
+  }catch(e){console.error(e);$("#status").textContent="연결 오류: "+e.message;}
 }
 function setupRegions(){
  const regions=[...new Set(halls.map(x=>x.sido).filter(Boolean))].sort();
