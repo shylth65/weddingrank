@@ -220,7 +220,18 @@ function renderAuth(){
 async function sendMagicLink(){
   const email=$("#loginEmail")?.value.trim(); if(!email)return alert("이메일을 입력해주세요.");
   try{
-    await authApi("otp",{method:"POST",body:JSON.stringify({email,create_user:true,options:{email_redirect_to:location.origin+location.pathname}})});
+   const redirectUrl = "https://shylth65.github.io/weddingrank/";
+
+await authApi(
+  "otp?redirect_to=" + encodeURIComponent(redirectUrl),
+  {
+    method:"POST",
+    body:JSON.stringify({
+      email,
+      create_user:true
+    })
+  }
+);
     alert("로그인 링크를 이메일로 보냈습니다.");
   }catch(e){alert("로그인 요청 오류: "+e.message)}
 }
