@@ -1,8 +1,10 @@
-# WeddingRank Web v2 Detail
-- Supabase 공개 예식장 109곳 조회
-- 내부 A/B 검증등급은 사용자 화면에서 숨김
-- 카드 클릭 상세화면
-- hall_rooms / wedding_prices 실시간 조회
-- 가격 미확보는 '가격정보 확인중'
-- 역할별 리뷰 영역 준비
-기존 config.js의 WeddingRank Supabase publishable key 설정을 유지해서 사용하세요.
+# WeddingRank
+
+대한민국 예식장 랭킹 서비스 초기 웹 버전.
+
+## Supabase 연결
+1. `config.js`를 엽니다.
+2. `SUPABASE_ANON_KEY`에 WeddingRank Supabase의 **publishable/anon key**를 입력합니다.
+3. `service_role` 또는 secret key는 절대 웹 코드에 넣지 않습니다.
+
+현재 웹은 `wedding_halls` 중 `is_public=true` 및 `operation_status='운영'`인 데이터만 조회합니다.
