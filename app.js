@@ -181,11 +181,11 @@ function route() {
 $("#search")?.addEventListener("input", render);
 $("#sido")?.addEventListener("change", render);
 window.addEventListener("hashchange", route);
+let currentUser=null, accessToken=null;
+
 parseAuthHash();
 restoreSession();
 load();
-
-let currentUser=null, accessToken=null;
 
 async function authApi(path, options={}) {
   const key=getKey(), url=`${getUrl()}/auth/v1/${path}`;
