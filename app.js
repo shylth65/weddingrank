@@ -111,11 +111,17 @@ async function showDetail(id) {
     : "홈페이지 확인중";
 
   try {
-    const [rooms, prices, reviews] = await Promise.all([
+    const results = await Promise.allSettled([
       api(`hall_rooms?select=room_name,floor,capacity_min,capacity_max,ceremony_type,meal_type&hall_id=eq.${encodeURIComponent(id)}`),
       api(`wedding_prices?select=effective_date,rental_fee,decor_fee,meal_price_per_person,minimum_guarantee,source_name,source_url,notes&hall_id=eq.${encodeURIComponent(id)}&order=effective_date.desc`),
-      api(`reviews?select=visit_role,food_score,parking_score,access_score,facility_score,service_score,value_score,overall_score,review_text,created_at&hall_id=eq.${encodeURIComponent(id)}&order=created_at.desc&limit=100`)
+      api(`reviews?select=visit_role,food_score,parking_score,access_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,review_text,created_at&hall_id=eq.${encodeURIComponent(id)}&order=created_at.desc&limit=100`)
     ]);
+    const rooms = results[0].status === "fulfilled" ? results[0].value : [];
+    const prices = results[1].status === "fulfilled" ? results[1].value : [];
+    const reviews = results[2].status === "fulfilled" ? results[2].value : [];
+    if (results[0].status === "rejected") console.error("hall_rooms error", results[0].reason);
+    if (results[1].status === "rejected") console.error("wedding_prices error", results[1].reason);
+    if (results[2].status === "rejected") console.error("reviews error", results[2].reason);
     $("#rooms").innerHTML = rooms.length ? rooms.map(r =>
       `<div class="info-row"><b>${esc(r.room_name)}</b><span>${esc(r.floor||"")} ${r.capacity_min?`· 최소 ${r.capacity_min}명`:""} ${r.capacity_max?`· 최대 ${r.capacity_max}명`:""}</span></div>`
     ).join("") : '<div class="pending">홀 정보 확인중</div>';
@@ -151,8 +157,9 @@ function renderReviews(reviews) {
     return;
   }
   const metrics = [
-    ["음식","food_score"],["주차","parking_score"],["교통/접근성","access_score"],
-    ["예식홀/시설","facility_score"],["서비스","service_score"],["가성비","value_score"]
+    ["음식","food_score"],["교통/접근성","access_score"],["주차","parking_score"],
+    ["예식홀/시설","facility_score"],["신부대기실","bride_waiting_score"],["연회장","banquet_score"],
+    ["서비스","service_score"],["가성비","value_score"]
   ];
   const overall = avg(reviews,"overall_score");
   box.innerHTML = `<div class="reviewScore"><div><small>종합평점</small><strong>${score(overall)}</strong><span>/ 5.0</span><p>${reviews.length}개 평가</p></div>
