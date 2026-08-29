@@ -27,3 +27,8 @@ a{color:inherit;text-decoration:none}.top{height:72px;display:flex;align-items:c
 .reviewItem{border-top:1px solid var(--line);padding:16px 0}.reviewItem>div{display:flex;justify-content:space-between;font-size:12px}.reviewItem span{color:var(--muted)}.reviewItem p{font-size:14px;line-height:1.65}
 .reviewNotice{font-size:12px;color:var(--muted);margin-top:15px}
 @media(max-width:650px){.reviewScore{grid-template-columns:1fr}.metricGrid{grid-template-columns:1fr}}
+
+.reviewWrite{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}.reviewWrite h3{margin:0 0 14px}
+.loginRow,.signed{display:flex;gap:8px;align-items:center;margin-bottom:8px}.loginRow input{flex:1;padding:12px;border:1px solid var(--line);border-radius:9px}.loginRow button,.signed button,.submitReview{padding:11px 15px;border:0;border-radius:9px;cursor:pointer;font-weight:700}
+.scoreInputs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}#reviewForm label{display:flex;flex-direction:column;gap:6px;font-size:13px;margin:10px 0}#reviewForm select,#reviewForm textarea{padding:11px;border:1px solid var(--line);border-radius:9px;background:#fff}#reviewForm textarea{min-height:110px;resize:vertical}.submitReview{margin-top:5px}
+@media(max-width:650px){.scoreInputs{grid-template-columns:1fr}.loginRow{flex-direction:column;align-items:stretch}}
