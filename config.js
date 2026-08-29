@@ -3,5 +3,5 @@
 // 절대로 service_role / secret key를 넣지 마세요.
 window.WEDDINGRANK_CONFIG = {
   SUPABASE_URL: "https://mozm xkmaynhxqwzovzhi.supabase.co".replace(" ",""),
-  SUPABASE_ANON_KEY: "여기에_SUPABASE_ANON_KEY_입력"
+  SUPABASE_ANON_KEY: "sb_publishable_I4myPqLM3PzjLpYCPwtjrA_jfMD0prR"
 };
