@@ -33,13 +33,27 @@ a{color:inherit;text-decoration:none}.top{height:72px;display:flex;align-items:c
 .scoreInputs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}#reviewForm label{display:flex;flex-direction:column;gap:6px;font-size:13px;margin:10px 0}#reviewForm select,#reviewForm textarea{padding:11px;border:1px solid var(--line);border-radius:9px;background:#fff}#reviewForm textarea{min-height:110px;resize:vertical}.submitReview{margin-top:5px}
 @media(max-width:650px){.scoreInputs{grid-template-columns:1fr}.loginRow{flex-direction:column;align-items:stretch}}
 
-/* v5 rankings */
 .rankingHero{padding:70px max(6vw,30px) 34px;border-bottom:1px solid var(--line);background:#fbf8f7}
 .rankingHero h1{font-size:42px;margin:8px 0 12px}.rankingHero p{color:#6e6260}
 .rankingControls{display:flex;justify-content:space-between;gap:18px;align-items:center;margin:20px 0}
 .rankTabs{display:flex;gap:8px;flex-wrap:wrap}.rankTab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px;cursor:pointer}
 .rankTab.active{font-weight:800;border-color:#b86b64}.rankingControls select{padding:10px 36px 10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff}
-.rankingNote{font-size:13px;color:#766a68;margin-bottom:16px}.rankRow{display:grid;grid-template-columns:70px 1fr 120px;gap:16px;align-items:center;padding:18px 10px;border-bottom:1px solid var(--line)}
+.rankingNote{font-size:13px;color:#766a68;margin-bottom:16px}.rankRow{display:grid;grid-template-columns:70px 1fr 120px;gap:16px;align-items:center;padding:18px 10px;border-bottom:1px solid var(--line);cursor:pointer}
 .rankNo{font-size:26px;font-weight:800;text-align:center}.rankHall{display:flex;flex-direction:column;gap:4px}.rankHall small,.rankHall span{color:#776b69}.rankHall b{font-size:18px}.rankScore{text-align:right}.rankScore strong{font-size:25px}.rankScore span{display:block;color:#887b79;font-size:12px}
 .rankingEmpty{padding:65px 20px;text-align:center;background:#faf7f6;border-radius:14px}.rankingEmpty b,.rankingEmpty span{display:block}.rankingEmpty span{margin-top:9px;color:#776b69}
-@media(max-width:650px){.rankingControls{align-items:stretch;flex-direction:column}.rankingControls select{width:100%}.rankRow{grid-template-columns:45px 1fr 75px;gap:8px}.rankNo{font-size:21px}.rankScore strong{font-size:20px}.rankingHero h1{font-size:34px}}
+
+/* v5.4 list UX / verified price / mobile */
+.cardTop{display:flex;align-items:center;justify-content:space-between;gap:10px}.dataReady{font-size:10px;font-weight:800;color:#6f554f;background:#f5e7e2;border-radius:999px;padding:5px 8px}.verifiedPrice{background:#f4e4df;color:#85544e}.pendingPrice{font-weight:700;color:#8b7a77;background:#f7f5f4}.card:focus-visible{outline:3px solid rgba(169,111,114,.28);outline-offset:3px}
+.listControls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.listControls button{border:1px solid #c99b96;background:#fff;color:#85544e;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer}.listControls button:hover{background:var(--soft)}
+.pendingRank{opacity:.7}.pendingRank .rankNo{font-size:13px;color:var(--muted)}.pendingRank .rankScore strong{font-size:14px;color:var(--muted)}
+.submitReview:disabled{opacity:.55;cursor:not-allowed}
+
+@media(max-width:800px){
+  .top{height:62px;padding:0 5vw}.brand{font-size:19px}.brand span{display:none}
+  .hero{padding:48px 5vw 42px}.hero h1{font-size:36px;letter-spacing:-1.4px}.hero>p{font-size:14px;line-height:1.6}
+  .searchbar{position:sticky;top:70px;z-index:3;background:rgba(255,255,255,.96);padding:8px 0;margin-top:24px}.searchbar input,.searchbar select{width:100%;min-width:0;padding:14px}
+  .stats{margin-top:28px}.stats strong{font-size:18px}.section-head{align-items:flex-start;gap:10px;flex-direction:column}.section h2{font-size:27px}.cards{gap:13px}.card{padding:18px}.card h3{font-size:19px}.card p{min-height:0}.listControls{align-items:stretch;flex-direction:column}.listControls button{width:100%}
+  .detailBlock,.sideCard{padding:18px}.kv{grid-template-columns:76px 1fr}.info-row{flex-direction:column;gap:5px}.pricebox{grid-template-columns:1fr 1fr}.pricebox b{font-size:14px}.sideCard{position:static}
+  .rankingHero{padding:48px 5vw 28px}.rankingHero h1{font-size:32px}.rankingControls{align-items:stretch;flex-direction:column}.rankingControls select{width:100%}.rankTabs{display:grid;grid-template-columns:1fr 1fr}.rankTab{padding:10px 8px}.rankRow{grid-template-columns:42px minmax(0,1fr) 88px;gap:8px;padding:15px 2px}.rankNo{font-size:20px}.rankHall b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rankHall span{font-size:11px}.rankScore strong{font-size:18px}.rankScore span{font-size:10px}.pendingRank .rankScore span{display:none}
+}
+@media(max-width:430px){.hero h1{font-size:32px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}.pricebox{grid-template-columns:1fr}.pricebox p{grid-column:1}.roleTabs{overflow-x:auto;white-space:nowrap}.detailHero h1{font-size:28px}.section{padding:38px 5vw}}
