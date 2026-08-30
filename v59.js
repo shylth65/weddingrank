@@ -1,4 +1,4 @@
-/* WeddingRank v5.9 - detail summary + mobile navigation */
+/* WeddingRank v5.10 - detail summary + mobile navigation */
 (()=>{
   const $=s=>document.querySelector(s);
   const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -15,7 +15,7 @@
       const b=ev.target.closest('button');if(!b)return;
       const go=b.dataset.go;
       if(go==='home'){location.hash='';window.scrollTo({top:0,behavior:'smooth'})}
-      if(go==='find'){location.hash='';setTimeout(()=>$('#rankings')?.scrollIntoView({behavior:'smooth'}),30)}
+      if(go==='find'){location.hash='#find';setTimeout(()=>$('#find')?.scrollIntoView({behavior:'smooth'}),30)}
       if(go==='rank')location.hash='#rankings';
       if(go==='compare'){
         const open=$('#openCompare');
