@@ -30,4 +30,9 @@ window.addEventListener("DOMContentLoaded", () => {
   s59.src = "v59.js?v=5.10";
   s59.defer = true;
   document.body.appendChild(s59);
+
+  const s511 = document.createElement("script");
+  s511.src = "v511.js?v=5.11";
+  s511.defer = true;
+  document.body.appendChild(s511);
 });
