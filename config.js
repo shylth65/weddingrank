@@ -21,6 +21,11 @@ window.addEventListener("DOMContentLoaded", () => {
   css.href = "v59.css?v=5.10";
   document.head.appendChild(css);
 
+  const css512 = document.createElement("link");
+  css512.rel = "stylesheet";
+  css512.href = "v512.css?v=5.12";
+  document.head.appendChild(css512);
+
   const s58 = document.createElement("script");
   s58.src = "v58.js?v=5.8";
   s58.defer = true;
@@ -35,4 +40,9 @@ window.addEventListener("DOMContentLoaded", () => {
   s511.src = "v511.js?v=5.11";
   s511.defer = true;
   document.body.appendChild(s511);
+
+  const s512 = document.createElement("script");
+  s512.src = "v512.js?v=5.12";
+  s512.defer = true;
+  document.body.appendChild(s512);
 });
