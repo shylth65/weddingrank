@@ -5,6 +5,7 @@
   function cfgUrl(){return String(window.WEDDINGRANK_CONFIG?.SUPABASE_URL||'').replace(/\/+$/,'')}
   function cfgKey(){const c=window.WEDDINGRANK_CONFIG||{};return c.SUPABASE_ANON_KEY||c.SUPABASE_PUBLISHABLE_KEY||c.SUPABASE_KEY||''}
   function authHeaders(){return {'apikey':cfgKey(),'Content-Type':'application/json'}}
+  function clearSavedSession(){['wr_access_token','wr_refresh_token','wr_expires_at'].forEach(k=>localStorage.removeItem(k));try{accessToken=''}catch(_){} }
 
   async function refreshSessionIfNeeded(){
     const refresh=localStorage.getItem('wr_refresh_token');
@@ -21,7 +22,7 @@
       if(data.expires_in) localStorage.setItem('wr_expires_at',String(Date.now()+Number(data.expires_in)*1000));
       try{accessToken=data.access_token}catch(_){}
       try{await restoreSession()}catch(_){}
-    }catch(err){console.warn('WeddingRank session refresh skipped',err)}
+    }catch(err){clearSavedSession();console.warn('WeddingRank session refresh failed; stale session cleared',err)}
   }
 
   async function sendDynamicMagicLink(email){
