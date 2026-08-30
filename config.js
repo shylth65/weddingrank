@@ -14,10 +14,20 @@ try {
   if (expiresIn) localStorage.setItem("wr_expires_at", String(Date.now() + expiresIn * 1000));
 } catch (_) {}
 
-// 기존 app.js/enhancements.js 이후에 v5.8 기능을 점진적으로 추가합니다.
+// 기존 app.js/enhancements.js 이후에 최신 기능을 점진적으로 추가합니다.
 window.addEventListener("DOMContentLoaded", () => {
-  const s = document.createElement("script");
-  s.src = "v58.js?v=5.8";
-  s.defer = true;
-  document.body.appendChild(s);
+  const css = document.createElement("link");
+  css.rel = "stylesheet";
+  css.href = "v59.css?v=5.9";
+  document.head.appendChild(css);
+
+  const s58 = document.createElement("script");
+  s58.src = "v58.js?v=5.8";
+  s58.defer = true;
+  document.body.appendChild(s58);
+
+  const s59 = document.createElement("script");
+  s59.src = "v59.js?v=5.9";
+  s59.defer = true;
+  document.body.appendChild(s59);
 });
