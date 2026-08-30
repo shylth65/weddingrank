@@ -1,4 +1,4 @@
-name: Generate venue SEO pages
+name: Generate venue and area SEO pages
 
 on:
   workflow_dispatch:
@@ -20,16 +20,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Generate venue pages and sitemap
+      - name: Generate venue and area pages and sitemap
         run: node scripts/generate-seo.mjs
       - name: Commit generated SEO pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add venue sitemap.xml
+          git add venue area sitemap.xml
           if git diff --cached --quiet; then
             echo "No generated changes"
             exit 0
           fi
-          git commit -m "Generate venue SEO pages [skip seo]"
+          git commit -m "Generate venue and area SEO pages [skip seo]"
           git push
