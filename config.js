@@ -18,7 +18,7 @@ try {
 window.addEventListener("DOMContentLoaded", () => {
   const css = document.createElement("link");
   css.rel = "stylesheet";
-  css.href = "v59.css?v=5.9";
+  css.href = "v59.css?v=5.10";
   document.head.appendChild(css);
 
   const s58 = document.createElement("script");
@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(s58);
 
   const s59 = document.createElement("script");
-  s59.src = "v59.js?v=5.9";
+  s59.src = "v59.js?v=5.10";
   s59.defer = true;
   document.body.appendChild(s59);
 });
