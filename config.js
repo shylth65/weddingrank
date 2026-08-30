@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const css514 = document.createElement("link");
   css514.rel = "stylesheet";
-  css514.href = "v514.css?v=5.14";
+  css514.href = "v514.css?v=5.15";
   document.head.appendChild(css514);
 
   const s58 = document.createElement("script");
@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(s513);
 
   const s514 = document.createElement("script");
-  s514.src = "v514.js?v=5.14";
+  s514.src = "v514.js?v=5.15";
   s514.defer = true;
   document.body.appendChild(s514);
 });
