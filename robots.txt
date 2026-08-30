@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shylth65.github.io/weddingrank/sitemap.xml
+Sitemap: https://weddingrank.kr/sitemap.xml
