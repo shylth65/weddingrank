@@ -1,0 +1,47 @@
+/* WeddingRank v5.12 - mobile production polish */
+:root{--mobile-nav-h:64px}
+@media(max-width:800px){
+  html{scroll-padding-top:82px}
+  body{padding-bottom:calc(var(--mobile-nav-h) + env(safe-area-inset-bottom) + 12px)}
+  .top{z-index:120}
+  .hero{padding-top:34px}
+  .searchbar{top:62px;padding:10px 0 8px;box-shadow:0 10px 18px rgba(255,255,255,.92)}
+  .searchbar input,.searchbar select,#sigunguFilter,#priceFilter,#sortFilter{min-height:46px;font-size:16px}
+  .venueFilters{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .venueFilters #resetFilters{grid-column:1/-1;min-height:44px}
+  .card{border-radius:16px}
+  .card .more{padding-top:4px}
+  .compareToggle{min-height:44px;min-width:92px}
+  .mobileNav{height:calc(var(--mobile-nav-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);z-index:200}
+  .mobileNav button{min-height:56px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  .mobileNav button.active{color:var(--rose-dark);font-weight:800}
+  .compareTray{left:10px!important;right:10px!important;bottom:calc(var(--mobile-nav-h) + env(safe-area-inset-bottom) + 10px)!important;width:auto!important}
+  .compareTray>div:first-child span{display:block;max-width:58vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .detailHero{padding-top:32px}
+  .detailQuickSummary{border-radius:16px}
+  .summaryActions button,.submitReview,.loginRow button,.signed button{min-height:46px}
+  #reviewForm select,#reviewForm textarea,#consultForm input,#consultForm textarea{font-size:16px;min-height:46px}
+  #reviewForm textarea,#consultForm textarea{min-height:120px}
+  .rankingControls{align-items:stretch!important;flex-direction:column!important}
+  .rankTabs{display:grid!important;grid-template-columns:1fr 1fr!important}
+  .rankTab{min-height:44px}
+  .rankingControls select{min-height:46px;font-size:16px}
+  .rankRow{grid-template-columns:48px minmax(0,1fr) 76px!important;gap:10px!important;padding:15px 4px!important}
+  .rankHall b{font-size:16px!important}
+  .rankScore strong{font-size:21px!important}
+  .loginRow{align-items:stretch;flex-direction:column}
+  .loginRow button{width:100%}
+}
+@media(max-width:430px){
+  .venueFilters{grid-template-columns:1fr!important}
+  .venueFilters #resetFilters{grid-column:auto}
+  .quickLinks{gap:10px 14px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .stats>div:last-child{grid-column:1/-1}
+  .trustStrip span{width:100%}
+  .pricebox{grid-template-columns:1fr!important}
+  .pricebox p,.richPrice .priceMeta,.richPrice footer{grid-column:1!important}
+  .metricGrid{grid-template-columns:1fr!important}
+  .reviewScore{grid-template-columns:1fr!important}
+  .compareGrid{grid-template-columns:1fr!important}
+}
