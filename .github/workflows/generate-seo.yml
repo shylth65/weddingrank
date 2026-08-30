@@ -2,6 +2,8 @@ name: Generate venue and area SEO pages
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '10 18 * * *'
   push:
     paths:
       - 'scripts/generate-seo.mjs'
@@ -9,6 +11,10 @@ on:
 
 permissions:
   contents: write
+
+concurrency:
+  group: generate-seo
+  cancel-in-progress: false
 
 jobs:
   generate:
