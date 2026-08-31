@@ -1,0 +1,15 @@
+/* WeddingRank ranking visibility fixes v5.27 */
+#rankingView .rankTab.active{
+  background:#8f585b!important;
+  border-color:#8f585b!important;
+  color:#fff!important;
+  font-weight:900!important;
+  text-shadow:0 1px 1px rgba(0,0,0,.14)!important;
+  box-shadow:0 8px 20px rgba(131,84,86,.24)!important;
+}
+#rankingView .rankTab.active::before{color:#fff!important;opacity:1!important}
+#rankingView .rankTab{color:#514947!important;font-weight:800!important}
+#rankingView .rankTab[data-rank="overall"].active{color:#fff!important}
+#rankingView .pendingRank:nth-of-type(n+1){transition:none}
+#rankingView .rankingPendingNote{margin:12px 0 0;padding:11px 14px;border:1px dashed #dec9c5;border-radius:12px;background:#fffaf9;color:#776966;font-size:12px;line-height:1.55}
+@media(max-width:800px){#rankingView .rankTab.active{font-size:14px!important}}
