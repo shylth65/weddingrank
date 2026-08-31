@@ -1,4 +1,4 @@
-/* WeddingRank homepage editorial TOP10 only v5.43 */
+/* WeddingRank homepage editorial TOP10 only v5.44 */
 (()=>{
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const cfg=window.WEDDINGRANK_CONFIG||{};
@@ -14,7 +14,7 @@
     const title=document.querySelector('.homeRankingPreview h2');
     const desc=document.querySelector('.homeRankingPreview .sectionDesc');
     if(title)title.textContent='전국 대표 웨딩홀 TOP 10';
-    if(desc)desc.innerHTML='WeddingRank가 선정한 <b>전국 대표 웨딩홀 100선</b> 중 상위 10곳입니다. 지역 대표성·시설 유형·공개정보·인지도 신호를 종합해 선정합니다.';
+    if(desc)desc.innerHTML='WeddingRank 편집선정 <b>전국 대표 웨딩홀 100선</b> 중 상위 10곳입니다. 실제 이용자 평점 순위와는 별도로 운영합니다.';
     try{
       const editorial=await get('weddingrank_featured_top100?select=*&order=selection_rank.asc&limit=10');
       if(!editorial.length){host.innerHTML='<div class="rankingPreviewEmpty"><b>대표 웨딩홀 TOP 10을 준비 중입니다.</b></div>';return}
