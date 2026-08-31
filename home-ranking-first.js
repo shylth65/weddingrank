@@ -1,5 +1,6 @@
-/* WeddingRank homepage ranking-first layout v5.30 */
+/* WeddingRank homepage ranking-first layout v5.31 */
 (()=>{
+  let moved=false;
   function moveRankingFirst(){
     if(location.hash==='#rankings'||location.hash.startsWith('#hall='))return;
     const list=document.querySelector('#listView');
@@ -9,11 +10,11 @@
     if(ranking.nextElementSibling!==hero) list.insertBefore(ranking,hero);
     ranking.classList.add('homeRankingFirst');
     const h2=ranking.querySelector('h2');
-    if(h2)h2.textContent='전국 예식장 종합랭킹 TOP 10';
+    if(h2&&h2.textContent!=='전국 예식장 종합랭킹 TOP 10')h2.textContent='전국 예식장 종합랭킹 TOP 10';
+    moved=true;
   }
-  const mo=new MutationObserver(()=>moveRankingFirst());
-  mo.observe(document.documentElement,{subtree:true,childList:true});
   document.addEventListener('DOMContentLoaded',moveRankingFirst,{once:true});
+  window.addEventListener('load',moveRankingFirst,{once:true});
   window.addEventListener('hashchange',()=>setTimeout(moveRankingFirst,30));
-  [50,150,400,900,1600].forEach(ms=>setTimeout(moveRankingFirst,ms));
+  [100,400,1000].forEach(ms=>setTimeout(()=>{if(!moved)moveRankingFirst();},ms));
 })();
