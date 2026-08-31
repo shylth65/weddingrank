@@ -1,26 +1,55 @@
-/* WeddingRank homepage rendering rescue v5.61 */
+/* WeddingRank lightweight rendering rescue v5.66 */
 (()=>{
 'use strict';
 const cfg=window.WEDDINGRANK_CONFIG||{};
 const base=String(cfg.SUPABASE_URL||'').replace(/\/+$/,'');
-const key=cfg.SUPABASE_ANON_KEY||cfg.SUPABASE_PUBLISHABLE_KEY||cfg.SUPABASE_KEY||'';
-const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]||m));
+const key=cfg.SUPABASE_PUBLISHABLE_KEY||cfg.SUPABASE_ANON_KEY||cfg.SUPABASE_KEY||'';
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]||m));
 const headers={apikey:key,Authorization:`Bearer ${key}`};
-const slug=s=>encodeURIComponent(String(s||'').trim()).replace(/%/g,'~');
-let fallbackActive=false,fallbackHalls=[],regionMeta=[];
-async function get(path){if(!base||!key)throw new Error('Supabase config missing');const r=await fetch(`${base}/rest/v1/${path}`,{headers,cache:'no-store'}),t=await r.text();if(!r.ok)throw new Error(`${r.status}: ${t.slice(0,180)}`);return t?JSON.parse(t):[]}
-async function html(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(`${path} ${r.status}`);return new DOMParser().parseFromString(await r.text(),'text/html')}
-function ensureStatic(){const g=document.querySelector('.compareGrid');if(g){g.style.display='grid';g.style.visibility='visible';g.style.opacity='1';g.querySelectorAll(':scope > div').forEach(x=>{x.style.display='flex';x.style.visibility='visible';x.style.opacity='1'})}document.querySelectorAll('.criteria span,.heroPanel,.heroFact').forEach(x=>{x.style.visibility='visible';x.style.opacity='1'})}
-function cardHtml(h){return `<article class="card clickable" data-id="${esc(h.hall_id)}" data-static-url="${esc(h.url||'')}" tabindex="0" role="link"><div class="cardTop"><div class="area">${esc(h.sido||'')} ${esc(h.sigungu||'')}</div>${h.priceReady?'<span class="dataReady">가격확인</span>':''}</div><h3>${esc(h.name)}</h3><p>${esc(h.road_address||[h.sido,h.sigungu].filter(Boolean).join(' ')||'주소 확인중')}</p><div class="badges"><span class="badge">${esc(h.venue_type||'예식장')}</span><span class="badge price ${h.priceReady?'verifiedPrice':'pendingPrice'}">${h.priceReady?'가격정보 확인됨':'가격정보 확인중'}</span></div><div class="more">상세정보 보기 →</div></article>`}
-function bindCards(){document.querySelectorAll('#cards .card[data-id],#homeRankPreviewBody [data-id]').forEach(c=>{if(c.dataset.rescueBound)return;c.dataset.rescueBound='1';const go=()=>{if(fallbackActive&&c.dataset.staticUrl)location.href=c.dataset.staticUrl;else if(c.dataset.id)location.hash=`hall=${c.dataset.id}`};c.addEventListener('click',go);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}})})}
-function renderFallbackCards(rows,label='정적 백업 데이터'){const cards=document.querySelector('#cards'),status=document.querySelector('#status');if(!cards)return;cards.innerHTML=rows.slice(0,24).map(cardHtml).join('');document.querySelector('#empty')?.toggleAttribute('hidden',rows.length!==0);let controls=document.querySelector('#listControls');if(!controls){controls=document.createElement('div');controls.id='listControls';controls.className='listControls';cards.insertAdjacentElement('afterend',controls)}controls.innerHTML=`<span>검색결과 ${rows.length}곳 · ${Math.min(24,rows.length)}곳 표시중</span><a href="/regions.html" style="font-weight:800;color:#835456">전국 지역별 전체보기 →</a>`;if(status)status.textContent=`${label} · 실시간 DB 연결 복구 중`;bindCards()}
-async function loadRegionMeta(){if(regionMeta.length)return regionMeta;const d=await html('/regions.html');regionMeta=[...d.querySelectorAll('.grid .card')].map(a=>({name:a.querySelector('b')?.textContent.trim()||'',count:Number((a.querySelector('span')?.textContent||'').replace(/\D/g,''))||0,href:a.getAttribute('href')||''})).filter(x=>x.name);const total=regionMeta.reduce((n,x)=>n+x.count,0);const pc=document.querySelector('#publicCount');if(pc&&total)pc.textContent=total+'곳';const sido=document.querySelector('#sido');if(sido)sido.innerHTML='<option value="">전국</option>'+regionMeta.map(x=>`<option>${esc(x.name)}</option>`).join('');const rb=document.querySelector('#regionButtons');if(rb){rb.innerHTML=regionMeta.map(x=>`<button data-region="${esc(x.name)}">${esc(x.name)} <small>${x.count}</small></button>`).join('');rb.querySelectorAll('button').forEach(b=>b.addEventListener('click',async()=>{const v=b.dataset.region;if(sido)sido.value=v;await loadStaticRegion(v)}))}return regionMeta}
-function parseVenueCards(doc,sido,sigungu){return [...doc.querySelectorAll('section.grid .card')].map(a=>{const href=a.getAttribute('href')||'',m=href.match(/\/venue\/([^/]+)\/?$/);return {hall_id:m?.[1]||'',name:a.querySelector('b')?.textContent.trim()||'',sido,sigungu,road_address:a.querySelector('span')?.textContent.trim()||'',priceReady:/확인됨/.test(a.querySelector('em')?.textContent||''),url:href,venue_type:'예식장'}}).filter(x=>x.hall_id&&x.name)}
-async function loadStaticRegion(region){fallbackActive=true;const meta=(await loadRegionMeta()).find(x=>x.name===region)||regionMeta[0];if(!meta)return;const p=await html(meta.href||`/area/${slug(region)}/`),districts=[...p.querySelectorAll('section.grid .card')].map(a=>({name:a.querySelector('b')?.textContent.trim()||'',href:a.getAttribute('href')||''})).filter(x=>x.href);const out=[];for(const d of districts){try{const dd=await html(d.href);out.push(...parseVenueCards(dd,meta.name,d.name));if(out.length>=48)break}catch(_){}}fallbackHalls=out;renderFallbackCards(out,`${meta.name} 정적 백업 ${out.length}곳`)}
-async function loadStaticInitial(){fallbackActive=true;await loadRegionMeta();await loadStaticRegion('서울특별시');const search=document.querySelector('#search');if(search&&!search.dataset.staticBound){search.dataset.staticBound='1';search.addEventListener('input',()=>{if(!fallbackActive)return;const q=search.value.trim().toLowerCase();renderFallbackCards(fallbackHalls.filter(h=>!q||[h.name,h.sido,h.sigungu,h.road_address].join(' ').toLowerCase().includes(q)),`${document.querySelector('#sido')?.value||'정적'} 백업`)})}const sido=document.querySelector('#sido');if(sido&&!sido.dataset.staticBound){sido.dataset.staticBound='1';sido.addEventListener('change',()=>{if(fallbackActive&&sido.value)loadStaticRegion(sido.value);else if(fallbackActive&&!sido.value)loadStaticRegion('서울특별시')})}}
-async function rescueList(){const status=document.querySelector('#status'),cards=document.querySelector('#cards');if(!cards)return;const needs=!cards.children.length||/준비중|연결 오류|다시 불러와/.test(status?.textContent||'');if(!needs)return;try{const [halls,prices]=await Promise.all([get('wedding_halls?select=hall_id,name,sido,sigungu,road_address,venue_type&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&order=name.asc&limit=500'),get('wedding_prices?select=hall_id,meal_price_per_person,rental_fee,effective_date&order=effective_date.desc&limit=1000')]);fallbackActive=false;const pm=new Map();for(const p of prices)if(p.hall_id&&!pm.has(p.hall_id))pm.set(p.hall_id,p);const rows=halls.map(h=>({...h,priceReady:pm.has(h.hall_id)}));cards.innerHTML=rows.slice(0,24).map(cardHtml).join('');const pc=document.querySelector('#publicCount');if(pc)pc.textContent=halls.length+'곳';if(status)status.textContent=`공개 예식장 ${halls.length}곳 · 가격정보 ${pm.size}곳`;bindCards()}catch(e){console.warn('[WeddingRank rescue] Supabase list failed; using static SEO fallback',e);await loadStaticInitial()}}
-async function rescueTop10(){const host=document.querySelector('#homeRankPreviewBody');if(!host)return;const pending=/불러오는 중|준비 중/.test(host.textContent||'');if(!pending&&host.children.length>1)return;try{const rows=await get('weddingrank_featured_top100?select=hall_id,name,sido,sigungu,selection_rank,editorial_index&order=selection_rank.asc&limit=10');if(!rows.length)throw new Error('empty');host.innerHTML='<div class="previewTopGrid editorialHomeTop10">'+rows.map(x=>`<article class="previewTopCard" data-id="${esc(x.hall_id||'')}" tabindex="0" role="link"><strong class="previewTopNo">${Number(x.selection_rank)}</strong><div class="previewTopHall"><b>${esc(x.name||'예식장')}</b><span>${esc([x.sido,x.sigungu].filter(Boolean).join(' '))}</span></div><div class="previewTopScore"><strong>${Number(x.editorial_index||0).toFixed(1)}</strong><span>편집지수</span></div></article>`).join('')+'</div>';bindCards()}catch(e){try{if(!fallbackHalls.length)await loadStaticInitial();const sample=fallbackHalls.slice(0,10);document.querySelector('.homeRankingPreview h2').textContent='대표 예식장 바로보기';document.querySelector('.homeRankingPreview .sectionDesc').innerHTML='실시간 TOP 10 데이터 연결을 복구 중입니다. 아래에는 <b>정적 백업 예식장</b>을 표시합니다.';host.innerHTML='<div class="previewTopGrid editorialHomeTop10">'+sample.map((x,i)=>`<article class="previewTopCard" data-id="${esc(x.hall_id)}" data-static-url="${esc(x.url)}" tabindex="0" role="link"><strong class="previewTopNo">${i+1}</strong><div class="previewTopHall"><b>${esc(x.name)}</b><span>${esc([x.sido,x.sigungu].filter(Boolean).join(' '))}</span></div><div class="previewTopScore"><strong>보기</strong><span>정적 백업</span></div></article>`).join('')+'</div>';bindCards()}catch(err){host.innerHTML='<div class="rankingPreviewEmpty"><b>예식장 정보를 복구 중입니다.</b></div>'}}}
-async function run(){ensureStatic();await Promise.allSettled([rescueList(),rescueTop10()]);ensureStatic()}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(run,300),{once:true});else setTimeout(run,300);
-setTimeout(run,1600);setTimeout(run,4200);
+let ran=false;
+async function get(path){
+  if(!base||!key) throw new Error('Supabase config missing');
+  const r=await fetch(`${base}/rest/v1/${path}`,{headers,cache:'no-store'});
+  const t=await r.text();
+  if(!r.ok) throw new Error(`${r.status}: ${t.slice(0,180)}`);
+  return t?JSON.parse(t):[];
+}
+function card(h,hasPrice){
+  return `<article class="card clickable" data-id="${esc(h.hall_id)}" tabindex="0" role="link"><div class="cardTop"><div class="area">${esc(h.sido||'')} ${esc(h.sigungu||'')}</div>${hasPrice?'<span class="dataReady">가격확인</span>':''}</div><h3>${esc(h.name)}</h3><p>${esc(h.road_address||'주소 확인중')}</p><div class="badges"><span class="badge">${esc(h.venue_type||'예식장')}</span><span class="badge price ${hasPrice?'verifiedPrice':'pendingPrice'}">${hasPrice?'가격정보 확인됨':'가격정보 확인중'}</span></div><div class="more">상세정보 보기 →</div></article>`;
+}
+function bindCards(){
+  document.querySelectorAll('#cards .card[data-id],#homeRankPreviewBody [data-id]').forEach(c=>{
+    if(c.dataset.wrBound)return;c.dataset.wrBound='1';
+    const go=()=>{if(c.dataset.id)location.hash=`hall=${c.dataset.id}`};
+    c.addEventListener('click',go);
+    c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}});
+  });
+}
+async function run(){
+  if(ran)return;ran=true;
+  const status=document.querySelector('#status');
+  try{
+    const [halls,prices,top10]=await Promise.all([
+      get('wedding_halls?select=hall_id,name,sido,sigungu,road_address,venue_type&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&order=name.asc&limit=500'),
+      get('wedding_prices?select=hall_id&limit=1000'),
+      get('weddingrank_featured_top100?select=hall_id,name,sido,sigungu,selection_rank,editorial_index&order=selection_rank.asc&limit=10')
+    ]);
+    const priceSet=new Set(prices.map(p=>p.hall_id).filter(Boolean));
+    const cards=document.querySelector('#cards');
+    if(cards && cards.children.length===0) cards.innerHTML=halls.slice(0,24).map(h=>card(h,priceSet.has(h.hall_id))).join('');
+    const pc=document.querySelector('#publicCount'); if(pc)pc.textContent=halls.length+'곳';
+    if(status)status.textContent=`공개 예식장 ${halls.length}곳 · 가격정보 ${priceSet.size}곳`;
+    const host=document.querySelector('#homeRankPreviewBody');
+    if(host && /불러오는 중|복구 중|준비 중/.test(host.textContent||'')){
+      host.innerHTML='<div class="previewTopGrid editorialHomeTop10">'+top10.map(x=>`<article class="previewTopCard" data-id="${esc(x.hall_id||'')}" tabindex="0" role="link"><strong class="previewTopNo">${Number(x.selection_rank)||''}</strong><div class="previewTopHall"><b>${esc(x.name||'예식장')}</b><span>${esc([x.sido,x.sigungu].filter(Boolean).join(' '))}</span></div><div class="previewTopScore"><strong>${Number(x.editorial_index||0).toFixed(1)}</strong><span>편집지수</span></div></article>`).join('')+'</div>';
+    }
+    bindCards();
+  }catch(e){
+    console.warn('[WeddingRank] data rescue failed',e);
+    if(status)status.textContent='예식장 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+    const host=document.querySelector('#homeRankPreviewBody');
+    if(host && /불러오는 중|복구 중|준비 중/.test(host.textContent||'')) host.innerHTML='<div class="rankingPreviewEmpty"><b>예식장 순위를 잠시 불러오지 못했습니다.</b></div>';
+  }
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(run,250),{once:true});else setTimeout(run,250);
 })();
