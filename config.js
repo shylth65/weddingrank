@@ -13,9 +13,8 @@ try {
 } catch (_) {}
 
 window.addEventListener("DOMContentLoaded", () => {
-  // Keep only the current, non-overlapping enhancement stack.
   [
-    "home-ranking-v538.css?v=5.65"
+    "home-ranking-v538.css?v=5.66"
   ].forEach(u => {
     const e = document.createElement("link");
     e.rel = "stylesheet";
@@ -24,10 +23,10 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   [
-    "ranking-limit-v534.js?v=5.65",
-    "navigation-hotfix-v545.js?v=5.65",
-    "render-rescue-v560.js?v=5.65",
-    "list-five-v562.js?v=5.65"
+    "ranking-limit-v534.js?v=5.66",
+    "navigation-hotfix-v545.js?v=5.66",
+    "render-rescue-v560.js?v=5.66",
+    "list-five-v562.js?v=5.66"
   ].forEach(u => {
     const s = document.createElement("script");
     s.src = u;
@@ -37,7 +36,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (/\/admin\.html$/.test(location.pathname)) {
     const s = document.createElement("script");
-    s.src = "price-audit.js?v=5.65";
+    s.src = "price-audit.js?v=5.66";
     s.defer = true;
     document.body.appendChild(s);
   }
