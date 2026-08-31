@@ -1,4 +1,4 @@
-/* WeddingRank mobile-stable homepage helper v5.67 */
+/* WeddingRank mobile-stable homepage helper v5.68 */
 (()=>{
 'use strict';
 const PAGE=5;
@@ -30,8 +30,10 @@ function applyFive(reset=false){
 }
 async function loadTop10(){
   const host=$('#homeRankPreviewBody'); if(!host||!base||!key) return;
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),7000);
   try{
-    const r=await fetch(`${base}/rest/v1/weddingrank_featured_top100?select=hall_id,name,sido,sigungu,selection_rank,editorial_index&order=selection_rank.asc&limit=10`,{headers:{apikey:key,Authorization:`Bearer ${key}`},cache:'no-store'});
+    const r=await fetch(`${base}/rest/v1/weddingrank_featured_top100?select=hall_id,name,sido,sigungu,selection_rank,editorial_index&order=selection_rank.asc&limit=10`,{headers:{apikey:key,Authorization:`Bearer ${key}`},cache:'no-store',signal:ctl.signal});
     if(!r.ok) throw new Error(String(r.status));
     const rows=await r.json();
     if(!rows.length) throw new Error('empty');
@@ -39,10 +41,10 @@ async function loadTop10(){
     host.querySelectorAll('[data-id]').forEach(c=>{const go=()=>location.hash=`hall=${c.dataset.id}`;c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
   }catch(_){
     host.innerHTML='<div class="rankingPreviewEmpty"><b>TOP 10 정보를 잠시 후 다시 확인해 주세요.</b></div>';
-  }
+  }finally{clearTimeout(timer)}
 }
 function start(){
-  const css=document.createElement('link');css.rel='stylesheet';css.href='home-ranking-v538.css?v=5.67';document.head.appendChild(css);
+  const css=document.createElement('link');css.rel='stylesheet';css.href='home-ranking-v538.css?v=5.68';document.head.appendChild(css);
   $('#search')?.addEventListener('input',()=>setTimeout(()=>applyFive(true),80),{passive:true});
   $('#sido')?.addEventListener('change',()=>setTimeout(()=>applyFive(true),80));
   [250,700,1400,2600].forEach(ms=>setTimeout(()=>applyFive(ms===250),ms));
