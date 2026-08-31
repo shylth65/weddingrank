@@ -1,0 +1,11 @@
+/* WeddingRank homepage ranking-first layout v5.30 */
+#listView>.homeRankingFirst{padding-top:28px!important;padding-bottom:30px!important;border-top:0!important;background:linear-gradient(180deg,#fff 0%,#fff9f8 100%)!important}
+#listView>.homeRankingFirst .section-head{margin-bottom:14px!important}
+#listView>.homeRankingFirst .section-head h2{font-size:32px!important;margin-bottom:6px!important}
+#listView>.homeRankingFirst .sectionDesc{font-size:13px!important}
+#listView>.homeRankingFirst+#listView .hero{margin-top:0}
+#listView>.homeRankingFirst~.hero{margin-top:0!important;padding-top:34px!important;padding-bottom:34px!important}
+#listView>.homeRankingFirst~.hero .heroCopy h1{font-size:46px!important}
+#listView>.homeRankingFirst~.hero .heroLead{margin-bottom:18px!important}
+#listView>.homeRankingFirst~.hero .stats{margin-top:24px!important}
+@media(max-width:800px){#listView>.homeRankingFirst{padding-top:22px!important;padding-bottom:24px!important}#listView>.homeRankingFirst .section-head h2{font-size:26px!important}#listView>.homeRankingFirst~.hero{padding-top:26px!important;padding-bottom:26px!important}#listView>.homeRankingFirst~.hero .heroCopy h1{font-size:36px!important}}
