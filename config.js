@@ -12,6 +12,6 @@ try {
   if (expiresIn) localStorage.setItem("wr_expires_at", String(Date.now() + expiresIn * 1000));
 } catch (_) {}
 window.addEventListener("DOMContentLoaded", () => {
-  [["link","v59.css?v=5.10"],["link","v512.css?v=5.12"],["link","v514.css?v=5.17"],["link","v523.css?v=5.23"]].forEach(([t,u])=>{const e=document.createElement(t);e.rel="stylesheet";e.href=u;document.head.appendChild(e)});
+  [["link","v59.css?v=5.10"],["link","v512.css?v=5.12"],["link","v514.css?v=5.17"],["link","v523.css?v=5.23"],["link","home-ranking-v538.css?v=5.38"]].forEach(([t,u])=>{const e=document.createElement(t);e.rel="stylesheet";e.href=u;document.head.appendChild(e)});
   ["v58.js?v=5.8","v59.js?v=5.10","v511.js?v=5.11","v512.js?v=5.12","v513.js?v=5.13","v514.js?v=5.15","v516.js?v=5.16","v518.js?v=5.18","v519.js?v=5.19","v520.js?v=5.20","v521.js?v=5.21","v522.js?v=5.22","v523.js?v=5.23","ranking-limit-v534.js?v=5.34","home-top10-v535.js?v=5.37"].forEach(u=>{const s=document.createElement("script");s.src=u;s.defer=true;document.body.appendChild(s)});
 });
