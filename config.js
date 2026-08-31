@@ -12,17 +12,24 @@ try {
   if (expiresIn) localStorage.setItem("wr_expires_at", String(Date.now() + expiresIn * 1000));
 } catch (_) {}
 
-// Keep homepage runtime intentionally small on mobile.
-window.addEventListener("DOMContentLoaded", () => {
+function wrLoadScriptOnce(id, src) {
+  if (document.getElementById(id)) return;
   const s = document.createElement("script");
-  s.src = "home-lite-v567.js?v=5.67";
+  s.id = id;
+  s.src = src;
   s.defer = true;
   document.body.appendChild(s);
+}
+function wrMaybeLoadDetailEnhancements() {
+  if (/^#hall=/.test(location.hash)) wrLoadScriptOnce("wr-detail-enhancements", "enhancements.js?v=5.67");
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=5.67");
+  wrMaybeLoadDetailEnhancements();
+  window.addEventListener("hashchange", wrMaybeLoadDetailEnhancements);
 
   if (/\/admin\.html$/.test(location.pathname)) {
-    const a = document.createElement("script");
-    a.src = "price-audit.js?v=5.67";
-    a.defer = true;
-    document.body.appendChild(a);
+    wrLoadScriptOnce("wr-price-audit", "price-audit.js?v=5.67");
   }
 });
