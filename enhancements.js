@@ -1,4 +1,4 @@
-/* WeddingRank compare-state + auth hotfix v5.24 */
+/* WeddingRank compare-state + auth hotfix v5.34 */
 (()=>{
   const KEY='wr_compare_ids';
   const read=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'[]').filter(Boolean).slice(0,3)}catch(_){return[]}};
@@ -12,7 +12,6 @@
   mo.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden']});
   window.WeddingRankCompare={read,write,clear:clearAll,close:closeModal,sync:syncButtons};
 
-  // Public review login hotfix: always return to the custom domain and avoid rapid repeat sends.
   let loginBusy=false,lastLoginSend=0;
   document.addEventListener('click',async ev=>{
     const btn=ev.target.closest?.('#loginBtn');
@@ -44,16 +43,14 @@
     }finally{loginBusy=false;btn.disabled=false}
   },true);
 
-  // Put the live venue ranking directly below the hero/trust area and render a real TOP 10.
+  // Render the live TOP 10 in the position defined directly in index.html.
   async function promoteHomeRanking(){
     const section=document.querySelector('.homeRankingPreview');
-    const find=document.querySelector('#find');
     const body=document.querySelector('#homeRankPreviewBody');
-    if(!section||!find||!body)return;
-    find.parentNode.insertBefore(section,find);
+    if(!section||!body)return;
     section.classList.add('homeRankingTop');
     const h2=section.querySelector('h2');
-    if(h2)h2.textContent='전국 예식장 순위 TOP 10';
+    if(h2)h2.textContent='전국 예식장 종합랭킹 TOP 10';
     const desc=section.querySelector('.sectionDesc');
     if(desc)desc.textContent='실제 이용자 평가가 등록된 예식장만 종합평점과 평가 수를 기준으로 순위를 공개합니다.';
     try{
@@ -63,7 +60,7 @@
         .sort((a,b)=>(Number(b.overall_score)-Number(a.overall_score))||(Number(b.review_count)-Number(a.review_count)))
         .slice(0,10);
       if(!ranked.length){
-        body.innerHTML='<div class="rankingPreviewEmpty"><b>아직 TOP 10을 공개할 만큼 이용자 평가가 쌓이지 않았습니다.</b><span>첫 평가가 등록되는 예식장부터 순위에 자동 반영됩니다.</span></div>';
+        body.innerHTML='<div class="rankingPreviewEmpty"><b>아직 실제 이용자 종합랭킹을 공개할 만큼 평가가 쌓이지 않았습니다.</b><span>첫 평가가 등록되는 예식장부터 자동으로 TOP 10에 반영됩니다.</span></div>';
         return;
       }
       body.innerHTML='<div class="previewTopGrid">'+ranked.map((h,i)=>`<article class="previewTopCard" data-id="${h.hall_id}" tabindex="0" role="link"><strong class="previewTopNo">${i+1}</strong><div class="previewTopHall"><b>${esc(h.name||'예식장')}</b><span>${esc([h.sido,h.sigungu].filter(Boolean).join(' '))}</span></div><div class="previewTopScore"><strong>${Number(h.overall_score).toFixed(2)}</strong><span>${Number(h.review_count)}개 평가</span></div></article>`).join('')+'</div>';
@@ -78,7 +75,6 @@
     }
   }
 
-  // Review UX v5.26: turn score selects into accessible star controls without changing stored values.
   function installReviewStyles(){
     if(document.querySelector('#wrReviewUxStyles'))return;
     const style=document.createElement('style');
