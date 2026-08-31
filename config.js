@@ -12,32 +12,17 @@ try {
   if (expiresIn) localStorage.setItem("wr_expires_at", String(Date.now() + expiresIn * 1000));
 } catch (_) {}
 
+// Keep homepage runtime intentionally small on mobile.
 window.addEventListener("DOMContentLoaded", () => {
-  [
-    "home-ranking-v538.css?v=5.66"
-  ].forEach(u => {
-    const e = document.createElement("link");
-    e.rel = "stylesheet";
-    e.href = u;
-    document.head.appendChild(e);
-  });
-
-  [
-    "ranking-limit-v534.js?v=5.66",
-    "navigation-hotfix-v545.js?v=5.66",
-    "render-rescue-v560.js?v=5.66",
-    "list-five-v562.js?v=5.66"
-  ].forEach(u => {
-    const s = document.createElement("script");
-    s.src = u;
-    s.defer = true;
-    document.body.appendChild(s);
-  });
+  const s = document.createElement("script");
+  s.src = "home-lite-v567.js?v=5.67";
+  s.defer = true;
+  document.body.appendChild(s);
 
   if (/\/admin\.html$/.test(location.pathname)) {
-    const s = document.createElement("script");
-    s.src = "price-audit.js?v=5.66";
-    s.defer = true;
-    document.body.appendChild(s);
+    const a = document.createElement("script");
+    a.src = "price-audit.js?v=5.67";
+    a.defer = true;
+    document.body.appendChild(a);
   }
 });
