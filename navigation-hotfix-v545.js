@@ -1,4 +1,4 @@
-/* WeddingRank navigation + homepage list hotfix v5.48 */
+/* WeddingRank navigation + homepage list hotfix v5.49 */
 (()=>{
   const LIST_STEP=5;
   let pendingDetailTarget='';
@@ -81,10 +81,54 @@
     return '';
   }
 
+  function injectEvaluationGuide(){
+    if(document.querySelector('#evaluationStartGuide')) return;
+    const find=document.querySelector('#find');
+    if(!find) return;
+    const guide=document.createElement('div');
+    guide.id='evaluationStartGuide';
+    guide.className='wrEvaluationStartGuide';
+    guide.innerHTML=`<div class="wrEvalGuideText"><b>예식장을 평가하려면 먼저 평가할 예식장을 찾아주세요.</b><span>위 검색창에서 예식장명이나 지역을 검색한 뒤, 해당 예식장 상세화면에서 <strong>평가 작성</strong>을 선택하면 됩니다.</span></div><button type="button" id="evaluationSearchFocus">평가할 예식장 검색하기</button>`;
+    const head=find.querySelector('.section-head');
+    if(head) head.insertAdjacentElement('afterend',guide); else find.prepend(guide);
+
+    const examples=document.createElement('div');
+    examples.id='referenceReviewExamples';
+    examples.className='wrReferenceReviews';
+    examples.innerHTML=`<div class="wrReferenceHead"><div><p class="eyebrow">REVIEW EXAMPLES</p><h3>처음 평가한다면 이렇게 남겨보세요</h3></div><span>참고 예시 · 실제 랭킹에는 반영되지 않음</span></div><div class="wrReferenceGrid"><article><b>신랑·신부 예시</b><p>“음식은 전반적으로 만족스러웠고, 주차 안내도 원활했습니다. 다만 신부대기실은 하객이 몰리는 시간에 조금 혼잡했어요.”</p><small>음식 4 · 주차 4 · 시설 4 · 서비스 4</small></article><article><b>혼주 예시</b><p>“직원 응대가 빠르고 연회장 동선이 편했습니다. 지방 하객이 많아 교통 접근성은 미리 안내가 필요했습니다.”</p><small>교통 3 · 연회장 4 · 서비스 5 · 가성비 4</small></article><article><b>하객 예시</b><p>“홀 분위기와 식사는 좋았고, 엘리베이터 대기시간은 조금 길었습니다. 전체적으로 다시 방문해도 괜찮은 예식장이었습니다.”</p><small>시설 4 · 음식 4 · 접근성 4 · 가성비 4</small></article></div>`;
+    guide.insertAdjacentElement('afterend',examples);
+
+    const style=document.createElement('style');
+    style.textContent=`.wrEvaluationStartGuide{margin:18px 0 16px;padding:18px 20px;border:1px solid rgba(16,24,40,.12);border-radius:16px;background:#fff;display:flex;gap:18px;align-items:center;justify-content:space-between}.wrEvalGuideText{display:flex;flex-direction:column;gap:6px}.wrEvalGuideText b{font-size:17px}.wrEvalGuideText span{font-size:14px;line-height:1.55;color:#667085}.wrEvaluationStartGuide button{border:0;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer;white-space:nowrap}.wrReferenceReviews{margin:0 0 28px;padding:18px 20px;border-radius:16px;background:rgba(0,0,0,.025)}.wrReferenceHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}.wrReferenceHead h3{margin:2px 0 0}.wrReferenceHead>span{font-size:12px;color:#667085}.wrReferenceGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.wrReferenceGrid article{padding:16px;border-radius:14px;background:#fff;border:1px solid rgba(16,24,40,.08)}.wrReferenceGrid article b{display:block;margin-bottom:8px}.wrReferenceGrid article p{margin:0 0 10px;font-size:14px;line-height:1.55;color:#475467}.wrReferenceGrid article small{color:#667085}@media(max-width:760px){.wrEvaluationStartGuide{align-items:stretch;flex-direction:column}.wrEvaluationStartGuide button{width:100%}.wrReferenceHead{align-items:flex-start;flex-direction:column}.wrReferenceGrid{grid-template-columns:1fr}}`;
+    document.head.appendChild(style);
+
+    document.querySelector('#evaluationSearchFocus')?.addEventListener('click',()=>{
+      const search=document.querySelector('#search');
+      document.querySelector('.hero')?.scrollIntoView({behavior:'smooth',block:'start'});
+      setTimeout(()=>search?.focus(),450);
+    });
+  }
+
+  function startEvaluationFlow(){
+    try{if(typeof showList==='function') showList()}catch(_){}
+    injectEvaluationGuide();
+    history.replaceState(null,'',location.pathname+location.search+'#find');
+    document.querySelector('#find')?.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(()=>document.querySelector('#search')?.focus(),350);
+  }
+
   document.addEventListener('click',e=>{
     const el=e.target.closest?.('a,button,[role="button"]');
     if(!el) return;
     if(el.closest('#reviewForm') || el.closest('#consultForm')) return;
+
+    const topEvaluation=el.closest('.top nav a[href="#about"]');
+    if(topEvaluation && String(topEvaluation.textContent||'').includes('예식장 평가')){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      startEvaluationFlow();
+      return;
+    }
 
     const regionBtn=el.closest('#regionButtons [data-region]');
     if(regionBtn){
@@ -127,5 +171,6 @@
     setTimeout(patchLoadMoreLabel,0);
   });
 
-  setTimeout(()=>safeRender(true),0);
+  window.addEventListener('DOMContentLoaded',injectEvaluationGuide,{once:true});
+  setTimeout(()=>{injectEvaluationGuide();safeRender(true)},0);
 })();
