@@ -1,22 +1,38 @@
-/* WeddingRank navigation + homepage list hotfix v5.45 */
+/* WeddingRank navigation + homepage list hotfix v5.48 */
 (()=>{
   const LIST_STEP=5;
   let pendingDetailTarget='';
+
+  function patchLoadMoreLabel(){
+    const btn=document.querySelector('#loadMoreBtn');
+    if(!btn||btn.hidden)return;
+    const count=document.querySelector('#listResultCount')?.textContent||'';
+    const m=count.match(/검색결과\s*(\d+)곳\s*·\s*(\d+)곳\s*표시중/);
+    if(m){
+      const total=Number(m[1]),shown=Number(m[2]);
+      const next=Math.max(0,Math.min(LIST_STEP,total-shown));
+      btn.textContent=`예식장 더보기 (${next}곳)`;
+    }else{
+      btn.textContent='예식장 더보기 (5곳)';
+    }
+  }
 
   function safeRender(reset=false){
     try{
       if(reset) visibleHallCount=LIST_STEP;
       if(typeof render==='function') render(false);
+      setTimeout(patchLoadMoreLabel,0);
     }catch(e){console.warn('[WeddingRank] list render hotfix',e)}
   }
 
-  /* app.js uses 24-item pages. Wrap its global render so every new search/filter starts at 5. */
   try{
     if(typeof render==='function' && !render.__wrFiveWrapped){
       const originalRender=render;
       const wrapped=function(reset=false){
         if(reset) visibleHallCount=LIST_STEP;
-        return originalRender(false);
+        const out=originalRender(false);
+        setTimeout(patchLoadMoreLabel,0);
+        return out;
       };
       wrapped.__wrFiveWrapped=true;
       render=wrapped;
@@ -68,8 +84,6 @@
   document.addEventListener('click',e=>{
     const el=e.target.closest?.('a,button,[role="button"]');
     if(!el) return;
-
-    /* Real form submit buttons must keep their normal submit behavior. */
     if(el.closest('#reviewForm') || el.closest('#consultForm')) return;
 
     const regionBtn=el.closest('#regionButtons [data-region]');
@@ -105,10 +119,13 @@
     }
   },true);
 
+  const observer=new MutationObserver(()=>patchLoadMoreLabel());
+  observer.observe(document.documentElement,{subtree:true,childList:true,characterData:true});
+
   window.addEventListener('hashchange',()=>{
     if(pendingDetailTarget && location.hash.startsWith('#hall=')) setTimeout(()=>scrollDetailTarget(pendingDetailTarget),80);
+    setTimeout(patchLoadMoreLabel,0);
   });
 
-  /* If app.js already rendered before this hotfix loaded, normalize the first list now. */
   setTimeout(()=>safeRender(true),0);
 })();
