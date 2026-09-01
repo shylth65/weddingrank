@@ -35,6 +35,8 @@ function wrMaybeLoadDetailEnhancements() {
 window.addEventListener("DOMContentLoaded", () => {
   wrLoadStyleOnce("wr-visual-restore", "visual-restore-v569.css?v=5.69");
   wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=5.69");
+  // Lightweight participation layer: no MutationObserver and no extra Supabase client.
+  wrLoadScriptOnce("wr-engagement", "wedding-engagement-v575.js?v=5.75");
   wrMaybeLoadDetailEnhancements();
   window.addEventListener("hashchange", wrMaybeLoadDetailEnhancements);
 
