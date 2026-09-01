@@ -7,8 +7,7 @@
 
   function rowHtml(h,ready,rankNo,key,isExtra){
     const area=[h.sido,h.sigungu].filter(Boolean).join(" ");
-    const extraStyle=isExtra?' style="display:none"':'';
-    return `<article class="rankRow${ready?'':' pendingRank'}${isExtra?' rankPendingExtra':''}" data-id="${h.hall_id}"${extraStyle}>
+    return `<article class="rankRow${ready?'':' pendingRank'}${isExtra?' rankPendingExtra':''}" data-id="${h.hall_id}">
       <div class="rankNo">${ready?rankNo:'대기'}</div>
       <div class="rankHall"><b>${esc(h.name)}</b><span>${esc(area)}</span></div>
       <div class="rankScore">${ready
@@ -65,7 +64,7 @@
       if(toggle){
         toggle.onclick=()=>{
           const expanding=toggle.getAttribute('aria-expanded')!=='true';
-          body.querySelectorAll('.rankPendingExtra').forEach(x=>x.style.display=expanding?'grid':'none');
+          body.querySelectorAll('.rankPendingExtra').forEach(x=>x.classList.toggle('rankExpanded',expanding));
           toggle.setAttribute('aria-expanded',String(expanding));
           toggle.innerHTML=expanding?'평가대기 예식장 접기':`평가대기 예식장 더보기 <b>${pendingExtra.length}</b>`;
         };
