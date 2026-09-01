@@ -1,4 +1,4 @@
-/* WeddingRank mobile-stable homepage helper v5.68 */
+/* WeddingRank mobile-stable homepage helper v5.69 */
 (()=>{
 'use strict';
 const PAGE=5;
@@ -44,7 +44,6 @@ async function loadTop10(){
   }finally{clearTimeout(timer)}
 }
 function start(){
-  const css=document.createElement('link');css.rel='stylesheet';css.href='home-ranking-v538.css?v=5.68';document.head.appendChild(css);
   $('#search')?.addEventListener('input',()=>setTimeout(()=>applyFive(true),80),{passive:true});
   $('#sido')?.addEventListener('change',()=>setTimeout(()=>applyFive(true),80));
   [250,700,1400,2600].forEach(ms=>setTimeout(()=>applyFive(ms===250),ms));
