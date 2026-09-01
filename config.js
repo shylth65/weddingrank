@@ -20,16 +20,25 @@ function wrLoadScriptOnce(id, src) {
   s.defer = true;
   document.body.appendChild(s);
 }
+function wrLoadStyleOnce(id, href) {
+  if (document.getElementById(id)) return;
+  const l = document.createElement("link");
+  l.id = id;
+  l.rel = "stylesheet";
+  l.href = href;
+  document.head.appendChild(l);
+}
 function wrMaybeLoadDetailEnhancements() {
-  if (/^#hall=/.test(location.hash)) wrLoadScriptOnce("wr-detail-enhancements", "enhancements.js?v=5.67");
+  if (/^#hall=/.test(location.hash)) wrLoadScriptOnce("wr-detail-enhancements", "enhancements.js?v=5.69");
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=5.67");
+  wrLoadStyleOnce("wr-visual-restore", "visual-restore-v569.css?v=5.69");
+  wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=5.69");
   wrMaybeLoadDetailEnhancements();
   window.addEventListener("hashchange", wrMaybeLoadDetailEnhancements);
 
   if (/\/admin\.html$/.test(location.pathname)) {
-    wrLoadScriptOnce("wr-price-audit", "price-audit.js?v=5.67");
+    wrLoadScriptOnce("wr-price-audit", "price-audit.js?v=5.69");
   }
 });
