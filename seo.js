@@ -60,3 +60,16 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 })();
+
+/* WeddingRank navigation dedupe v5.84 */
+(()=>{
+  function keepOne(scope,selector){const root=document.querySelector(scope);if(!root)return;const nodes=[...root.querySelectorAll(selector)];nodes.slice(1).forEach(n=>n.remove())}
+  function normalize(){
+    keepOne('.mainNav','a[href="#wrPriceBand"]');
+    keepOne('.quickLinks','a[href="#wrPriceBand"]');
+    const mobile=[...document.querySelectorAll('.wrMobileNav')];mobile.slice(1).forEach(n=>n.remove());
+    const m=mobile[0];if(m){const price=[...m.querySelectorAll('a[href="#wrPriceBand"]')];price.slice(1).forEach(n=>n.remove())}
+  }
+  const run=()=>{normalize();setTimeout(normalize,150);setTimeout(normalize,600);setTimeout(normalize,1500)};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+})();
