@@ -33,3 +33,30 @@
   render=function(reset=false){ensureUI();const original=halls;let filtered=original.filter(matches);filtered.sort((a,b)=>{const av=meal(a),bv=meal(b);if(av==null&&bv==null)return String(a.name||'').localeCompare(String(b.name||''),'ko');if(av==null)return 1;if(bv==null)return -1;return av-bv||String(a.name||'').localeCompare(String(b.name||''),'ko')});halls=filtered;try{originalRender(reset)}finally{halls=original}};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ensureUI,{once:true});else ensureUI();
 })();
+
+/* WeddingRank price finder navigation v5.83 */
+(()=>{
+  function install(){
+    if(!document.querySelector('#wrPriceNavStyle')){
+      const s=document.createElement('style');s.id='wrPriceNavStyle';s.textContent=`.wrMobileNav{display:none}@media(max-width:800px){.wrMobileNav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:10px 5vw 12px;background:#fff;border-bottom:1px solid #eee5e2;position:sticky;top:62px;z-index:19}.wrMobileNav a{display:flex;align-items:center;justify-content:center;min-height:42px;border:1px solid #e2d4d1;border-radius:999px;background:#fff;font-size:12px;font-weight:900;color:#665b59}.wrMobileNav a:nth-child(2){border-color:#c7d9ee;color:#3f74b6}.wrMobileNav a:nth-child(3){border-color:#e3c6d7;color:#9a5578}.top+ .wrMobileNav + main{scroll-margin-top:120px}}`;
+      document.head.appendChild(s);
+    }
+    const nav=document.querySelector('.mainNav');
+    if(nav&&!nav.querySelector('[data-price-nav]')){
+      const region=[...nav.querySelectorAll('a')].find(a=>a.getAttribute('href')==='#regions');
+      const a=document.createElement('a');a.href='#wrPriceBand';a.dataset.priceNav='1';a.textContent='가격대별 찾기';
+      if(region)region.insertAdjacentElement('afterend',a);else nav.appendChild(a);
+    }
+    const quick=document.querySelector('.quickLinks');
+    if(quick&&!quick.querySelector('[data-price-nav]')){
+      const a=document.createElement('a');a.href='#wrPriceBand';a.dataset.priceNav='1';a.textContent='가격대로 찾기';
+      const region=[...quick.querySelectorAll('a')].find(x=>x.getAttribute('href')==='#regions');
+      if(region)region.insertAdjacentElement('afterend',a);else quick.appendChild(a);
+    }
+    if(!document.querySelector('.wrMobileNav')){
+      const m=document.createElement('nav');m.className='wrMobileNav';m.innerHTML='<a href="#regions">지역별 찾기</a><a href="#wrPriceBand">가격대별 찾기</a><a href="#rankings">예식장 순위</a>';
+      document.querySelector('.top')?.insertAdjacentElement('afterend',m);
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
+})();
