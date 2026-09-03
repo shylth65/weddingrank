@@ -159,10 +159,12 @@ async function restoreSession(){
   accessToken=localStorage.getItem("wr_access_token");if(!accessToken){renderAuth();return}
   try{currentUser=await authApi("user",{method:"GET"});renderAuth()}catch(e){localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth()}
 }
+function logoutUser(){localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth()}
+function syncHeaderAuth(){const login=document.querySelector('.authAction[data-auth-mode="login"]'),signup=document.querySelector('.authAction[data-auth-mode="signup"]');if(login)login.textContent=currentUser?'로그인됨':'로그인';if(signup)signup.textContent=currentUser?'로그아웃':'회원가입'}
 function renderAuth(){
-  const box=$("#authBox");if(!box)return;
+  syncHeaderAuth();const box=$("#authBox");if(!box)return;
   box.innerHTML=currentUser?`<div class="signed"><span>${esc(currentUser.email||"로그인 사용자")}</span><button id="logoutBtn">로그아웃</button></div>`:`<div class="loginRow"><button id="loginBtn" type="button">로그인·회원가입</button></div><small>이메일과 비밀번호로 로그인합니다.</small>`;
-  $("#logoutBtn")?.addEventListener("click",()=>{localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth()});
+  $("#logoutBtn")?.addEventListener("click",logoutUser);
   $("#loginBtn")?.addEventListener("click",()=>openSiteAuth("login"));renderReviewForm();
 }
 async function submitSiteAuth(){const email=$("#siteAuthEmail")?.value.trim(),password=$("#siteAuthPassword")?.value||"",signup=siteAuthMode==="signup";if(!email||!email.includes("@"))return alert("이메일 주소를 확인해주세요.");if(password.length<8)return alert("비밀번호는 8자 이상 입력해주세요.");try{const d=await authApi(signup?"signup":"token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});if(d.access_token){accessToken=d.access_token;localStorage.setItem("wr_access_token",accessToken);currentUser=await authApi("user",{method:"GET"});renderAuth()}alert(signup?(d.access_token?"회원가입과 로그인이 완료되었습니다.":"회원가입 확인 메일을 보냈습니다. 이메일 확인 후 로그인해주세요."):"로그인되었습니다.");closeSiteAuth()}catch(e){alert((signup?"회원가입":"로그인")+" 오류: "+e.message)}}
@@ -176,7 +178,7 @@ function shareWeddingRank(){
   else window.open(`https://band.us/plugin/share?body=${text}&route=${route}`,"share_band","width=410,height=540,resizable=yes");
 }
 function setupHeaderActions(){
-  document.querySelectorAll(".authAction").forEach(btn=>btn.addEventListener("click",()=>openSiteAuth(btn.dataset.authMode||"login")));
+  document.querySelectorAll(".authAction").forEach(btn=>btn.addEventListener("click",()=>{if(currentUser){if(btn.dataset.authMode==="signup")logoutUser();return}openSiteAuth(btn.dataset.authMode||"login")}));
   document.querySelectorAll("[data-close-auth]").forEach(btn=>btn.addEventListener("click",closeSiteAuth));
   $("#shareSiteBtn")?.addEventListener("click",shareWeddingRank);
   $("#siteAuthSubmit")?.addEventListener("click",submitSiteAuth);$("#siteAuthReset")?.addEventListener("click",resetSitePassword);["siteAuthEmail","siteAuthPassword"].forEach(id=>$("#"+id)?.addEventListener("keydown",e=>{if(e.key==="Enter")$("#siteAuthSubmit")?.click()}));
