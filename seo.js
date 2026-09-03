@@ -15,13 +15,31 @@
   .reviewLoginInline{flex-direction:column;align-items:stretch}.reviewLoginInline button{width:100%}
 }`;document.head.appendChild(s);
   }
+  function prepareReviewLink(a){
+    if(!a)return;
+    a.href='#find';
+    a.dataset.reviewLink='1';
+    a.title='평가할 예식장 선택';
+  }
   function cleanupNav(){
     document.querySelectorAll('.wrMobileNav').forEach(n=>n.remove());
     document.querySelectorAll('.mobileQuickNav').forEach(n=>n.style.display='none');
     const quick=document.querySelector('.hero .quickLinks');if(quick){const seen=new Set();[...quick.querySelectorAll('a')].forEach(a=>{const k=(a.getAttribute('href')||'')+'|'+(a.textContent||'').trim();if(seen.has(k))a.remove();else seen.add(k)})}
+    [...document.querySelectorAll('.mainNav a')].filter(a=>(a.textContent||'').trim()==='예식장 평가').forEach(prepareReviewLink);
     let n=document.querySelector('.wrMobilePrimary');
     if(!n){n=document.createElement('nav');n.className='wrMobilePrimary';n.setAttribute('aria-label','모바일 주요 메뉴');document.querySelector('.top')?.insertAdjacentElement('afterend',n)}
-    if(n)n.innerHTML='<a href="#rankings">예식장 순위</a><a href="#find" data-review-link="1">예식장 평가</a>';
+    if(n)n.innerHTML='<a href="#rankings">예식장 순위</a><a href="#find" data-review-link="1" title="평가할 예식장 선택">예식장 평가</a>';
+  }
+  function bindReviewLink(){
+    if(document.documentElement.dataset.reviewLinkBound==='1')return;
+    document.documentElement.dataset.reviewLinkBound='1';
+    document.addEventListener('click',e=>{
+      const a=e.target.closest?.('[data-review-link="1"]');if(!a)return;
+      setTimeout(()=>{
+        const find=document.querySelector('#find');if(find)find.scrollIntoView({behavior:'smooth',block:'start'});
+        const search=document.querySelector('#search');if(search){search.placeholder='평가할 예식장명을 입력하세요';search.focus()}
+      },120);
+    });
   }
   function overrideReviewLogin(){
     if(typeof renderAuth!=='function'||typeof syncHeaderAuth!=='function')return;
@@ -36,7 +54,7 @@
     };
     try{renderAuth()}catch(_){ }
   }
-  const run=()=>{installStyles();cleanupNav();overrideReviewLogin();setTimeout(cleanupNav,250);setTimeout(()=>{cleanupNav();try{renderAuth()}catch(_){}},900)};
+  const run=()=>{installStyles();cleanupNav();bindReviewLink();overrideReviewLogin();setTimeout(cleanupNav,250);setTimeout(()=>{cleanupNav();try{renderAuth()}catch(_){}},900)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
   window.addEventListener('hashchange',()=>setTimeout(()=>{cleanupNav();try{renderAuth()}catch(_){}},350));
 })();
