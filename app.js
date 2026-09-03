@@ -160,28 +160,15 @@ async function restoreSession(){
   try{currentUser=await authApi("user",{method:"GET"});renderAuth()}catch(e){localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth()}
 }
 function renderAuth(){
-  const b=$("#authBox");if(!b)return;
-  b.innerHTML=currentUser?`<div class="signed"><span>${esc(currentUser.email||"로그인 사용자")}</span><button id="logoutBtn">로그아웃</button></div>`:`<div class="loginRow"><input id="loginEmail" type="email" placeholder="이메일 주소"><button id="loginBtn">이메일 로그인 링크 받기</button></div><small>이메일로 받은 로그인 링크를 이용합니다.</small>`;
+  const box=$("#authBox");if(!box)return;
+  box.innerHTML=currentUser?`<div class="signed"><span>${esc(currentUser.email||"로그인 사용자")}</span><button id="logoutBtn">로그아웃</button></div>`:`<div class="loginRow"><button id="loginBtn" type="button">로그인·회원가입</button></div><small>이메일과 비밀번호로 로그인합니다.</small>`;
   $("#logoutBtn")?.addEventListener("click",()=>{localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth()});
-  $("#loginBtn")?.addEventListener("click",sendMagicLink);renderReviewForm();
+  $("#loginBtn")?.addEventListener("click",()=>openSiteAuth("login"));renderReviewForm();
 }
-async function requestMagicLink(email,createUser){
-  if(!email)return alert("이메일을 입력해주세요.");
-  try{const redirectUrl="https://weddingrank.kr/";await authApi("otp?redirect_to="+encodeURIComponent(redirectUrl),{method:"POST",body:JSON.stringify({email,create_user:createUser})});alert(createUser?"회원가입 확인 링크를 이메일로 보냈습니다.":"로그인 링크를 이메일로 보냈습니다.");return true}catch(e){alert((createUser?"회원가입":"로그인")+" 요청 오류: "+e.message);return false}
-}
-async function sendMagicLink(){return requestMagicLink($("#loginEmail")?.value.trim(),true)}
-
+async function submitSiteAuth(){const email=$("#siteAuthEmail")?.value.trim(),password=$("#siteAuthPassword")?.value||"",signup=siteAuthMode==="signup";if(!email||!email.includes("@"))return alert("이메일 주소를 확인해주세요.");if(password.length<8)return alert("비밀번호는 8자 이상 입력해주세요.");try{const d=await authApi(signup?"signup":"token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});if(d.access_token){accessToken=d.access_token;localStorage.setItem("wr_access_token",accessToken);await loadUser();renderAuth()}alert(signup?(d.access_token?"회원가입과 로그인이 완료되었습니다.":"회원가입 확인 메일을 보냈습니다. 이메일 확인 후 로그인해주세요."):"로그인되었습니다.");closeSiteAuth()}catch(e){alert((signup?"회원가입":"로그인")+" 오류: "+e.message)}}
+async function resetSitePassword(){const email=$("#siteAuthEmail")?.value.trim();if(!email||!email.includes("@"))return alert("이메일 주소를 먼저 입력해주세요.");try{await authApi("recover?redirect_to="+encodeURIComponent("https://weddingrank.kr/"),{method:"POST",body:JSON.stringify({email})});alert("비밀번호 재설정 메일을 보냈습니다.")}catch(e){alert(e.message==="email rate limit exceeded"?"이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.":"재설정 메일 오류: "+e.message)}}
 let siteAuthMode="login";
-function openSiteAuth(mode="login"){
-  siteAuthMode=mode;
-  const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),email=$("#siteAuthEmail");
-  if(!modal)return;
-  const signup=mode==="signup";
-  title.textContent=signup?"간단 회원가입":"로그인";
-  guide.textContent=signup?"이메일 확인만으로 WeddingRank 회원가입을 완료합니다.":"가입한 이메일로 로그인 링크를 보내드립니다.";
-  submit.textContent=signup?"회원가입 링크 받기":"로그인 링크 받기";
-  modal.hidden=false;document.body.classList.add("authModalOpen");setTimeout(()=>email?.focus(),30);
-}
+function openSiteAuth(mode="login"){siteAuthMode=mode;const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),email=$("#siteAuthEmail"),password=$("#siteAuthPassword");if(!modal)return;const signup=mode==="signup";title.textContent=signup?"회원가입":"로그인";guide.textContent=signup?"이메일과 비밀번호로 가입합니다.":"가입한 이메일과 비밀번호를 입력하세요.";submit.textContent=signup?"회원가입":"로그인";if(password)password.autocomplete=signup?"new-password":"current-password";modal.hidden=false;document.body.classList.add("authModalOpen");setTimeout(()=>email?.focus(),30)}
 function closeSiteAuth(){const modal=$("#siteAuthModal");if(modal)modal.hidden=true;document.body.classList.remove("authModalOpen")}
 function shareWeddingRank(){
   const text=encodeURIComponent("WeddingRank - 전국 예식장 순위·평가·가격 비교\n"+location.href),route=encodeURIComponent(location.hostname||"weddingrank.kr");
@@ -192,8 +179,7 @@ function setupHeaderActions(){
   document.querySelectorAll(".authAction").forEach(btn=>btn.addEventListener("click",()=>openSiteAuth(btn.dataset.authMode||"login")));
   document.querySelectorAll("[data-close-auth]").forEach(btn=>btn.addEventListener("click",closeSiteAuth));
   $("#shareSiteBtn")?.addEventListener("click",shareWeddingRank);
-  $("#siteAuthSubmit")?.addEventListener("click",async()=>{const ok=await requestMagicLink($("#siteAuthEmail")?.value.trim(),siteAuthMode==="signup");if(ok)closeSiteAuth()});
-  $("#siteAuthEmail")?.addEventListener("keydown",e=>{if(e.key==="Enter")$("#siteAuthSubmit")?.click()});
+  $("#siteAuthSubmit")?.addEventListener("click",submitSiteAuth);$("#siteAuthReset")?.addEventListener("click",resetSitePassword);["siteAuthEmail","siteAuthPassword"].forEach(id=>$("#"+id)?.addEventListener("keydown",e=>{if(e.key==="Enter")$("#siteAuthSubmit")?.click()}));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSiteAuth()});
 }
 function parseAuthHash(){
