@@ -58,12 +58,37 @@
       const filtered=rows.filter(x=>!region||x.sido===region); if(!filtered.length){body.innerHTML='<div class="pending big"><b>해당 지역의 공개 예식장이 없습니다.</b></div>';return;}
       const rated=filtered.filter(h=>Number(h.review_count)>0&&h[key]!=null).sort((a,b)=>(Number(b[key])-Number(a[key]))||(Number(b.review_count)-Number(a.review_count))||String(a.name||'').localeCompare(String(b.name||''),'ko'));
       const pending=filtered.filter(h=>!(Number(h.review_count)>0&&h[key]!=null)).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'ko'));
-      const rankedVisible=rated.slice(0,RANKED_LIMIT), pendingPreview=pending.slice(0,PENDING_PREVIEW_LIMIT), pendingExtra=pending.slice(PENDING_PREVIEW_LIMIT); let html='';
+      const rankedVisible=rated.slice(0,RANKED_LIMIT), pendingPreview=pending.slice(0,PENDING_PREVIEW_LIMIT); let html='';
       if(rankedVisible.length){html+=`<div class="rankSectionMeta"><div><span class="rankKicker">RANKING</span><b>평가 완료 순위</b></div><span>${rated.length>RANKED_LIMIT?`상위 ${RANKED_LIMIT}곳`:rankedVisible.length+'곳'}</span></div>`;html+=rankedVisible.map((h,i)=>rowHtml(h,true,i+1,key,false)).join('');}else html+='<div class="rankEmpty"><b>아직 순위를 산정할 평가가 없습니다.</b><span>첫 평가가 등록되면 자동으로 순위에 반영됩니다.</span></div>';
-      if(pending.length){html+=`<div class="rankPendingHeader"><div><span class="rankKicker">WAITING</span><b>평가대기 예식장</b></div><span>${pending.length}곳 중 ${Math.min(PENDING_PREVIEW_LIMIT,pending.length)}곳 표시</span></div>`;html+=pendingPreview.map(h=>rowHtml(h,false,null,key,false)).join('');html+=pendingExtra.map(h=>rowHtml(h,false,null,key,true)).join('');if(pendingExtra.length)html+=`<div class="rankPendingToggleWrap"><button id="rankPendingToggle" class="rankPendingToggle" type="button" aria-expanded="false">평가대기 예식장 더보기 <b>${pendingExtra.length}</b></button></div>`;}
+      if(pending.length){html+=`<div class="rankPendingHeader"><div><span class="rankKicker">WAITING</span><b>평가대기 예식장</b></div><span>${pending.length}곳 중 ${Math.min(PENDING_PREVIEW_LIMIT,pending.length)}곳 표시</span></div>`;html+=pendingPreview.map(h=>rowHtml(h,false,null,key,false)).join('');}
       body.innerHTML=html; body.querySelectorAll('.rankRow[data-id]').forEach(x=>x.onclick=()=>location.hash=`hall=${x.dataset.id}`);
-      const toggle=body.querySelector('#rankPendingToggle'); if(toggle)toggle.onclick=()=>{const expanding=toggle.getAttribute('aria-expanded')!=='true';body.querySelectorAll('.rankPendingExtra').forEach(x=>x.classList.toggle('rankExpanded',expanding));toggle.setAttribute('aria-expanded',String(expanding));toggle.innerHTML=expanding?'평가대기 예식장 접기':`평가대기 예식장 더보기 <b>${pendingExtra.length}</b>`;};
     }catch(e){body.innerHTML=`<div class="pending big">랭킹 조회 오류: ${esc(e.message)}</div>`;}
   };
   ensureRankingVisual();
+})();
+
+/* Main navigation: add direct price-range finder beside region finder */
+(function(){
+  function goPriceFinder(e){
+    if(e)e.preventDefault();
+    if(location.hash!=="#find")location.hash="find";
+    const scroll=()=>{const target=document.querySelector('#wrPriceBand')||document.querySelector('#find');if(target)target.scrollIntoView({behavior:'smooth',block:'start'})};
+    setTimeout(scroll,120);
+    setTimeout(scroll,500);
+  }
+  function installPriceNav(){
+    const nav=document.querySelector('.mainNav');
+    if(nav&&!nav.querySelector('.navPriceFind')){
+      const region=nav.querySelector('a[href="#regions"]');
+      const a=document.createElement('a');a.href='#find';a.className='navPriceFind';a.textContent='가격대별 찾기';a.addEventListener('click',goPriceFinder);
+      if(region)region.insertAdjacentElement('afterend',a);else nav.appendChild(a);
+    }
+    const quick=document.querySelector('.quickLinks');
+    if(quick&&!quick.querySelector('.quickPriceFind')){
+      const region=quick.querySelector('a[href="#regions"]');
+      const a=document.createElement('a');a.href='#find';a.className='quickPriceFind';a.textContent='가격대로 찾기';a.addEventListener('click',goPriceFinder);
+      if(region)region.insertAdjacentElement('afterend',a);else quick.appendChild(a);
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installPriceNav,{once:true});else installPriceNav();
 })();
