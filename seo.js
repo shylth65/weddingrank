@@ -17,3 +17,19 @@
   let priceTimer;function schedulePriceEnhance(){clearTimeout(priceTimer);priceTimer=setTimeout(enhancePriceDetail,650)}
   installPriceStyles();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{applyTop10Copy();schedulePriceEnhance()},{once:true});else{applyTop10Copy();schedulePriceEnhance()}window.addEventListener('hashchange',schedulePriceEnhance);
 })();
+
+/* WeddingRank venue finder: meal-price range filter v5.82 */
+(()=>{
+  let band='priced';
+  function meal(h){const p=priceByHall.get(h.hall_id),v=Number(p?.meal_price_per_person);return Number.isFinite(v)&&v>0?v:null}
+  function matches(h){const v=meal(h);if(band==='all')return true;if(band==='priced')return v!=null;if(v==null)return false;if(band==='under70')return v<70000;if(band==='70to90')return v>=70000&&v<90000;if(band==='90to110')return v>=90000&&v<110000;if(band==='over110')return v>=110000;return true}
+  function ensureUI(){const find=document.querySelector('#find'),cards=document.querySelector('#cards');if(!find||!cards||document.querySelector('#wrPriceBand'))return;
+    const style=document.createElement('style');style.id='wrPriceBandStyle';style.textContent=`#wrPriceBand{max-width:1320px;margin:0 auto 22px;padding:18px 20px;border:1px solid #ebe0e6;border-radius:20px;background:linear-gradient(90deg,#fff8fb,#f8f7ff);box-shadow:0 8px 24px rgba(73,50,78,.04)}#wrPriceBand .wrPbTitle{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}#wrPriceBand .wrPbTitle b{font-size:16px;color:#2d2930}#wrPriceBand .wrPbTitle span{font-size:12px;color:#81777c}#wrPriceBand .wrPbBtns{display:flex;flex-wrap:wrap;gap:8px}#wrPriceBand button{border:1px solid #dfd3dc;background:#fff;color:#5e555d;border-radius:999px;padding:10px 14px;font:inherit;font-size:13px;font-weight:850;cursor:pointer}#wrPriceBand button.active{border-color:#a05b77;background:linear-gradient(135deg,#a75d70,#7d4f8f);color:#fff;box-shadow:0 6px 16px rgba(126,72,110,.18)}@media(max-width:700px){#wrPriceBand{margin-bottom:16px;padding:15px 14px;border-radius:16px}#wrPriceBand .wrPbTitle{align-items:flex-start;flex-direction:column;gap:4px}#wrPriceBand .wrPbBtns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}#wrPriceBand button{width:100%;padding:11px 6px;font-size:12px}}`;
+    document.head.appendChild(style);
+    const box=document.createElement('div');box.id='wrPriceBand';box.innerHTML=`<div class="wrPbTitle"><b>식대 가격대로 예식장 찾기</b><span>확인된 1인 식대 기준 · 가격 낮은순</span></div><div class="wrPbBtns"><button data-band="priced" class="active">가격확인 전체</button><button data-band="under70">7만원 미만</button><button data-band="70to90">7~9만원</button><button data-band="90to110">9~11만원</button><button data-band="over110">11만원 이상</button><button data-band="all">가격미확인 포함</button></div>`;cards.before(box);
+    box.addEventListener('click',e=>{const b=e.target.closest('button[data-band]');if(!b)return;band=b.dataset.band;box.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render(true)});
+  }
+  const originalRender=render;
+  render=function(reset=false){ensureUI();const original=halls;let filtered=original.filter(matches);filtered.sort((a,b)=>{const av=meal(a),bv=meal(b);if(av==null&&bv==null)return String(a.name||'').localeCompare(String(b.name||''),'ko');if(av==null)return 1;if(bv==null)return -1;return av-bv||String(a.name||'').localeCompare(String(b.name||''),'ko')});halls=filtered;try{originalRender(reset)}finally{halls=original}};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ensureUI,{once:true});else ensureUI();
+})();
