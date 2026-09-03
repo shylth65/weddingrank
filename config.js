@@ -37,6 +37,8 @@ window.addEventListener("DOMContentLoaded", () => {
   wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=5.69");
   // Lightweight participation layer: no MutationObserver and no extra Supabase client.
   wrLoadScriptOnce("wr-engagement", "wedding-engagement-v575.js?v=5.75");
+  // Member convenience: remember login safely with refresh token and show own evaluation history in MY.
+  wrLoadScriptOnce("wr-member-history", "member-history-v1.js?v=1.01");
   wrMaybeLoadDetailEnhancements();
   window.addEventListener("hashchange", wrMaybeLoadDetailEnhancements);
 
