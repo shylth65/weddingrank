@@ -1,28 +1,28 @@
-/* WeddingRank ranking visual layer v5.71 */
-#rankingView{background:#fff}
-.rankingHero{padding:46px 20px 34px;background:linear-gradient(135deg,#fff8f8 0%,#f7f3ff 100%);border-bottom:1px solid #f0e4e2}
+/* WeddingRank ranking visual layer v5.72 */
+html,body{max-width:100%;overflow-x:hidden}
+#rankingView{background:#fff;max-width:100%;overflow-x:hidden}
+.rankingHero{padding:46px 20px 34px;background:linear-gradient(135deg,#fff8f8 0%,#f7f3ff 100%);border-bottom:1px solid #f0e4e2;max-width:100%;overflow:hidden}
 .rankingHero>*{max-width:1320px;margin-left:auto;margin-right:auto}
 .rankingHero .eyebrow{margin-bottom:10px}
 .rankingHero h1{margin-top:0!important;margin-bottom:12px!important;font-size:clamp(34px,5vw,54px)!important;line-height:1.1;font-weight:950;letter-spacing:-2px;color:#222126}
 .rankingHero p:last-child{margin-top:0;color:#786e6b;line-height:1.7}
-#rankingView>.section{max-width:1320px;margin:0 auto;padding-top:30px}
-.rankingControls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
-.rankTabs{display:flex;flex-wrap:wrap;gap:8px}
-.rankTab{min-height:42px;padding:0 16px;border:1px solid #e2d4d1;border-radius:999px;background:#fff;color:#4b4442;font-size:14px;font-weight:900;cursor:pointer}
+#rankingView>.section{max-width:1320px;margin:0 auto;padding-top:30px;min-width:0}
+.rankingControls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;min-width:0;max-width:100%}
+.rankTabs{display:flex;flex-wrap:wrap;gap:8px;min-width:0;max-width:100%}
+.rankTab{min-height:42px;padding:0 16px;border:1px solid #e2d4d1;border-radius:999px;background:#fff;color:#4b4442;font-size:14px;font-weight:900;cursor:pointer;min-width:0}
 .rankTab.active{background:#96585c;border-color:#96585c;color:#fff;box-shadow:0 8px 20px rgba(126,72,76,.18)}
-#rankingRegion{min-height:42px;padding:0 36px 0 14px;border:1px solid #e2d4d1;border-radius:14px;background:#fff;color:#4c4543;font:inherit;font-size:14px;font-weight:800}
-.rankingNote{margin:0 0 26px;padding:15px 17px;border-radius:16px;background:#fbf6f4;border:1px solid #efe2de;color:#776a67;font-size:13px;line-height:1.7}
-#rankingBody{display:flex;flex-direction:column;gap:12px}
+#rankingRegion{min-height:42px;padding:0 36px 0 14px;border:1px solid #e2d4d1;border-radius:14px;background:#fff;color:#4c4543;font:inherit;font-size:14px;font-weight:800;max-width:100%}
+.rankingNote{margin:0 0 26px;padding:15px 17px;border-radius:16px;background:#fbf6f4;border:1px solid #efe2de;color:#776a67;font-size:13px;line-height:1.7;overflow-wrap:anywhere}
+#rankingBody{display:flex;flex-direction:column;gap:12px;min-width:0}
 .rankSectionMeta,.rankPendingHeader{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-top:6px;padding:12px 2px 4px}
-.rankSectionMeta>div,.rankPendingHeader>div{display:flex;flex-direction:column;gap:4px}
+.rankSectionMeta>div,.rankPendingHeader>div{display:flex;flex-direction:column;gap:4px;min-width:0}
 .rankSectionMeta b,.rankPendingHeader b{font-size:20px;color:#292629}
 .rankSectionMeta>span,.rankPendingHeader>span{font-size:12px;font-weight:800;color:#9b8580}
 .rankKicker{font-size:10px;font-weight:950;letter-spacing:.14em;color:#b27678}
-.rankRow{display:grid!important;grid-template-columns:64px minmax(0,1fr) 124px;align-items:center;gap:16px;padding:20px 22px!important;border:1px solid #eadfdb!important;border-radius:20px!important;background:#fff!important;box-shadow:0 10px 28px rgba(76,49,47,.045)!important;cursor:pointer;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.rankRow{display:grid!important;grid-template-columns:64px minmax(0,1fr) 124px;align-items:center;gap:16px;padding:20px 22px!important;border:1px solid #eadfdb!important;border-radius:20px!important;background:#fff!important;box-shadow:0 10px 28px rgba(76,49,47,.045)!important;cursor:pointer;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;min-width:0;max-width:100%}
 .rankRow:hover{transform:translateY(-2px);border-color:#d6aaa7!important;box-shadow:0 14px 34px rgba(76,49,47,.08)!important}
 .rankNo{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:#96585c;color:#fff!important;font-size:18px!important;font-weight:950!important}
-.rankHall b{display:block;margin-bottom:5px;font-size:18px!important;line-height:1.35;color:#29272a;font-weight:950!important;word-break:keep-all}
-.rankHall span{font-size:12px!important;color:#8a7d79!important}
+.rankHall{min-width:0}.rankHall b{display:block;margin-bottom:5px;font-size:18px!important;line-height:1.35;color:#29272a;font-weight:950!important;word-break:keep-all;overflow-wrap:anywhere}.rankHall span{font-size:12px!important;color:#8a7d79!important;overflow-wrap:anywhere}
 .rankScore{text-align:right}
 .rankScore strong{display:block;font-size:22px!important;line-height:1;color:#8d5458!important;font-weight:950!important}
 .rankScore span{display:block;margin-top:7px;font-size:11px!important;color:#928681!important}
@@ -33,25 +33,32 @@
 .rankPendingExtra{display:none!important}
 .rankPendingExtra.rankExpanded{display:grid!important}
 .rankPendingToggleWrap{padding:8px 0 20px;text-align:center}
-.rankPendingToggle{min-height:46px;padding:0 20px;border:1px solid #d7b4b0;border-radius:999px;background:#fff;color:#8a5457;font:inherit;font-size:13px;font-weight:950;cursor:pointer;box-shadow:0 6px 18px rgba(126,72,76,.08)}
+.rankPendingToggle{min-height:46px;padding:0 20px;border:1px solid #d7b4b0;border-radius:999px;background:#fff;color:#8a5457;font:inherit;font-size:13px;font-weight:950;cursor:pointer;box-shadow:0 6px 18px rgba(126,72,76,.08);max-width:100%}
 .rankPendingToggle b{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;margin-left:5px;padding:0 7px;border-radius:999px;background:#f6e7e5;color:#8d5659}
 .rankEmpty{display:flex;flex-direction:column;gap:8px;padding:26px;border:1px dashed #e2cfcb;border-radius:20px;background:#fffaf8;color:#766966}
 .rankEmpty b{font-size:18px;color:#4d4442}
 .rankEmpty span{font-size:13px}
 @media(max-width:700px){
-  .rankingHero{padding:32px 20px 24px}
-  #rankingView>.section{padding:22px 18px 46px}
-  .rankingControls{align-items:stretch;flex-direction:column}
-  .rankTabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .rankTab{width:100%;padding:0 10px}
-  #rankingRegion{width:100%}
-  .rankingNote{font-size:12px}
-  .rankRow{grid-template-columns:48px minmax(0,1fr);gap:12px;padding:17px 15px!important}
+  .rankingHero{padding:30px 18px 22px}
+  .rankingHero h1{font-size:36px!important;letter-spacing:-1.5px}
+  #rankingView>.section{width:100%;padding:20px 16px 44px!important}
+  .rankingControls{display:flex!important;width:100%!important;align-items:stretch!important;flex-direction:column!important;gap:12px!important}
+  .rankTabs{display:grid!important;width:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .rankTab{width:100%!important;min-width:0!important;padding:0 8px!important;font-size:13px!important;white-space:nowrap}
+  #rankingRegion{display:block;width:100%!important;min-width:0!important}
+  .rankingNote{width:100%;font-size:12px;padding:14px 15px}
+  .rankRow{width:100%;grid-template-columns:48px minmax(0,1fr)!important;gap:12px!important;padding:17px 14px!important}
   .rankNo{width:40px;height:40px;border-radius:12px;font-size:15px!important}
-  .rankHall b{font-size:17px!important}
-  .rankScore{grid-column:2;text-align:left;display:flex;align-items:center;gap:8px;margin-top:-2px}
-  .rankScore strong{font-size:16px!important}
-  .rankScore span{margin-top:0!important}
-  .rankSectionMeta,.rankPendingHeader{align-items:flex-start}
+  .rankHall b{font-size:16px!important;word-break:break-word}
+  .rankScore{grid-column:2;text-align:left;display:flex;align-items:center;gap:8px;margin-top:-2px;min-width:0}
+  .rankScore strong{font-size:16px!important;white-space:nowrap}
+  .rankScore span{margin-top:0!important;white-space:normal}
+  .rankSectionMeta,.rankPendingHeader{align-items:flex-start;min-width:0}
   .rankSectionMeta b,.rankPendingHeader b{font-size:18px}
+}
+@media(max-width:380px){
+  #rankingView>.section{padding-left:12px!important;padding-right:12px!important}
+  .rankTabs{gap:6px!important}
+  .rankTab{font-size:12px!important;padding:0 5px!important}
+  .rankingHero{padding-left:16px;padding-right:16px}
 }
