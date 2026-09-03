@@ -35,8 +35,8 @@ function wrMaybeLoadDetailEnhancements() {
 window.addEventListener("DOMContentLoaded", () => {
   wrLoadStyleOnce("wr-visual-restore", "visual-restore-v569.css?v=5.69");
   wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=5.69");
-  wrLoadScriptOnce("wr-engagement", "wedding-engagement-v575.js?v=5.76");
-  wrLoadScriptOnce("wr-member-history", "member-history-v1.js?v=1.10");
+  wrLoadScriptOnce("wr-engagement", "wedding-engagement-v575.js?v=5.77");
+  wrLoadScriptOnce("wr-member-history", "member-history-v1.js?v=1.20");
   wrMaybeLoadDetailEnhancements();
   window.addEventListener("hashchange", wrMaybeLoadDetailEnhancements);
 
