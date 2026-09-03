@@ -4,8 +4,8 @@ let priceByHall = new Map();
 let currentUser = null;
 let accessToken = null;
 let rankingMode = "overall";
-let visibleHallCount = 24;
-const PAGE_SIZE = 24;
+let visibleHallCount = 5;
+const PAGE_SIZE = 5;
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
