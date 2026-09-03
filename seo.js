@@ -4,6 +4,9 @@
     const s=document.createElement('style');s.id='wrMobileHeaderFix';s.textContent=`
 .wrMobilePrimary{display:none}
 .reviewLoginInline{display:flex;gap:8px;align-items:center;margin-bottom:8px}.reviewLoginInline input{flex:1;min-width:0;padding:12px 13px;border:1px solid #e4dcda;border-radius:10px;background:#fff}.reviewLoginInline button{padding:12px 16px;border:0;border-radius:10px;background:#835456;color:#fff;font-weight:800;white-space:nowrap}
+#wrReviewFinder{display:none;margin:0 0 18px;padding:16px;border:1px solid #eadfe4;border-radius:18px;background:linear-gradient(135deg,#fff8fb,#f8f8ff)}
+#wrReviewFinder.isOpen{display:block}#wrReviewFinder b{display:block;margin-bottom:6px;font-size:17px}#wrReviewFinder p{margin:0 0 10px;color:#786e72;font-size:13px;line-height:1.5}
+#wrReviewFinder input{width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #ddd3d7;border-radius:12px;background:#fff;font:inherit;font-size:15px}
 @media(max-width:800px){
   .mobileQuickNav,.wrMobileNav{display:none!important}
   .hero .quickLinks{display:none!important}
@@ -15,12 +18,26 @@
   .reviewLoginInline{flex-direction:column;align-items:stretch}.reviewLoginInline button{width:100%}
 }`;document.head.appendChild(s);
   }
-  function prepareReviewLink(a){
-    if(!a)return;
-    a.href='#find';
-    a.dataset.reviewLink='1';
-    a.title='평가할 예식장 선택';
+  function ensureReviewFinder(){
+    const find=document.querySelector('#find');if(!find)return null;
+    let box=document.querySelector('#wrReviewFinder');
+    if(!box){
+      box=document.createElement('div');box.id='wrReviewFinder';
+      box.innerHTML='<b>평가할 예식장 검색</b><p>예식장명을 검색한 뒤 해당 예식장을 선택하면 상세화면에서 평가를 작성할 수 있습니다.</p><input id="wrReviewSearch" type="search" autocomplete="off" placeholder="예: JW메리어트, 강동아트센터, 예식장명">';
+      const head=find.querySelector('.section-head');head?.insertAdjacentElement('afterend',box);
+      const rs=box.querySelector('#wrReviewSearch');
+      rs?.addEventListener('input',()=>{const main=document.querySelector('#search');if(main){main.value=rs.value;main.dispatchEvent(new Event('input',{bubbles:true}))}});
+    }
+    return box;
   }
+  function openReviewFinder(){
+    location.hash='#find';
+    const box=ensureReviewFinder();box?.classList.add('isOpen');
+    const find=document.querySelector('#find');find?.scrollIntoView({behavior:'smooth',block:'start'});
+    const rs=document.querySelector('#wrReviewSearch'),main=document.querySelector('#search');
+    if(rs){rs.value=main?.value||'';setTimeout(()=>rs.focus(),180)}
+  }
+  function prepareReviewLink(a){if(!a)return;a.href='#find';a.dataset.reviewLink='1';a.title='평가할 예식장 검색'}
   function cleanupNav(){
     document.querySelectorAll('.wrMobileNav').forEach(n=>n.remove());
     document.querySelectorAll('.mobileQuickNav').forEach(n=>n.style.display='none');
@@ -28,33 +45,29 @@
     [...document.querySelectorAll('.mainNav a')].filter(a=>(a.textContent||'').trim()==='예식장 평가').forEach(prepareReviewLink);
     let n=document.querySelector('.wrMobilePrimary');
     if(!n){n=document.createElement('nav');n.className='wrMobilePrimary';n.setAttribute('aria-label','모바일 주요 메뉴');document.querySelector('.top')?.insertAdjacentElement('afterend',n)}
-    if(n)n.innerHTML='<a href="#rankings">예식장 순위</a><a href="#find" data-review-link="1" title="평가할 예식장 선택">예식장 평가</a>';
+    if(n)n.innerHTML='<a href="#rankings">예식장 순위</a><a href="#find" data-review-link="1" title="평가할 예식장 검색">예식장 평가</a>';
   }
-  function bindReviewLink(){
-    if(document.documentElement.dataset.reviewLinkBound==='1')return;
-    document.documentElement.dataset.reviewLinkBound='1';
+  function bindLinks(){
+    if(document.documentElement.dataset.wrLinksBound==='1')return;document.documentElement.dataset.wrLinksBound='1';
     document.addEventListener('click',e=>{
-      const a=e.target.closest?.('[data-review-link="1"]');if(!a)return;
-      setTimeout(()=>{
-        const find=document.querySelector('#find');if(find)find.scrollIntoView({behavior:'smooth',block:'start'});
-        const search=document.querySelector('#search');if(search){search.placeholder='평가할 예식장명을 입력하세요';search.focus()}
-      },120);
-    });
+      const review=e.target.closest?.('[data-review-link="1"]');if(review){e.preventDefault();openReviewFinder();return}
+      const a=e.target.closest?.('a[href^="#"]');if(!a)return;
+      const href=a.getAttribute('href');if(!href||href==='#')return;
+      if(href==='#rankings'||href==='#find'||href==='#regions'||href==='#about'||href==='#wrPriceBand')return;
+      if(!document.querySelector(href)&&!href.startsWith('#hall=')){console.warn('[WeddingRank] target missing:',href)}
+    },true);
   }
   function overrideReviewLogin(){
     if(typeof renderAuth!=='function'||typeof syncHeaderAuth!=='function')return;
     renderAuth=function(){
       syncHeaderAuth();const box=document.querySelector('#authBox');if(!box)return;
       if(currentUser){box.innerHTML=`<div class="signed"><span>${esc(currentUser.email||'로그인 사용자')}</span><button id="logoutBtn">로그아웃</button></div>`;document.querySelector('#logoutBtn')?.addEventListener('click',logoutUser)}
-      else{
-        box.innerHTML='<div class="reviewLoginInline"><input id="reviewLoginEmail" type="email" inputmode="email" autocomplete="email" placeholder="이메일 주소"><button id="reviewLoginBtn" type="button">로그인</button></div><small>이메일과 비밀번호로 로그인합니다.</small>';
-        document.querySelector('#reviewLoginBtn')?.addEventListener('click',()=>{const email=(document.querySelector('#reviewLoginEmail')?.value||'').trim();openSiteAuth('login');const target=document.querySelector('#siteAuthEmail');if(target&&email)target.value=email;target?.focus()});
-      }
+      else{box.innerHTML='<div class="reviewLoginInline"><input id="reviewLoginEmail" type="email" inputmode="email" autocomplete="email" placeholder="이메일 주소"><button id="reviewLoginBtn" type="button">로그인</button></div><small>이메일과 비밀번호로 로그인합니다.</small>';document.querySelector('#reviewLoginBtn')?.addEventListener('click',()=>{const email=(document.querySelector('#reviewLoginEmail')?.value||'').trim();openSiteAuth('login');const target=document.querySelector('#siteAuthEmail');if(target&&email)target.value=email;target?.focus()})}
       renderReviewForm();
     };
     try{renderAuth()}catch(_){ }
   }
-  const run=()=>{installStyles();cleanupNav();bindReviewLink();overrideReviewLogin();setTimeout(cleanupNav,250);setTimeout(()=>{cleanupNav();try{renderAuth()}catch(_){}},900)};
+  const run=()=>{installStyles();ensureReviewFinder();cleanupNav();bindLinks();overrideReviewLogin();setTimeout(cleanupNav,250);setTimeout(()=>{cleanupNav();try{renderAuth()}catch(_){}},900)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
-  window.addEventListener('hashchange',()=>setTimeout(()=>{cleanupNav();try{renderAuth()}catch(_){}},350));
+  window.addEventListener('hashchange',()=>setTimeout(()=>{cleanupNav();try{renderAuth()}catch(_){}},250));
 })();
