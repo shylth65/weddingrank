@@ -1,4 +1,4 @@
-/* WeddingRank ranking visual layer v5.74 */
+/* WeddingRank ranking visual layer v5.75 */
 html,body{max-width:100%;overflow-x:hidden}
 #rankingView{background:#fff;max-width:100%;overflow-x:hidden}
 .rankingHero{padding:46px 20px 34px;background:linear-gradient(135deg,#fff8f8 0%,#f7f3ff 100%);border-bottom:1px solid #f0e4e2;max-width:100%;overflow:hidden}
@@ -39,6 +39,10 @@ html,body{max-width:100%;overflow-x:hidden}
 .rankEmpty b{font-size:18px;color:#4d4442}
 .rankEmpty span{font-size:13px}
 
+/* Keep trust high: show only five pending venues, never expand the full backlog */
+body #rankingView #rankingBody .rankPendingExtra,body #rankingView #rankingBody .rankPendingExtra.rankExpanded{display:none!important}
+body #rankingView #rankingBody .rankPendingToggleWrap{display:none!important}
+
 /* MY account: keep logout reachable/visible even when review list is long */
 .siteAuthCard{max-height:calc(100vh - 28px)!important;overflow-y:auto!important;overscroll-behavior:contain;padding-bottom:18px!important}
 #siteAuthLogout:not([hidden]){display:block!important;position:sticky!important;bottom:0!important;z-index:8!important;width:100%!important;margin-top:12px!important;background:#5f5656!important;color:#fff!important;box-shadow:0 -8px 18px rgba(255,255,255,.94),0 8px 20px rgba(74,54,54,.14)!important}
@@ -51,14 +55,11 @@ html,body{max-width:100%;overflow-x:hidden}
   .rankingHero{padding:30px 18px 22px}
   .rankingHero h1{font-size:36px!important;letter-spacing:-1.5px}
   #rankingView>.section{width:100%;padding:20px 16px 44px!important}
-
-  /* Override the later inline ranking renderer with stronger mobile specificity */
   body #rankingView .rankingControls{display:flex!important;width:100%!important;max-width:100%!important;align-items:stretch!important;flex-direction:column!important;gap:12px!important;padding:10px!important;overflow:hidden!important}
   body #rankingView .rankTabs{display:grid!important;width:100%!important;max-width:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;flex:none!important}
   body #rankingView .rankTab{width:100%!important;min-width:0!important;max-width:100%!important;padding:0 8px!important;font-size:13px!important;white-space:nowrap!important}
   body #rankingView #rankingRegion{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important}
   body #rankingView .rankingNote{width:100%!important;max-width:100%!important;font-size:12px!important;padding:14px 15px!important}
-
   body #rankingView #rankingBody .rankRow{display:grid!important;width:100%!important;max-width:100%!important;grid-template-columns:52px minmax(0,1fr)!important;grid-template-areas:'no hall' 'no score'!important;column-gap:14px!important;row-gap:7px!important;padding:18px 16px!important;min-height:138px!important;overflow:hidden!important}
   body #rankingView #rankingBody .rankNo{grid-area:no!important;align-self:start!important;width:46px!important;height:46px!important;border-radius:14px!important;font-size:13px!important;margin:0!important}
   body #rankingView #rankingBody .rankHall{grid-area:hall!important;min-width:0!important;padding-top:1px!important}
