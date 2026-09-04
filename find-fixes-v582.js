@@ -16,8 +16,8 @@
         if(search)search.value='';if(sido)sido.value='';if(price)price.value='';window.render?.(true);
       });
     }
-    const priceLinks=[...document.querySelectorAll('.mainNav a, .quickLinks a')].filter(a=>/가격대/.test(a.textContent||''));
-    priceLinks.slice(1).forEach(a=>a.remove());
+    const topPriceLinks=[...document.querySelectorAll('.mainNav a')].filter(a=>/가격대/.test(a.textContent||''));
+    topPriceLinks.forEach(a=>a.remove());
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 })();
