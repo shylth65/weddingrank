@@ -181,6 +181,24 @@ function renderAuth(){
   $("#loginBtn")?.addEventListener("click",()=>openSiteAuth(currentUser?"my":"login"));
   $("#signupBtn")?.addEventListener("click",()=>openSiteAuth("signup"));renderReviewForm();
 }
+async function loadMyReviewHistory(){
+  const box=$("#myReviewHistory");
+  if(!box||!currentUser||!accessToken)return;
+  box.hidden=false;
+  box.innerHTML='<h3>내가 작성한 평가</h3><p>평가 내역을 불러오는 중…</p>';
+  try{
+    const rows=await authRest(`reviews?select=review_id,hall_id,visit_role,overall_score,review_text,created_at&user_id=eq.${encodeURIComponent(currentUser.id)}&order=created_at.desc`);
+    const hallIds=[...new Set(rows.map(r=>String(r.hall_id||"")).filter(Boolean))];
+    const hallMap=new Map(halls.map(h=>[String(h.hall_id),h]));
+    const missing=hallIds.filter(id=>!hallMap.has(id));
+    if(missing.length){
+      const found=await api(`wedding_halls?select=hall_id,name,sido,sigungu&hall_id=in.(${missing.map(encodeURIComponent).join(",")})`);
+      found.forEach(h=>hallMap.set(String(h.hall_id),h));
+    }
+    box.innerHTML='<h3>내가 작성한 평가</h3>'+(rows.length?rows.map(r=>{const h=hallMap.get(String(r.hall_id))||{},area=[h.sido,h.sigungu].filter(Boolean).join(" ");return `<article class="myReviewItem"><div class="myReviewHead"><b>${esc(h.name||"예식장")}</b><strong>${r.overall_score!=null?Number(r.overall_score).toFixed(1)+"점":"평가완료"}</strong></div><div class="myReviewMeta">${esc(area)}${area?" · ":""}${esc((r.created_at||"").slice(0,10))} · ${esc(r.visit_role||"이용자")}</div>${r.review_text?`<p class="myReviewText">${esc(r.review_text)}</p>`:""}<button type="button" class="myReviewLink" data-hall-id="${esc(r.hall_id)}">해당 예식장 보기 →</button></article>`}).join(""):'<p>아직 작성한 예식장 평가가 없습니다.</p>');
+    box.querySelectorAll("[data-hall-id]").forEach(button=>button.addEventListener("click",()=>{closeSiteAuth();location.hash=`hall=${button.dataset.hallId}`}));
+  }catch(e){box.innerHTML='<h3>내가 작성한 평가</h3><p>평가 내역을 불러오지 못했습니다. 잠시 후 다시 확인해주세요.</p>';console.warn("MY 평가 조회 실패",e)}
+}
 async function submitSiteAuth(){
  if(siteAuthMode==="my")return changeSitePassword();
  const email=$("#siteAuthEmail")?.value.trim().toLowerCase(),password=$("#siteAuthPassword")?.value||"",button=$("#siteAuthSubmit");
@@ -211,7 +229,7 @@ async function changeSitePassword(){const newPassword=$("#siteAuthNewPassword")?
 async function resetSitePassword(){const email=$("#siteAuthEmail")?.value.trim();if(!email||!email.includes("@"))return alert("이메일 주소를 먼저 입력해주세요.");try{await authApi("recover?redirect_to="+encodeURIComponent("https://weddingrank.kr/"),{method:"POST",body:JSON.stringify({email})});alert("비밀번호 재설정 메일을 보냈습니다.")}catch(e){alert(e.message==="email rate limit exceeded"?"이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.":"재설정 메일 오류: "+e.message)}}
 let siteAuthMode="login";
 function openSiteAuth(mode="login"){
- siteAuthMode=mode;const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),switchBtn=$("#siteAuthSwitch"),email=$("#siteAuthEmail"),password=$("#siteAuthPassword"),passwordLabel=$("#siteAuthPasswordLabel"),newLabel=$("#siteAuthNewPasswordLabel"),confirmLabel=$("#siteAuthConfirmPasswordLabel"),reset=$("#siteAuthReset"),logout=$("#siteAuthLogout"),hint=modal?.querySelector(".siteAuthHint");
+ siteAuthMode=mode;const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),switchBtn=$("#siteAuthSwitch"),email=$("#siteAuthEmail"),password=$("#siteAuthPassword"),passwordLabel=$("#siteAuthPasswordLabel"),newLabel=$("#siteAuthNewPasswordLabel"),confirmLabel=$("#siteAuthConfirmPasswordLabel"),reset=$("#siteAuthReset"),logout=$("#siteAuthLogout"),historyBox=$("#myReviewHistory"),hint=modal?.querySelector(".siteAuthHint");
  if(!modal)return;const my=mode==="my"&&currentUser,signup=mode==="signup";
  title.textContent=my?"MY":signup?"신규 회원가입":"로그인";
  guide.textContent=my?(currentUser.email||"로그인 사용자"):signup?"실제 사용 중인 이메일과 새 비밀번호를 입력하세요.":"가입한 이메일과 비밀번호를 입력하세요.";
@@ -224,8 +242,10 @@ function openSiteAuth(mode="login"){
  submit.textContent=my?"비밀번호 변경":signup?"신규 회원가입":"로그인";
  if(switchBtn){switchBtn.hidden=my;switchBtn.textContent=signup?"기존 회원 로그인":"신규 회원가입";switchBtn.onclick=()=>openSiteAuth(signup?"login":"signup")}
  if(reset)reset.hidden=my||signup;if(logout)logout.hidden=!my;
+ if(historyBox)historyBox.hidden=!my;
  if(hint)hint.textContent=my?"비밀번호 변경과 로그아웃을 관리할 수 있습니다.":signup?"가입 후 바로 로그인됩니다.":"신규 회원은 아래 회원가입 버튼을 이용하세요.";
  modal.hidden=false;document.body.classList.add("authModalOpen");setTimeout(()=>(my?password:email)?.focus(),30);
+ if(my)loadMyReviewHistory();
 }
 function closeSiteAuth(){const modal=$("#siteAuthModal");if(modal)modal.hidden=true;document.body.classList.remove("authModalOpen")}
 function shareWeddingRank(){
