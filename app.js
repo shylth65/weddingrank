@@ -204,7 +204,10 @@ async function submitSiteAuth(){
   const isNew=Array.isArray(d.user?.identities)&&d.user.identities.length>0;
   alert(isNew?"가입 확인 메일을 보냈습니다. 이메일 확인 후 같은 화면에서 로그인해주세요.":"등록된 이메일입니다. 비밀번호가 틀렸다면 비밀번호 재설정을 이용해주세요.");
  }catch(e){
-  alert(e.message==="email rate limit exceeded"?"이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.":"로그인·가입 오류: "+e.message);
+  const message=String(e.message||"");
+  if(/email address.*invalid|email_address_invalid/i.test(message)) alert("테스트용 이메일(test, example 등)은 가입할 수 없습니다. 실제 사용 중인 이메일 주소를 입력해주세요.");
+  else if(/email rate limit exceeded/i.test(message)) alert("이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.");
+  else alert("로그인·가입 오류: "+message);
  }finally{button.disabled=false;button.textContent="로그인 · 간편회원가입"}
 }
 async function changeSitePassword(){const newPassword=$("#siteAuthNewPassword")?.value||"",confirmPassword=$("#siteAuthConfirmPassword")?.value||"",button=$("#siteAuthSubmit");if(!currentUser||!accessToken)return alert("로그인 후 이용해주세요.");if(newPassword.length<8)return alert("새 비밀번호는 8자 이상 입력해주세요.");if(newPassword!==confirmPassword)return alert("새 비밀번호가 서로 일치하지 않습니다.");button.disabled=true;button.textContent="변경 중…";try{await authApi("user",{method:"PUT",body:JSON.stringify({password:newPassword})});$("#siteAuthNewPassword").value="";$("#siteAuthConfirmPassword").value="";alert("비밀번호가 변경되었습니다. 관리자 화면에서도 새 비밀번호를 사용하세요.")}catch(e){alert("비밀번호 변경 오류: "+e.message)}finally{button.disabled=false;button.textContent="비밀번호 변경"}}
@@ -214,7 +217,7 @@ function openSiteAuth(mode="login"){
  siteAuthMode=mode;const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),email=$("#siteAuthEmail"),password=$("#siteAuthPassword"),passwordLabel=$("#siteAuthPasswordLabel"),newLabel=$("#siteAuthNewPasswordLabel"),confirmLabel=$("#siteAuthConfirmPasswordLabel"),reset=$("#siteAuthReset"),logout=$("#siteAuthLogout"),hint=modal?.querySelector(".siteAuthHint");
  if(!modal)return;const my=mode==="my"&&currentUser;
  title.textContent=my?"MY":"로그인 · 간편회원가입";
- guide.textContent=my?(currentUser.email||"로그인 사용자"):"이메일과 비밀번호만 입력하세요. 기존 회원은 로그인되고, 처음 이용하는 이메일은 회원가입됩니다.";
+ guide.textContent=my?(currentUser.email||"로그인 사용자"):"실제 사용 중인 이메일과 비밀번호를 입력하세요. 기존 회원은 로그인되고, 처음 이용하는 이메일은 회원가입됩니다.";
  if(email){email.closest("label").hidden=my;email.disabled=my}
  if(passwordLabel){passwordLabel.firstChild.textContent="비밀번호";passwordLabel.hidden=my;passwordLabel.style.display=my?"none":""}
  if(password){password.value="";password.autocomplete="current-password"}
