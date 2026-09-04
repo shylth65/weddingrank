@@ -173,12 +173,13 @@ async function restoreSession(){
   try{currentUser=await authApi("user",{method:"GET"});renderAuth()}catch(e){localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth()}
 }
 async function logoutUser(){try{if(accessToken)await authApi("logout",{method:"POST"})}catch(_){}localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth();closeSiteAuth();alert("로그아웃되었습니다.")}
-function syncHeaderAuth(){const account=$("#siteAccountBtn");if(account){account.textContent=currentUser?"MY":"로그인·간편가입";account.dataset.authMode=currentUser?"my":"login"}}
+function syncHeaderAuth(){const account=$("#siteAccountBtn");if(account){account.textContent=currentUser?"MY":"로그인";account.dataset.authMode=currentUser?"my":"login"}}
 function renderAuth(){
   syncHeaderAuth();const box=$("#authBox");if(!box)return;
-  box.innerHTML=currentUser?`<div class="signed"><span>${esc(currentUser.email||"로그인 사용자")}</span><button id="logoutBtn">로그아웃</button></div>`:`<div class="loginRow"><button id="loginBtn" type="button">로그인·회원가입</button></div><small>이메일과 비밀번호로 로그인합니다.</small>`;
+  box.innerHTML=currentUser?`<div class="signed"><span>${esc(currentUser.email||"로그인 사용자")}</span><button id="logoutBtn">로그아웃</button></div>`:`<div class="loginRow"><button id="loginBtn" type="button">로그인</button><button id="signupBtn" type="button">신규 회원가입</button></div><small>이메일과 비밀번호로 로그인하거나 가입합니다.</small>`;
   $("#logoutBtn")?.addEventListener("click",logoutUser);
-  $("#loginBtn")?.addEventListener("click",()=>openSiteAuth(currentUser?"my":"login"));renderReviewForm();
+  $("#loginBtn")?.addEventListener("click",()=>openSiteAuth(currentUser?"my":"login"));
+  $("#signupBtn")?.addEventListener("click",()=>openSiteAuth("signup"));renderReviewForm();
 }
 async function submitSiteAuth(){
  if(siteAuthMode==="my")return changeSitePassword();
@@ -187,14 +188,9 @@ async function submitSiteAuth(){
  if(password.length<8)return alert("비밀번호는 8자 이상 입력해주세요.");
  button.disabled=true;button.textContent="확인 중…";
  try{
-  try{
-   const d=await authApi("token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});
-   if(d.access_token){
-    accessToken=d.access_token;localStorage.setItem("wr_access_token",accessToken);
-    currentUser=await authApi("user",{method:"GET"});renderAuth();closeSiteAuth();alert("로그인되었습니다.");return;
-   }
-  }catch(loginError){
-   if(!/invalid login credentials/i.test(loginError.message||""))throw loginError;
+  if(siteAuthMode==="login"){
+    const d=await authApi("token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});
+    if(d.access_token){accessToken=d.access_token;localStorage.setItem("wr_access_token",accessToken);currentUser=await authApi("user",{method:"GET"});renderAuth();closeSiteAuth();alert("로그인되었습니다.");return;}
   }
   const d=await authApi("signup",{method:"POST",body:JSON.stringify({email,password,data:{display_name:"WeddingRank 회원"}})});
   if(d.access_token){
@@ -206,27 +202,29 @@ async function submitSiteAuth(){
  }catch(e){
   const message=String(e.message||"");
   if(/email address.*invalid|email_address_invalid/i.test(message)) alert("테스트용 이메일(test, example 등)은 가입할 수 없습니다. 실제 사용 중인 이메일 주소를 입력해주세요.");
+  else if(/invalid login credentials/i.test(message)) alert("이메일 또는 비밀번호가 맞지 않습니다. 신규 회원은 ‘신규 회원가입’을 이용해주세요.");
   else if(/email rate limit exceeded/i.test(message)) alert("이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.");
   else alert("로그인·가입 오류: "+message);
- }finally{button.disabled=false;button.textContent="로그인 · 간편회원가입"}
+ }finally{button.disabled=false;button.textContent=siteAuthMode==="signup"?"신규 회원가입":"로그인"}
 }
 async function changeSitePassword(){const newPassword=$("#siteAuthNewPassword")?.value||"",confirmPassword=$("#siteAuthConfirmPassword")?.value||"",button=$("#siteAuthSubmit");if(!currentUser||!accessToken)return alert("로그인 후 이용해주세요.");if(newPassword.length<8)return alert("새 비밀번호는 8자 이상 입력해주세요.");if(newPassword!==confirmPassword)return alert("새 비밀번호가 서로 일치하지 않습니다.");button.disabled=true;button.textContent="변경 중…";try{await authApi("user",{method:"PUT",body:JSON.stringify({password:newPassword})});$("#siteAuthNewPassword").value="";$("#siteAuthConfirmPassword").value="";alert("비밀번호가 변경되었습니다. 관리자 화면에서도 새 비밀번호를 사용하세요.")}catch(e){alert("비밀번호 변경 오류: "+e.message)}finally{button.disabled=false;button.textContent="비밀번호 변경"}}
 async function resetSitePassword(){const email=$("#siteAuthEmail")?.value.trim();if(!email||!email.includes("@"))return alert("이메일 주소를 먼저 입력해주세요.");try{await authApi("recover?redirect_to="+encodeURIComponent("https://weddingrank.kr/"),{method:"POST",body:JSON.stringify({email})});alert("비밀번호 재설정 메일을 보냈습니다.")}catch(e){alert(e.message==="email rate limit exceeded"?"이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.":"재설정 메일 오류: "+e.message)}}
 let siteAuthMode="login";
 function openSiteAuth(mode="login"){
- siteAuthMode=mode;const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),email=$("#siteAuthEmail"),password=$("#siteAuthPassword"),passwordLabel=$("#siteAuthPasswordLabel"),newLabel=$("#siteAuthNewPasswordLabel"),confirmLabel=$("#siteAuthConfirmPasswordLabel"),reset=$("#siteAuthReset"),logout=$("#siteAuthLogout"),hint=modal?.querySelector(".siteAuthHint");
- if(!modal)return;const my=mode==="my"&&currentUser;
- title.textContent=my?"MY":"로그인 · 간편회원가입";
- guide.textContent=my?(currentUser.email||"로그인 사용자"):"실제 사용 중인 이메일과 비밀번호를 입력하세요. 기존 회원은 로그인되고, 처음 이용하는 이메일은 회원가입됩니다.";
+ siteAuthMode=mode;const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),switchBtn=$("#siteAuthSwitch"),email=$("#siteAuthEmail"),password=$("#siteAuthPassword"),passwordLabel=$("#siteAuthPasswordLabel"),newLabel=$("#siteAuthNewPasswordLabel"),confirmLabel=$("#siteAuthConfirmPasswordLabel"),reset=$("#siteAuthReset"),logout=$("#siteAuthLogout"),hint=modal?.querySelector(".siteAuthHint");
+ if(!modal)return;const my=mode==="my"&&currentUser,signup=mode==="signup";
+ title.textContent=my?"MY":signup?"신규 회원가입":"로그인";
+ guide.textContent=my?(currentUser.email||"로그인 사용자"):signup?"실제 사용 중인 이메일과 새 비밀번호를 입력하세요.":"가입한 이메일과 비밀번호를 입력하세요.";
  if(email){email.closest("label").hidden=my;email.disabled=my}
  if(passwordLabel){passwordLabel.firstChild.textContent="비밀번호";passwordLabel.hidden=my;passwordLabel.style.display=my?"none":""}
  if(password){password.value="";password.autocomplete="current-password"}
  if(newLabel){newLabel.hidden=!my;newLabel.style.display=my?"":"none"}if(confirmLabel){confirmLabel.hidden=!my;confirmLabel.style.display=my?"":"none"};
  if($("#siteAuthNewPassword"))$("#siteAuthNewPassword").value="";
  if($("#siteAuthConfirmPassword"))$("#siteAuthConfirmPassword").value="";
- submit.textContent=my?"비밀번호 변경":"로그인 · 간편회원가입";
- if(reset)reset.hidden=my;if(logout)logout.hidden=!my;
- if(hint)hint.textContent=my?"비밀번호 변경과 로그아웃을 관리할 수 있습니다.":"회원가입할 때만 이메일 확인이 필요하며 이후에는 비밀번호로 바로 로그인합니다.";
+ submit.textContent=my?"비밀번호 변경":signup?"신규 회원가입":"로그인";
+ if(switchBtn){switchBtn.hidden=my;switchBtn.textContent=signup?"기존 회원 로그인":"신규 회원가입";switchBtn.onclick=()=>openSiteAuth(signup?"login":"signup")}
+ if(reset)reset.hidden=my||signup;if(logout)logout.hidden=!my;
+ if(hint)hint.textContent=my?"비밀번호 변경과 로그아웃을 관리할 수 있습니다.":signup?"가입 후 바로 로그인됩니다.":"신규 회원은 아래 회원가입 버튼을 이용하세요.";
  modal.hidden=false;document.body.classList.add("authModalOpen");setTimeout(()=>(my?password:email)?.focus(),30);
 }
 function closeSiteAuth(){const modal=$("#siteAuthModal");if(modal)modal.hidden=true;document.body.classList.remove("authModalOpen")}
