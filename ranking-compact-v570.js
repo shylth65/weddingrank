@@ -77,18 +77,7 @@
     setTimeout(scroll,500);
   }
   function installPriceNav(){
-    const nav=document.querySelector('.mainNav');
-    if(nav&&!nav.querySelector('.navPriceFind')){
-      const region=nav.querySelector('a[href="#regions"]');
-      const a=document.createElement('a');a.href='#find';a.className='navPriceFind';a.textContent='가격대별 찾기';a.addEventListener('click',goPriceFinder);
-      if(region)region.insertAdjacentElement('afterend',a);else nav.appendChild(a);
-    }
-    const quick=document.querySelector('.quickLinks');
-    if(quick&&!quick.querySelector('.quickPriceFind')){
-      const region=quick.querySelector('a[href="#regions"]');
-      const a=document.createElement('a');a.href='#find';a.className='quickPriceFind';a.textContent='가격대로 찾기';a.addEventListener('click',goPriceFinder);
-      if(region)region.insertAdjacentElement('afterend',a);else quick.appendChild(a);
-    }
+    document.querySelector('.mainNav a[href="#wrPriceBand"]')?.addEventListener('click',goPriceFinder);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installPriceNav,{once:true});else installPriceNav();
 })();

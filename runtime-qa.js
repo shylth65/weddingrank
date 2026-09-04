@@ -23,6 +23,7 @@ function ensureReviewLogin(){
 function validHash(href){
  if(!href||href==='#')return false;
  if(/^#hall=/.test(href))return true;
+ if(href==='#rankings')return !!document.getElementById('rankingView');
  return !!document.querySelector(href);
 }
 function bind(){

@@ -93,7 +93,20 @@ function render(reset=false){
   if(reset) visibleHallCount=PAGE_SIZE;
   const q=($("#search")?.value||"").trim().toLowerCase();
   const sido=$("#sido")?.value||"";
-  const filtered=halls.filter(h=>(!sido||h.sido===sido)&&(!q||[h.name,h.sido,h.sigungu,h.road_address].join(" ").toLowerCase().includes(q)));
+  const priceFilter=$("#priceFilter")?.value||"";
+  const matchesPrice=h=>{
+    if(!priceFilter)return true;
+    const p=priceByHall.get(h.hall_id);
+    if(priceFilter==="verified")return !!p;
+    const meal=Number(p?.meal_price_per_person);
+    if(!Number.isFinite(meal)||meal<=0)return false;
+    if(priceFilter==="under50000")return meal<50000;
+    if(priceFilter==="50000-70000")return meal>=50000&&meal<70000;
+    if(priceFilter==="70000-100000")return meal>=70000&&meal<100000;
+    if(priceFilter==="over100000")return meal>=100000;
+    return true;
+  };
+  const filtered=halls.filter(h=>(!sido||h.sido===sido)&&(!q||[h.name,h.sido,h.sigungu,h.road_address].join(" ").toLowerCase().includes(q))&&matchesPrice(h));
   const visible=filtered.slice(0,visibleHallCount);
   const cards=$("#cards");
   if(!cards)return;
@@ -285,6 +298,8 @@ async function loadRankings(){
 
 $("#search")?.addEventListener("input",()=>render(true));
 $("#sido")?.addEventListener("change",()=>render(true));
+$("#priceFilter")?.addEventListener("change",()=>render(true));
+$("#clearFilters")?.addEventListener("click",()=>{if($("#search"))$("#search").value="";if($("#sido"))$("#sido").value="";if($("#priceFilter"))$("#priceFilter").value="";render(true)});
 window.addEventListener("hashchange",route);
 window.addEventListener("DOMContentLoaded",()=>{setupRankingUI();setupHeaderActions()});
 parseAuthHash();
