@@ -1,4 +1,4 @@
-/* WeddingRank external-review ranking integration v5.90 */
+/* WeddingRank external-review ranking integration v5.91 */
 (()=>{
   'use strict';
   const cfg=window.WEDDINGRANK_CONFIG||{};
@@ -84,6 +84,21 @@
     }catch(e){body.innerHTML=`<div class="pending big">외부평가 순위 조회 오류: ${esc(e.message)}</div>`}
   };
 
+  function keepHomeRankingInSync(){
+    const host=document.getElementById('homeRankPreviewBody');if(!host)return;
+    let running=false,attempts=0;
+    const ensure=()=>{
+      if(running||host.querySelector('.externalHomeTop10')||attempts>=6)return;
+      running=true;attempts+=1;
+      Promise.resolve(renderHome()).finally(()=>{running=false});
+    };
+    const observer=new MutationObserver(()=>ensure());
+    observer.observe(host,{childList:true});
+    ensure();
+    [250,700,1500,3000,6000].forEach(ms=>setTimeout(ensure,ms));
+    setTimeout(()=>observer.disconnect(),12000);
+  }
+
   installStyles();
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',renderHome,{once:true});else renderHome();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',keepHomeRankingInSync,{once:true});else keepHomeRankingInSync();
 })();
