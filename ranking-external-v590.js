@@ -53,10 +53,10 @@
     const title=document.querySelector('.homeRankingPreview h2');
     const desc=document.querySelector('.homeRankingPreview .sectionDesc');
     if(title)title.textContent='공개후기 반영 웨딩홀 TOP 10';
-    if(desc)desc.innerHTML='독립 공개후기 <b>3건 이상</b>이 분석된 예식장을 외부 종합평가 순으로 보여드립니다. 편집지수와 회원 직접평가는 별도로 구분합니다.';
+    if(desc)desc.innerHTML='독립 공개후기 <b>3건 이상</b>이 분석된 예식장을 PICKRANK와 동일한 외부 종합평가 순으로 보여드립니다. 회원 직접평가와 편집지수는 순위에 합산하지 않으며 PICKRANK와 같은 기준을 사용합니다.';
     try{
       const rows=(await loadData()).filter(x=>x.overall_score!=null)
-        .sort((a,b)=>(Number(b.overall_score)-Number(a.overall_score))||(Number(b.source_count)-Number(a.source_count))||(Number(b.editorial_index||0)-Number(a.editorial_index||0))).slice(0,10);
+        .sort((a,b)=>(Number(b.overall_score)-Number(a.overall_score))||(Number(b.source_count)-Number(a.source_count))||String(a.name||'').localeCompare(String(b.name||''),'ko')).slice(0,10);
       if(!rows.length){host.innerHTML='<div class="rankingPreviewEmpty"><b>공개후기 평가를 준비 중입니다.</b></div>';return}
       host.innerHTML='<div class="previewTopGrid externalHomeTop10">'+rows.map((x,i)=>`<article class="previewTopCard" data-id="${esc(x.hall_id)}" tabindex="0" role="link"><strong class="previewTopNo">${i+1}</strong><div class="previewTopHall"><b>${esc(x.name)}</b><span>${esc([x.sido,x.sigungu].filter(Boolean).join(' '))}</span></div><div class="previewTopScore"><strong>${Number(x.overall_score).toFixed(2)}</strong><span>외부평가 · ${Number(x.source_count)}건</span><small>${x.editorial_index!=null?`편집지수 ${Number(x.editorial_index).toFixed(1)}`:'편집지수 별도'}</small></div></article>`).join('')+'</div>';
       bindRows(host);
@@ -76,7 +76,7 @@
     try{
       const mode=typeof rankingMode==='string'?rankingMode:'overall',scoreKey=metricKey(mode),region=document.getElementById('rankingRegion')?.value||'';
       const rows=(await loadData()).filter(x=>(!region||x.sido===region)&&x[scoreKey]!=null)
-        .sort((a,b)=>(Number(b[scoreKey])-Number(a[scoreKey]))||(Number(b.source_count)-Number(a.source_count))||(Number(b.editorial_index||0)-Number(a.editorial_index||0)));
+        .sort((a,b)=>(Number(b[scoreKey])-Number(a[scoreKey]))||(Number(b.source_count)-Number(a.source_count))||String(a.name||'').localeCompare(String(b.name||''),'ko'));
       if(!rows.length){body.innerHTML='<div class="pending big"><b>해당 조건의 외부평가가 아직 없습니다.</b><br><small>독립 공개후기 3건 확보 후 자동 반영됩니다.</small></div>';return}
       body.innerHTML=`<div class="rankSectionMeta"><div><span class="rankKicker">EXTERNAL REVIEW RANKING</span><b>${metricName(mode)} 외부평가 순위</b></div><span>${rows.length}곳</span></div>`+
         rows.slice(0,100).map((x,i)=>`<article class="rankRow${i<3?` rank${i+1}`:''}" data-id="${esc(x.hall_id)}"><div class="rankNo">${i+1}</div><div class="rankHall"><b>${esc(x.name)}</b><span>${esc([x.sido,x.sigungu].filter(Boolean).join(' '))}</span></div><div class="rankScore"><strong>${Number(x[scoreKey]).toFixed(2)}</strong><span>외부평가 · 공개출처 ${Number(x.source_count)}건</span><small>${x.editorial_index!=null?`편집지수 ${Number(x.editorial_index).toFixed(1)} · 별도`:'편집지수 별도'}</small></div></article>`).join('');
