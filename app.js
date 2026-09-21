@@ -254,7 +254,7 @@ function openSiteAuth(mode="login"){
  if(switchBtn){switchBtn.hidden=my;switchBtn.textContent=signup?"기존 회원 로그인":"신규 회원가입";switchBtn.onclick=()=>openSiteAuth(signup?"login":"signup")}
  if(reset)reset.hidden=my||signup;if(logout)logout.hidden=!my;
  if(historyBox)historyBox.hidden=!my;
- if(hint)hint.textContent=my?"비밀번호 변경과 로그아웃을 관리할 수 있습니다.":signup?"가입 후 바로 로그인됩니다.":"신규 회원은 아래 회원가입 버튼을 이용하세요.";
+ if(hint)hint.textContent=my?"비밀번호 변경과 로그아웃을 관리할 수 있습니다.":signup?"가입 후 바로 로그인됩니다.":"신규 회원은 ‘신규 회원가입’ 버튼을 이용하세요.";
  modal.hidden=false;document.body.classList.add("authModalOpen");setTimeout(()=>(my?password:email)?.focus(),30);
  if(my)loadMyReviewHistory();
 }
