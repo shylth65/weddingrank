@@ -1,6 +1,6 @@
 // WeddingRank v5.18 - connect homepage region discovery to static SEO hubs
 (() => {
-  const slug = s => encodeURIComponent(String(s || '').trim()).replace(/%/g, '~');
+  const slug = s => encodeURIComponent(String(s || '').trim());
   const enhance = () => {
     const section = document.querySelector('#regions');
     if (!section || section.dataset.hubEnhanced === '1') return;
