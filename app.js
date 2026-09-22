@@ -179,11 +179,36 @@ async function authApi(path,options={}){
   const key=getKey(),h={apikey:key,"Content-Type":"application/json",...(options.headers||{})};if(accessToken)h.Authorization=`Bearer ${accessToken}`;
   const r=await fetch(`${getUrl()}/auth/v1/${path}`,{...options,headers:h}),t=await r.text();let data={};try{data=t?JSON.parse(t):{}}catch(_){}if(!r.ok)throw new Error(data.msg||data.message||`Auth ${r.status}`);return data;
 }
-async function restoreSession(){
-  accessToken=localStorage.getItem("wr_access_token");if(!accessToken){renderAuth();return}
-  try{currentUser=await authApi("user",{method:"GET"});renderAuth()}catch(e){localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth()}
+function saveAuthSession(d){
+  accessToken=d?.access_token||accessToken;
+  if(accessToken)localStorage.setItem("wr_access_token",accessToken);
+  if(d?.refresh_token)localStorage.setItem("wr_refresh_token",d.refresh_token);
+  if(d?.expires_in)localStorage.setItem("wr_expires_at",String(Date.now()+Number(d.expires_in)*1000));
 }
-async function logoutUser(){try{if(accessToken)await authApi("logout",{method:"POST"})}catch(_){}localStorage.removeItem("wr_access_token");accessToken=null;currentUser=null;renderAuth();closeSiteAuth();alert("로그아웃되었습니다.")}
+function clearAuthSession(){
+  ["wr_access_token","wr_refresh_token","wr_expires_at"].forEach(k=>localStorage.removeItem(k));
+  accessToken=null;currentUser=null;
+}
+async function refreshAuthSession(){
+  const refreshToken=localStorage.getItem("wr_refresh_token");
+  if(!refreshToken)return false;
+  try{
+    const d=await authApi("token?grant_type=refresh_token",{method:"POST",body:JSON.stringify({refresh_token:refreshToken})});
+    if(!d?.access_token)return false;
+    saveAuthSession(d);return true;
+  }catch(_){return false}
+}
+async function restoreSession(){
+  accessToken=localStorage.getItem("wr_access_token");
+  const expiresAt=Number(localStorage.getItem("wr_expires_at")||0);
+  if((!accessToken||expiresAt-Date.now()<60000)&&!(await refreshAuthSession())){clearAuthSession();renderAuth();return}
+  try{currentUser=await authApi("user",{method:"GET"});renderAuth()}
+  catch(e){
+    if(await refreshAuthSession()){try{currentUser=await authApi("user",{method:"GET"});renderAuth();return}catch(_){}}
+    clearAuthSession();renderAuth();
+  }
+}
+async function logoutUser(){try{if(accessToken)await authApi("logout",{method:"POST"})}catch(_){}clearAuthSession();renderAuth();closeSiteAuth();alert("로그아웃되었습니다.")}
 function syncHeaderAuth(){const account=$("#siteAccountBtn");if(account){account.textContent=currentUser?"MY":"로그인";account.dataset.authMode=currentUser?"my":"login"}}
 function renderAuth(){
   syncHeaderAuth();const box=$("#authBox");if(!box)return;
@@ -219,11 +244,11 @@ async function submitSiteAuth(){
  try{
   if(siteAuthMode==="login"){
     const d=await authApi("token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});
-    if(d.access_token){accessToken=d.access_token;localStorage.setItem("wr_access_token",accessToken);currentUser=await authApi("user",{method:"GET"});renderAuth();closeSiteAuth();alert("로그인되었습니다.");return;}
+    if(d.access_token){saveAuthSession(d);currentUser=await authApi("user",{method:"GET"});renderAuth();closeSiteAuth();alert("로그인되었습니다.");return;}
   }
   const d=await authApi("signup",{method:"POST",body:JSON.stringify({email,password,data:{display_name:"WeddingRank 회원"}})});
   if(d.access_token){
-   accessToken=d.access_token;localStorage.setItem("wr_access_token",accessToken);
+   saveAuthSession(d);
    currentUser=await authApi("user",{method:"GET"});renderAuth();closeSiteAuth();alert("간편회원가입과 로그인이 완료되었습니다.");return;
   }
   const isNew=Array.isArray(d.user?.identities)&&d.user.identities.length>0;
@@ -271,9 +296,14 @@ function setupHeaderActions(){
   $("#siteAuthSubmit")?.addEventListener("click",submitSiteAuth);$("#siteAuthReset")?.addEventListener("click",resetSitePassword);$("#siteAuthLogout")?.addEventListener("click",logoutUser);["siteAuthEmail","siteAuthPassword","siteAuthNewPassword","siteAuthConfirmPassword"].forEach(id=>$("#"+id)?.addEventListener("keydown",e=>{if(e.key==="Enter")$("#siteAuthSubmit")?.click()}));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSiteAuth()});
 }
+let recoveryFromLink=false;
 function parseAuthHash(){
   const p=new URLSearchParams(location.hash.slice(1));
-  if(p.get("access_token")){accessToken=p.get("access_token");localStorage.setItem("wr_access_token",accessToken);history.replaceState(null,"",location.pathname)}
+  if(p.get("access_token")){
+    saveAuthSession({access_token:p.get("access_token"),refresh_token:p.get("refresh_token"),expires_in:p.get("expires_in")});
+    recoveryFromLink=p.get("type")==="recovery";
+    history.replaceState(null,"",location.pathname);
+  }
 }
 async function renderReviewForm(){
   const wrap=$("#reviewFormWrap");if(!wrap)return;
