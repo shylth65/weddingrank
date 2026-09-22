@@ -365,5 +365,5 @@ $("#clearFilters")?.addEventListener("click",()=>{if($("#search"))$("#search").v
 window.addEventListener("hashchange",route);
 window.addEventListener("DOMContentLoaded",()=>{setupRankingUI();setupHeaderActions()});
 parseAuthHash();
-restoreSession();
+restoreSession().then(()=>{if(recoveryFromLink&&currentUser)openSiteAuth("my")});
 load();
