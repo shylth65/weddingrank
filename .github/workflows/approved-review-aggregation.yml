@@ -1,0 +1,34 @@
+name: WeddingRank approved review aggregation
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 03:40 KST daily
+    - cron: '40 18 * * *'
+  push:
+    paths:
+      - 'scripts/aggregate-approved-reviews.cjs'
+      - '.github/workflows/approved-review-aggregation.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weddingrank-approved-reviews
+  cancel-in-progress: false
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Aggregate reviewed independent sources
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/aggregate-approved-reviews.cjs
