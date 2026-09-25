@@ -3,7 +3,7 @@ const { createClient } = require('@supabase/supabase-js');
 const url = process.env.SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!url || !key) {
-  console.error('BLOCKED: WeddingRank SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required.');
+  console.error('BLOCKED: WeddingRank '+(!url?'SUPABASE_URL':'SUPABASE_SERVICE_ROLE_KEY')+' is missing.');
   process.exit(2);
 }
 if (!url.includes('mozmxkmaynhxqwzovzhi.supabase.co')) {
