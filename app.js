@@ -2,6 +2,7 @@ const cfg = window.WEDDINGRANK_CONFIG || {};
 let halls = [];
 let priceByHall = new Map();
 let currentUser = null;
+let isAdminUser = false;
 let accessToken = null;
 let rankingMode = "overall";
 let visibleHallCount = 5;
@@ -187,7 +188,14 @@ function saveAuthSession(d){
 }
 function clearAuthSession(){
   ["wr_access_token","wr_refresh_token","wr_expires_at"].forEach(k=>localStorage.removeItem(k));
-  accessToken=null;currentUser=null;
+  accessToken=null;currentUser=null;isAdminUser=false;
+}
+async function refreshAdminAccess(){
+  if(!currentUser||!accessToken){isAdminUser=false;return}
+  try{
+    const rows=await authRest(`admin_users?select=user_id&user_id=eq.${encodeURIComponent(currentUser.id)}&limit=1`);
+    isAdminUser=Array.isArray(rows)&&rows.length>0;
+  }catch(_){isAdminUser=false}
 }
 async function refreshAuthSession(){
   const refreshToken=localStorage.getItem("wr_refresh_token");
@@ -202,9 +210,9 @@ async function restoreSession(){
   accessToken=localStorage.getItem("wr_access_token");
   const expiresAt=Number(localStorage.getItem("wr_expires_at")||0);
   if((!accessToken||expiresAt-Date.now()<60000)&&!(await refreshAuthSession())){clearAuthSession();renderAuth();return}
-  try{currentUser=await authApi("user",{method:"GET"});renderAuth()}
+  try{currentUser=await authApi("user",{method:"GET"});await refreshAdminAccess();renderAuth()}
   catch(e){
-    if(await refreshAuthSession()){try{currentUser=await authApi("user",{method:"GET"});renderAuth();return}catch(_){}}
+    if(await refreshAuthSession()){try{currentUser=await authApi("user",{method:"GET"});await refreshAdminAccess();renderAuth();return}catch(_){}}
     clearAuthSession();renderAuth();
   }
 }
@@ -244,12 +252,12 @@ async function submitSiteAuth(){
  try{
   if(siteAuthMode==="login"){
     const d=await authApi("token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});
-    if(d.access_token){saveAuthSession(d);currentUser=await authApi("user",{method:"GET"});renderAuth();closeSiteAuth();alert("로그인되었습니다.");return;}
+    if(d.access_token){saveAuthSession(d);currentUser=await authApi("user",{method:"GET"});await refreshAdminAccess();renderAuth();closeSiteAuth();alert("로그인되었습니다.");return;}
   }
   const d=await authApi("signup",{method:"POST",body:JSON.stringify({email,password,data:{display_name:"WeddingRank 회원"}})});
   if(d.access_token){
    saveAuthSession(d);
-   currentUser=await authApi("user",{method:"GET"});renderAuth();closeSiteAuth();alert("간편회원가입과 로그인이 완료되었습니다.");return;
+   currentUser=await authApi("user",{method:"GET"});await refreshAdminAccess();renderAuth();closeSiteAuth();alert("간편회원가입과 로그인이 완료되었습니다.");return;
   }
   const isNew=Array.isArray(d.user?.identities)&&d.user.identities.length>0;
   alert(isNew?"가입 확인 메일을 보냈습니다. 이메일 확인 후 같은 화면에서 로그인해주세요.":"등록된 이메일입니다. 비밀번호가 틀렸다면 비밀번호 재설정을 이용해주세요.");
@@ -265,7 +273,7 @@ async function changeSitePassword(){const newPassword=$("#siteAuthNewPassword")?
 async function resetSitePassword(){const email=$("#siteAuthEmail")?.value.trim();if(!email||!email.includes("@"))return alert("이메일 주소를 먼저 입력해주세요.");try{await authApi("recover?redirect_to="+encodeURIComponent("https://weddingrank.kr/"),{method:"POST",body:JSON.stringify({email})});alert("비밀번호 재설정 메일을 보냈습니다.")}catch(e){alert(e.message==="email rate limit exceeded"?"이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.":"재설정 메일 오류: "+e.message)}}
 let siteAuthMode="login";
 function openSiteAuth(mode="login"){
- siteAuthMode=mode;const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),switchBtn=$("#siteAuthSwitch"),email=$("#siteAuthEmail"),password=$("#siteAuthPassword"),passwordLabel=$("#siteAuthPasswordLabel"),newLabel=$("#siteAuthNewPasswordLabel"),confirmLabel=$("#siteAuthConfirmPasswordLabel"),reset=$("#siteAuthReset"),logout=$("#siteAuthLogout"),historyBox=$("#myReviewHistory"),hint=modal?.querySelector(".siteAuthHint");
+ siteAuthMode=mode;const modal=$("#siteAuthModal"),title=$("#siteAuthTitle"),guide=$("#siteAuthGuide"),submit=$("#siteAuthSubmit"),switchBtn=$("#siteAuthSwitch"),email=$("#siteAuthEmail"),password=$("#siteAuthPassword"),passwordLabel=$("#siteAuthPasswordLabel"),newLabel=$("#siteAuthNewPasswordLabel"),confirmLabel=$("#siteAuthConfirmPasswordLabel"),reset=$("#siteAuthReset"),logout=$("#siteAuthLogout"),adminLink=$("#siteAdminLink"),historyBox=$("#myReviewHistory"),hint=modal?.querySelector(".siteAuthHint");
  if(!modal)return;const my=mode==="my"&&currentUser,signup=mode==="signup";
  title.textContent=my?"MY":signup?"신규 회원가입":"로그인";
  guide.textContent=my?(currentUser.email||"로그인 사용자"):signup?"실제 사용 중인 이메일과 새 비밀번호를 입력하세요.":"가입한 이메일과 비밀번호를 입력하세요.";
@@ -277,7 +285,7 @@ function openSiteAuth(mode="login"){
  if($("#siteAuthConfirmPassword"))$("#siteAuthConfirmPassword").value="";
  submit.textContent=my?"비밀번호 변경":signup?"신규 회원가입":"로그인";
  if(switchBtn){switchBtn.hidden=my;switchBtn.textContent=signup?"기존 회원 로그인":"신규 회원가입";switchBtn.onclick=()=>openSiteAuth(signup?"login":"signup")}
- if(reset)reset.hidden=my||signup;if(logout)logout.hidden=!my;
+ if(reset)reset.hidden=my||signup;if(logout)logout.hidden=!my;if(adminLink)adminLink.hidden=!(my&&isAdminUser);
  if(historyBox)historyBox.hidden=!my;
  if(hint)hint.textContent=my?"비밀번호 변경과 로그아웃을 관리할 수 있습니다.":signup?"가입 후 바로 로그인됩니다.":"신규 회원은 ‘신규 회원가입’ 버튼을 이용하세요.";
  modal.hidden=false;document.body.classList.add("authModalOpen");setTimeout(()=>(my?password:email)?.focus(),30);
