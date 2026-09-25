@@ -29,6 +29,6 @@ jobs:
       - run: npm install --no-save @supabase/supabase-js@2.57.4
       - name: Aggregate reviewed independent sources
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: node scripts/aggregate-approved-reviews.cjs
