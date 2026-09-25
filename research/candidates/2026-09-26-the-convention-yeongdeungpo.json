@@ -1,0 +1,138 @@
+{
+  "schema_version": "weddingrank-research-candidate-v1",
+  "candidate_id": "the-convention-yeongdeungpo",
+  "venue": {
+    "name": "더컨벤션 영등포",
+    "aliases": ["영등포 더컨벤션", "더 컨벤션 영등포"],
+    "sido": "서울특별시",
+    "sigungu": "영등포구",
+    "road_address": "서울 영등포구 국회대로38길 2",
+    "phone": "02-6426-5000",
+    "official_website": "https://ydp.theconvention.co.kr/",
+    "operation_status": "운영 확인",
+    "official_halls": [
+      {"name": "그랜드볼룸", "floor": "1F"},
+      {"name": "다이너스티홀", "floor": "2F"}
+    ],
+    "official_verified_at": "2026-09-26T04:26:04+09:00",
+    "official_source_url": "https://ydp.theconvention.co.kr/"
+  },
+  "duplicate_check": {
+    "checked_against_public_wedding_halls": 79,
+    "name_match_count": 0,
+    "address_match_count": 0,
+    "source_url_match_count": 0,
+    "result": "new_candidate",
+    "checked_at": "2026-09-26T04:26:04+09:00"
+  },
+  "qualifying_independent_reviews": [
+    {
+      "source_url": "https://doit-jy.tistory.com/entry/%EC%9B%A8%EB%94%A9%ED%99%80-%ED%88%AC%EC%96%B4-1-%EB%8D%94-%EC%BB%A8%EB%B2%A4%EC%85%98-%EC%98%81%EB%93%B1%ED%8F%AC",
+      "source_domain": "doit-jy.tistory.com",
+      "author": "NaBi 나비",
+      "published_date": "2024-01-01",
+      "experience_type": "현장 홀투어",
+      "original_ratings": {
+        "scale": 5,
+        "access": 3,
+        "food": 4,
+        "facility": 3,
+        "quote_august_sunday": 2,
+        "quote_november_sunday": 0,
+        "overall": 2
+      },
+      "sample_count": 1,
+      "quality_status": "pass",
+      "quality_score": 88,
+      "advertising_or_incentive_detected": false,
+      "summary": "실제 홀투어 후 접근성·식사·시설·견적을 5점 척도로 평가했다. 시설과 음식 상태는 긍정적이었으나 신부대기실·가격 경쟁력은 낮게 평가했다."
+    },
+    {
+      "source_url": "https://baobao52.tistory.com/68",
+      "source_domain": "baobao52.tistory.com",
+      "author": "baobao52",
+      "published_date": "2025-04-04",
+      "experience_type": "계약자 본식 전 시식",
+      "original_ratings": {
+        "scale": null,
+        "overall": null
+      },
+      "sample_count": 1,
+      "quality_status": "pass",
+      "quality_score": 92,
+      "advertising_or_incentive_detected": false,
+      "summary": "계약자가 본식 약 2개월 전 직접 시식한 기록이다. 음식 종류·온도·육류·중식·디저트별 장단점을 구체적으로 기록했고, 대체로 평타 이상이라는 결론을 남겼다."
+    },
+    {
+      "source_url": "https://nyaring.tistory.com/76",
+      "source_domain": "nyaring.tistory.com",
+      "author": "냐링",
+      "published_date": "2025-04-07",
+      "experience_type": "현장 상담·계약 후 해지",
+      "original_ratings": {
+        "scale": null,
+        "overall": null
+      },
+      "sample_count": 1,
+      "quality_status": "pass",
+      "quality_score": 84,
+      "advertising_or_incentive_detected": false,
+      "summary": "내돈내산 표기의 현장 상담·계약 경험이다. 대중교통·주차·홀 구성·음식·서비스 조건을 긍정적으로 평가했고, 길일 선택 때문에 계약을 해지했다고 밝혔다."
+    }
+  ],
+  "supplemental_sources_not_counted_toward_three": [
+    {
+      "source_url": "https://www.directwedding.co.kr/weddinghall/hall0146",
+      "source_domain": "directwedding.co.kr",
+      "published_date": null,
+      "original_rating": null,
+      "sample_count": 1,
+      "reason_not_counted": "상업 웨딩플랫폼의 제휴 정보와 우수 후기 노출이 혼재해 독립 3건 기준에서는 제외",
+      "observed_facts": {
+        "meal_price_krw": 90000,
+        "rental_fee_krw": 8500000,
+        "minimum_guarantee": 300,
+        "maximum_capacity": 550,
+        "hall_count": 2
+      }
+    },
+    {
+      "source_url": "https://x.sinbuya.com/product/details/8858",
+      "source_domain": "x.sinbuya.com",
+      "published_date": null,
+      "original_rating": 8.6,
+      "original_scale": 10,
+      "sample_count": null,
+      "reason_not_counted": "상업 견적 플랫폼이며 평가 표본수가 공개되지 않음",
+      "observed_facts": {
+        "meal_price_krw": 110000,
+        "rental_fee_krw": 11000000
+      }
+    }
+  ],
+  "price_decision": {
+    "status": "hold_conflicting_unofficial_sources",
+    "publish_price": false,
+    "reason": "공식 사이트에 확정 가격이 없고, 두 상업 플랫폼의 식대·대관료가 서로 달라 기존값이나 신규값으로 확정하지 않음"
+  },
+  "publication_eligibility": {
+    "operation_verified": true,
+    "duplicate_check_passed": true,
+    "qualifying_independent_review_count": 3,
+    "minimum_required": 3,
+    "source_authors_distinct": true,
+    "source_urls_distinct": true,
+    "eligible_for_editorial_analysis": true,
+    "external_rating_ready": false,
+    "reason": "원문 검증은 통과했으나 WeddingRank Supabase 관리 연결이 없어 분석행·외부평가 집계·공개 전환을 수행하지 않음"
+  },
+  "integration_status": {
+    "weddingrank_db_applied": false,
+    "weddingrank_public_count_changed": false,
+    "pickrank_canonical_feed_read_only": true,
+    "pickrank_central_shared": false,
+    "legacy_outbound_queue_used": false,
+    "common_info_bulk_copied": false
+  },
+  "verified_at": "2026-09-26T04:26:04+09:00"
+}
