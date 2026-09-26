@@ -145,7 +145,7 @@ async function showDetail(id){
       api(`wedding_prices?select=effective_date,rental_fee,meal_price_per_person,minimum_guarantee,notes&hall_id=eq.${encodeURIComponent(id)}&order=effective_date.desc`),
       api(`reviews?select=visit_role,food_score,parking_score,access_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,review_text,created_at&hall_id=eq.${encodeURIComponent(id)}&order=created_at.desc&limit=100`),
       api(`external_wedding_ratings?select=source_count,food_score,access_score,parking_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,summary,updated_at&hall_id=eq.${encodeURIComponent(id)}&is_public=eq.true&limit=1`),
-      api(`wedding_review_sources?select=source_url,source_name,published_date,summary,quality_score&hall_id=eq.${encodeURIComponent(id)}&is_published=eq.true&order=quality_score.desc&limit=5`)
+      api(`wedding_review_sources?select=source_url,source_name,published_date,summary,quality_score&hall_id=eq.${encodeURIComponent(id)}&is_published=eq.true&source_type=eq.public_review&quality_score=gte.70&order=quality_score.desc&limit=5`)
     ]);
     const rooms=results[0].status==="fulfilled"?results[0].value:[];
     const prices=results[1].status==="fulfilled"?results[1].value:[];
@@ -160,7 +160,7 @@ async function showDetail(id){
 
 function renderExternalReviews(rating,sources){
   const box=$("#externalReviewSummary");if(!box)return;
-  if(!rating||Number(rating.source_count)<3){box.innerHTML='<div class="externalReviewBox"><b>외부 공개후기 분석 준비중</b><p class="externalReviewNote">신뢰 가능한 후기 3건 이상이 확인되면 회원 직접평가와 분리해 공개합니다.</p></div>';return}
+  if(!rating||Number(rating.source_count)<3||sources.length<3){box.innerHTML='<div class="externalReviewBox"><b>외부 공개후기 분석 준비중</b><p class="externalReviewNote">신뢰 가능한 후기 3건 이상이 확인되면 회원 직접평가와 분리해 공개합니다.</p></div>';return}
   const metrics=[["음식","food_score"],["접근성","access_score"],["주차","parking_score"],["시설","facility_score"],["신부대기실","bride_waiting_score"],["연회장","banquet_score"],["서비스","service_score"],["가성비","value_score"]];
   box.innerHTML=`<section class="externalReviewBox"><div class="externalReviewTop"><b>외부 공개후기 분석</b><span class="externalReviewScore">${score(rating.overall_score)} / 5</span></div><p class="externalReviewNote">${esc(rating.summary||"")}</p><div class="externalMetricGrid">${metrics.filter(([,k])=>rating[k]!=null).map(([n,k])=>`<span>${n}<strong>${score(rating[k])}</strong></span>`).join("")}</div><div class="externalSources">${sources.map(s=>`<a class="externalSource" href="${esc(s.source_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(s.source_name)}</b> · 원문 출처 보기<small>${esc(s.published_date||"게시일 미확인")} · ${esc(s.summary||"")}</small></a>`).join("")}</div><p class="externalDisclosure">외부 후기 원문·작성자·사진은 저장하지 않으며, 공개 출처의 항목별 신호를 요약·분석한 결과입니다. 회원 직접평가 및 순위와는 별도입니다.</p></section>`;
 }
