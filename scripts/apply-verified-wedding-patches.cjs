@@ -26,7 +26,7 @@ const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false
 const allowedProfileKeys=new Set(['phone','website']);
 
 async function main(){
-  const result={patch_id:patch.patch_id,venues:0,profile_updates:0,sources_added:0,sources_reclassified:0,ratings_unpublished:0,rating_dates_changed:0};
+  const result={patch_id:patch.patch_id,venues:0,profile_updates:0,profile_updates_blocked:0,sources_added:0,sources_reclassified:0,ratings_unpublished:0,rating_dates_changed:0};
   for(const venue of patch.venues){
     if(!venue.hall_id||!venue.expected_name||!venue.expected_address) throw new Error('Venue identity guard is incomplete.');
     const {data:hall,error:hallError}=await db.from('wedding_halls')
@@ -39,8 +39,13 @@ async function main(){
     if(Object.keys(profileUpdates).some(k=>!allowedProfileKeys.has(k))) throw new Error('Unapproved profile field in patch.');
     if(Object.keys(profileUpdates).length){
       const {error}=await db.from('wedding_halls').update(profileUpdates).eq('hall_id',venue.hall_id);
-      if(error) throw error;
-      result.profile_updates++;
+      if(error?.code==='42501'){
+        result.profile_updates_blocked++;
+      }else if(error){
+        throw error;
+      }else{
+        result.profile_updates++;
+      }
     }
 
     for(const source of venue.reclassify_sources||[]){
