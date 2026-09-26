@@ -38,13 +38,28 @@
         "cause": "WeddingRank Supabase service-role secret was absent."
       }
     ],
-    "current_secret_path_status": "working"
+    "current_secret_path_status": "working",
+    "verified_patch_workflow": {
+      "run_url": "https://github.com/shylth65/weddingrank/actions/runs/36266898176",
+      "conclusion": "success",
+      "venues_checked": 2,
+      "ratings_unpublished": 2,
+      "rating_dates_changed": 0,
+      "profile_updates_blocked_by_grant": 2,
+      "source_writes_blocked_by_grant": 8
+    }
   },
   "publication_audit": {
-    "public_external_rating_rows": 79,
+    "public_external_rating_rows_before": 79,
+    "public_external_rating_rows_after": 77,
     "eligible_under_current_service_job": 67,
     "requires_review": 12,
-    "automatic_unpublish_performed": false,
+    "unpublished_this_run": [
+      "65be2004-b693-4013-91fb-81ebc4893480",
+      "48d1de8f-fd94-462a-98a2-32cfe4854132"
+    ],
+    "remaining_public_rows_requiring_review": 10,
+    "automatic_unpublish_performed": true,
     "rating_dates_changed": false,
     "rows": [
       {"hall_id":"421c6da5-36cc-4449-ad2f-d8be5a2be72a","name":"상록아트홀","public_url_sources":3,"stored_source_count":3,"overall_score":4.10,"rating_date":"2026-09-19T03:01:24.706453+00:00"},
@@ -167,15 +182,29 @@
       "data_as_of": "2026-09-26T09:17:06+09:00",
       "received_this_run": false
     },
-    "specialist_db_change_this_run": false,
+    "specialist_db_change_this_run": {
+      "external_ratings_unpublished": 2,
+      "rating_dates_changed": 0,
+      "profile_updates_applied": 0,
+      "source_rows_applied": 0
+    },
     "specialist_screen_code_change": {
       "commit_app": "37d104c7ad3474454c64a7e4918fffc9937c854a",
       "commit_cache_bust": "ebb6f230ea5a0a2fcb5c527d4196e23fc3186719",
-      "change": "Detail pages now request only published public_review sources with quality_score >= 70 and hide external analysis when fewer than three qualifying source URLs are returned."
+      "change": "Detail pages now request only published public_review sources with quality_score >= 70 and hide external analysis when fewer than three qualifying source URLs are returned.",
+      "live_verified": true,
+      "venues_now_showing_pending": [
+        "스카이컨벤션웨딩 춘천",
+        "창원그랜드머큐어호텔 웨딩"
+      ]
     },
     "central_change_this_run": false,
     "legacy_outbound_queue_used": false,
     "full_specialist_db_copied_to_central": false,
-    "canonical_feed_written": false
+    "canonical_feed_written": false,
+    "errors": [
+      "service_role lacks UPDATE on public.wedding_halls",
+      "service_role lacks UPDATE and INSERT privileges needed for public.wedding_review_sources"
+    ]
   }
 }
