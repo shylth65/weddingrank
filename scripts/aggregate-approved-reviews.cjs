@@ -1,4 +1,14 @@
 const { createClient } = require('@supabase/supabase-js');
+const { readFileSync } = require('node:fs');
+
+// Explicitly withdrawn ratings cannot be republished from stale source rows.
+// Remove a guard only after the specialist source correction is verified.
+const verifiedPatch=JSON.parse(readFileSync('research/patches/2026-09-27-independent-source-correction.json','utf8'));
+if(verifiedPatch.schema_version!=='weddingrank-verified-patch-v1')throw new Error('Missing reviewed exclusion patch');
+const protectedHallIds=new Set(verifiedPatch.venues
+  .filter(v=>v.external_rating_action==='unpublish_preserve_date')
+  .map(v=>String(v.hall_id)));
+
 
 const url = process.env.SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -41,9 +51,10 @@ async function main() {
     group.set(s.source_url,a);
     grouped.set(String(s.hall_id),group);
   }
-  let updated=0,unchanged=0,insufficient=0;
+  let updated=0,unchanged=0,insufficient=0,protectedUnpublished=0;
   const eligible=new Set();
   for(const [hallId,distinct] of grouped) {
+    if(protectedHallIds.has(hallId)) { protectedUnpublished++; continue; }
     if(distinct.size<3) { insufficient++; continue; }
     const evaluations=[...distinct.values()];
     const result={hall_id:hallId,source_count:evaluations.length,is_public:true,methodology_version:'external_v1'};
@@ -78,7 +89,8 @@ async function main() {
     unchanged,
     ratings_requiring_review:ratingsRequiringReview.length,
     rating_ids_requiring_review:ratingsRequiringReview,
-    insufficient
+    insufficient,
+    protected_unpublished:protectedUnpublished
   }));
 }
 main().catch(e=>{console.error(e);process.exit(1)});
