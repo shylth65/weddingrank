@@ -102,6 +102,9 @@ async function main(){
     result.venues++;
   }
   console.log(JSON.stringify(result));
+  if(result.profile_updates_blocked||result.source_writes_blocked){
+    throw new Error('Verified patch incomplete: '+result.profile_updates_blocked+' profile writes and '+result.source_writes_blocked+' source writes blocked (42501). Ratings remain unpublished; resolve WeddingRank DB permission before retry.');
+  }
 }
 
 main().catch(error=>{console.error(error);process.exit(1)});
