@@ -53,7 +53,7 @@
     const title=document.querySelector('.homeRankingPreview h2');
     const desc=document.querySelector('.homeRankingPreview .sectionDesc');
     if(title)title.textContent='공개후기 반영 웨딩홀 TOP 10';
-    if(desc)desc.innerHTML='독립 공개후기 <b>3건 이상</b>이 분석된 예식장을 PICKRANK와 동일한 외부 종합평가 순으로 보여드립니다. 회원 직접평가와 편집지수는 순위에 합산하지 않으며 PICKRANK와 같은 기준을 사용합니다.';
+    if(desc)desc.innerHTML='독립 공개후기 <b>3건 이상</b>이 분석된 예식장을 WeddingRank가 검증한 외부 종합평가 순으로 보여드립니다. 회원 직접평가와 편집지수는 순위에 합산하지 않으며 PICKRANK와 같은 기준을 사용합니다.';
     try{
       const rows=(await loadData()).filter(x=>x.overall_score!=null)
         .sort((a,b)=>(Number(a.selection_rank??9999)-Number(b.selection_rank??9999))).slice(0,10);
