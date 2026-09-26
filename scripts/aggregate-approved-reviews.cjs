@@ -42,6 +42,7 @@ async function main() {
     grouped.set(String(s.hall_id),group);
   }
   let updated=0,unchanged=0,insufficient=0;
+  const eligible=new Set();
   for(const [hallId,distinct] of grouped) {
     if(distinct.size<3) { insufficient++; continue; }
     const evaluations=[...distinct.values()];
@@ -52,6 +53,7 @@ async function main() {
     }
     result.overall_score=avg(metrics.map(m=>result[m]).filter(v=>v!=null));
     if(result.overall_score==null) { insufficient++; continue; }
+    eligible.add(hallId);
     const old=previous.get(hallId);
     const fields=['source_count','overall_score','is_public',...metrics];
     if(old && fields.every(k=>old[k]==null&&result[k]==null || typeof result[k]==='number'&&Number(old[k])===result[k] || old[k]===result[k])) {unchanged++;continue;}
@@ -60,6 +62,23 @@ async function main() {
     if(error) throw error;
     updated++;
   }
-  console.log(JSON.stringify({halls:halls.length,approved_sources:sources.length,updated,unchanged,insufficient}));
+  // Report stale public rows without mutating them. A reviewed, explicitly
+  // approved correction can then preserve the existing rating date.
+  const ratingsRequiringReview=[...previous]
+    .filter(([hallId,old])=>old.is_public===true&&!eligible.has(hallId))
+    .map(([hallId])=>hallId);
+  const approvedSources=[...grouped.values()].reduce((sum,distinct)=>sum+distinct.size,0);
+  console.log(JSON.stringify({
+    halls_scanned:halls.length,
+    public_operating_halls:operating.size,
+    sources_scanned:sources.length,
+    approved_sources:approvedSources,
+    eligible_ratings:eligible.size,
+    updated,
+    unchanged,
+    ratings_requiring_review:ratingsRequiringReview.length,
+    rating_ids_requiring_review:ratingsRequiringReview,
+    insufficient
+  }));
 }
 main().catch(e=>{console.error(e);process.exit(1)});
