@@ -26,7 +26,7 @@ const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false
 const allowedProfileKeys=new Set(['phone','website']);
 
 async function main(){
-  const result={patch_id:patch.patch_id,venues:0,profile_updates:0,profile_updates_blocked:0,sources_added:0,sources_reclassified:0,ratings_unpublished:0,rating_dates_changed:0};
+  const result={patch_id:patch.patch_id,venues:0,profile_updates:0,profile_updates_blocked:0,sources_added:0,sources_reclassified:0,source_writes_blocked:0,ratings_unpublished:0,rating_dates_changed:0};
   for(const venue of patch.venues){
     if(!venue.hall_id||!venue.expected_name||!venue.expected_address) throw new Error('Venue identity guard is incomplete.');
     const {data:hall,error:hallError}=await db.from('wedding_halls')
@@ -53,6 +53,10 @@ async function main(){
         .update({source_type:source.source_type,updated_at:patch.verified_at})
         .eq('hall_id',venue.hall_id).eq('source_url',source.source_url)
         .select('source_id');
+      if(error?.code==='42501'){
+        result.source_writes_blocked++;
+        continue;
+      }
       if(error) throw error;
       if(!data?.length) throw new Error('Source reclassification target missing: '+source.source_url);
       result.sources_reclassified+=data.length;
@@ -73,6 +77,10 @@ async function main(){
         updated_at:patch.verified_at
       };
       const {error}=await db.from('wedding_review_sources').upsert(row,{onConflict:'hall_id,source_url'});
+      if(error?.code==='42501'){
+        result.source_writes_blocked++;
+        continue;
+      }
       if(error) throw error;
       result.sources_added++;
     }
