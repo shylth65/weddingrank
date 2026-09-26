@@ -1,0 +1,31 @@
+name: Apply verified WeddingRank data patches
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/apply-verified-wedding-patches.cjs
+      - research/patches/2026-09-27-independent-source-correction.json
+      - .github/workflows/apply-verified-wedding-patches.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weddingrank-verified-data-patches
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Apply verified source and profile corrections
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/apply-verified-wedding-patches.cjs research/patches/2026-09-27-independent-source-correction.json
