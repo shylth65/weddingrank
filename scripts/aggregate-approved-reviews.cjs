@@ -78,6 +78,13 @@ async function main() {
   const ratingsRequiringReview=[...previous]
     .filter(([hallId,old])=>old.is_public===true&&!eligible.has(hallId))
     .map(([hallId])=>hallId);
+  const missingDiagnostics=ratingsRequiringReview.map(hallId=>({
+    hall_id:hallId,
+    public_source_rows:sources.filter(s=>String(s.hall_id)===hallId&&s.is_published===true&&s.source_type==='public_review').length,
+    analyzed_rows:analysis.filter(a=>String(a.hall_id)===hallId&&Number(a.evidence_strength)>=70).length,
+    distinct_eligible_sources:grouped.get(hallId)?.size||0,
+    protected_by_patch:protectedHallIds.has(hallId)
+  }));
   const approvedSources=[...grouped.values()].reduce((sum,distinct)=>sum+distinct.size,0);
   console.log(JSON.stringify({
     halls_scanned:halls.length,
@@ -89,6 +96,7 @@ async function main() {
     unchanged,
     ratings_requiring_review:ratingsRequiringReview.length,
     rating_ids_requiring_review:ratingsRequiringReview,
+    missing_diagnostics:missingDiagnostics,
     insufficient,
     protected_unpublished:protectedUnpublished
   }));
