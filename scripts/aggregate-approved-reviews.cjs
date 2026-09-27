@@ -37,7 +37,7 @@ async function main() {
     pages('wedding_halls','hall_id,is_public,operation_status'),
     pages('wedding_review_sources','source_id,hall_id,source_url,source_type,quality_score,is_published'),
     pages('wedding_review_analysis','source_id,hall_id,evidence_strength,'+metrics.join(',')),
-    pages('external_wedding_ratings','hall_id,source_count,overall_score,is_public,'+metrics.join(','))
+    pages('external_wedding_ratings','hall_id,source_count,overall_score,is_public,updated_at,'+metrics.join(','))
   ]);
   const operating=new Set(halls.filter(h=>h.is_public===true && h.operation_status==='운영').map(h=>String(h.hall_id)));
   const analysisById=new Map(analysis.map(a=>[String(a.source_id),a]));
@@ -85,6 +85,20 @@ async function main() {
     distinct_eligible_sources:grouped.get(hallId)?.size||0,
     protected_by_patch:protectedHallIds.has(hallId)
   }));
+  let withdrawnUnanalysed=0;
+  for(const d of missingDiagnostics){
+    if(d.protected_by_patch||d.analyzed_rows!==0||d.distinct_eligible_sources!==0)continue;
+    const old=previous.get(d.hall_id);
+    const {error}=await db.from('external_wedding_ratings')
+      .update({is_public:false}).eq('hall_id',d.hall_id).eq('is_public',true);
+    if(error)throw error;
+    const {data:after,error:afterError}=await db.from('external_wedding_ratings')
+      .select('is_public,updated_at').eq('hall_id',d.hall_id).single();
+    if(afterError)throw afterError;
+    if(after.is_public!==false||after.updated_at!==old.updated_at)
+      throw new Error('Withdrawal or preserved rating date failed: '+d.hall_id);
+    withdrawnUnanalysed++;
+  }
   const approvedSources=[...grouped.values()].reduce((sum,distinct)=>sum+distinct.size,0);
   console.log(JSON.stringify({
     halls_scanned:halls.length,
@@ -98,7 +112,8 @@ async function main() {
     rating_ids_requiring_review:ratingsRequiringReview,
     missing_diagnostics:missingDiagnostics,
     insufficient,
-    protected_unpublished:protectedUnpublished
+    protected_unpublished:protectedUnpublished,
+    withdrawn_unanalysed:withdrawnUnanalysed
   }));
 }
 main().catch(e=>{console.error(e);process.exit(1)});
