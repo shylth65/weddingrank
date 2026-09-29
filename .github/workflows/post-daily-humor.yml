@@ -1,0 +1,25 @@
+name: Publish WeddingRank daily humor
+on:
+  workflow_dispatch:
+  schedule:
+    # 08:10 KST daily; missed runs can be retried manually without duplication.
+    - cron: '10 23 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-daily-humor
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Publish today's original humor
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/post-daily-humor.cjs
