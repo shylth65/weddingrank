@@ -1,9 +1,7 @@
 name: Publish WeddingRank daily humor
 on:
   workflow_dispatch:
-  schedule:
-    # 08:10 KST daily; missed runs can be retried manually without duplication.
-    - cron: '10 23 * * *'
+  # Daily publishing is handled by Supabase Cron at 08:40 Asia/Seoul.
 permissions:
   contents: read
 concurrency:
