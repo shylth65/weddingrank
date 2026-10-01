@@ -1,0 +1,140 @@
+{
+  "audit_date": "2026-10-02",
+  "policy": {
+    "system_of_record": "WeddingRank",
+    "pickrank_sync": false,
+    "external_rating_publication_rule": "independent original review URLs >= 3, each with verified analysis and raw-score/source-quality basis",
+    "external_rating_changed": false,
+    "rating_reference_date_preserved": "2026-09-26T08:13:34.915Z"
+  },
+  "changes": [
+    {
+      "hall_id": "a598e86e-6e59-489a-b92f-2065b10d9c51",
+      "name": "그랜드 인터컨티넨탈 서울 파르나스 웨딩",
+      "profile": {
+        "phone": "02-559-7778",
+        "website": "https://seoul.intercontinental.com/ko/wedding/wedding"
+      },
+      "rooms": [
+        {
+          "name": "그랜드 볼룸",
+          "floor": "5층",
+          "capacity_min": null,
+          "capacity_max": 900,
+          "source_url": "https://seoul.intercontinental.com/ko/wedding/wedding",
+          "source_date": null
+        },
+        {
+          "name": "오키드",
+          "floor": "2층",
+          "capacity_min": 100,
+          "capacity_max": 200,
+          "source_url": "https://seoul.intercontinental.com/ko/wedding/wedding",
+          "source_date": null
+        },
+        {
+          "name": "로즈",
+          "floor": "5층",
+          "capacity_min": 60,
+          "capacity_max": 80,
+          "source_url": "https://seoul.intercontinental.com/ko/wedding/wedding/rosewedding",
+          "source_date": null
+        },
+        {
+          "name": "카네이션 & 메이플",
+          "floor": "5층",
+          "capacity_min": null,
+          "capacity_max": 40,
+          "source_url": "https://seoul.intercontinental.com/ko/wedding/wedding/carnation-maple",
+          "source_date": null
+        }
+      ],
+      "verification_note": "Grand Ballroom uses the structured capacity field (approx. 900); the same overview prose also mentions 940.",
+      "verified_date": "2026-10-02",
+      "live_detail_url": "https://weddingrank.kr/#hall=a598e86e-6e59-489a-b92f-2065b10d9c51"
+    },
+    {
+      "hall_id": "5590428e-c95e-497c-b371-b619ad71bf46",
+      "name": "메이필드호텔 서울 웨딩",
+      "profile": {
+        "phone": "02-2660-9200",
+        "website": "https://www.mayfield.co.kr/"
+      },
+      "rooms": [
+        {
+          "name": "메이필드 볼룸",
+          "floor": "1층 연회장",
+          "capacity_min": 250,
+          "capacity_max": 380,
+          "source_url": "https://www.mayfield.co.kr/wedding/grand.html",
+          "source_date": null
+        },
+        {
+          "name": "카라",
+          "floor": "3층 연회장",
+          "capacity_min": 100,
+          "capacity_max": 120,
+          "source_url": "https://www.mayfield.co.kr/en/wedding/private.html",
+          "source_date": null
+        },
+        {
+          "name": "벨타워가든",
+          "floor": "야외",
+          "capacity_min": 250,
+          "capacity_max": 600,
+          "source_url": "https://mayfield.co.kr/wedding/belltower.html",
+          "source_date": null
+        },
+        {
+          "name": "아트리움",
+          "floor": "야외",
+          "capacity_min": 200,
+          "capacity_max": 400,
+          "source_url": "https://www.mayfield.co.kr/wedding/atrium.html",
+          "source_date": null
+        },
+        {
+          "name": "소나무정원",
+          "floor": "야외",
+          "capacity_min": 50,
+          "capacity_max": 70,
+          "source_url": "https://www.mayfield.co.kr/wedding/pineGarden.html",
+          "source_date": null
+        }
+      ],
+      "verified_date": "2026-10-02",
+      "live_detail_url": "https://weddingrank.kr/#hall=5590428e-c95e-497c-b371-b619ad71bf46"
+    }
+  ],
+  "post_update_counts": {
+    "halls": 966,
+    "public_operating_halls": 79,
+    "public_external_ratings": 67,
+    "review_sources": 296,
+    "review_analyses": 221,
+    "held_zero_analysis": 10
+  },
+  "approved_review_aggregation": {
+    "run_id": 36786163615,
+    "run_url": "https://github.com/shylth65/weddingrank/actions/runs/36786163615",
+    "started_at": "2026-09-30T22:32:30Z",
+    "conclusion": "success",
+    "metrics": {
+      "halls_scanned": 966,
+      "public_operating_halls": 79,
+      "sources_scanned": 296,
+      "approved_sources": 207,
+      "eligible_ratings": 67,
+      "updated": 0,
+      "unchanged": 67,
+      "ratings_requiring_review": 0,
+      "insufficient": 0,
+      "protected_unpublished": 1,
+      "withdrawn_unanalysed": 0
+    },
+    "warnings": [
+      "Node.js 20 deprecated for actions/checkout@v4 and actions/setup-node@v4",
+      "punycode deprecation warning"
+    ]
+  }
+}
