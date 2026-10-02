@@ -1,0 +1,231 @@
+{
+  "schema_version": "weddingrank-review-analysis-batch-v1",
+  "verified_date": "2026-10-03",
+  "scope": "WeddingRank-only",
+  "source_platform": {
+    "domain": "jinzzawedding.com",
+    "homepage": "https://jinzzawedding.com/",
+    "faq": "https://jinzzawedding.com/faq",
+    "qualification_note": "개별 /reviews URL만 사용. 플랫폼 홀 집계/랭킹 페이지는 독립 후기 1건으로 계산하지 않음. FAQ의 상담·투어 인증 및 광고/후기 분리 정책을 확인함."
+  },
+  "rules": {
+    "minimum_distinct_independent_urls": 3,
+    "raw_score_required": true,
+    "no_category_score_imputation": true,
+    "exact_date_not_invented": true,
+    "pickrank_sync": false
+  },
+  "venues": [
+    {
+      "hall_id": "53b21fbb-0463-4a93-8056-750bea92ae1c",
+      "name": "서울신라호텔 웨딩",
+      "sources": [
+        {
+          "source_id": "6d3c990b-2c15-47f6-9e61-9468ceca2e94",
+          "source_url": "https://jinzzawedding.com/reviews/578",
+          "raw_score": 4,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2025-12",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "현장사진 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        },
+        {
+          "source_id": "d7a5b513-8f03-48e0-9403-e7738e67f4c7",
+          "source_url": "https://jinzzawedding.com/reviews/576",
+          "raw_score": 2.7,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2025-08",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "견적서 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "negative",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        },
+        {
+          "source_id": "d2351ed3-a853-492b-b3cf-21b4629eb15e",
+          "source_url": "https://jinzzawedding.com/reviews/575",
+          "raw_score": 4.5,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2026-05",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "예약내역 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        }
+      ]
+    },
+    {
+      "hall_id": "ea026116-dd93-4dd9-8eff-8a4f46a1c19d",
+      "name": "코리아나호텔 웨딩",
+      "sources": [
+        {
+          "source_id": "4a6a7da1-ffe5-4a81-92f2-22dabf05a954",
+          "source_url": "https://jinzzawedding.com/reviews/1102",
+          "raw_score": 3.6,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2024-08",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "현장사진 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "mixed",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        },
+        {
+          "source_id": "1cfb6f0c-db8d-4c57-84be-a385653e6586",
+          "source_url": "https://jinzzawedding.com/reviews/1101",
+          "raw_score": 4.1,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2024-11",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "예약내역 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        },
+        {
+          "source_id": "92a51783-5535-4686-97b3-45294157a661",
+          "source_url": "https://jinzzawedding.com/reviews/1100",
+          "raw_score": 4,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2024-09",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "명함·카톡 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        }
+      ]
+    },
+    {
+      "hall_id": "97c52cd9-1b30-48c2-8684-7b4cfd1405d3",
+      "name": "로얄파크컨벤션",
+      "sources": [
+        {
+          "source_id": "5b9c855d-73fd-43f0-9512-5ba3e117e854",
+          "source_url": "https://jinzzawedding.com/reviews/777",
+          "raw_score": 3,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2024-09",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "예약내역 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "mixed",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        },
+        {
+          "source_id": "9d5444aa-9c5a-4c94-8454-464acc658868",
+          "source_url": "https://jinzzawedding.com/reviews/1198",
+          "raw_score": 3.6,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2025-07",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "현장사진 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "mixed",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        },
+        {
+          "source_id": "8402b35a-4c45-49e4-925e-be7a91aedca8",
+          "source_url": "https://jinzzawedding.com/reviews/1268",
+          "raw_score": 3.9,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2025-10",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "예약내역 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "mixed",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        }
+      ]
+    },
+    {
+      "hall_id": "419f2235-04c8-443b-b02e-17ee1e0246a8",
+      "name": "몬드리안 서울 이태원 웨딩",
+      "sources": [
+        {
+          "source_id": "75c7b34f-76f7-4f11-8662-663824a72ed8",
+          "source_url": "https://jinzzawedding.com/reviews/1505",
+          "raw_score": 4,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2026-03",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "명함·카톡 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        },
+        {
+          "source_id": "77a3b73d-8431-48f9-9f81-f64e80a1b29a",
+          "source_url": "https://jinzzawedding.com/reviews/1088",
+          "raw_score": 4.2,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2025-11",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "예약내역 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        },
+        {
+          "source_id": "9c462450-9c44-44e4-96f5-f90d9beb97d3",
+          "source_url": "https://jinzzawedding.com/reviews/1086",
+          "raw_score": 4.1,
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_period": "2026-03",
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "verification": "명함·카톡 인증",
+          "quality_score": 90,
+          "evidence_strength": 90,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 URL; 상담·투어 인증 표시; 원점수/5 JSON-LD 확인; 외부 플랫폼은 광고와 후기 분리를 명시"
+        }
+      ]
+    }
+  ],
+  "expected_effect": {
+    "new_analysis_rows": 12,
+    "venues_becoming_eligible": 4,
+    "held_remaining": 6,
+    "public_external_ratings_before": 67,
+    "expected_public_external_ratings_after": 71
+  }
+}
