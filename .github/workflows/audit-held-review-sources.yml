@@ -1,0 +1,32 @@
+name: WeddingRank held review source audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/audit-held-review-sources.cjs'
+      - '.github/workflows/audit-held-review-sources.yml'
+      - 'research/audits/2026-09-27-external-rating-eligibility.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weddingrank-held-review-source-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Read held venue review sources
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/audit-held-review-sources.cjs
