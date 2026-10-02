@@ -73,3 +73,10 @@ for all to anon, authenticated using (false) with check (false);
 grant select on public.wedding_review_sources to anon, authenticated;
 grant select on public.external_wedding_ratings to anon, authenticated;
 revoke all on public.wedding_review_analysis from anon, authenticated;
+
+
+-- Server-side WeddingRank pipeline permissions.
+-- GitHub Actions uses the project service-role secret; public roles remain read-only/blocked as above.
+grant select, insert, update on public.wedding_review_sources to service_role;
+grant select, insert, update on public.wedding_review_analysis to service_role;
+grant select, insert, update on public.external_wedding_ratings to service_role;
