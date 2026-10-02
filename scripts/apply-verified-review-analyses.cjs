@@ -29,7 +29,7 @@ async function main(){
   for(const s of venue.sources){
    checked++;
    const period=s.published_period||s.period;
-   const sourceUrl=sourceUrl||s.url;
+   const sourceUrl=s.source_url||s.url;
    if(Number(s.raw_scale)!==5||Number(s.sample_count)!==1||!Number.isFinite(Number(s.raw_score))||Number(s.raw_score)<1||Number(s.raw_score)>5)
      throw new Error('Raw-score evidence invalid: '+sourceUrl);
    if(!/^https:\/\/jinzzawedding\.com\/reviews\/\d+$/.test(sourceUrl)) throw new Error('Not an individual verified review URL: '+sourceUrl);
