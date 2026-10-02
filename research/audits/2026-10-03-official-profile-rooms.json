@@ -1,0 +1,145 @@
+{
+  "audit_date": "2026-10-03",
+  "system_of_record": "WeddingRank",
+  "pickrank_sync": false,
+  "changes": [
+    {
+      "hall_id": "546007b7-2c28-4608-b148-73661a09c426",
+      "name": "롯데월드타워 시그니엘서울 웨딩",
+      "profile": {
+        "address": "서울특별시 송파구 올림픽로 300",
+        "phone": "02-3213-1000",
+        "website": "https://www.lottehotel.com/seoul-signiel/ko/wedding-convention/hotel-wedding",
+        "phone_address_source_url": "https://www.lottehotel.com/cms/asset/2026/04/03/38895/%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%97%98_%EC%84%9C%EC%9A%B8_%EA%B8%B0%ED%94%84%ED%8A%B8%EB%B8%8C%EB%A1%9C%EC%8A%88%EC%96%B426.03.pdf",
+        "phone_address_source_date": "2026-04-03"
+      },
+      "rooms": [
+        {
+          "name": "시그니엘 웨딩",
+          "floor": "76층",
+          "capacity_min": 100,
+          "capacity_max": 300,
+          "source_url": "https://www.lottehotel.com/seoul-signiel/ko/wedding-convention/hotel-wedding/overview",
+          "source_date": null
+        },
+        {
+          "name": "프라이빗 파티",
+          "floor": "76층",
+          "capacity_min": null,
+          "capacity_max": 100,
+          "source_url": "https://www.lottehotel.com/seoul-signiel/ko/wedding-convention/hotel-wedding",
+          "source_date": null
+        }
+      ],
+      "verified_date": "2026-10-03",
+      "live_detail_url": "https://weddingrank.kr/#hall=546007b7-2c28-4608-b148-73661a09c426"
+    },
+    {
+      "hall_id": "6ca6c2da-809a-41a9-a668-ffeabcd7316b",
+      "name": "그랜드워커힐서울 웨딩",
+      "profile": {
+        "address": "서울특별시 광진구 워커힐로 177",
+        "phone": "1670-0005",
+        "website": "https://www.walkerhill.com/convention/Wedding"
+      },
+      "rooms": [
+        {
+          "name": "비스타홀",
+          "floor": "B2",
+          "capacity_min": 300,
+          "capacity_max": 700,
+          "source_url": "https://www.walkerhill.com/convention/Wedding",
+          "source_date": null
+        },
+        {
+          "name": "워커홀",
+          "floor": "컨벤션센터 1층",
+          "capacity_min": 130,
+          "capacity_max": 300,
+          "source_url": "https://www.walkerhill.com/convention/Wedding",
+          "source_date": null
+        },
+        {
+          "name": "애스톤 하우스",
+          "floor": null,
+          "capacity_min": 50,
+          "capacity_max": 150,
+          "source_url": "https://www.walkerhill.com/convention/Wedding",
+          "source_date": null
+        },
+        {
+          "name": "아트홀",
+          "floor": "컨벤션센터 4층",
+          "capacity_min": 50,
+          "capacity_max": 130,
+          "source_url": "https://www.walkerhill.com/convention/Wedding",
+          "source_date": null
+        },
+        {
+          "name": "그랜드홀",
+          "floor": "그랜드 워커힐 서울 B1",
+          "capacity_min": 150,
+          "capacity_max": 200,
+          "source_url": "https://www.walkerhill.com/convention/Wedding",
+          "source_date": null
+        },
+        {
+          "name": "웨딩인네이처",
+          "floor": "캠핑 인 더 시티",
+          "capacity_min": 50,
+          "capacity_max": 100,
+          "source_url": "https://www.walkerhill.com/convention/Wedding",
+          "source_date": null
+        },
+        {
+          "name": "명월관 가든",
+          "floor": "야외",
+          "capacity_min": 50,
+          "capacity_max": 150,
+          "source_url": "https://www.walkerhill.com/convention/Wedding",
+          "source_date": null
+        }
+      ],
+      "verified_date": "2026-10-03",
+      "live_detail_url": "https://weddingrank.kr/#hall=6ca6c2da-809a-41a9-a668-ffeabcd7316b"
+    }
+  ],
+  "change_summary": {
+    "profiles_updated": 2,
+    "room_rows_touched": 9,
+    "room_rows_new": 6,
+    "external_rating_changes": 0
+  },
+  "post_update_counts": {
+    "halls": 966,
+    "public_operating_halls": 79,
+    "public_external_ratings": 67,
+    "review_sources": 296,
+    "review_analyses": 221,
+    "held_zero_analysis": 10,
+    "rating_reference_date": "2026-09-26T08:13:34.915Z"
+  },
+  "approved_review_aggregation": {
+    "run_id": 36937615320,
+    "run_url": "https://github.com/shylth65/weddingrank/actions/runs/36937615320",
+    "started_at": "2026-10-01T22:52:18Z",
+    "conclusion": "success",
+    "metrics": {
+      "halls_scanned": 966,
+      "public_operating_halls": 79,
+      "sources_scanned": 296,
+      "approved_sources": 207,
+      "eligible_ratings": 67,
+      "updated": 0,
+      "unchanged": 67,
+      "ratings_requiring_review": 0,
+      "insufficient": 0,
+      "protected_unpublished": 1,
+      "withdrawn_unanalysed": 0
+    },
+    "warnings": [
+      "Node.js 20 deprecated for actions/checkout@v4 and actions/setup-node@v4",
+      "punycode deprecation warning"
+    ]
+  }
+}
