@@ -9,7 +9,6 @@ const protectedHallIds=new Set(verifiedPatch.venues
   .filter(v=>v.external_rating_action==='unpublish_preserve_date')
   .map(v=>String(v.hall_id)));
 
-
 const url = process.env.SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!url || !key) {
@@ -23,6 +22,14 @@ if (!url.includes('mozmxkmaynhxqwzovzhi.supabase.co')) {
 const db = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
 const metrics = ['food_score','access_score','parking_score','facility_score','bride_waiting_score','banquet_score','service_score','value_score'];
 const avg = values => values.length ? Math.round(values.reduce((a,b)=>a+b,0)/values.length*100)/100 : null;
+const rawScore = summary => {
+  const m=String(summary||'').match(/\[raw-score=([0-9]+(?:\.[0-9]+)?)\/([0-9]+(?:\.[0-9]+)?);\s*sample=([0-9]+);/i);
+  if(!m) return null;
+  const score=Number(m[1]), scale=Number(m[2]), sample=Number(m[3]);
+  if(!Number.isFinite(score)||!Number.isFinite(scale)||!Number.isInteger(sample)||sample<1||scale<=0||score<0||score>scale) return null;
+  const normalized=Math.round((score/scale*5)*100)/100;
+  return {score,scale,sample,normalized};
+};
 const pages = async (table, select) => {
   const all=[];
   for(let offset=0;;offset+=500) {
@@ -35,7 +42,7 @@ const pages = async (table, select) => {
 async function main() {
   const [halls,sources,analysis,prior] = await Promise.all([
     pages('wedding_halls','hall_id,is_public,operation_status'),
-    pages('wedding_review_sources','source_id,hall_id,source_url,source_type,quality_score,is_published'),
+    pages('wedding_review_sources','source_id,hall_id,source_url,source_type,quality_score,is_published,summary'),
     pages('wedding_review_analysis','source_id,hall_id,evidence_strength,'+metrics.join(',')),
     pages('external_wedding_ratings','hall_id,source_count,overall_score,is_public,updated_at,'+metrics.join(','))
   ]);
@@ -48,10 +55,10 @@ async function main() {
     const a=analysisById.get(String(s.source_id));
     if(!a || Number(a.evidence_strength)<70 || String(a.hall_id)!==String(s.hall_id)) continue;
     const group=grouped.get(String(s.hall_id)) || new Map();
-    group.set(s.source_url,a);
+    group.set(s.source_url,{analysis:a,raw:rawScore(s.summary),source:s});
     grouped.set(String(s.hall_id),group);
   }
-  let updated=0,unchanged=0,insufficient=0,protectedUnpublished=0;
+  let updated=0,unchanged=0,insufficient=0,protectedUnpublished=0,rawScoreSources=0;
   const eligible=new Set();
   for(const [hallId,distinct] of grouped) {
     if(protectedHallIds.has(hallId)) { protectedUnpublished++; continue; }
@@ -59,10 +66,17 @@ async function main() {
     const evaluations=[...distinct.values()];
     const result={hall_id:hallId,source_count:evaluations.length,is_public:true,methodology_version:'external_v1'};
     for(const m of metrics) {
-      const values=evaluations.map(a=>Number(a[m])).filter(v=>Number.isFinite(v)&&v>=1&&v<=5);
+      const values=evaluations.map(e=>Number(e.analysis[m])).filter(v=>Number.isFinite(v)&&v>=1&&v<=5);
       result[m]=avg(values);
     }
-    result.overall_score=avg(metrics.map(m=>result[m]).filter(v=>v!=null));
+    const verifiedRaw=evaluations.map(e=>e.raw).filter(Boolean);
+    rawScoreSources+=verifiedRaw.length;
+    // Never fabricate category scores. If every eligible source has a verified
+    // original overall score, use those scores for overall_score. Otherwise
+    // retain the established category-analysis calculation for legacy sources.
+    result.overall_score=verifiedRaw.length===evaluations.length
+      ? avg(verifiedRaw.map(r=>r.normalized))
+      : avg(metrics.map(m=>result[m]).filter(v=>v!=null));
     if(result.overall_score==null) { insufficient++; continue; }
     eligible.add(hallId);
     const old=previous.get(hallId);
@@ -105,6 +119,7 @@ async function main() {
     public_operating_halls:operating.size,
     sources_scanned:sources.length,
     approved_sources:approvedSources,
+    raw_score_sources:rawScoreSources,
     eligible_ratings:eligible.size,
     updated,
     unchanged,
