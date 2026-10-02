@@ -1,0 +1,23 @@
+name: WeddingRank source page probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/probe-review-pages.cjs'
+      - '.github/workflows/probe-review-pages.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Probe candidate original review pages
+        run: node scripts/probe-review-pages.cjs
