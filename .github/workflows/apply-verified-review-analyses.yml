@@ -1,0 +1,37 @@
+name: WeddingRank apply verified review analyses
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/apply-verified-review-analyses.cjs'
+      - '.github/workflows/apply-verified-review-analyses.yml'
+      - 'research/audits/2026-10-03-held-review-analysis-batch-1.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weddingrank-verified-review-analysis
+  cancel-in-progress: false
+
+jobs:
+  apply-and-aggregate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Apply audited review analyses
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/apply-verified-review-analyses.cjs
+      - name: Reaggregate approved WeddingRank ratings
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/aggregate-approved-reviews.cjs
