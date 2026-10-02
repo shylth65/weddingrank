@@ -17,8 +17,9 @@ const auditedRawByHallUrl=new Map();
 for(const batch of verifiedRawBatches){
   if(batch.schema_version!=='weddingrank-review-analysis-batch-v1')throw new Error('Missing verified raw-score audit batch');
   for(const venue of batch.venues||[]) for(const s of venue.sources||[]) {
-    if(Number(s.sample_count)!==1 || Number(s.raw_scale)!==5 || !Number.isFinite(Number(s.raw_score))) throw new Error('Invalid audited raw score: '+s.source_url);
-    auditedRawByHallUrl.set(String(venue.hall_id)+'|'+s.source_url,{score:Number(s.raw_score),scale:Number(s.raw_scale),sample:Number(s.sample_count),normalized:Math.round(Number(s.raw_score)/Number(s.raw_scale)*500)/100,url:s.source_url,hall_id:String(venue.hall_id)});
+    const sourceUrl=s.source_url||s.url;
+    if(Number(s.sample_count)!==1 || Number(s.raw_scale)!==5 || !Number.isFinite(Number(s.raw_score)) || !sourceUrl) throw new Error('Invalid audited raw score: '+sourceUrl);
+    auditedRawByHallUrl.set(String(venue.hall_id)+'|'+sourceUrl,{score:Number(s.raw_score),scale:Number(s.raw_scale),sample:Number(s.sample_count),normalized:Math.round(Number(s.raw_score)/Number(s.raw_scale)*500)/100,url:sourceUrl,hall_id:String(venue.hall_id)});
   }
 }
 
