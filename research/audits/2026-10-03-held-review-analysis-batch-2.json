@@ -1,0 +1,230 @@
+{
+  "schema_version": "weddingrank-review-analysis-batch-v1",
+  "verified_date": "2026-10-03",
+  "scope": "WeddingRank-only",
+  "batch": 2,
+  "source_platform": {
+    "domain": "jinzzawedding.com",
+    "qualification_note": "개별 /reviews URL만 독립 원문으로 계산; 각 페이지 HTTP 200, 원점수/5, 상담·방문 시점, 인증 표시를 재검증."
+  },
+  "rules": {
+    "minimum_distinct_independent_urls": 3,
+    "raw_score_required": true,
+    "no_category_score_imputation": true,
+    "exact_date_not_invented": true,
+    "pickrank_sync": false
+  },
+  "venues": [
+    {
+      "hall_id": "421c6da5-36cc-4449-ad2f-d8be5a2be72a",
+      "name": "상록아트홀",
+      "sources": [
+        {
+          "url": "https://jinzzawedding.com/reviews/2179",
+          "title": "상록아트홀, 역삼역 셔틀과 일요일 견적을 따져본 후기입니다",
+          "raw_score": 4,
+          "period": "2024-11",
+          "verification": "견적서 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/2180",
+          "title": "상록아트홀 5층 아트홀, 자연광 들어오는 게 진짜 예뻐요 ㅎㅎ👍",
+          "raw_score": 4.5,
+          "period": "2025-03",
+          "verification": "현장사진 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/485",
+          "title": "한 번 보고 계속 생각나서 결국 계약까지 한 상록아트홀 후기",
+          "raw_score": 4.3,
+          "period": "2026-01",
+          "verification": "명함·카톡 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        }
+      ]
+    },
+    {
+      "hall_id": "f2e4650b-8271-4edf-bbf7-2adf4be4148b",
+      "name": "벨라루체웨딩홀 서울점",
+      "sources": [
+        {
+          "url": "https://jinzzawedding.com/reviews/2257",
+          "title": "벨라루체 서울점 7층 플로체홀 완전 강츄",
+          "raw_score": 4.4,
+          "period": "2026-06",
+          "verification": "현장사진 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/2258",
+          "title": "벨라루체 서울점 층별로 홀 골라 계약하는 구조 넘 좋음",
+          "raw_score": 3.9,
+          "period": "2024-12",
+          "verification": "견적서 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "mixed",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/1585",
+          "title": "90분 간격이라 쫓기지 않았던 벨라루체 서울점",
+          "raw_score": 4,
+          "period": "2025-08",
+          "verification": "예약내역 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        }
+      ]
+    },
+    {
+      "hall_id": "de3d58f0-43e8-49c1-8fe6-9227ef93c218",
+      "name": "그랜드 하얏트 서울 웨딩",
+      "sources": [
+        {
+          "url": "https://jinzzawedding.com/reviews/2173",
+          "title": "그랜드하얏트 무료 셔틀 정보, 하객 많은 분들 참고하세요",
+          "raw_score": 4.1,
+          "period": "2025-04",
+          "verification": "견적서 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/808",
+          "title": "그랜드하얏트 남산룸은 70명 스몰웨딩도 되더라고요",
+          "raw_score": 3.5,
+          "period": "2026-06",
+          "verification": "견적서 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "mixed",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/606",
+          "title": "그랜드 하얏트 다녀왔어요, 분수 연출 실화였던 이야기",
+          "raw_score": 4,
+          "period": "2025-06",
+          "verification": "명함·카톡 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        }
+      ]
+    },
+    {
+      "hall_id": "1f98ca7f-a8b9-4223-85d5-316dd501afbf",
+      "name": "PJ호텔 웨딩",
+      "sources": [
+        {
+          "url": "https://jinzzawedding.com/reviews/2400",
+          "title": "PJ호텔 예식날 셔틀버스 돌아서 하객들이 편했어요 ㅎㅎ",
+          "raw_score": 4,
+          "period": "2026-02",
+          "verification": "견적서 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/2401",
+          "title": "PJ호텔 가성비는 좋은데 홀 기둥이 계속 눈에 밟혀서 고민만 하다 왔네요",
+          "raw_score": 3,
+          "period": "2025-10",
+          "verification": "현장사진 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "mixed",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/2055",
+          "title": "PJ호텔 저녁예식 분위기 완전 강츄 best5각",
+          "raw_score": 4.5,
+          "period": "2025-03",
+          "verification": "견적서 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "published_date_note": "원문은 YYYY.MM까지만 표시하여 일자를 임의 생성하지 않음",
+          "quality_score": 92,
+          "evidence_strength": 92,
+          "sentiment": "positive",
+          "source_quality_basis": "진짜웨딩 개별 /reviews 원문; 상담·투어/방문 인증 표시; JSON-LD 원점수/5 확인; 홀 집계 페이지는 출처로 계산하지 않음"
+        }
+      ]
+    }
+  ],
+  "expected_effect": {
+    "new_source_rows": 12,
+    "new_analysis_rows": 12,
+    "venues_becoming_eligible": 4,
+    "public_external_ratings_before": 71,
+    "expected_public_external_ratings_after": 75
+  }
+}
