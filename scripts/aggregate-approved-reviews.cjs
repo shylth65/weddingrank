@@ -52,7 +52,7 @@ async function main() {
     pages('wedding_halls','hall_id,is_public,operation_status'),
     pages('wedding_review_sources','source_id,hall_id,source_url,source_type,quality_score,is_published,summary'),
     pages('wedding_review_analysis','source_id,hall_id,evidence_strength,'+metrics.join(',')),
-    pages('external_wedding_ratings','hall_id,source_count,overall_score,is_public,updated_at,'+metrics.join(','))
+    pages('external_wedding_ratings','hall_id,source_count,overall_score,is_public,summary,updated_at,'+metrics.join(','))
   ]);
   const operating=new Set(halls.filter(h=>h.is_public===true && h.operation_status==='운영').map(h=>String(h.hall_id)));
   const analysisById=new Map(analysis.map(a=>[String(a.source_id),a]));
@@ -68,13 +68,14 @@ async function main() {
     group.set(s.source_url,{analysis:a,raw:audited||rawScore(s.summary),source:s});
     grouped.set(String(s.hall_id),group);
   }
-  let updated=0,unchanged=0,insufficient=0,protectedUnpublished=0,rawScoreSources=0;
+  let updated=0,unchanged=0,insufficient=0,protectedUnpublished=0,rawScoreSources=0,summaryCorrected=0;
   const eligible=new Set();
   for(const [hallId,distinct] of grouped) {
     if(protectedHallIds.has(hallId)) { protectedUnpublished++; continue; }
     if(distinct.size<3) { insufficient++; continue; }
     const evaluations=[...distinct.values()];
     const result={hall_id:hallId,source_count:evaluations.length,is_public:true,methodology_version:'external_v1'};
+    result.summary=`독립 외부 공개후기 ${evaluations.length}건을 WeddingRank가 직접 검증·분석한 전문 평가입니다.`;
     for(const m of metrics) {
       const values=evaluations.map(e=>Number(e.analysis[m])).filter(v=>Number.isFinite(v)&&v>=1&&v<=5);
       result[m]=avg(values);
@@ -91,7 +92,22 @@ async function main() {
     eligible.add(hallId);
     const old=previous.get(hallId);
     const fields=['source_count','overall_score','is_public',...metrics];
-    if(old && fields.every(k=>old[k]==null&&result[k]==null || typeof result[k]==='number'&&Number(old[k])===result[k] || old[k]===result[k])) {unchanged++;continue;}
+    const ratingSame=old && fields.every(k=>old[k]==null&&result[k]==null || typeof result[k]==='number'&&Number(old[k])===result[k] || old[k]===result[k]);
+    if(ratingSame) {
+      if(old.summary!==result.summary) {
+        const oldDate=old.updated_at;
+        const {error:summaryError}=await db.from('external_wedding_ratings').update({summary:result.summary}).eq('hall_id',hallId);
+        if(summaryError) throw summaryError;
+        const {data:afterSummary,error:afterSummaryError}=await db.from('external_wedding_ratings')
+          .select('summary,updated_at').eq('hall_id',hallId).single();
+        if(afterSummaryError) throw afterSummaryError;
+        if(afterSummary.summary!==result.summary) throw new Error('Summary correction failed: '+hallId);
+        if(afterSummary.updated_at!==oldDate) throw new Error('Summary-only correction changed rating date: '+hallId);
+        summaryCorrected++;
+      }
+      unchanged++;
+      continue;
+    }
     result.updated_at=new Date().toISOString();
     const {error}=await db.from('external_wedding_ratings').upsert(result,{onConflict:'hall_id'});
     if(error) throw error;
@@ -130,7 +146,9 @@ async function main() {
     sources_scanned:sources.length,
     approved_sources:approvedSources,
     raw_score_sources:rawScoreSources,
+    analysis_rows:analysis.length,
     eligible_ratings:eligible.size,
+    summary_corrected:summaryCorrected,
     updated,
     unchanged,
     ratings_requiring_review:ratingsRequiringReview.length,
