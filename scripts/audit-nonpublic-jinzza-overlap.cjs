@@ -49,13 +49,19 @@ async function main(){
    if(exts.length===1)matches.push({hall:h,external:exts[0]});
  }
  const qualified=[];
- for(const m of matches.slice(0,80)){
-   const r=await fetch(m.external.url,{headers:{'user-agent':'Mozilla/5.0 Chrome/140 Safari/537.36','accept-language':'ko-KR,ko;q=0.9'}});
-   if(!r.ok)continue;
-   const page=await r.text();
-   const cards=parseCards(page);
-   const addr=(clean(page).match(/서울[^·]{0,60}(?:로|길)\s*\d+[0-9-]*/)||[])[0]||null;
-   if(cards.length>=3)qualified.push({hall:m.hall,jinzza:{...m.external,address_hint:addr,verified_numeric_reviews:cards.slice(0,5)},verified_numeric_count:cards.length});
+ const selected=matches.slice(0,120);
+ for(let start=0;start<selected.length;start+=10){
+   const batch=selected.slice(start,start+10);
+   const found=await Promise.all(batch.map(async m=>{
+     try{
+       const r=await fetch(m.external.url,{headers:{'user-agent':'Mozilla/5.0 Chrome/140 Safari/537.36','accept-language':'ko-KR,ko;q=0.9'}});
+       if(!r.ok)return null;
+       const page=await r.text(),cards=parseCards(page);
+       const addr=(clean(page).match(/서울[^·]{0,60}(?:로|길)\s*\d+[0-9-]*/)||[])[0]||null;
+       return cards.length>=3?{hall:m.hall,jinzza:{...m.external,address_hint:addr,verified_numeric_reviews:cards.slice(0,5)},verified_numeric_count:cards.length}:null;
+     }catch(_){return null}
+   }));
+   qualified.push(...found.filter(Boolean));
  }
  console.log('NONPUBLIC_JINZZA_OVERLAP_BEGIN');
  console.log(JSON.stringify({
