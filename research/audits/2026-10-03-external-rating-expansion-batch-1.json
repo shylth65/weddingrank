@@ -1,0 +1,96 @@
+{
+  "audit_date": "2026-10-03",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "result": {
+    "public_operating_halls": 79,
+    "review_sources": 296,
+    "review_analyses_before": 221,
+    "review_analyses_after": 233,
+    "approved_sources_before": 207,
+    "approved_sources_after": 219,
+    "public_external_ratings_before": 67,
+    "public_external_ratings_after": 71,
+    "newly_qualified_venues": 4,
+    "remaining_held_from_2026_09_27_batch": 6
+  },
+  "newly_qualified": [
+    {
+      "hall_id": "53b21fbb-0463-4a93-8056-750bea92ae1c",
+      "name": "서울신라호텔 웨딩",
+      "verified_sources": 3,
+      "overall_score": 3.73,
+      "ui_score": "3.7 / 5"
+    },
+    {
+      "hall_id": "ea026116-dd93-4dd9-8eff-8a4f46a1c19d",
+      "name": "코리아나호텔 웨딩",
+      "verified_sources": 3,
+      "overall_score": 3.9,
+      "ui_score": "3.9 / 5"
+    },
+    {
+      "hall_id": "97c52cd9-1b30-48c2-8684-7b4cfd1405d3",
+      "name": "로얄파크컨벤션",
+      "verified_sources": 3,
+      "overall_score": 3.5,
+      "ui_score": "3.5 / 5"
+    },
+    {
+      "hall_id": "419f2235-04c8-443b-b02e-17ee1e0246a8",
+      "name": "몬드리안 서울 이태원 웨딩",
+      "verified_sources": 3,
+      "overall_score": 4.1,
+      "ui_score": "4.1 / 5"
+    }
+  ],
+  "evidence_policy": {
+    "distinct_independent_urls_minimum": 3,
+    "per_source_raw_score_and_scale_required": true,
+    "actual_sample_size_required": true,
+    "no_category_score_imputation": true,
+    "exact_publish_day_not_invented": true,
+    "advertising_copy_member_reviews_excluded": true
+  },
+  "github_actions": {
+    "source_probe_run": 37077052825,
+    "apply_and_aggregate_run": 37077335209,
+    "idempotent_provenance_run": 37077674657,
+    "final_approved_aggregation_run": 37078166681,
+    "live_browser_qa_run": 37078258048,
+    "final_approved_aggregation": {
+      "conclusion": "success",
+      "halls_scanned": 966,
+      "public_operating_halls": 79,
+      "sources_scanned": 296,
+      "approved_sources": 219,
+      "raw_score_sources": 12,
+      "analysis_rows": 233,
+      "eligible_ratings": 71,
+      "summary_corrected": 71,
+      "updated": 0,
+      "unchanged": 71,
+      "ratings_requiring_review": 0,
+      "protected_unpublished": 1
+    }
+  },
+  "live_qa": {
+    "conclusion": "success",
+    "public_halls": "79곳",
+    "external_rating_rank_count": "71곳",
+    "data_as_of": "2026-10-03 08:25 Asia/Seoul",
+    "search_matches_each_newly_qualified": 1,
+    "detail_verified_source_links_each": 3,
+    "legacy_pickrank_wording_present": false,
+    "javascript_errors": 0
+  },
+  "rating_date_policy": {
+    "summary_only_corrections_preserved_updated_at": true,
+    "note": "The four newly qualified ratings legitimately advanced their own updated_at during publication. Existing unchanged ratings were not redated; subsequent WeddingRank-only summary corrections were asserted to preserve updated_at."
+  },
+  "operational_notes": [
+    "GitHub Actions continues to use WeddingRank SUPABASE_SERVICE_ROLE_KEY; no chat connection switching is required for routine runs.",
+    "A one-time WeddingRank database grant migration added SELECT/INSERT/UPDATE privileges for service_role on the three external-review pipeline tables after a 42501 permission error.",
+    "No PICKRANK transmission or central ranking synchronization was performed."
+  ]
+}
