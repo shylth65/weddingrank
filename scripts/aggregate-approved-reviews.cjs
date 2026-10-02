@@ -9,12 +9,17 @@ const protectedHallIds=new Set(verifiedPatch.venues
   .filter(v=>v.external_rating_action==='unpublish_preserve_date')
   .map(v=>String(v.hall_id)));
 
-const verifiedRawBatch=JSON.parse(readFileSync('research/audits/2026-10-03-held-review-analysis-batch-1.json','utf8'));
-if(verifiedRawBatch.schema_version!=='weddingrank-review-analysis-batch-v1')throw new Error('Missing verified raw-score audit batch');
-const auditedRawBySourceId=new Map();
-for(const venue of verifiedRawBatch.venues||[]) for(const s of venue.sources||[]) {
-  if(Number(s.sample_count)!==1 || Number(s.raw_scale)!==5 || !Number.isFinite(Number(s.raw_score))) throw new Error('Invalid audited raw score: '+s.source_id);
-  auditedRawBySourceId.set(String(s.source_id),{score:Number(s.raw_score),scale:Number(s.raw_scale),sample:Number(s.sample_count),normalized:Math.round(Number(s.raw_score)/Number(s.raw_scale)*500)/100,url:s.source_url,hall_id:String(venue.hall_id)});
+const verifiedRawBatches=[
+  'research/audits/2026-10-03-held-review-analysis-batch-1.json',
+  'research/audits/2026-10-03-held-review-analysis-batch-2.json'
+].map(p=>JSON.parse(readFileSync(p,'utf8')));
+const auditedRawByHallUrl=new Map();
+for(const batch of verifiedRawBatches){
+  if(batch.schema_version!=='weddingrank-review-analysis-batch-v1')throw new Error('Missing verified raw-score audit batch');
+  for(const venue of batch.venues||[]) for(const s of venue.sources||[]) {
+    if(Number(s.sample_count)!==1 || Number(s.raw_scale)!==5 || !Number.isFinite(Number(s.raw_score))) throw new Error('Invalid audited raw score: '+s.source_url);
+    auditedRawByHallUrl.set(String(venue.hall_id)+'|'+s.source_url,{score:Number(s.raw_score),scale:Number(s.raw_scale),sample:Number(s.sample_count),normalized:Math.round(Number(s.raw_score)/Number(s.raw_scale)*500)/100,url:s.source_url,hall_id:String(venue.hall_id)});
+  }
 }
 
 const url = process.env.SUPABASE_URL;
@@ -63,7 +68,7 @@ async function main() {
     const a=analysisById.get(String(s.source_id));
     if(!a || Number(a.evidence_strength)<70 || String(a.hall_id)!==String(s.hall_id)) continue;
     const group=grouped.get(String(s.hall_id)) || new Map();
-    const audited=auditedRawBySourceId.get(String(s.source_id));
+    const audited=auditedRawByHallUrl.get(String(s.hall_id)+'|'+s.source_url);
     if(audited && (audited.url!==s.source_url || audited.hall_id!==String(s.hall_id))) throw new Error('Audited source identity mismatch: '+s.source_id);
     group.set(s.source_url,{analysis:a,raw:audited||rawScore(s.summary),source:s});
     grouped.set(String(s.hall_id),group);
