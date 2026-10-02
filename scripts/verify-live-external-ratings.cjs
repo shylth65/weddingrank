@@ -56,6 +56,8 @@ async function main(){
  for(const d of details){
    if(d.sourceCount!==3) throw new Error('Qualified source count mismatch '+d.name+': '+d.sourceCount);
    if(!d.sourceTexts.every(x=>x.includes('원점수')&&x.includes('실제 표본 1명')&&x.includes('원문 검증'))) throw new Error('Provenance missing on '+d.name);
+   if(d.externalText.includes('PICKRANK')) throw new Error('Legacy PICKRANK wording remains on '+d.name);
+   if(!d.externalText.includes('WeddingRank가 직접 검증·분석한 전문 평가')) throw new Error('WeddingRank authority wording missing on '+d.name);
  }
  await browser.close();
 }
