@@ -1,0 +1,27 @@
+name: WeddingRank nonpublic candidate overlap audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/audit-nonpublic-jinzza-overlap.cjs'
+      - '.github/workflows/audit-nonpublic-jinzza-overlap.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Match nonpublic WeddingRank candidates to verified numeric reviews
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/audit-nonpublic-jinzza-overlap.cjs
