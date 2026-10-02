@@ -29,14 +29,15 @@ async function main(){
   for(const s of venue.sources){
    checked++;
    const period=s.published_period||s.period;
+   const sourceUrl=sourceUrl||s.url;
    if(Number(s.raw_scale)!==5||Number(s.sample_count)!==1||!Number.isFinite(Number(s.raw_score))||Number(s.raw_score)<1||Number(s.raw_score)>5)
-     throw new Error('Raw-score evidence invalid: '+s.source_url);
-   if(!/^https:\/\/jinzzawedding\.com\/reviews\/\d+$/.test(s.source_url)) throw new Error('Not an individual verified review URL: '+s.source_url);
-   if(!period||!/^20\d{2}-\d{2}$/.test(period)) throw new Error('Missing verified YYYY-MM period: '+s.source_url);
+     throw new Error('Raw-score evidence invalid: '+sourceUrl);
+   if(!/^https:\/\/jinzzawedding\.com\/reviews\/\d+$/.test(sourceUrl)) throw new Error('Not an individual verified review URL: '+sourceUrl);
+   if(!period||!/^20\d{2}-\d{2}$/.test(period)) throw new Error('Missing verified YYYY-MM period: '+sourceUrl);
 
    let query=db.from('wedding_review_sources')
      .select('source_id,hall_id,source_url,source_type,quality_score,is_published,summary,source_domain,source_name');
-   query=s.source_id?query.eq('source_id',s.source_id):query.eq('hall_id',venue.hall_id).eq('source_url',s.source_url);
+   query=s.source_id?query.eq('source_id',s.source_id):query.eq('hall_id',venue.hall_id).eq('source_url',sourceUrl);
    let {data:src,error:se}=await query.maybeSingle();
    if(se)throw se;
 
@@ -45,7 +46,7 @@ async function main(){
    if(!src){
      const row={
        hall_id:venue.hall_id,
-       source_url:s.source_url,
+       source_url:sourceUrl,
        source_name:s.title||'진짜웨딩 개별 인증후기',
        source_domain:'jinzzawedding.com',
        source_type:'public_review',
@@ -59,7 +60,7 @@ async function main(){
      if(ce)throw ce;
      src=created;sourcesInserted++;
    }else{
-     if(String(src.hall_id)!==String(venue.hall_id)||src.source_url!==s.source_url) throw new Error('Source identity mismatch: '+s.source_url);
+     if(String(src.hall_id)!==String(venue.hall_id)||src.source_url!==sourceUrl) throw new Error('Source identity mismatch: '+sourceUrl);
      if(src.source_type!=='public_review'||src.is_published!==true||Number(src.quality_score)<70||src.summary!==verifiedSummary||src.source_domain!=='jinzzawedding.com'){
        const {data:updated,error:ue}=await db.from('wedding_review_sources').update({
          source_type:'public_review',
@@ -82,7 +83,7 @@ async function main(){
    if(prior){
     if(String(prior.hall_id)!==String(venue.hall_id)||Number(prior.evidence_strength)<70) throw new Error('Existing analysis mismatch: '+src.source_id);
     analysisExisting++;
-    receipts.push({batch:audit.batch||1,hall_id:venue.hall_id,source_id:src.source_id,url:s.source_url,status:'existing'});
+    receipts.push({batch:audit.batch||1,hall_id:venue.hall_id,source_id:src.source_id,url:sourceUrl,status:'existing'});
     continue;
    }
    const row={source_id:src.source_id,hall_id:venue.hall_id,sentiment:s.sentiment,evidence_strength:Number(s.evidence_strength)||92};
@@ -90,7 +91,7 @@ async function main(){
     .select('analysis_id,source_id,hall_id,evidence_strength,sentiment,analyzed_at').single();
    if(ie)throw ie;
    analysisInserted++;
-   receipts.push({batch:audit.batch||1,hall_id:venue.hall_id,source_id:src.source_id,url:s.source_url,status:'inserted',analysis_id:created.analysis_id});
+   receipts.push({batch:audit.batch||1,hall_id:venue.hall_id,source_id:src.source_id,url:sourceUrl,status:'inserted',analysis_id:created.analysis_id});
   }
  }
  console.log('VERIFIED_ANALYSIS_APPLY_JSON_BEGIN');
