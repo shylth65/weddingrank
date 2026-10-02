@@ -28,7 +28,7 @@ async function main(){
         .select('hall_id,source_count,overall_score,is_public,updated_at')
         .eq('hall_id',target.hall_id).maybeSingle(),
       db.from('wedding_halls')
-        .select('hall_id,name,address,phone,website,is_public,operation_status')
+        .select('hall_id,name,road_address,phone,website,is_public,operation_status')
         .eq('hall_id',target.hall_id).maybeSingle()
     ]);
     if(se||ae||re||he) throw (se||ae||re||he);
