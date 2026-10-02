@@ -1,0 +1,25 @@
+name: WeddingRank live external-rating QA
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/verify-live-external-ratings.cjs'
+      - '.github/workflows/verify-live-external-ratings.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.55.0
+      - run: npx playwright install --with-deps chromium
+      - name: Verify live WeddingRank list search detail and rating date
+        run: node scripts/verify-live-external-ratings.cjs
