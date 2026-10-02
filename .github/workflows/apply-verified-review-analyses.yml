@@ -6,7 +6,7 @@ on:
     paths:
       - 'scripts/apply-verified-review-analyses.cjs'
       - '.github/workflows/apply-verified-review-analyses.yml'
-      - 'research/audits/2026-10-03-held-review-analysis-batch-1.json'
+      - 'research/audits/2026-10-03-held-review-analysis-batch-*.json'
 
 permissions:
   contents: read
