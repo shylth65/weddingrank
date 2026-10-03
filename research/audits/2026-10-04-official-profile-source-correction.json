@@ -1,0 +1,94 @@
+{
+  "audit_date": "2026-10-04",
+  "system_of_record": "WeddingRank",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "profile_corrections": [
+    {
+      "hall_id": "a306394e-627a-401d-ae75-638333bd86f5",
+      "name": "더플라자호텔 웨딩",
+      "official_profile_url": "https://www.hoteltheplaza.com/kr/meeting_and_wedding/wedding.jsp",
+      "verified_address": "서울특별시 중구 소공로 119",
+      "verified_phone": "02-310-7720",
+      "rooms": [
+        {
+          "name": "그랜드볼룸",
+          "floor": "LL층",
+          "capacity_min": 250,
+          "capacity_max": 530
+        },
+        {
+          "name": "지스텀하우스",
+          "floor": "22층",
+          "capacity_min": 100,
+          "capacity_max": 300
+        },
+        {
+          "name": "메이플홀/오키드홀",
+          "floor": "4층",
+          "capacity_min": 40,
+          "capacity_max": 100
+        }
+      ],
+      "rating_changed": false
+    },
+    {
+      "hall_id": "872aa27e-a16e-4914-b048-f4e61ab27ac4",
+      "name": "반얀트리 클럽 앤 스파 서울 웨딩",
+      "official_profile_url": "https://www.banyantree.com/ko/south-korea/club-and-spa-seoul/wedding-venues",
+      "official_contact_url": "https://www.banyantree.com/ko/contact-us",
+      "verified_address": "서울특별시 중구 장충단로 60",
+      "verified_phone": "02-2250-8000",
+      "rooms": [
+        "크리스탈 볼룸",
+        "남산 테라스",
+        "셀레스트"
+      ],
+      "room_capacity_note": "공식 웨딩 페이지의 350명은 전체 모임/식사 수용 인원으로 표시되어 개별 홀 수용인원으로 배분하지 않음",
+      "rating_changed": false
+    }
+  ],
+  "review_publication_audit": {
+    "public_external_ratings": 77,
+    "compliant_public_external_ratings": 77,
+    "noncompliant_public_external_ratings": 0,
+    "held_zero_analysis": [
+      {
+        "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+        "name": "JW 메리어트 동대문 스퀘어 서울 웨딩"
+      },
+      {
+        "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+        "name": "보타닉파크웨딩"
+      }
+    ],
+    "note": "2026-09-27 보류 10곳 중 검증 완료 8곳만 이후 공개 자격을 얻었고, 분석 0건인 2곳은 비공개 유지."
+  },
+  "approved_review_aggregation": {
+    "workflow": ".github/workflows/approved-review-aggregation.yml",
+    "schedule": "40 18 * * * (03:40 KST)",
+    "latest_actual_run_id": 37089244093,
+    "latest_actual_run_created_at": "2026-10-03T02:16:50Z",
+    "conclusion": "success",
+    "metrics": {
+      "halls_scanned": 966,
+      "public_operating_halls": 81,
+      "sources_scanned": 314,
+      "approved_sources": 237,
+      "raw_score_sources": 30,
+      "analysis_rows": 251,
+      "eligible_ratings": 77,
+      "updated": 0,
+      "unchanged": 77,
+      "ratings_requiring_review": 0,
+      "protected_unpublished": 1,
+      "withdrawn_unanalysed": 0
+    },
+    "warning": [
+      "Node.js 20 deprecation notice for actions/checkout@v4 and actions/setup-node@v4",
+      "punycode deprecation warning"
+    ],
+    "current_schedule_note": "2026-10-04 03:59 KST 확인 시 03:40 KST 예약 실행은 아직 Actions run 목록에 생성되지 않음",
+    "rerun_note": "연결 도구에서 과거 성공 job 재실행 요청은 보안 상태 판정 불가로 차단되어 추가 실행하지 않음"
+  }
+}
