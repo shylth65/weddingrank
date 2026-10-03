@@ -1,6 +1,8 @@
 const { chromium } = require('playwright');
 
 const targets=[
+ {id:'51ddb9d2-3ec8-46d8-9766-0ad58fb008a9',name:'아모리스 역삼GS타워점',q:'아모리스 역삼',score:'4.5'},
+ {id:'b4ff74c0-a956-4c65-83ae-5092354503ce',name:'케이터틀',q:'케이터틀',score:'4.1'},
  {id:'53b21fbb-0463-4a93-8056-750bea92ae1c',name:'서울신라호텔 웨딩',q:'서울신라호텔',score:'3.7'},
  {id:'ea026116-dd93-4dd9-8eff-8a4f46a1c19d',name:'코리아나호텔 웨딩',q:'코리아나호텔',score:'3.9'},
  {id:'97c52cd9-1b30-48c2-8684-7b4cfd1405d3',name:'로얄파크컨벤션',q:'로얄파크컨벤션',score:'3.5'},
@@ -19,7 +21,7 @@ async function main(){
  page.on('console',m=>{if(m.type()==='error')errors.push('console:'+m.text())});
 
  await page.goto('https://weddingrank.kr/',{waitUntil:'networkidle',timeout:60000});
- await page.waitForFunction(()=>document.querySelector('#publicCount')?.textContent.includes('79곳'),null,{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#publicCount')?.textContent.includes('81곳'),null,{timeout:30000});
  const publicCount=(await page.locator('#publicCount').textContent()).trim();
  const homeStatus=(await page.locator('#status').textContent()).trim();
  const homeAsOf=(await page.locator('#rankingDataAsOf').textContent()).trim();
@@ -54,8 +56,8 @@ async function main(){
  console.log('LIVE_WEDDINGRANK_VERIFY_BEGIN');
  console.log(JSON.stringify(result,null,2));
  console.log('LIVE_WEDDINGRANK_VERIFY_END');
- if(publicCount!=='79곳') throw new Error('Public hall count mismatch: '+publicCount);
- if(!/75곳/.test(rankingMeta)) throw new Error('External rating count is not 75: '+rankingMeta);
+ if(publicCount!=='81곳') throw new Error('Public hall count mismatch: '+publicCount);
+ if(!/77곳/.test(rankingMeta)) throw new Error('External rating count is not 77: '+rankingMeta);
  for(const s of searches) if(!/검색결과 1곳/.test(s.result)) throw new Error('Search mismatch '+JSON.stringify(s));
  for(const d of details){
    if(d.sourceCount!==3) throw new Error('Qualified source count mismatch '+d.name+': '+d.sourceCount);
