@@ -3,7 +3,8 @@ const { readFileSync } = require('node:fs');
 
 const auditPaths=[
   'research/audits/2026-10-03-held-review-analysis-batch-1.json',
-  'research/audits/2026-10-03-held-review-analysis-batch-2.json'
+  'research/audits/2026-10-03-held-review-analysis-batch-2.json',
+  'research/audits/2026-10-03-held-review-analysis-batch-3.json'
 ];
 const audits=auditPaths.map(p=>JSON.parse(readFileSync(p,'utf8')));
 for(const audit of audits){
