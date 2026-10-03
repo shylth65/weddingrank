@@ -1,0 +1,123 @@
+{
+  "schema_version": "weddingrank-review-analysis-batch-v1",
+  "verified_date": "2026-10-03",
+  "scope": "WeddingRank-only",
+  "batch": 3,
+  "rules": {
+    "minimum_distinct_independent_urls": 3,
+    "raw_score_required": true,
+    "no_category_score_imputation": true,
+    "exact_date_not_invented": true,
+    "pickrank_sync": false
+  },
+  "venues": [
+    {
+      "hall_id": "51ddb9d2-3ec8-46d8-9766-0ad58fb008a9",
+      "name": "아모리스 역삼GS타워점",
+      "address": "서울특별시 강남구 논현로 508 GS타워 1층",
+      "phone": "02-2005-1010",
+      "website": "https://www.amoris.co.kr/",
+      "official_url": "https://www.amoris.co.kr/amoris/yeoksam_renewal",
+      "sources": [
+        {
+          "url": "https://jinzzawedding.com/reviews/2202",
+          "raw_score": 5,
+          "period": "2026-08",
+          "verification": "견적서 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "quality_score": 85,
+          "evidence_strength": 85,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 JSON-LD 원점수·시설명·주소·상담방문 월 및 인증표시 확인; 서로 다른 원문 URL·본문 중복검사; 익명 작성자 식별은 미확인; 세부항목 추정하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/1553",
+          "raw_score": 4.2,
+          "period": "2025-07",
+          "verification": "현장사진 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "quality_score": 85,
+          "evidence_strength": 85,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 JSON-LD 원점수·시설명·주소·상담방문 월 및 인증표시 확인; 서로 다른 원문 URL·본문 중복검사; 익명 작성자 식별은 미확인; 세부항목 추정하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/476",
+          "raw_score": 4.3,
+          "period": "2025-12",
+          "verification": "예약내역 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "quality_score": 85,
+          "evidence_strength": 85,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 JSON-LD 원점수·시설명·주소·상담방문 월 및 인증표시 확인; 서로 다른 원문 URL·본문 중복검사; 익명 작성자 식별은 미확인; 세부항목 추정하지 않음"
+        }
+      ]
+    },
+    {
+      "hall_id": "b4ff74c0-a956-4c65-83ae-5092354503ce",
+      "name": "케이터틀",
+      "address": "서울특별시 마포구 백범로 23",
+      "phone": "02-715-3611",
+      "website": "https://k-turtle.co.kr/",
+      "official_url": "https://k-turtle.co.kr/location/",
+      "sources": [
+        {
+          "url": "https://jinzzawedding.com/reviews/2265",
+          "raw_score": 4,
+          "period": "2025-06",
+          "verification": "현장사진 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "quality_score": 85,
+          "evidence_strength": 85,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 JSON-LD 원점수·시설명·주소·상담방문 월 및 인증표시 확인; 서로 다른 원문 URL·본문 중복검사; 익명 작성자 식별은 미확인; 세부항목 추정하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/2266",
+          "raw_score": 4,
+          "period": "2024-12",
+          "verification": "명함·카톡 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "quality_score": 85,
+          "evidence_strength": 85,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 JSON-LD 원점수·시설명·주소·상담방문 월 및 인증표시 확인; 서로 다른 원문 URL·본문 중복검사; 익명 작성자 식별은 미확인; 세부항목 추정하지 않음"
+        },
+        {
+          "url": "https://jinzzawedding.com/reviews/1590",
+          "raw_score": 4.2,
+          "period": "2025-09",
+          "verification": "현장사진 인증",
+          "raw_scale": 5,
+          "sample_count": 1,
+          "published_date": null,
+          "quality_score": 85,
+          "evidence_strength": 85,
+          "sentiment": "positive",
+          "source_quality_basis": "개별 후기 JSON-LD 원점수·시설명·주소·상담방문 월 및 인증표시 확인; 서로 다른 원문 URL·본문 중복검사; 익명 작성자 식별은 미확인; 세부항목 추정하지 않음"
+        }
+      ]
+    }
+  ],
+  "canonical_identity_note": "아모리스 역삼점 후보와 역삼GS타워점은 동일 시설. 기존 주소·가격정보를 가진 51ddb9d2 항목을 공개 대상으로 사용; 후보 삭제 없이 중복 항목 비공개 유지.",
+  "expected_effect": {
+    "new_source_rows": 6,
+    "new_analysis_rows": 6,
+    "public_halls_before": 79,
+    "public_halls_after": 81,
+    "public_external_ratings_before": 75,
+    "public_external_ratings_after": 77
+  },
+  "author_identity_note": "JSON-LD 작성자 필드는 공통 익명 표기일 수 있으므로 서로 다른 작성자라는 단정은 하지 않음. 현행 공개기준인 서로 다른 개별 후기 URL, 인증표시, 비중복 본문, 원점수로 검증."
+}
