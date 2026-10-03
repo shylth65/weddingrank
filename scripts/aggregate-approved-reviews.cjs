@@ -11,7 +11,8 @@ const protectedHallIds=new Set(verifiedPatch.venues
 
 const verifiedRawBatches=[
   'research/audits/2026-10-03-held-review-analysis-batch-1.json',
-  'research/audits/2026-10-03-held-review-analysis-batch-2.json'
+  'research/audits/2026-10-03-held-review-analysis-batch-2.json',
+  'research/audits/2026-10-03-held-review-analysis-batch-3.json'
 ].map(p=>JSON.parse(readFileSync(p,'utf8')));
 const auditedRawByHallUrl=new Map();
 for(const batch of verifiedRawBatches){
