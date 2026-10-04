@@ -1,0 +1,94 @@
+{
+  "audit_date": "2026-10-05",
+  "system_of_record": "WeddingRank",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "publication_rule": "외부 독립 공개후기 원문 URL 3건 이상 + 각 URL별 검증 분석 + 품질/원점수 근거",
+  "counts_after": {
+    "halls": 966,
+    "public_operating_halls": 81,
+    "public_external_ratings": 77,
+    "review_sources": 314,
+    "review_analyses": 251,
+    "compliant_public_ratings": 77,
+    "noncompliant_public_ratings": 0,
+    "held_zero_analysis": 2,
+    "legacy_public_profiles_remaining": 52
+  },
+  "profile_source_corrections": [
+    "그랜드 하얏트 서울 웨딩",
+    "라한호텔 전주 예식장",
+    "삼정호텔",
+    "앰배서더 서울 풀만 웨딩",
+    "콘래드 서울",
+    "페어몬트 앰배서더 서울",
+    "호텔 인터불고 대구",
+    "호텔ICC 웨딩홀",
+    "스카이컨벤션웨딩 춘천"
+  ],
+  "room_change": {
+    "venue": "삼정호텔",
+    "room": "소나에홀",
+    "floor": "본관 12층",
+    "capacity_min": 30,
+    "capacity_max": 80,
+    "source_url": "https://www.samjunghotel.co.kr/WEDDING_SONAE"
+  },
+  "price_verification": {
+    "venue": "라한호텔 전주 예식장",
+    "changed": false,
+    "verified_values": {
+      "rental_and_artificial_flower_fee": 4000000,
+      "buffet_per_person": 55000,
+      "minimum_guarantee": 200
+    },
+    "source_url": "https://www.lahanhotels.com/jeonju/ko/wedding/promotions.do"
+  },
+  "duplicate_holds": [
+    {
+      "candidate": "스카이컨벤션웨딩홀",
+      "canonical": "스카이컨벤션웨딩 춘천",
+      "action": "preserve_nonpublic"
+    },
+    {
+      "candidate": "CN천년컨벤션 주안점",
+      "canonical": "CN웨딩홀 주안점",
+      "action": "preserve_nonpublic"
+    }
+  ],
+  "held_zero_analysis": [
+    "JW 메리어트 동대문 스퀘어 서울 웨딩",
+    "보타닉파크웨딩"
+  ],
+  "rating_date": "2026-10-03T02:16:20.134556+00:00",
+  "rating_date_changed": false,
+  "github_actions": {
+    "prior_scheduled_run": {
+      "run_id": 37156054385,
+      "scheduled_for_kst": "2026-10-04 03:40",
+      "actual_created_kst": "2026-10-04 06:42",
+      "conclusion": "success",
+      "metrics": {
+        "halls_scanned": 966,
+        "public_operating_halls": 81,
+        "sources_scanned": 314,
+        "approved_sources": 237,
+        "raw_score_sources": 30,
+        "analysis_rows": 251,
+        "eligible_ratings": 77,
+        "updated": 0,
+        "unchanged": 77,
+        "ratings_requiring_review": 0,
+        "protected_unpublished": 1,
+        "withdrawn_unanalysed": 0
+      }
+    },
+    "current_schedule_check": {
+      "scheduled_for_kst": "2026-10-05 03:40",
+      "checked_around_kst": "2026-10-05 03:53+",
+      "run_visible": false,
+      "note": "GitHub scheduled workflow delay; no failure run visible at audit time"
+    },
+    "secret_path_verified": true
+  }
+}
