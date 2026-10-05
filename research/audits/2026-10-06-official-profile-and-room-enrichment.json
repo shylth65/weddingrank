@@ -1,0 +1,130 @@
+{
+  "audit_date": "2026-10-06",
+  "system_of_record": "WeddingRank",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "publication_rule": "외부 독립 공개후기 원문 URL 3건 이상 + 각 URL별 검증 분석 + 품질/원점수 근거",
+  "db_changes": {
+    "official_profile_sources_updated": [
+      {
+        "hall_id": "53b21fbb-0463-4a93-8056-750bea92ae1c",
+        "name": "서울신라호텔 웨딩",
+        "source_url": "https://www.shillahotels.com/ko/theshilla/seoul/meetingEvent/index.do"
+      },
+      {
+        "hall_id": "f2e4650b-8271-4edf-bbf7-2adf4be4148b",
+        "name": "벨라루체웨딩홀 서울점",
+        "source_url": "https://bellaluceseoul.co.kr/"
+      },
+      {
+        "hall_id": "421c6da5-36cc-4449-ad2f-d8be5a2be72a",
+        "name": "상록아트홀",
+        "source_url": "https://srwedding.co.kr/"
+      },
+      {
+        "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+        "name": "보타닉파크웨딩",
+        "source_url": "https://botanicparkwedding.com/"
+      }
+    ],
+    "room_rows_added": [
+      {
+        "hall": "서울신라호텔 웨딩",
+        "room": "다이너스티",
+        "floor": "2층",
+        "capacity_max": 600,
+        "source_url": "https://www.shillahotels.com/ko/theshilla/seoul/meetingEvent/wedding/dynastyHall.do"
+      },
+      {
+        "hall": "서울신라호텔 웨딩",
+        "room": "영빈관",
+        "floor": "영빈관 1·2층",
+        "capacity_max": 430,
+        "source_url": "https://www.shillahotels.com/ko/theshilla/seoul/meetingEvent/wedding/yeongbingwan.do"
+      },
+      {
+        "hall": "서울신라호텔 웨딩",
+        "room": "신라 아뜰리에",
+        "floor": null,
+        "capacity_max": null,
+        "source_url": "https://www.shillahotels.com/ko/theshilla/seoul/meetingEvent/wedding/shillaAtelier.do"
+      },
+      {
+        "hall": "벨라루체웨딩홀 서울점",
+        "room": "플로체홀",
+        "floor": "7층",
+        "capacity_max": null,
+        "source_url": "https://bellaluceseoul.co.kr/view/floce"
+      },
+      {
+        "hall": "벨라루체웨딩홀 서울점",
+        "room": "루체홀",
+        "floor": "3층",
+        "capacity_max": null,
+        "source_url": "https://bellaluceseoul.co.kr/view/floce"
+      },
+      {
+        "hall": "벨라루체웨딩홀 서울점",
+        "room": "벨라홀",
+        "floor": "2층",
+        "capacity_max": null,
+        "source_url": "https://bellaluceseoul.co.kr/view/floce"
+      }
+    ],
+    "unverified_values_not_invented": true,
+    "source_publication_dates_missing_and_preserved_as_null": true
+  },
+  "counts_after": {
+    "halls": 966,
+    "public_operating_halls": 81,
+    "public_external_ratings": 77,
+    "review_sources": 314,
+    "review_analyses": 251,
+    "compliant_public_ratings": 77,
+    "noncompliant_public_ratings": 0,
+    "legacy_pattern_public_profiles_remaining": 51
+  },
+  "public_change": {
+    "new_public_halls": 0,
+    "new_public_ratings": 0,
+    "rating_values_changed": 0
+  },
+  "held_zero_analysis": [
+    "JW 메리어트 동대문 스퀘어 서울 웨딩",
+    "보타닉파크웨딩"
+  ],
+  "rating_date": "2026-10-03T02:16:20.134556+00:00",
+  "rating_date_changed": false,
+  "live_verification": {
+    "ranking_url": "https://weddingrank.kr/#rankings",
+    "ranking_count": 77,
+    "ranking_reference_display": "2026. 10. 3. 오전 11:16 검증 완료",
+    "details": [
+      "https://weddingrank.kr/#hall=53b21fbb-0463-4a93-8056-750bea92ae1c",
+      "https://weddingrank.kr/#hall=f2e4650b-8271-4edf-bbf7-2adf4be4148b"
+    ]
+  },
+  "latest_approved_review_aggregation": {
+    "run_id": 37237814366,
+    "run_url": "https://github.com/shylth65/weddingrank/actions/runs/37237814366",
+    "conclusion": "success",
+    "metrics": {
+      "halls_scanned": 966,
+      "public_operating_halls": 81,
+      "sources_scanned": 314,
+      "approved_sources": 237,
+      "raw_score_sources": 30,
+      "analysis_rows": 251,
+      "eligible_ratings": 77,
+      "updated": 0,
+      "unchanged": 77,
+      "ratings_requiring_review": 0,
+      "protected_unpublished": 1,
+      "withdrawn_unanalysed": 0
+    },
+    "warnings": [
+      "punycode deprecation warning",
+      "Node.js 20 deprecated for actions/checkout@v4 and actions/setup-node@v4; runner forced Node.js 24"
+    ]
+  }
+}
