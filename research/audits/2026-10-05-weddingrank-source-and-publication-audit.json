@@ -45,8 +45,16 @@
     "source_url": "https://www.lahanhotels.com/jeonju/ko/wedding/promotions.do"
   },
   "duplicate_holds": [
-    {"candidate":"스카이컨벤션웨딩홀","canonical":"스카이컨벤션웨딩 춘천","action":"preserve_nonpublic"},
-    {"candidate":"CN천년컨벤션 주안점","canonical":"CN웨딩홀 주안점","action":"preserve_nonpublic"}
+    {
+      "candidate": "스카이컨벤션웨딩홀",
+      "canonical": "스카이컨벤션웨딩 춘천",
+      "action": "preserve_nonpublic"
+    },
+    {
+      "candidate": "CN천년컨벤션 주안점",
+      "canonical": "CN웨딩홀 주안점",
+      "action": "preserve_nonpublic"
+    }
   ],
   "closed_reverification": {
     "venue": "쉐라톤 서울 팔래스 강남 웨딩",
@@ -55,7 +63,10 @@
     "verified_at": "2026-10-05",
     "action": "preserve_nonpublic_closed"
   },
-  "held_zero_analysis": ["JW 메리어트 동대문 스퀘어 서울 웨딩","보타닉파크웨딩"],
+  "held_zero_analysis": [
+    "JW 메리어트 동대문 스퀘어 서울 웨딩",
+    "보타닉파크웨딩"
+  ],
   "rating_date": "2026-10-03T02:16:20.134556+00:00",
   "rating_date_changed": false,
   "github_actions": {
@@ -81,9 +92,29 @@
     },
     "current_schedule_check": {
       "scheduled_for_kst": "2026-10-05 03:40",
-      "checked_around_kst": "2026-10-05 03:56+",
-      "run_visible": false,
-      "note": "GitHub scheduled workflow delay; no failure run visible at audit time"
+      "actual_created_kst": "2026-10-05 06:52",
+      "delay_minutes": 192,
+      "run_id": 37237814366,
+      "run_url": "https://github.com/shylth65/weddingrank/actions/runs/37237814366",
+      "conclusion": "success",
+      "metrics": {
+        "halls_scanned": 966,
+        "public_operating_halls": 81,
+        "sources_scanned": 314,
+        "approved_sources": 237,
+        "raw_score_sources": 30,
+        "analysis_rows": 251,
+        "eligible_ratings": 77,
+        "updated": 0,
+        "unchanged": 77,
+        "ratings_requiring_review": 0,
+        "protected_unpublished": 1,
+        "withdrawn_unanalysed": 0
+      },
+      "warnings": [
+        "punycode deprecation warning",
+        "Node.js 20 deprecated for actions/checkout@v4 and actions/setup-node@v4; runner forced Node.js 24"
+      ]
     },
     "secret_path_verified": true
   }
