@@ -117,5 +117,42 @@
       ]
     },
     "secret_path_verified": true
+  },
+  "pending_room_enrichment": {
+    "venue": "반얀트리 클럽 앤 스파 서울 웨딩",
+    "hall_id": "872aa27e-a16e-4914-b048-f4e61ab27ac4",
+    "db_applied": false,
+    "preserve_existing": true,
+    "retry_reason": "Supabase DML connector request did not complete; read verification shows existing room rows unchanged",
+    "verified_candidates": [
+      {
+        "room": "크리스털 볼룸",
+        "floor": "호텔 1층",
+        "capacity_max": 350,
+        "round_table": 250,
+        "source_url": "https://www.banyantree.com/ko/south-korea/club-and-spa-seoul/wedding-venues/crystal-ballroom"
+      },
+      {
+        "room": "남산 테라스",
+        "floor": "호텔 3층",
+        "capacity_max": 200,
+        "round_table": 150,
+        "source_url": "https://www.banyantree.com/ko/south-korea/club-and-spa-seoul/wedding-venues/namsan-terrace"
+      },
+      {
+        "room": "셀레스트",
+        "floor": "호텔 3층",
+        "capacity_max": 100,
+        "round_table": 80,
+        "source_url": "https://www.banyantree.com/ko/south-korea/club-and-spa-seoul/wedding-venues/celeste"
+      },
+      {
+        "room": "오아시스",
+        "floor": "야외",
+        "capacity_max": 300,
+        "round_table": 300,
+        "source_url": "https://www.banyantree.com/ko/south-korea/club-and-spa-seoul/wedding-venues/the-oasis"
+      }
+    ]
   }
 }
