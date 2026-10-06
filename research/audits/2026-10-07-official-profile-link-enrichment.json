@@ -1,0 +1,152 @@
+{
+  "audit_date": "2026-10-07",
+  "scope": "WeddingRank-only official profile/source verification; no PICKRANK synchronization",
+  "changes": {
+    "verified_profile_source_updates": 5,
+    "review_sources_added": 0,
+    "analyses_added": 0,
+    "ratings_published": 0,
+    "venues_newly_public": 0,
+    "venues": [
+      {
+        "hall_id": "ace60186-96bc-4ec4-b8bb-94df05a362e2",
+        "name": "더채플앳 청담",
+        "official_url": "https://www.thechapel.co.kr/home/index",
+        "evidence": [
+          "address",
+          "phone",
+          "operation",
+          "hall names"
+        ]
+      },
+      {
+        "hall_id": "ab116128-1b12-469e-b2c9-ec9f50472bfa",
+        "name": "더채플앳대치",
+        "official_url": "https://www.thechapel.co.kr/home/index",
+        "evidence": [
+          "address",
+          "phone",
+          "operation"
+        ]
+      },
+      {
+        "hall_id": "de0d8f53-365f-4808-956b-f1c81d0a2d4e",
+        "name": "아펠가모 공덕",
+        "official_url": "https://www.apelgamo.com/home/index",
+        "evidence": [
+          "address",
+          "phone",
+          "operation"
+        ]
+      },
+      {
+        "hall_id": "002b545f-1bbb-4e92-97ea-6bbb5a8feb6b",
+        "name": "아펠가모 반포",
+        "official_url": "https://www.apelgamo.com/home/index",
+        "evidence": [
+          "operation",
+          "official brand listing"
+        ]
+      },
+      {
+        "hall_id": "465105d5-ac92-4b56-b754-5a8f58bd6d5c",
+        "name": "아펠가모 잠실",
+        "official_url": "https://www.apelgamo.com/home/index",
+        "evidence": [
+          "operation",
+          "official brand listing"
+        ]
+      }
+    ],
+    "legacy_profile_count": {
+      "before": 51,
+      "after": 46
+    }
+  },
+  "database_after": {
+    "halls": 966,
+    "public_operating_halls": 81,
+    "review_sources": 314,
+    "published_review_sources": 306,
+    "analysis_rows": 251,
+    "public_external_ratings": 77,
+    "latest_public_rating_updated_at": "2026-10-03T02:16:20.134556+00:00"
+  },
+  "holds": [
+    {
+      "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "published_original_urls": 4,
+      "verified_analyses": 0,
+      "rating_public": false
+    },
+    {
+      "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+      "name": "보타닉파크웨딩",
+      "published_original_urls": 5,
+      "verified_analyses": 0,
+      "rating_public": false
+    },
+    {
+      "hall_id": "48d1de8f-fd94-462a-98a2-32cfe4854132",
+      "name": "스카이컨벤션웨딩 춘천",
+      "published_original_urls": 3,
+      "verified_analyses": 0,
+      "rating_public": false
+    }
+  ],
+  "approved_review_aggregation": {
+    "run_id": 37393172283,
+    "run_url": "https://github.com/shylth65/weddingrank/actions/runs/37393172283",
+    "created_at": "2026-10-06T00:16:58Z",
+    "conclusion": "success",
+    "metrics": {
+      "halls_scanned": 966,
+      "public_operating_halls": 81,
+      "sources_scanned": 314,
+      "approved_sources": 237,
+      "raw_score_sources": 30,
+      "analysis_rows": 251,
+      "eligible_ratings": 77,
+      "updated": 0,
+      "unchanged": 77,
+      "protected_unpublished": 1,
+      "withdrawn_unanalysed": 0
+    },
+    "warnings": [
+      "Node.js punycode deprecation",
+      "actions/checkout@v4 and actions/setup-node@v4 target Node.js 20 and were forced to Node.js 24"
+    ]
+  },
+  "static_site": {
+    "detail_page_commits": [
+      "68e526bdcf0bf003f151aab0e9cd0b76deb1a690",
+      "78160e23d3b8b45fbabcf335b40e398a4da6e2a6",
+      "abf4f5173c0893eaccc0fec140c5c81df821eb58",
+      "b5f2951d6b9f3e29e32335f569bb8f683680f9cf",
+      "ba52ae4e92d63234ab90d8b3aa1ae2046a3c2568"
+    ],
+    "pages_deployment": {
+      "run_id": 37501259627,
+      "url": "https://github.com/shylth65/weddingrank/actions/runs/37501259627",
+      "conclusion": "success"
+    },
+    "live_verified": [
+      "https://weddingrank.kr/venue/ace60186-96bc-4ec4-b8bb-94df05a362e2/",
+      "https://weddingrank.kr/venue/de0d8f53-365f-4808-956b-f1c81d0a2d4e/",
+      "https://weddingrank.kr/"
+    ],
+    "observed": {
+      "public_venue_count": 81,
+      "ranking_data_as_of": "2026-10-03 11:16 KST",
+      "official_links_correct": true
+    }
+  },
+  "errors": [],
+  "policy_notes": [
+    "No venue was promoted from URL count alone.",
+    "No review source or analysis was synthesized.",
+    "Public rating date was retained because no new eligible review evidence was added.",
+    "No PICKRANK data write or synchronization was performed."
+  ]
+}
