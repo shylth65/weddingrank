@@ -1,0 +1,129 @@
+{
+  "audit_date": "2026-10-08",
+  "scope": "WeddingRank-only official profile/source verification; no PICKRANK synchronization",
+  "changes": {
+    "verified_profile_source_updates": 5,
+    "review_sources_added": 0,
+    "analyses_added": 0,
+    "ratings_published": 0,
+    "venues_newly_public": 0,
+    "venues": [
+      {
+        "hall_id": "2eff8f6d-745c-41a6-99de-fda8a38143c6",
+        "name": "그래비티조선 서울 판교웨딩",
+        "official_url": "https://grp.josunhotel.com/meeting/wedding.do"
+      },
+      {
+        "hall_id": "4ecea3c0-0252-404d-bec6-96b97d744393",
+        "name": "나인트리 프리미어 로카우스 웨딩",
+        "official_url": "https://www.rokaushotel.com/"
+      },
+      {
+        "hall_id": "afabd0e1-56bf-4696-8a0e-3922a413f23b",
+        "name": "라마다프라자 수원호텔",
+        "official_url": "https://www.ramadaplazasuwon.com/view/viewLink.do?page=homepage%2FKOR%2Fwedding%2Fgrand"
+      },
+      {
+        "hall_id": "d8211c49-c46d-4a56-a7ea-854ac4dd18b5",
+        "name": "서울가든호텔 웨딩",
+        "official_url": "https://www.seoulgarden.co.kr/view/viewLink.do?page=homepage%2FKOR%2Ffacilities%2Fwedding"
+      },
+      {
+        "hall_id": "6010f9a6-0bc2-4f00-8038-610e0a2ce866",
+        "name": "소노캄 거제",
+        "official_url": "https://mice.sonohotelsresorts.com/daemyung.front.saupjang.geoje.facility_wedding.ds/dmparse.dm?menuNo=02"
+      }
+    ],
+    "legacy_profile_count": {
+      "before": 46,
+      "after": 41
+    }
+  },
+  "database_after": {
+    "halls": 966,
+    "public_operating_halls": 81,
+    "review_sources": 314,
+    "published_review_sources": 306,
+    "analysis_rows": 251,
+    "public_external_ratings": 77,
+    "latest_public_rating_updated_at": "2026-10-03T02:16:20.134556+00:00"
+  },
+  "holds": [
+    {
+      "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "published_original_urls": 4,
+      "verified_analyses": 0,
+      "rating_public": false
+    },
+    {
+      "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+      "name": "보타닉파크웨딩",
+      "published_original_urls": 5,
+      "verified_analyses": 0,
+      "rating_public": false
+    },
+    {
+      "hall_id": "48d1de8f-fd94-462a-98a2-32cfe4854132",
+      "name": "스카이컨벤션웨딩 춘천",
+      "published_original_urls": 3,
+      "verified_analyses": 0,
+      "rating_public": false
+    }
+  ],
+  "approved_review_aggregation": {
+    "run_id": 37542608268,
+    "run_url": "https://github.com/shylth65/weddingrank/actions/runs/37542608268",
+    "created_at": "2026-10-06T22:45:42Z",
+    "conclusion": "success",
+    "metrics": {
+      "halls_scanned": 966,
+      "public_operating_halls": 81,
+      "sources_scanned": 314,
+      "approved_sources": 237,
+      "raw_score_sources": 30,
+      "analysis_rows": 251,
+      "eligible_ratings": 77,
+      "updated": 0,
+      "unchanged": 77,
+      "ratings_requiring_review": 0,
+      "protected_unpublished": 1,
+      "withdrawn_unanalysed": 0
+    },
+    "warnings": [
+      "Node.js punycode deprecation",
+      "actions/checkout@v4 and actions/setup-node@v4 target Node.js 20 and were forced to Node.js 24"
+    ]
+  },
+  "static_site": {
+    "detail_page_commits": [
+      "4068e11dc2c8add417437c5bf659ff5a10ffaf06",
+      "0658f92ab0ddb1eeeb26e96a13ff0ab313f82818",
+      "eef8c2c62c7d0a4272b0842cc8080369a4061654",
+      "1a9d971c540cc9d8083d822b2f7a672c2cee124d",
+      "a97c9b1e7b25f5c41b6da446dd9f9f69f366af63"
+    ],
+    "pages_deployment": {
+      "run_id": 37656070466,
+      "url": "https://github.com/shylth65/weddingrank/actions/runs/37656070466",
+      "conclusion": "success"
+    },
+    "live_verified": [
+      "https://weddingrank.kr/venue/2eff8f6d-745c-41a6-99de-fda8a38143c6/",
+      "https://weddingrank.kr/venue/6010f9a6-0bc2-4f00-8038-610e0a2ce866/",
+      "https://weddingrank.kr/#rankings"
+    ],
+    "observed": {
+      "public_external_ratings": 77,
+      "ranking_data_as_of": "2026-10-03 11:16 KST",
+      "official_links_correct": true
+    }
+  },
+  "errors": [],
+  "policy_notes": [
+    "No venue was promoted from URL count alone.",
+    "No review source or analysis was synthesized.",
+    "Public rating date was retained because no new eligible review evidence was added.",
+    "No PICKRANK data write or synchronization was performed."
+  ]
+}
