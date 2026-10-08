@@ -1,0 +1,157 @@
+{
+  "audit_date": "2026-10-09",
+  "scope": "WeddingRank-only profile, room, review-publication and automation audit",
+  "pickrank_sync": false,
+  "profile_updates": [
+    {
+      "hall_id": "60645c07-baa6-4e5f-bfac-3589241cbeaf",
+      "name": "SP웨딩 소풍컨벤션",
+      "official_url": "https://www.sopoongwedding.co.kr/",
+      "address": "경기도 부천시 원미구 송내대로 239 부천터미널소풍 7층",
+      "phone": "032-624-7777",
+      "verified_at": "2026-10-09"
+    },
+    {
+      "hall_id": "a5bdb482-3a3d-4342-b187-7194b783f03c",
+      "name": "WI컨벤션",
+      "official_url": "https://www.wiconvention.co.kr/",
+      "evidence_url": "https://wiconvention.co.kr/location?mode=privacy",
+      "address": "경기도 수원시 팔달구 월드컵로 310",
+      "phone": "031-241-6000",
+      "verified_at": "2026-10-09"
+    },
+    {
+      "hall_id": "962515cb-0333-4e74-ae91-43f5c0630b8b",
+      "name": "더컨벤션 잠실",
+      "official_url": "https://jamsil.theconvention.co.kr/",
+      "evidence_url": "https://jamsil.theconvention.co.kr/news/?bmode=view&idx=168227956",
+      "address": "서울특별시 송파구 올림픽로 319",
+      "phone": "02-418-5000",
+      "verified_at": "2026-10-09"
+    },
+    {
+      "hall_id": "c912f180-beb4-46fd-8038-4a32214d0cc0",
+      "name": "라움아트센터",
+      "official_url": "https://www.theraum.co.kr/content/content.php?cont=wedding",
+      "address": "서울특별시 강남구 언주로 564",
+      "phone": "02-538-3366",
+      "verified_at": "2026-10-09"
+    },
+    {
+      "hall_id": "8cc43c1d-099c-4757-90e0-1849f8134325",
+      "name": "신도림 라마다호텔 웨딩",
+      "official_url": "https://www.ramadasindorim.com/myboard/sub05",
+      "evidence_url": "https://www.ramadasindorim.com/page/sub01_2",
+      "address": "서울특별시 구로구 경인로 624",
+      "phone": "02-2162-2100",
+      "verified_at": "2026-10-09"
+    }
+  ],
+  "room_additions": [
+    {
+      "hall_id": "c912f180-beb4-46fd-8038-4a32214d0cc0",
+      "room": "그라스 가든",
+      "floor": "2F",
+      "setting": "outdoor",
+      "capacity_max": 800,
+      "source_url": "https://www.theraum.co.kr/content/content.php?cont=wedding"
+    },
+    {
+      "hall_id": "c912f180-beb4-46fd-8038-4a32214d0cc0",
+      "room": "마제스틱 볼룸",
+      "floor": "2F",
+      "setting": "indoor",
+      "capacity_max": 800,
+      "source_url": "https://www.theraum.co.kr/content/content.php?cont=wedding"
+    },
+    {
+      "hall_id": "c912f180-beb4-46fd-8038-4a32214d0cc0",
+      "room": "폰드 가든",
+      "floor": "3F",
+      "setting": "outdoor",
+      "capacity_max": 500,
+      "source_url": "https://www.theraum.co.kr/content/content.php?cont=wedding"
+    },
+    {
+      "hall_id": "c912f180-beb4-46fd-8038-4a32214d0cc0",
+      "room": "체임버 홀",
+      "floor": "4F",
+      "setting": "indoor",
+      "capacity_max": 500,
+      "source_url": "https://www.theraum.co.kr/content/content.php?cont=wedding"
+    }
+  ],
+  "static_page_commits": [
+    "65c3632ef44c81750f8c24562b3fc84960bfe29c",
+    "b254df73de79b93934e3c6aef182cba9708f18c4",
+    "cbb5e192e3912655a12c06f647e459f6c57c6bf3",
+    "24da15b4b4c9a483815c727a2472af0be8a84aca",
+    "437e545fc4576426a3e8981cd879b853d25a2f70"
+  ],
+  "metrics": {
+    "halls": 966,
+    "public_operating": 81,
+    "review_sources": 314,
+    "analysis_rows": 251,
+    "public_external_ratings": 77,
+    "invalid_public_ratings": 0,
+    "legacy_profile_sources_remaining": 34,
+    "rating_basis_at": "2026-10-03T02:16:20.134556+00:00"
+  },
+  "publication_holds": [
+    {
+      "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "published_source_urls": 5,
+      "analysis_rows": 0,
+      "is_public": false
+    },
+    {
+      "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+      "name": "보타닉파크웨딩",
+      "published_source_urls": 6,
+      "analysis_rows": 0,
+      "is_public": false
+    }
+  ],
+  "unapproved_candidates": [
+    {
+      "hall_id": "8cf5df70-1b80-4784-8861-32aeb6f67cf6",
+      "name": "더컨벤션 영등포",
+      "source_rows": 5,
+      "published_source_urls": 0,
+      "analysis_rows": 0,
+      "is_public": false
+    }
+  ],
+  "approved_review_aggregation": {
+    "run_id": 37701325196,
+    "run_url": "https://github.com/shylth65/weddingrank/actions/runs/37701325196",
+    "started_at": "2026-10-07T23:16:34Z",
+    "conclusion": "success",
+    "secret_source": "Actions",
+    "metrics": {
+      "halls_scanned": 966,
+      "public_operating_halls": 81,
+      "sources_scanned": 314,
+      "approved_sources": 237,
+      "raw_score_sources": 30,
+      "analysis_rows": 251,
+      "eligible_ratings": 77,
+      "updated": 0,
+      "unchanged": 77,
+      "ratings_requiring_review": 0,
+      "errors": 0
+    },
+    "warnings": [
+      "Node.js 20 action runtime deprecation",
+      "punycode module deprecation"
+    ]
+  },
+  "rating_changes": 0,
+  "new_public_ratings": 0,
+  "notes": [
+    "No rating evidence was changed; rating basis date remains unchanged.",
+    "No PICKRANK write or central ranking synchronization was performed."
+  ]
+}
