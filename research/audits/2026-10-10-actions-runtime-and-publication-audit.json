@@ -1,0 +1,83 @@
+{
+  "audit_date": "2026-10-10",
+  "verified_at_kst": "2026-10-10 02:00",
+  "system_of_record": "WeddingRank",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "publication_rule": "외부 독립 공개후기 원문 URL 3건 이상 + 각 URL별 검증 분석 + 품질/원점수 근거",
+  "github_actions_runtime_fix": {
+    "before": {
+      "checkout": "actions/checkout@v5",
+      "setup_node": "actions/setup-node@v5",
+      "run_id": 37859937604,
+      "conclusion": "success",
+      "warnings": [
+        "DEP0040 punycode deprecation warning (setup-node and post-job cleanup)"
+      ]
+    },
+    "after": {
+      "checkout": "actions/checkout@v7",
+      "setup_node": "actions/setup-node@v7",
+      "commit_sha": "83e9218a970aebdbd941f50f25cae6530a8fdf3a",
+      "run_id": 37963153863,
+      "run_url": "https://github.com/shylth65/weddingrank/actions/runs/37963153863",
+      "conclusion": "success",
+      "warning_matches": 0
+    },
+    "business_logic_changed": false,
+    "secret_path_verified": true
+  },
+  "aggregation": {
+    "halls_scanned": 966,
+    "public_operating_halls": 81,
+    "sources_scanned": 314,
+    "approved_sources": 237,
+    "raw_score_sources": 30,
+    "analysis_rows": 251,
+    "eligible_ratings": 77,
+    "updated": 0,
+    "unchanged": 77,
+    "ratings_requiring_review": 0,
+    "protected_unpublished": 1,
+    "withdrawn_unanalysed": 0
+  },
+  "database_audit": {
+    "public_external_ratings": 77,
+    "noncompliant_public_ratings": 0,
+    "rating_basis_latest_utc": "2026-10-03T02:16:20.134556+00:00",
+    "rating_date_changed": false,
+    "held_zero_analysis": [
+      {
+        "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+        "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+        "distinct_published_review_urls": 4,
+        "verified_analysis_rows": 0,
+        "action": "preserve_nonpublic"
+      },
+      {
+        "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+        "name": "보타닉파크웨딩",
+        "distinct_published_review_urls": 5,
+        "verified_analysis_rows": 0,
+        "action": "preserve_nonpublic"
+      }
+    ]
+  },
+  "public_site_verification": {
+    "url": "https://weddingrank.vercel.app/",
+    "observed_public_venues": 81,
+    "observed_price_verified_venues": 69,
+    "observed_rating_basis_kst": "2026-10-03 11:16",
+    "top10_loaded": true
+  },
+  "changes": {
+    "new_candidates": 0,
+    "profile_updates": 0,
+    "review_source_additions": 0,
+    "analysis_additions": 0,
+    "newly_public_venues": 0,
+    "newly_public_ratings": 0,
+    "database_writes": 0
+  },
+  "errors": []
+}
