@@ -1,4 +1,4 @@
-name: WeddingRank one-time discovery smoke test # manual smoke run
+name: WeddingRank one-time discovery smoke test # bulk recheck seeded sources
 on:
   push:
     paths:
