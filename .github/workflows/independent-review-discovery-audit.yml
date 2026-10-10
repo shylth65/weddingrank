@@ -22,12 +22,15 @@ jobs:
         env:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: set -o pipefail\n          node scripts/discover-independent-review-bulk.cjs | tee review-discovery.log
+        run: set -o pipefail
+          node scripts/discover-independent-review-bulk.cjs | tee review-discovery.log
       - name: Audit independent sources and unanalysed candidates (read-only)
         env:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: |\n          set -o pipefail\n          node scripts/audit-independent-review-pipeline.cjs | tee review-eligibility.log
+        run: |
+          set -o pipefail
+          node scripts/audit-independent-review-pipeline.cjs | tee review-eligibility.log
       - name: Upload discovery and eligibility audit logs
         if: always()
         uses: actions/upload-artifact@v4
