@@ -1,0 +1,40 @@
+name: WeddingRank one-time discovery smoke test
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-discovery-smoke-test.yml'
+permissions:
+  contents: read
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Discover independent review leads without publishing
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set -o pipefail
+          node scripts/discover-independent-review-leads.cjs | tee review-discovery.log
+      - name: Audit source eligibility without modifying database
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set -o pipefail
+          node scripts/audit-independent-review-pipeline.cjs | tee review-eligibility.log
+      - name: Upload audit logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weddingrank-one-time-discovery-smoke-test
+          path: |
+            review-discovery.log
+            review-eligibility.log
+          retention-days: 7
