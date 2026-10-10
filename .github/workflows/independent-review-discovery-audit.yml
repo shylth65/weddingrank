@@ -1,0 +1,25 @@
+name: WeddingRank independent review discovery audit
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 17 * * *' # 02:10 KST, before approved aggregation
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-independent-review-discovery
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Audit independent sources and unanalysed candidates (read-only)
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/audit-independent-review-pipeline.cjs
