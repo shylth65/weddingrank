@@ -17,7 +17,17 @@ for(const site of [{name:'jinzzawedding',url:'https://jinzzawedding.com/'}]){
 try{
 const html=await fetchHtml(site.url);
 const matches=[...html.matchAll(/href=["']([^"'?#]*\/reviews\/\d+)(?:[?#][^"']*)?["']/gi)];
-const urls=[...new Set(matches.map(m=>new URL(m[1],site.url).href))].filter(u=>new URL(u).hostname==='jinzzawedding.com').slice(0,100);
+const knownIndividualReviewUrls=[
+'https://jinzzawedding.com/reviews/2202',
+'https://jinzzawedding.com/reviews/1553',
+'https://jinzzawedding.com/reviews/476',
+'https://jinzzawedding.com/reviews/2265',
+'https://jinzzawedding.com/reviews/2266',
+'https://jinzzawedding.com/reviews/1590'
+];
+// Seed only with previously recorded individual-review URLs, never generic directories.
+const urls=[...new Set([...knownIndividualReviewUrls,...matches.map(m=>new URL(m[1],site.url).href)])]
+ .filter(u=>new URL(u).hostname==='jinzzawedding.com').slice(0,100);
 output.sites.push({site:site.name,status:'reachable',candidate_review_links:urls.length});
 for(const u of urls){
 try{const page=await fetchHtml(u);
