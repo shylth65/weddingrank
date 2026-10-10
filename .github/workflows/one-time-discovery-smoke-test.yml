@@ -1,4 +1,4 @@
-name: WeddingRank one-time discovery smoke test
+name: WeddingRank one-time discovery smoke test # manual smoke run
 on:
   push:
     paths:
