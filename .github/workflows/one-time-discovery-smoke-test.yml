@@ -1,4 +1,4 @@
-name: WeddingRank one-time discovery smoke test # bulk recheck seeded sources
+name: WeddingRank one-time discovery smoke test # bulk discovery
 on:
   push:
     paths:
@@ -21,7 +21,7 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           set -o pipefail
-          node scripts/discover-independent-review-leads.cjs | tee review-discovery.log
+          node scripts/discover-independent-review-bulk.cjs | tee review-discovery.log
       - name: Audit source eligibility without modifying database
         env:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
