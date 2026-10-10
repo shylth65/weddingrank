@@ -1,0 +1,120 @@
+{
+  "schema_version": "weddingrank-profile-audit-v1",
+  "audit_date": "2026-10-11",
+  "system_of_record": "WeddingRank",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "policy": "공식 프로필과 독립 공개후기 근거를 분리하며, 외부평가는 검증 분석 URL 3건 이상일 때만 공개",
+  "profile_updates": [
+    {
+      "hall_id": "1b914e43-402b-42ca-9ca6-a853536e246a",
+      "name": "더화이트베일",
+      "official_url": "https://www.thewhiteveil.co.kr/Location",
+      "address": "서울특별시 서초구 서초중앙로 14",
+      "phone": "02-3474-5000",
+      "operation_status": "운영"
+    },
+    {
+      "hall_id": "fa96d429-296a-4cfb-adbe-fc4764d3c0d2",
+      "name": "메리빌리아 송도",
+      "official_url": "https://marryvilia.com/map",
+      "address": "인천광역시 연수구 송도과학로16번길 33-1",
+      "phone": "032-864-5500",
+      "operation_status": "운영"
+    },
+    {
+      "hall_id": "af771fc1-9c1f-4578-a1ed-ab41de1a7a66",
+      "name": "다비다웨딩홀",
+      "official_url": "https://www.dabida.co.kr/",
+      "address": "부산 연제구 연수로 86",
+      "phone": "051-852-8001",
+      "operation_status": "운영"
+    }
+  ],
+  "rooms_added": [
+    {
+      "hall_id": "1b914e43-402b-42ca-9ca6-a853536e246a",
+      "room_name": "화이트베일홀",
+      "floor": "1F",
+      "capacity_max": 200,
+      "source_url": "https://www.thewhiteveil.co.kr/WhiteVeilHall"
+    },
+    {
+      "hall_id": "1b914e43-402b-42ca-9ca6-a853536e246a",
+      "room_name": "브이홀",
+      "floor": "3F",
+      "capacity_max": 200,
+      "source_url": "https://www.thewhiteveil.co.kr/VHall"
+    },
+    {
+      "hall_id": "1b914e43-402b-42ca-9ca6-a853536e246a",
+      "room_name": "더블유홀",
+      "floor": "4F",
+      "capacity_max": 200,
+      "source_url": "https://www.thewhiteveil.co.kr/WHall"
+    }
+  ],
+  "counts_after": {
+    "halls": 966,
+    "public_operating_halls": 81,
+    "review_sources": 314,
+    "review_analyses": 251,
+    "public_external_ratings": 77,
+    "noncompliant_public_ratings": 0,
+    "legacy_public_profiles_remaining": 31,
+    "generated_rooms_for_public_venues": 153
+  },
+  "publication_changes": {
+    "new_public_venues": 0,
+    "new_public_ratings": 0,
+    "new_review_sources": 0,
+    "new_review_analyses": 0
+  },
+  "rating_basis_utc": "2026-10-03T02:16:20.134556+00:00",
+  "rating_basis_changed": false,
+  "held_zero_analysis": [
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "distinct_published_urls": 4,
+      "analysis_rows": 0,
+      "action": "preserve_nonpublic"
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "distinct_published_urls": 5,
+      "analysis_rows": 0,
+      "action": "preserve_nonpublic"
+    }
+  ],
+  "github_actions": {
+    "approved_review_aggregation": {
+      "run_id": 38001410345,
+      "run_url": "https://github.com/shylth65/weddingrank/actions/runs/38001410345",
+      "conclusion": "success",
+      "eligible_ratings": 77,
+      "updated": 0,
+      "unchanged": 77,
+      "warnings": []
+    },
+    "seo_generator": {
+      "runtime_actions": [
+        "actions/checkout@v7",
+        "actions/setup-node@v7"
+      ],
+      "runtime_fix_commit": "8db65a631704fff3b5b6c71ab9abaecb9db1cf1c",
+      "run_id": 38069897047,
+      "run_url": "https://github.com/shylth65/weddingrank/actions/runs/38069897047",
+      "conclusion": "success",
+      "generated_venues": 81,
+      "generated_rooms": 153,
+      "warnings": []
+    },
+    "generated_pages_commit": "a41880c92e6613f682fa2bdd3aa5aeb347f50167"
+  },
+  "live_verification": [
+    "https://weddingrank.kr/#hall=1b914e43-402b-42ca-9ca6-a853536e246a",
+    "https://weddingrank.kr/#hall=fa96d429-296a-4cfb-adbe-fc4764d3c0d2",
+    "https://weddingrank.kr/#hall=af771fc1-9c1f-4578-a1ed-ab41de1a7a66"
+  ],
+  "errors": []
+}
