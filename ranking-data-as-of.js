@@ -21,7 +21,7 @@
       const lines=[
         date?'순위 평가 기준일: '+date:'순위 평가 기준일: 확인 중',
         '독립 후기 평가 공개: '+count+'곳',
-        '최근 승인 후기 자동점검: '+fmt(latestAudit.completed_at)+' (GitHub Actions 성공)'
+        '마지막 확인된 승인 후기 자동점검: '+fmt(latestAudit.completed_at)+' (GitHub Actions 성공)'
       ];
       hosts.forEach(el=>{
         el.textContent=lines.join(' · ');
