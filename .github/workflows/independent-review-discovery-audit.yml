@@ -18,8 +18,22 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --no-save @supabase/supabase-js@2.57.4
-      - name: Discover external individual review leads (read-only)\n        env:\n          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co\n          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}\n        run: node scripts/discover-independent-review-leads.cjs | tee review-discovery.log\n      - name: Audit independent sources and unanalysed candidates (read-only)
+      - name: Discover external individual review leads (read-only)
         env:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: node scripts/audit-independent-review-pipeline.cjs | tee review-eligibility.log\n      - name: Upload discovery and eligibility audit logs\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: weddingrank-independent-review-audit\n          path: |\n            review-discovery.log\n            review-eligibility.log\n          retention-days: 14
+        run: node scripts/discover-independent-review-leads.cjs | tee review-discovery.log
+      - name: Audit independent sources and unanalysed candidates (read-only)
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/audit-independent-review-pipeline.cjs | tee review-eligibility.log
+      - name: Upload discovery and eligibility audit logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weddingrank-independent-review-audit
+          path: |
+            review-discovery.log
+            review-eligibility.log
+          retention-days: 14
