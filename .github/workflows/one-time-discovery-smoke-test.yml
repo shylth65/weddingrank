@@ -1,4 +1,4 @@
-name: WeddingRank one-time discovery smoke test # bulk discovery
+name: WeddingRank one-time discovery smoke test # bulk alias verification
 on:
   push:
     paths:
