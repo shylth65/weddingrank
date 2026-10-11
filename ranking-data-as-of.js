@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const cfg=window.WEDDINGRANK_CONFIG||{};
-  const base=String(cfg.SUPABASE_URL||'').replace(/\\/+$/,'');
+  const base=String(cfg.SUPABASE_URL||'').replace(/\/+$/,'');
   const key=cfg.SUPABASE_ANON_KEY||cfg.SUPABASE_PUBLISHABLE_KEY||cfg.SUPABASE_KEY||'';
   const fmt=value=>value?new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit',hour12:false}).format(new Date(value)):'';
   const latestAudit={"run_id":38089595436,"completed_at":"2026-10-10T21:57:46Z","conclusion":"success"};
