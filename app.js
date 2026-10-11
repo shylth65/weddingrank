@@ -54,11 +54,13 @@ async function load(){
     if(!getKey()) throw new Error("Publishable key가 없습니다.");
     const [hallRows,priceRows,ratingRows]=await Promise.all([
       api("wedding_halls?select=hall_id,name,sido,sigungu,road_address,phone,website,venue_type&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&order=name.asc&limit=500"),
-      api("wedding_prices?select=hall_id,effective_date,rental_fee,meal_price_per_person&order=effective_date.desc&limit=1000"),\n      api("external_wedding_ratings?select=hall_id&is_public=eq.true&source_count=gte.3&limit=1000")
+      api("wedding_prices?select=hall_id,effective_date,rental_fee,meal_price_per_person&order=effective_date.desc&limit=1000"),
+      api("external_wedding_ratings?select=hall_id&is_public=eq.true&source_count=gte.3&limit=1000")
     ]);
     halls=hallRows;
     buildPriceMap(priceRows);
-    if($("#publicCount")) $("#publicCount").textContent=halls.length+"곳";\n    if($("#ratedCount")) $("#ratedCount").textContent=new Set(ratingRows.filter(r=>halls.some(h=>h.hall_id===r.hall_id)).map(r=>r.hall_id)).size+"곳";
+    if($("#publicCount")) $("#publicCount").textContent=halls.length+"곳";
+    if($("#ratedCount")) $("#ratedCount").textContent=new Set(ratingRows.filter(r=>halls.some(h=>h.hall_id===r.hall_id)).map(r=>r.hall_id)).size+"곳";
     if($("#status")) $("#status").textContent=`공개 예식장 ${halls.length}곳 · 가격정보 ${priceByHall.size}곳`;
     setupRegions();
     render(true);
@@ -377,3 +379,4 @@ window.addEventListener("DOMContentLoaded",()=>{setupRankingUI();setupHeaderActi
 parseAuthHash();
 restoreSession().then(()=>{if(recoveryFromLink&&currentUser)openSiteAuth("my")});
 load();
+
