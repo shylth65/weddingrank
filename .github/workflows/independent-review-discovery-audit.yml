@@ -39,7 +39,7 @@ jobs:
           node scripts/audit-independent-review-pipeline.cjs | tee review-eligibility.log
       - name: Upload discovery and eligibility audit logs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: weddingrank-independent-review-audit
           path: |
