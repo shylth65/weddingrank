@@ -1,0 +1,127 @@
+{
+  "schema_version": "weddingrank-directory-publication-v1",
+  "scope": "WeddingRank-only",
+  "verified_on": "2026-10-12",
+  "policy": {
+    "directory_publication": "official operating venue with verified address, phone and duplicate check",
+    "rating_publication": "unchanged; requires at least 3 verified independent individual reviews with analysis and raw-score evidence",
+    "pickrank_sync": false
+  },
+  "before": {
+    "candidate_halls": 966,
+    "public_operating_halls": 81,
+    "review_sources": 314,
+    "review_analyses": 251,
+    "public_external_ratings": 77
+  },
+  "after": {
+    "candidate_halls": 966,
+    "public_operating_halls": 88,
+    "review_sources": 314,
+    "review_analyses": 251,
+    "public_external_ratings": 77
+  },
+  "published_directory_venues": [
+    {
+      "hall_id": "a5ad1146-787c-4ed2-b98f-929dc0ace321",
+      "name": "메종글래드제주 웨딩홀",
+      "source_url": "https://www.glad-hotels.com/maisongladjeju/wedding/gladWedding.do",
+      "address": "제주특별자치도 제주시 노연로 80",
+      "phone": "064-710-8222",
+      "rooms": [
+        "CONVENTION HALL",
+        "CRYSTAL HALL",
+        "JADE HALL"
+      ]
+    },
+    {
+      "hall_id": "271484c4-6f4a-47de-b49b-f5b4c2b7344d",
+      "name": "삼정호텔 웨딩",
+      "source_url": "https://www.samjunghotel.co.kr/WEDDING_ADONIS",
+      "address": "서울특별시 강남구 봉은사로 150",
+      "phone": "02-557-0292",
+      "rooms": [
+        "아도니스홀"
+      ]
+    },
+    {
+      "hall_id": "5532dadf-eef7-49b1-a486-78e7f211b6ed",
+      "name": "KU컨벤션웨딩홀",
+      "source_url": "https://www.kkweddinghall.co.kr/guide/wedding/",
+      "address": "서울특별시 광진구 아차산로36길 5",
+      "phone": "02-447-7005",
+      "rooms": [
+        "컨벤션홀"
+      ]
+    },
+    {
+      "hall_id": "5b6eef0b-b4ec-414b-b1b1-f9fb18a017e4",
+      "name": "마이어스 웨딩&파티",
+      "source_url": "https://www.myus.co.kr/wedding/price/",
+      "address": "경기도 수원시 권선구 경수대로 270 터미널동 2층~4층",
+      "phone": "031-267-5500",
+      "rooms": [
+        "그레이스홀"
+      ]
+    },
+    {
+      "hall_id": "954700aa-4089-481c-aab4-62a1471ebde6",
+      "name": "A웨딩&파티",
+      "source_url": "https://www.a-wedding5567.com/",
+      "address": "전북특별자치도 군산시 공단대로 179",
+      "phone": "063-464-6800",
+      "rooms": [
+        "단독 웨딩홀"
+      ]
+    },
+    {
+      "hall_id": "d177a9bd-b622-4ab8-9e36-742374edcef1",
+      "name": "CA웨딩컨벤션",
+      "source_url": "https://www.ca-wedding.co.kr/",
+      "address": "충청남도 아산시 배방읍 희망로 100 KTX천안아산역 역사내 2층",
+      "phone": "041-520-9999",
+      "rooms": [
+        "루체홀",
+        "블리스홀"
+      ],
+      "correction": "removed unverified per-room 1500-seat capacities; official source describes 1500 seats for banquet hall total"
+    },
+    {
+      "hall_id": "c71f9280-b03f-4438-b007-90700f821b8d",
+      "name": "더프라미스 웨딩컨벤션",
+      "source_url": "https://wd.kangdongcnl.com/content/02wedding/01_01.jsp",
+      "address": "경상북도 경주시 보불로 391",
+      "phone": "054-778-9233",
+      "rooms": [
+        "그랜드볼룸",
+        "더 프라미스"
+      ]
+    }
+  ],
+  "room_changes": {
+    "inserted": 2,
+    "corrected": 2
+  },
+  "rating_changes": {
+    "published": 0,
+    "updated": 0,
+    "latest_rating_basis_utc": "2026-10-03T02:16:20.134556+00:00"
+  },
+  "held_rating_candidates": [
+    {
+      "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+      "name": "보타닉파크웨딩",
+      "independent_source_rows": 6,
+      "analysis_rows": 0,
+      "rating_public": false
+    },
+    {
+      "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "independent_source_rows": 5,
+      "analysis_rows": 0,
+      "rating_public": false
+    }
+  ],
+  "errors": []
+}
