@@ -3,6 +3,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '10 17 * * *' # 02:10 KST, before approved aggregation
+  push:
+    paths:
+      - 'scripts/discover-independent-review-bulk.cjs'
+      - 'scripts/audit-independent-review-pipeline.cjs'
+      - '.github/workflows/independent-review-discovery-audit.yml'
 permissions:
   contents: read
 concurrency:
@@ -22,7 +27,8 @@ jobs:
         env:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: set -o pipefail
+        run: |
+          set -o pipefail
           node scripts/discover-independent-review-bulk.cjs | tee review-discovery.log
       - name: Audit independent sources and unanalysed candidates (read-only)
         env:
@@ -40,3 +46,4 @@ jobs:
             review-discovery.log
             review-eligibility.log
           retention-days: 14
+
