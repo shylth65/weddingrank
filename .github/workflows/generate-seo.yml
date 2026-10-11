@@ -9,6 +9,7 @@ on:
       - 'scripts/generate-seo.mjs'
       - 'scripts/generate-regions.mjs'
       - '.github/workflows/generate-seo.yml'
+      - 'research/audits/**'
 
 permissions:
   contents: write
