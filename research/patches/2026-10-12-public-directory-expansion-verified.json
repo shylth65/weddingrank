@@ -1,0 +1,180 @@
+{
+  "schema_version": "weddingrank-manual-official-directory-promotion-v2",
+  "audited_on": "2026-10-12",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "policy": {
+    "directory_publication": "Verified official wedding page and current address/phone, preexisting operation status, duplicate screening in DB",
+    "ratings": "No new publication, no updates or basis date changes",
+    "unverified_prices": "Preserve; do not insert prices, only pre-existing records",
+    "rooms": "Official labels and facts only, no estimated capacities",
+    "retain_nonpublic_review_analysis_holds": true
+  },
+  "venues": [
+    {
+      "id": "8cf5df70-1b80-4784-8861-32aeb6f67cf6",
+      "name": "더컨벤션 영등포",
+      "address": "서울 영등포구 국회대로38길 2",
+      "phone": "02-6426-5000",
+      "website": "https://ydp.theconvention.co.kr/",
+      "official": [
+        "https://ydp.theconvention.co.kr/"
+      ],
+      "rooms": [
+        {
+          "room_name": "그랜드볼룸",
+          "floor": "1F",
+          "capacity_max": null,
+          "source_url": "https://ydp.theconvention.co.kr/",
+          "capacity_min": null
+        },
+        {
+          "room_name": "다이너스티홀",
+          "floor": "2F",
+          "capacity_max": null,
+          "source_url": "https://ydp.theconvention.co.kr/",
+          "capacity_min": null
+        }
+      ],
+      "requires": "official identity and status; no exact duplicate name or address in any other wedding_halls record"
+    },
+    {
+      "id": "24c6978c-dd17-42f3-8e30-d053958b8b9b",
+      "name": "아이벡스컨벤션",
+      "address": "경기 광명시 양지로 17 AK플라자 광명 5층",
+      "phone": "02-897-1002",
+      "website": "https://www.ivexwed.co.kr/",
+      "official": [
+        "https://www.ivexwed.co.kr/"
+      ],
+      "rooms": [],
+      "requires": "official identity and status; no exact duplicate name or address in any other wedding_halls record"
+    },
+    {
+      "id": "c515fc40-67d5-4d09-96b7-3760a25a4091",
+      "name": "포시즌스호텔 서울 웨딩",
+      "address": "서울특별시 종로구 새문안로 97",
+      "phone": "+82-2-6388-5000",
+      "website": "https://www.fourseasons.com/kr/seoul/",
+      "official": [
+        "https://www.fourseasons.com/kr/seoul/weddings/",
+        "https://www.fourseasons.com/kr/seoul/"
+      ],
+      "rooms": [],
+      "updated_website": "https://www.fourseasons.com/kr/seoul/weddings/",
+      "requires": "official identity and status; no exact duplicate name or address in any other wedding_halls record"
+    },
+    {
+      "id": "2f6fe903-8849-45af-aff3-3db3f0b6a055",
+      "name": "스카이베이호텔 경포 웨딩",
+      "address": "강원특별자치도 강릉시 해안로 476",
+      "phone": "033-923-2020",
+      "website": "https://www.skybay.co.kr/",
+      "official": [
+        "https://skybay.co.kr/502"
+      ],
+      "rooms": [],
+      "updated_website": "https://skybay.co.kr/502",
+      "requires": "official identity and status; no exact duplicate name or address in any other wedding_halls record"
+    },
+    {
+      "id": "433fea2d-85a6-4acc-b864-710c122de704",
+      "name": "씨마크호텔 웨딩",
+      "address": "강원특별자치도 강릉시 해안로406번길 2",
+      "phone": "033-650-7008",
+      "website": "https://www.seamarqhotel.com/wedding",
+      "official": [
+        "https://www.seamarqhotel.com/wedding",
+        "https://www.seamarqhotel.com/about/directions"
+      ],
+      "rooms": [
+        {
+          "room_name": "웨딩홀",
+          "floor": null,
+          "capacity_max": null,
+          "source_url": "https://www.seamarqhotel.com/wedding",
+          "capacity_min": null
+        }
+      ],
+      "updated_phone": "033-650-7126",
+      "requires": "official identity and status; no exact duplicate name or address in any other wedding_halls record"
+    },
+    {
+      "id": "ac48c777-f2b2-48f5-a390-80d82ec67fbc",
+      "name": "호텔인터불고 원주 웨딩",
+      "address": "강원특별자치도 원주시 동부순환로 200",
+      "phone": "033-769-8131",
+      "website": "https://interwonju.koweb.co.kr/",
+      "official": [
+        "https://interwonju.koweb.co.kr/contents/04_wedding/sub01.html"
+      ],
+      "rooms": [
+        {
+          "room_name": "다이아몬드",
+          "floor": null,
+          "capacity_max": null,
+          "source_url": "https://interwonju.koweb.co.kr/contents/04_wedding/sub01.html",
+          "capacity_min": null
+        },
+        {
+          "room_name": "사파이어",
+          "floor": null,
+          "capacity_max": null,
+          "source_url": "https://interwonju.koweb.co.kr/contents/04_wedding/sub01.html",
+          "capacity_min": null
+        },
+        {
+          "room_name": "루비",
+          "floor": null,
+          "capacity_max": null,
+          "source_url": "https://interwonju.koweb.co.kr/contents/04_wedding/sub01.html",
+          "capacity_min": null
+        },
+        {
+          "room_name": "컨벤션홀",
+          "floor": null,
+          "capacity_max": null,
+          "source_url": "https://interwonju.koweb.co.kr/contents/04_wedding/sub01.html",
+          "capacity_min": null
+        }
+      ],
+      "updated_website": "https://interwonju.koweb.co.kr/contents/04_wedding/sub01.html",
+      "requires": "official identity and status; no exact duplicate name or address in any other wedding_halls record"
+    },
+    {
+      "id": "317652f7-72c6-4464-8bda-27e2836918ee",
+      "name": "포항라한호텔 웨딩",
+      "address": "경상북도 포항시 북구 삼호로265번길 1",
+      "phone": "054-275-5000",
+      "website": "https://lahanhotels.com/pohang/ko/wedding.do",
+      "official": [
+        "https://www.lahanhotels.com/pohang/ko/weddingHalls.do",
+        "https://lahanhotels.com/pohang/ko/wedding.do"
+      ],
+      "rooms": [
+        {
+          "room_name": "그랜드홀",
+          "floor": "5층",
+          "capacity_max": 250,
+          "source_url": "https://www.lahanhotels.com/pohang/ko/weddingHalls.do",
+          "capacity_min": null
+        },
+        {
+          "room_name": "파티오",
+          "floor": "6층",
+          "capacity_max": 120,
+          "source_url": "https://www.lahanhotels.com/pohang/ko/weddingHalls.do",
+          "capacity_min": null
+        },
+        {
+          "room_name": "테라스 가든",
+          "floor": "6층 야외 테라스",
+          "capacity_max": 100,
+          "source_url": "https://www.lahanhotels.com/pohang/ko/weddingHalls.do",
+          "capacity_min": null
+        }
+      ],
+      "requires": "official identity and status; no exact duplicate name or address in any other wedding_halls record"
+    }
+  ]
+}
