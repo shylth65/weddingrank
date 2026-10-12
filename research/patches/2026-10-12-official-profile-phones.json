@@ -1,0 +1,53 @@
+{
+  "schema_version": "weddingrank-verified-patch-v1",
+  "patch_id": "2026-10-12-official-profile-phones",
+  "verified_at": "2026-10-12T20:55:00+09:00",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "verification": "Official venue website contact published and matched with current WeddingRank hall name/address. No price or rating modification.",
+  "venues": [
+    {
+      "hall_id": "97c52cd9-1b30-48c2-8684-7b4cfd1405d3",
+      "expected_name": "로얄파크컨벤션",
+      "expected_address": "서울특별시 용산구 이태원로 29",
+      "profile_updates": {
+        "phone": "02-793-2900"
+      },
+      "verification_sources": [
+        "https://www.royalpark.kr/",
+        "https://royalpark.kr/19"
+      ]
+    },
+    {
+      "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+      "expected_name": "보타닉파크웨딩",
+      "expected_address": "서울특별시 강서구 마곡중앙5로 6",
+      "profile_updates": {
+        "phone": "02-2662-8300"
+      },
+      "verification_sources": [
+        "https://botanicparkwedding.imweb.me/location?mode=privacy",
+        "https://botanicparkwedding.imweb.me/"
+      ]
+    },
+    {
+      "hall_id": "ea026116-dd93-4dd9-8eff-8a4f46a1c19d",
+      "expected_name": "코리아나호텔 웨딩",
+      "expected_address": "서울특별시 중구 세종대로 135",
+      "profile_updates": {
+        "phone": "02-2171-7882"
+      },
+      "verification_sources": [
+        "https://koreanahotel.com/en/banquet/grand.htm"
+      ]
+    }
+  ],
+  "rules": {
+    "allow_fields": [
+      "phone"
+    ],
+    "no_rating_changes": true,
+    "no_status_changes": true,
+    "no_pickrank_sync": true
+  }
+}
