@@ -1,0 +1,28 @@
+name: WeddingRank verified manual public directory expansion
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/apply-official-directory-expansion.cjs'
+      - 'research/patches/2026-10-12-public-directory-expansion-verified.json'
+      - '.github/workflows/manual-public-directory-expansion.yml'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-verified-public-directory-expansion
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Publish only verified operating WeddingRank venues and rooms
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/apply-official-directory-expansion.cjs
