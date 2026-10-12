@@ -1,0 +1,28 @@
+name: WeddingRank manual official directory retry
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/apply-official-directory-completion.cjs'
+      - 'research/patches/2026-10-12-retry-official-directory.json'
+      - '.github/workflows/manual-official-directory-retry.yml'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-manual-official-directory-retry
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Apply and verify official directory fields
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/apply-official-directory-completion.cjs
