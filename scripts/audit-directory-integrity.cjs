@@ -40,6 +40,17 @@ function mainAudit(halls,rooms,prices,sources,analyses,ratings){
     return {hall_id:t.hall_id,name:t.name,expected_phone:t.expected_phone,
       stored_phone:h?.phone||null,verified:h?.phone===t.expected_phone&&h?.name===t.name};
   });
+  const retryReceiptChecks=[
+    {hall_id:'3ddd003d-57a5-47fa-96c7-2dbf1a877166',name:'규수당 문래점',expected:{road_address:'서울특별시 영등포구 문래로 164 SK리더스뷰 2층',phone:'02-332-9000',website:'https://mm.kyusoodang.co.kr/'}},
+    {hall_id:'6010f9a6-0bc2-4f00-8038-610e0a2ce866',name:'소노캄 거제',expected:{phone:'055-733-7372'}},
+    {hall_id:'80cd0609-585b-4f0f-89f5-5d18075436a9',name:'하버파크호텔',expected:{website:'https://www.harborparkhotel.com/view/viewLink.do?page=homepage%2FKOR%2Fbanquet%2Fwedding'}},
+    {hall_id:'a2807caa-0080-43b1-b699-e4b62a62ff5a',name:'웨딩스퀘어 강변',expected:{website:'https://www.weddingsquare.co.kr/'}}
+  ].map(t=>{
+    const row=hallById.get(t.hall_id);
+    return {hall_id:t.hall_id,name:t.name,matched:row?.name===t.name && row?.is_public===true && row?.operation_status==='운영' &&
+      Object.entries(t.expected).every(([k,v])=>row?.[k]===v),expected:t.expected,
+      stored:row?{road_address:row.road_address,phone:row.phone,website:row.website}:null};
+  });
   const analysisBySource=new Map(analyses.map(a=>[String(a.source_id),a]));
   const sByHall=new Map();
   for(const s of sources){let p=String(s.hall_id);if(!sByHall.has(p))sByHall.set(p,[]);sByHall.get(p).push(s);}
@@ -91,8 +102,9 @@ function mainAudit(halls,rooms,prices,sources,analyses,ratings){
       public_ratings_with_missing_exact_post_dates:ratingDateGap.length,
       held_three_plus_sources_zero_analysis:heldWithZeroAnalysis.length,
       orphan_source_rows:danglingSources.length,orphan_analysis_rows:danglingAnalyses.length,
-      verified_official_phone_corrections:phoneReceipts.filter(x=>x.verified).length},
-    samples:{verified_official_phone_corrections:phoneReceipts,incomplete_public_profiles:missingProfile.slice(0,40),duplicate_public_names:nameDuplicates.slice(0,15),
+      verified_official_phone_corrections:phoneReceipts.filter(x=>x.verified).length,
+      verified_retry_venue_profiles:retryReceiptChecks.filter(x=>x.matched).length},
+    samples:{retry_receipts:retryReceiptChecks,verified_official_phone_corrections:phoneReceipts,incomplete_public_profiles:missingProfile.slice(0,40),duplicate_public_names:nameDuplicates.slice(0,15),
       same_address_public_venues:addressDuplicates.slice(0,15),public_without_rooms:missingRoom.slice(0,30),
       public_without_price_rows:missingPrice.slice(0,25),
       public_rating_analysis_problems:ratingProblems.slice(0,30),
