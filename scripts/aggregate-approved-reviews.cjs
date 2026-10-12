@@ -40,22 +40,26 @@ if (!url.includes('mozmxkmaynhxqwzovzhi.supabase.co')) {
   process.exit(2);
 }
 const db = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
-// Canonical commercial venue-listing pages never qualify as authored independent
-// review originals, even when previously misclassified or accidentally reinserted.
+// Never count an organizer's venue catalog as an individual review original.
 const isCommercialVenueListing=raw=>{
   try{
-    const u=new URL(String(raw)),host=u.hostname.replace(/^www\\./,'').toLowerCase();
-    return (host==='iwedding.co.kr'&&/^\\/enterprise\\/info\\/\\d+\\/?$/i.test(u.pathname))||
-      (host==='directwedding.co.kr'&&/^\\/weddinghall\\/hall\\d+\\/?$/i.test(u.pathname))||
-      (host==='weddingbook.com'&&/^\\/weddinghall\\/[^/]+\\/?$/i.test(u.pathname));
+    const u=new URL(String(raw));
+    const host=u.hostname.toLowerCase().replace('www.','');
+    const p=u.pathname.toLowerCase();
+    return (host==='iwedding.co.kr'&&p.startsWith('/enterprise/info/'))||
+      (host==='directwedding.co.kr'&&p.startsWith('/weddinghall/hall'))||
+      (host==='weddingbook.com'&&p.startsWith('/weddinghall/'));
   }catch{return true;}
 };
 const canonicalOriginalUrl=raw=>{
   const u=new URL(raw);u.hash='';
   for(const key of [...u.searchParams.keys()]){
-    if(/^utm_|^fbclid$|^gclid$/i.test(key))u.searchParams.delete(key);
+    if(key.startsWith('utm_')||key==='fbclid'||key==='gclid')u.searchParams.delete(key);
   }
-  u.searchParams.sort();return u.href.replace(/\\/+$/,'').toLowerCase();
+  u.searchParams.sort();
+  let canonical=u.href.toLowerCase();
+  while(canonical.endsWith('/'))canonical=canonical.slice(0,-1);
+  return canonical;
 };
 const metrics = ['food_score','access_score','parking_score','facility_score','bride_waiting_score','banquet_score','service_score','value_score'];
 const avg = values => values.length ? Math.round(values.reduce((a,b)=>a+b,0)/values.length*100)/100 : null;
