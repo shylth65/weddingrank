@@ -1,0 +1,32 @@
+{
+  "schema_version": "weddingrank-verified-patch-v1",
+  "patch_id": "2026-10-12-retry-official-websites",
+  "verified_at": "2026-10-12T21:15:00+09:00",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "venues": [
+    {
+      "hall_id": "80cd0609-585b-4f0f-89f5-5d18075436a9",
+      "expected_name": "하버파크호텔",
+      "expected_address": "인천 중구 제물량로 217",
+      "profile_updates": {
+        "website": "https://www.harborparkhotel.com/view/viewLink.do?page=homepage%2FKOR%2Fbanquet%2Fwedding"
+      },
+      "audit_source_url": "https://www.harborparkhotel.com/view/viewLink.do?page=homepage%2FKOR%2Fbanquet%2Fwedding",
+      "source_note": "Official hotel page confirms wedding services and dedicated 032-770-9700~1, matching stored phone"
+    },
+    {
+      "hall_id": "a2807caa-0080-43b1-b699-e4b62a62ff5a",
+      "expected_name": "웨딩스퀘어 강변",
+      "expected_address": "서울특별시 광진구 광나루로56길 85, 3-4F",
+      "profile_updates": {
+        "website": "https://www.weddingsquare.co.kr/"
+      },
+      "audit_source_url": "https://www.weddingsquare.co.kr/",
+      "source_note": "Official Wedding Square footer confirms name, address, 02-3424-7000 matching WeddingRank"
+    }
+  ],
+  "rating_changes": 0,
+  "review_changes": 0,
+  "directory_publication_changes": 0
+}
