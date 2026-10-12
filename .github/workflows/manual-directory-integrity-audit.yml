@@ -1,0 +1,36 @@
+name: WeddingRank manual directory integrity audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/audit-directory-integrity.cjs'
+      - '.github/workflows/manual-directory-integrity-audit.yml'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-manual-directory-audit
+  cancel-in-progress: false
+jobs:
+  directory-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Read-only specialist DB audit
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set -o pipefail
+          node scripts/audit-directory-integrity.cjs | tee directory-audit.log
+      - name: Save read-only audit
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: weddingrank-directory-integrity
+          path: directory-audit.log
+          retention-days: 14
