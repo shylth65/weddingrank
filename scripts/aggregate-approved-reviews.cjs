@@ -40,6 +40,23 @@ if (!url.includes('mozmxkmaynhxqwzovzhi.supabase.co')) {
   process.exit(2);
 }
 const db = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
+// Canonical commercial venue-listing pages never qualify as authored independent
+// review originals, even when previously misclassified or accidentally reinserted.
+const isCommercialVenueListing=raw=>{
+  try{
+    const u=new URL(String(raw)),host=u.hostname.replace(/^www\\./,'').toLowerCase();
+    return (host==='iwedding.co.kr'&&/^\\/enterprise\\/info\\/\\d+\\/?$/i.test(u.pathname))||
+      (host==='directwedding.co.kr'&&/^\\/weddinghall\\/hall\\d+\\/?$/i.test(u.pathname))||
+      (host==='weddingbook.com'&&/^\\/weddinghall\\/[^/]+\\/?$/i.test(u.pathname));
+  }catch{return true;}
+};
+const canonicalOriginalUrl=raw=>{
+  const u=new URL(raw);u.hash='';
+  for(const key of [...u.searchParams.keys()]){
+    if(/^utm_|^fbclid$|^gclid$/i.test(key))u.searchParams.delete(key);
+  }
+  u.searchParams.sort();return u.href.replace(/\\/+$/,'').toLowerCase();
+};
 const metrics = ['food_score','access_score','parking_score','facility_score','bride_waiting_score','banquet_score','service_score','value_score'];
 const avg = values => values.length ? Math.round(values.reduce((a,b)=>a+b,0)/values.length*100)/100 : null;
 const rawScore = summary => {
@@ -71,13 +88,13 @@ async function main() {
   const previous=new Map(prior.map(r=>[String(r.hall_id),r]));
   const grouped=new Map();
   for(const s of sources) {
-    if(!operating.has(String(s.hall_id)) || s.is_published!==true || s.source_type!=='public_review' || Number(s.quality_score)<70 || !/^https:\/\//i.test(s.source_url||'')) continue;
+    if(!operating.has(String(s.hall_id)) || s.is_published!==true || s.source_type!=='public_review' || Number(s.quality_score)<70 || !/^https:\/\//i.test(s.source_url||'') || isCommercialVenueListing(s.source_url)) continue;
     const a=analysisById.get(String(s.source_id));
     if(!a || Number(a.evidence_strength)<70 || String(a.hall_id)!==String(s.hall_id)) continue;
     const group=grouped.get(String(s.hall_id)) || new Map();
     const audited=auditedRawByHallUrl.get(String(s.hall_id)+'|'+s.source_url);
     if(audited && (audited.url!==s.source_url || audited.hall_id!==String(s.hall_id))) throw new Error('Audited source identity mismatch: '+s.source_id);
-    group.set(s.source_url,{analysis:a,raw:audited||rawScore(s.summary),source:s});
+    group.set(canonicalOriginalUrl(s.source_url),{analysis:a,raw:audited||rawScore(s.summary),source:s});
     grouped.set(String(s.hall_id),group);
   }
   let updated=0,unchanged=0,insufficient=0,protectedUnpublished=0,rawScoreSources=0,summaryCorrected=0;
