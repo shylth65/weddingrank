@@ -1,0 +1,62 @@
+{
+  "schema_version": "weddingrank-manual-bulk-evidence-and-publication-audit-v1",
+  "audit_date": "2026-10-13",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "principles": {
+    "work_complete_only_after_live_proof": true,
+    "high_volume_single_batch_preferred": true,
+    "automatic_schedules_unchanged": true,
+    "rating_requires_three_independent_originals_with_analysis_raw_scores_scale_sample": true
+  },
+  "baseline": {
+    "public_operating": 120,
+    "external_rating_public": 29
+  },
+  "discovery": {
+    "batch_candidate_count": 36,
+    "initially_processed_live_official": 32,
+    "initially_passed": 10,
+    "first_run": "https://github.com/shylth65/weddingrank/actions/runs/38285663999",
+    "second_run": "https://github.com/shylth65/weddingrank/actions/runs/38286017009",
+    "second_run_new": 0
+  },
+  "duplicate_cleanup": [
+    {
+      "hall": "소노캄거제 웨딩",
+      "id": "7aa79bf6-f70a-443c-86a4-76524e79410e",
+      "reason": "Same operating address and telephone as existing public 소노캄 거제; region names 경남/경상남도 differed",
+      "is_public": false,
+      "original_preserved": true
+    },
+    {
+      "hall": "삼정호텔 웨딩",
+      "id": "271484c4-6f4a-47de-b49b-f5b4c2b7344d",
+      "reason": "Same hotel and same phone as existing public 삼정호텔; kept canonical entry with 3 rooms, price and 3 source rows",
+      "is_public": false,
+      "original_preserved": true
+    }
+  ],
+  "net": {
+    "public_operating_now": 128,
+    "net_new_vs_baseline": 8,
+    "existing_public_external_ratings": 29,
+    "original_review_source_rows": 314,
+    "original_review_analysis_rows": 251,
+    "public_exact_duplicate_phone_groups": 0,
+    "rating_scores_and_basis_dates_changed_by_this_batch": 0,
+    "pickrank_sync": false
+  },
+  "published_unique": [
+    "아모르아트웨딩컨벤션",
+    "신라스테이 서부산 웨딩컨벤션",
+    "메리포엠웨딩홀",
+    "웨스턴라이프호텔 웨딩&컨벤션",
+    "디바인밸리 웨딩",
+    "웨스턴베니비스 신도림",
+    "테크노마트 웨딩시티",
+    "라마다 송도 호텔",
+    "파티움하우스 순천"
+  ],
+  "next": "Existing Generate venue and area SEO pages on research/audits/** push will regenerate 128 public venue files; then re-run WeddingRank production visibility verifier. DB-only is not completion."
+}
