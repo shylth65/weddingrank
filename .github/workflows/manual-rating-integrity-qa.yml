@@ -1,0 +1,31 @@
+name: WeddingRank rating source integrity QA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/verify-rating-integrity.cjs'
+      - '.github/workflows/manual-rating-integrity-qa.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Verify original-score manifest and live specialist DB safely
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/verify-rating-integrity.cjs
+      - name: Preserve rating QA outcome
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: weddingrank-rating-integrity-qa
+          path: weddingrank-rating-integrity-qa.json
+          retention-days: 14
