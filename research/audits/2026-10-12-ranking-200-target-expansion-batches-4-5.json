@@ -1,0 +1,64 @@
+{
+  "schema_version": "weddingrank-200-rankings-progress-v1",
+  "audited_on": "2026-10-12",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "targets": {
+    "public_operating_directory": 200,
+    "verified_independent_review_rankings": 200
+  },
+  "before_this_session": {
+    "public_operating_directory": 100,
+    "verified_independent_review_rankings": 77
+  },
+  "after_verified_batches": {
+    "public_operating_directory": 112,
+    "verified_independent_review_rankings": 77,
+    "additions_to_directory": 12,
+    "addition_to_independent_ratings": 0,
+    "official_hall_room_rows_inserted": 5
+  },
+  "remaining": {
+    "public_directory": 88,
+    "verified_independent_rankings": 123
+  },
+  "executions": [
+    {
+      "run_id": 38252910148,
+      "activity": "publish 8 verified directory venues and 5 official Lahan halls",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 38253334795,
+      "activity": "publish 3 more verified directory venues, hold unverified H-square HTTPS source",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 38253423186,
+      "activity": "verify H-square HTTPS original then publish one further venue",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 38253857512,
+      "activity": "read-only ranked-200 source-level evidence audit and candidate queue",
+      "conclusion": "success"
+    }
+  ],
+  "ranking_evidence_pipeline": {
+    "manual_audit_workflow": ".github/workflows/manual-200-ranking-evidence-audit.yml",
+    "audit_job_artifact": "weddingrank-ranking-200-evidence-queue",
+    "candidate_rows_prioritized": 200,
+    "publications_from_audit": 0,
+    "do_not_republish_url_only_without_analysis": true,
+    "do_not_count_advertisements_or_venue_or_member_reviews": true,
+    "minimum_unique_external_individual_urls_with_quality_original_score_scale_sample_date_and_analysis": 3,
+    "keep_previous_rating_dates_without_new_verified_evidence": true
+  },
+  "preservation": {
+    "existing_directory_and_provenance_preserved": true,
+    "price_rows_preserved": true,
+    "existing_scheduled_github_actions_unchanged": true,
+    "central_pickrank_sync": false
+  },
+  "seo_regeneration": "Existing GitHub Actions Generate venue and area SEO pages workflow runs on a research/audits file push. Regenerate for 112 verified public halls."
+}
