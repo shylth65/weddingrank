@@ -1,0 +1,24 @@
+name: WeddingRank manual candidate directory audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/audit-public-directory-candidates.cjs'
+      - '.github/workflows/manual-candidate-directory-audit.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Read-only WeddingRank candidate audit
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/audit-public-directory-candidates.cjs
