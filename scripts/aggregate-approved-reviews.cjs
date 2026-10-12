@@ -76,11 +76,31 @@ async function main() {
     grouped.set(String(s.hall_id),group);
   }
   let updated=0,unchanged=0,insufficient=0,protectedUnpublished=0,rawScoreSources=0,summaryCorrected=0;
+  let legacyPreservedMissingRawAudit=0,newPublicationBlockedMissingRawAudit=0;
   const eligible=new Set();
   for(const [hallId,distinct] of grouped) {
     if(protectedHallIds.has(hallId)) { protectedUnpublished++; continue; }
     if(distinct.size<3) { insufficient++; continue; }
     const evaluations=[...distinct.values()];
+    // A source row and numeric analysis alone do not prove a source-level
+    // original score, denominator or sample. New publication is allowed only
+    // after *every* contributing original URL appears in a reviewed audit batch.
+    // Previously published rows lacking that complete evidence are frozen,
+    // rather than changing their rating, publication flag or rating basis date.
+    const priorRating=previous.get(hallId);
+    const completeOriginalAudit=evaluations.every(e=>
+      auditedRawByHallUrl.has(String(hallId)+'|'+String(e.source.source_url))
+    );
+    if(!completeOriginalAudit){
+      if(priorRating?.is_public===true){
+        eligible.add(hallId);
+        unchanged++;
+        legacyPreservedMissingRawAudit++;
+      }else{
+        newPublicationBlockedMissingRawAudit++;
+      }
+      continue;
+    }
     const result={hall_id:hallId,source_count:evaluations.length,is_public:true,methodology_version:'external_v1'};
     result.summary=`독립 외부 공개후기 ${evaluations.length}건을 WeddingRank가 직접 검증·분석한 전문 평가입니다.`;
     for(const m of metrics) {
@@ -156,6 +176,8 @@ async function main() {
     analysis_rows:analysis.length,
     eligible_ratings:eligible.size,
     summary_corrected:summaryCorrected,
+    legacy_preserved_missing_raw_audit:legacyPreservedMissingRawAudit,
+    new_publication_blocked_missing_raw_audit:newPublicationBlockedMissingRawAudit,
     updated,
     unchanged,
     ratings_requiring_review:ratingsRequiringReview.length,
