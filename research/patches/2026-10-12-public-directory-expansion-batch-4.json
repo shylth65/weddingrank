@@ -1,0 +1,148 @@
+{
+  "schema_version": "weddingrank-manual-official-directory-promotion-v2",
+  "audited_on": "2026-10-12",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "goal": {
+    "directory": 200,
+    "independent_ratings": 200
+  },
+  "policy": {
+    "venue_directory_only": true,
+    "review_or_external_rating_changes": false,
+    "no_unverified_rankings": true,
+    "keep_existing_prices_and_room_originals": true
+  },
+  "venues": [
+    {
+      "id": "bfc5a709-6c2b-4d51-8132-5dae18373179",
+      "name": "웨스틴조선서울 웨딩",
+      "address": "서울특별시 중구 소공로 106",
+      "phone": "02-771-0500",
+      "website": "https://www.marriott.com/en-us/hotels/selwi-the-westin-josun-seoul/events/",
+      "official": [
+        "https://www.marriott.com/en-us/hotels/selwi-the-westin-josun-seoul/events/",
+        "https://www.marriott.com/en-us/hotels/selwi-the-westin-josun-seoul/weddings/"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "a1599bd2-a866-42b5-af5b-2e484c2a2a96",
+      "name": "더블트리 바이 힐튼 서울 판교",
+      "address": "경기 성남시 분당구 백현로 26",
+      "phone": "031-678-5500",
+      "website": "https://www.hilton.com/ko/hotels/selsedi-doubletree-seoul-pangyo/events/weddings/",
+      "official": [
+        "https://www.hilton.com/ko/hotels/selsedi-doubletree-seoul-pangyo/events/weddings/",
+        "https://www.hilton.com/en/hotels/selsedi-doubletree-seoul-pangyo/events/weddings/"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "41c6c3e8-0713-4396-964b-1a0ad984b4a0",
+      "name": "코트야드 메리어트 서울 명동 웨딩",
+      "address": "서울특별시 중구 남대문로 9",
+      "phone": "02-2211-8115",
+      "website": "https://www.marriott.com/en-us/hotels/selsn-courtyard-seoul-myeongdong/weddings/",
+      "official": [
+        "https://www.marriott.com/en-us/hotels/selsn-courtyard-seoul-myeongdong/weddings/",
+        "https://www.marriott.com/offers/2026-wedding-OFF-132809/selsn-courtyard-seoul-myeongdong"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "808a9672-908e-4767-8a41-d7fd7ebfa076",
+      "name": "파크하얏트서울 웨딩",
+      "address": "서울특별시 강남구 테헤란로 606",
+      "phone": "02-2016-1234",
+      "website": "https://www.hyatt.com/park-hyatt/ko-KR/selph-park-hyatt-seoul/weddings",
+      "official": [
+        "https://www.hyatt.com/park-hyatt/ko-KR/selph-park-hyatt-seoul/weddings"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "e0956e87-f0e0-44fc-8f9a-2c04b7fcd4e9",
+      "name": "조선 팰리스 서울 강남",
+      "address": "서울특별시 강남구 테헤란로 231",
+      "phone": "02-727-7200",
+      "website": "https://jpg.josunhotel.com/meeting/wedding.do",
+      "official": [
+        "https://jpg.josunhotel.com/meeting/wedding.do"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "5ce72def-171a-4469-89a5-00b8a92f1130",
+      "name": "라한셀렉트 경주 웨딩",
+      "address": "경상북도 경주시 보문로 338",
+      "phone": "054-779-7303",
+      "website": "https://lahanhotels.com/gyeongju/ko/wedding.do",
+      "official": [
+        "https://lahanhotels.com/gyeongju/ko/wedding.do",
+        "https://lahanhotels.com/gyeongju/ko/weddingHalls.do",
+        "https://www.lahanhotels.com/gyeongju/ko/wedding/promotions.do"
+      ],
+      "rooms": [
+        {
+          "room_name": "다이너스티홀",
+          "source_url": "https://lahanhotels.com/gyeongju/ko/weddingHalls.do",
+          "floor": "지하 2층",
+          "capacity_min": 250,
+          "capacity_max": 500
+        },
+        {
+          "room_name": "컨벤션홀",
+          "source_url": "https://lahanhotels.com/gyeongju/ko/weddingHalls.do",
+          "floor": "지하 1층",
+          "capacity_min": 400,
+          "capacity_max": 1000
+        },
+        {
+          "room_name": "컨벤션C홀",
+          "source_url": "https://lahanhotels.com/gyeongju/ko/weddingHalls.do",
+          "floor": "지하 1층",
+          "capacity_min": 200,
+          "capacity_max": 400
+        },
+        {
+          "room_name": "아제나&리겔홀",
+          "source_url": "https://lahanhotels.com/gyeongju/ko/weddingHalls.do",
+          "floor": "2층",
+          "capacity_min": 50,
+          "capacity_max": 80
+        },
+        {
+          "room_name": "루프 가든",
+          "source_url": "https://lahanhotels.com/gyeongju/ko/weddingHalls.do",
+          "floor": "야외",
+          "capacity_min": 150,
+          "capacity_max": 300
+        }
+      ]
+    },
+    {
+      "id": "e0c2f205-83ae-4f21-8b35-620f6f8884c1",
+      "name": "베어트리파크 웨딩",
+      "address": "세종특별자치시 전동면 신송로 217",
+      "phone": "044-863-5566",
+      "website": "https://beartreepark.com/wedding",
+      "official": [
+        "https://beartreepark.com/wedding"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "1a991ee9-32ee-4860-8999-0af95076c538",
+      "name": "aT포레웨딩홀",
+      "address": "서울특별시 서초구 강남대로 27",
+      "phone": "02-6300-2300~2",
+      "website": "https://atforet.co.kr/",
+      "official": [
+        "https://atforet.co.kr/",
+        "https://atforet.co.kr/guide/price/"
+      ],
+      "rooms": []
+    }
+  ]
+}
