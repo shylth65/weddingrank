@@ -1,0 +1,112 @@
+{
+  "schema_version": "weddingrank-manual-official-directory-promotion-v2",
+  "audited_on": "2026-10-12",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "policy": {
+    "venue_directory_only": true,
+    "review_or_external_rating_changes": false,
+    "pickrank_outbound_sync": false,
+    "keep_existing_prices_and_room_originals": true,
+    "government_public_facility_sources_permitted_only_as_explicitly_identified": true
+  },
+  "venues": [
+    {
+      "id": "7b234b34-7133-4a31-a71c-9c851d1a54cd",
+      "name": "에이본 컨벤션",
+      "address": "전북특별자치도 군산시 해망로 10",
+      "phone": "063-469-9399",
+      "website": "https://www.avonhotel.co.kr/meetings-banquet",
+      "official": [
+        "https://www.avonhotel.co.kr/meetings-banquet",
+        "https://www.avonhotel.co.kr/%EC%9B%A8%EB%94%A9"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "7393fcb1-eac3-4749-b347-b1940cba273a",
+      "name": "코모도호텔 경주 웨딩",
+      "address": "경상북도 경주시 보문로 422",
+      "phone": "054-740-8100",
+      "website": "https://www.commodorehotel.co.kr/",
+      "official": [
+        "https://www.commodorehotel.co.kr/html/04_banquet/02.php"
+      ],
+      "updated_website": "https://www.commodorehotel.co.kr/html/04_banquet/02.php",
+      "updated_phone": "054-740-8555",
+      "rooms": [
+        {
+          "room_name": "야외정원",
+          "source_url": "https://www.commodorehotel.co.kr/html/04_banquet/02.php",
+          "floor": null,
+          "capacity_min": null,
+          "capacity_max": null
+        },
+        {
+          "room_name": "반월성",
+          "source_url": "https://www.commodorehotel.co.kr/html/04_banquet/02.php",
+          "floor": null,
+          "capacity_min": null,
+          "capacity_max": null
+        },
+        {
+          "room_name": "월지",
+          "source_url": "https://www.commodorehotel.co.kr/html/04_banquet/02.php",
+          "floor": null,
+          "capacity_min": null,
+          "capacity_max": null
+        },
+        {
+          "room_name": "임해전",
+          "source_url": "https://www.commodorehotel.co.kr/html/04_banquet/02.php",
+          "floor": null,
+          "capacity_min": null,
+          "capacity_max": null
+        }
+      ]
+    },
+    {
+      "id": "f4ebf3c1-6fb8-4a61-9b0f-26d76ee6ee83",
+      "name": "히든베이호텔 웨딩",
+      "address": "전라남도 여수시 신월로 496-25",
+      "phone": "061-680-3000",
+      "website": "https://www.hiddenbay.co.kr/",
+      "official": [
+        "https://www.hiddenbay.co.kr/newpage.php?action=page&page=wedding01",
+        "https://www.hiddenbay.co.kr/"
+      ],
+      "updated_website": "https://www.hiddenbay.co.kr/newpage.php?action=page&page=wedding01",
+      "updated_phone": "061-680-3012",
+      "rooms": []
+    },
+    {
+      "id": "9c38e160-fdc9-4a98-af3d-9ee64192209b",
+      "name": "호텔더베이스 웨딩홀",
+      "address": "충청북도 충주시 호암대로 8",
+      "phone": "043-848-9900",
+      "website": "https://www.hotelthebase.com/",
+      "official": [
+        "https://www.hotelthebase.com/"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "50a85808-a68e-4ab6-b82b-f5cd58379f53",
+      "name": "디오션호텔 웨딩",
+      "address": "전라남도 여수시 소호로 295",
+      "phone": "1588-0377",
+      "website": "https://www.theoceanresort.co.kr/",
+      "official": [
+        "https://www.theoceanresort.co.kr/"
+      ],
+      "authoritative_room_source_domains": [
+        "yeosu.go.kr"
+      ],
+      "government_sources": [
+        "https://www.yeosu.go.kr/tour/lodge_food/lodge/hotel?idx=2390&mode=view",
+        "https://www.yeosu.go.kr/mice/meeting/facility_info/ocean"
+      ],
+      "rooms": []
+    }
+  ]
+}
