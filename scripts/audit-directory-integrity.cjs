@@ -30,6 +30,16 @@ function duplicates(rows,keyFn){
 function mainAudit(halls,rooms,prices,sources,analyses,ratings){
   const pub=halls.filter(h=>h.is_public===true), operating=pub.filter(h=>h.operation_status==='운영');
   const hallById=new Map(halls.map(h=>[String(h.hall_id),h]));
+  const verifiedPhoneTargets=[
+    {hall_id:'97c52cd9-1b30-48c2-8684-7b4cfd1405d3',expected_phone:'02-793-2900',name:'로얄파크컨벤션'},
+    {hall_id:'73bc8e0f-a1c0-4bf3-abfc-47409872487e',expected_phone:'02-2662-8300',name:'보타닉파크웨딩'},
+    {hall_id:'ea026116-dd93-4dd9-8eff-8a4f46a1c19d',expected_phone:'02-2171-7882',name:'코리아나호텔 웨딩'}
+  ];
+  const phoneReceipts=verifiedPhoneTargets.map(t=>{
+    const h=hallById.get(t.hall_id);
+    return {hall_id:t.hall_id,name:t.name,expected_phone:t.expected_phone,
+      stored_phone:h?.phone||null,verified:h?.phone===t.expected_phone&&h?.name===t.name};
+  });
   const analysisBySource=new Map(analyses.map(a=>[String(a.source_id),a]));
   const sByHall=new Map();
   for(const s of sources){let p=String(s.hall_id);if(!sByHall.has(p))sByHall.set(p,[]);sByHall.get(p).push(s);}
@@ -80,8 +90,9 @@ function mainAudit(halls,rooms,prices,sources,analyses,ratings){
       public_with_no_price_rows:missingPrice.length,public_rating_analysis_eligibility_issues:ratingProblems.length,
       public_ratings_with_missing_exact_post_dates:ratingDateGap.length,
       held_three_plus_sources_zero_analysis:heldWithZeroAnalysis.length,
-      orphan_source_rows:danglingSources.length,orphan_analysis_rows:danglingAnalyses.length},
-    samples:{incomplete_public_profiles:missingProfile.slice(0,40),duplicate_public_names:nameDuplicates.slice(0,15),
+      orphan_source_rows:danglingSources.length,orphan_analysis_rows:danglingAnalyses.length,
+      verified_official_phone_corrections:phoneReceipts.filter(x=>x.verified).length},
+    samples:{verified_official_phone_corrections:phoneReceipts,incomplete_public_profiles:missingProfile.slice(0,40),duplicate_public_names:nameDuplicates.slice(0,15),
       same_address_public_venues:addressDuplicates.slice(0,15),public_without_rooms:missingRoom.slice(0,30),
       public_without_price_rows:missingPrice.slice(0,25),
       public_rating_analysis_problems:ratingProblems.slice(0,30),
