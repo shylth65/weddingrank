@@ -1,0 +1,61 @@
+{
+  "schema_version": "weddingrank-official-directory-completion-v1",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "verification_date": "2026-10-12",
+  "policy": {
+    "status_changes": false,
+    "rating_changes": false,
+    "review_changes": false,
+    "room_changes": false,
+    "all_changes_required_official_source": true
+  },
+  "venues": [
+    {
+      "hall_id": "3ddd003d-57a5-47fa-96c7-2dbf1a877166",
+      "name": "규수당 문래점",
+      "expected": {
+        "road_address": null,
+        "phone": null,
+        "website": "https://weddingrank.kr",
+        "is_public": true,
+        "operation_status": "운영"
+      },
+      "updates": {
+        "road_address": "서울특별시 영등포구 문래로 164 SK리더스뷰 2층",
+        "phone": "02-332-9000",
+        "website": "https://mm.kyusoodang.co.kr/"
+      },
+      "sources": [
+        {
+          "source_url": "https://mm.kyusoodang.co.kr/guide/wedding/",
+          "evidence": "Official website footer: Seoul Yeongdeungpo-gu Mullae-ro 164, SK Leaders View 2F; Tel 02-332-9000; Kaitas only venue"
+        }
+      ]
+    },
+    {
+      "hall_id": "6010f9a6-0bc2-4f00-8038-610e0a2ce866",
+      "name": "소노캄 거제",
+      "expected": {
+        "road_address": "경남 거제시 일운면 거제대로 2660",
+        "phone": null,
+        "website": "https://mice.sonohotelsresorts.com/daemyung.front.saupjang.geoje.facility_wedding.ds/dmparse.dm?menuNo=02",
+        "is_public": true,
+        "operation_status": "운영"
+      },
+      "updates": {
+        "phone": "055-733-7372"
+      },
+      "sources": [
+        {
+          "source_url": "https://sonolc.sonohotelsresorts.com/daemyung.front.saupjang.geoje.facility_wedding.ds/dmparse.dm?menuNo=02",
+          "evidence": "Official Sono wedding hall page: wedding booking and banquet office 055.733.7372; Grand Ballroom wedding hall"
+        }
+      ]
+    }
+  ],
+  "held": {
+    "other_unverified_phone_or_nonofficial_venue_links": "No changes",
+    "new_public_rating": "Never"
+  }
+}
