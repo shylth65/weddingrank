@@ -38,7 +38,7 @@ function mainAudit(halls,rooms,prices,sources,analyses,ratings){
   const rByHall=new Map();
   for(const r of ratings)rByHall.set(String(r.hall_id),r);
   const missingProfile=pub.filter(h=>h.operation_status!=='운영'||!tidy(h.name)||!tidy(h.road_address)||!tidy(h.phone)||!tidy(h.website)||/weddingrank\.kr|pickrank\.kr/.test(tidy(h.website))).map(h=>({
-    id:h.hall_id,name:h.name,operation_status:h.operation_status,
+    id:h.hall_id,name:h.name,road_address:h.road_address,existing_phone:h.phone,existing_website:h.website,operation_status:h.operation_status,
     missing:[!tidy(h.road_address)?'address':null,!tidy(h.phone)?'phone':null,!tidy(h.website)?'website':null,
       /weddingrank\.kr|pickrank\.kr/.test(tidy(h.website))?'placeholder_website':null,
       h.operation_status!=='운영'?'not_operating':null].filter(Boolean)
