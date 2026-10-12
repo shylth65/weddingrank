@@ -16,7 +16,8 @@ async function main(){
 const [halls,sources]=await Promise.all([getAll('wedding_halls','hall_id,name,operation_status'),getAll('wedding_review_sources','source_url')]);
 const known=new Set(sources.map(s=>String(s.source_url||'').replace(/\/$/,'')));
 const hallNames=new Map();for(const h of halls.filter(h=>h.operation_status==='운영'))for(const n of aliases(h.name)){const a=hallNames.get(n)||[];a.push(h);hallNames.set(n,a)}
-const seeds=new Set(['/','/reviews','/halls']);
+// The generic /reviews path returns HTTP 404; discover individual review links from live pages instead.
+const seeds=new Set(['/','/halls']);
 for(const s of sources){try{const x=new URL(s.source_url);if(x.hostname==='jinzzawedding.com'&&allowed(x.pathname))seeds.add(x.pathname)}catch{}}
 const seedUrls=[...seeds].slice(0,350).map(p=>root+p);
 const candidates=new Set(),errors=[];let pages=0;
