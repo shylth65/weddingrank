@@ -1,0 +1,79 @@
+{
+  "verified_at_kst": "2026-10-13",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "policy": {
+    "directory_publication": "official operation, address/phone, and duplicate checks",
+    "external_rating_publication": "3 independent original review URLs with verified analysis and raw-score evidence",
+    "ratings_mutated": false,
+    "rating_date_preserved": true
+  },
+  "before": {
+    "public_operating_venues": 112,
+    "public_external_ratings": 77,
+    "review_sources": 314,
+    "review_analyses": 251
+  },
+  "after": {
+    "public_operating_venues": 120,
+    "public_external_ratings": 77,
+    "review_sources": 314,
+    "review_analyses": 251
+  },
+  "published_directory": [
+    {
+      "hall_id": "1f0f630d-3bfa-4d42-a1a9-648ce08d99c9",
+      "name": "세인트메리스",
+      "source_url": "https://www.saintmaries.co.kr/"
+    },
+    {
+      "hall_id": "309c2313-e94b-4773-9c16-2d3dcbb2ea27",
+      "name": "코트야드 메리어트 서울 보타닉파크 웨딩",
+      "source_url": "https://www.marriott.com/ko/hotels/selcs-courtyard-seoul-botanic-park/events/"
+    },
+    {
+      "hall_id": "886a1b65-9aba-486c-b140-b6f7e85a33a3",
+      "name": "AC 호텔 바이 메리어트 서울 강남",
+      "source_url": "https://www.marriott.com/ko/hotels/selag-ac-hotel-seoul-gangnam/events/"
+    },
+    {
+      "hall_id": "71e4b0fe-ba83-4096-8c64-f1993457e763",
+      "name": "라카이샌드파인 웨딩",
+      "source_url": "https://www.lakaisandpine.co.kr/wedding"
+    },
+    {
+      "hall_id": "040fb08d-d078-4d7b-af6b-3261ef76d657",
+      "name": "모나용평 웨딩",
+      "source_url": "https://www.yongpyong.co.kr/kor/organizationEvent/wedding.do"
+    },
+    {
+      "hall_id": "7ae6c140-f8ab-4a9d-99a4-5bed3a65c050",
+      "name": "알펜시아리조트 웨딩",
+      "source_url": "https://www.alpensia.com/convention/wedding.do",
+      "added_rooms": 2,
+      "added_official_meal_price_floor_krw": 55000
+    },
+    {
+      "hall_id": "663302b8-49f3-46fa-959a-3c6e17550565",
+      "name": "롯데리조트속초 웨딩",
+      "source_url": "https://m.lotteresort.com/main/ko/wedding-conference-list"
+    },
+    {
+      "hall_id": "8182c8a6-3219-40fd-94cc-3adbac0ab2e1",
+      "name": "머큐어 앰배서더 울산",
+      "source_url": "https://www.ambatel.com/mercure/ulsan/ko/weddingView.do?wedding_contents_seq=68",
+      "phone_corrected_to": "052-980-1144"
+    }
+  ],
+  "held": [
+    {
+      "name": "아모르웨딩컨벤션 순천",
+      "reason": "same-address duplicate record unresolved; kept nonpublic"
+    }
+  ],
+  "rating_as_of": "2026-10-03T11:16:20+09:00",
+  "notes": [
+    "No external ratings or review analyses were added.",
+    "Existing held venues remain unpublished until source-level analysis and raw-score evidence are verified."
+  ]
+}
