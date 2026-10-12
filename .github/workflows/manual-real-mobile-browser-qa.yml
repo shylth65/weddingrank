@@ -1,0 +1,35 @@
+name: WeddingRank real mobile browser display QA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/verify-live-browser.cjs'
+      - '.github/workflows/manual-real-mobile-browser-qa.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Verify installed browser availability
+        run: |
+          command -v google-chrome || command -v google-chrome-stable || command -v chromium
+      - run: npm install --no-save playwright-core@1.55.0
+      - name: Test live mobile homepage, search, detail and ranking
+        run: node scripts/verify-live-browser.cjs
+      - name: Preserve live mobile proof and any error
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: weddingrank-live-mobile-browser-proof
+          path: |
+            weddingrank-live-browser-qa.json
+            weddingrank-live-home-mobile.png
+            weddingrank-live-detail-mobile.png
+            weddingrank-live-rankings-mobile.png
+          retention-days: 21
