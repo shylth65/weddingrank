@@ -52,8 +52,8 @@
     const host=document.getElementById('homeRankPreviewBody');if(!host)return;
     const title=document.querySelector('.homeRankingPreview h2');
     const desc=document.querySelector('.homeRankingPreview .sectionDesc');
-    if(title)title.textContent='공개후기 반영 웨딩홀 TOP 10';
-    if(desc)desc.innerHTML='독립 공개후기 <b>3건 이상</b>이 분석된 예식장을 WeddingRank가 검증한 외부 종합평가 순으로 보여드립니다. 회원 직접평가와 편집지수는 외부평가 점수에 합산하지 않습니다.';
+    if(title)title.textContent='외부후기 기반 웨딩홀 상대순위 TOP 10';
+    if(desc)desc.innerHTML='공개후기 분석으로 산출한 <b>상대순위</b>입니다. 전국 모든 예식장의 품질 순위를 의미하지 않으며, 기존 평가 중 원점수·출처 적격성을 재검증하는 자료가 포함돼 있습니다. 회원 직접평가와 편집지수는 별도입니다.';
     try{
       const rows=(await loadData()).filter(x=>x.overall_score!=null)
         .sort((a,b)=>(Number(b.overall_score)-Number(a.overall_score))||(Number(b.source_count)-Number(a.source_count))||(Number(b.editorial_index??0)-Number(a.editorial_index??0))||String(a.name||'').localeCompare(String(b.name||''),'ko')).slice(0,10);
@@ -71,8 +71,8 @@
     body.innerHTML='<div class="pending big">외부평가 순위를 불러오는 중…</div>';
     const hero=document.querySelector('#rankingView .rankingHero p:last-child');
     const note=document.querySelector('#rankingView .rankingNote');
-    if(hero)hero.textContent='독립 공개후기 3건 이상을 항목별로 분석한 외부평가 순위입니다. 회원 직접평가와 편집지수는 별도로 표시합니다.';
-    if(note)note.textContent='※ 광고·공식 홍보는 제외합니다. 외부평가는 공개출처 3건 이상인 예식장만 산정하며, 회원이 WeddingRank에 직접 남긴 평점과 분리됩니다.';
+    if(hero)hero.textContent='공개후기 분석자료의 상대순위입니다. 일부 기존 자료는 출처별 원점수·표본·게시일 재감사가 진행 중이며, 전국 예식장 전체의 품질 등급이 아닙니다.';
+    if(note)note.textContent='※ 공개출처 3건이라는 수량만으로 검증이 완료되지는 않습니다. 광고·상업적 업체 소개·중복 자료는 독립후기로 인정하지 않습니다. 현재 일부 이전 산정자료는 원점수와 후기별 근거 재검증 중이며, 결과에 따라 순위에서 보류될 수 있습니다. 편집지수·자체 회원평가는 별도입니다.';
     try{
       const mode=typeof rankingMode==='string'?rankingMode:'overall',scoreKey=metricKey(mode),region=document.getElementById('rankingRegion')?.value||'';
       const rows=(await loadData()).filter(x=>(!region||x.sido===region)&&x[scoreKey]!=null)
