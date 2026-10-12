@@ -65,7 +65,7 @@ async function main(){
     now.website!==row.website||now.is_public!==row.is_public||now.operation_status!=='운영')
     throw Error('Concurrency conflict before specialist publication: '+v.id);
  }
- const published=[],existing=[],newRooms=[];
+ const published=[],existing=[],newRooms=[],blockedRooms=[];
  for(const {row,venue:v} of selected){
   // Insert specific verified rooms while venue remains private; don't modify existing originals.
   for(const rm of v.rooms||[]){
@@ -76,7 +76,13 @@ async function main(){
     source_url:rm.source_url,verified_at:patch.audited_on,
     notes:'2026-10-12 official wedding page; no invented capacity'};
    const {data,error}=await db.from('hall_rooms').insert(newRow).select('room_id,hall_id,room_name').single();
-   if(error)throw Error('Room publication halted for '+v.name+': '+error.message);
+   if(error){
+     if(error.code==='42501'||/permission denied/i.test(error.message||'')){
+       blockedRooms.push({hall_id:v.id,name:v.name,room:rm.room_name,error:'hall_rooms INSERT requires DB grant'});
+       continue;
+     }
+     throw Error('Room publication halted for '+v.name+': '+error.message);
+   }
    newRooms.push(data);
   }
   const fields={};
@@ -108,7 +114,7 @@ async function main(){
  console.log('WEDDINGRANK_PUBLIC_DIRECTORY_EXPANSION='+JSON.stringify({
    scope:'WeddingRank-only',pickrank_sync:false,public_before:beforePub,public_after:totalPublic,
    newly_published:published,already_public:existing,held,
-   new_room_rows:newRooms.length,external_ratings_before:beforeExternal,external_ratings_after:externalPublic,
+   new_room_rows:newRooms.length,room_rows_blocked_by_permission:blockedRooms,external_ratings_before:beforeExternal,external_ratings_after:externalPublic,
    rating_dates_changed:0,price_rows_added:0,review_sources_changed:0,review_analyses_changed:0
  }));
 }
