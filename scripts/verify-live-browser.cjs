@@ -31,7 +31,7 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   record('newly published venue detail live',detail.includes('디바인밸리'),detail,'디바인밸리 웨딩');
   await page.screenshot({path:'weddingrank-live-detail-mobile.png',fullPage:false});
   await page.evaluate(()=>{location.hash='#rankings'});
-  await page.waitForFunction(()=>document.querySelector('#rankingBody')?.textContent?.includes('원점수'),{timeout:25000});
+  await page.waitForFunction(()=>{const e=document.querySelector('#rankingBody');return Boolean(e?.querySelector('.rankSectionMeta')||e?.textContent?.includes('조회 오류'))},null,{timeout:30000});
   const rankings=await page.locator('#rankingBody').innerText();
   const ranks=await page.locator('#rankingBody > .rankRow').count();
   record('source-traced ranking section visible',rankings.includes('원점수 추적 참고 비교'),rankings.slice(0,60),'원점수 추적 참고 비교');
