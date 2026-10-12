@@ -1,0 +1,118 @@
+{
+  "schema_version": "weddingrank-public-directory-expansion-audit-v2",
+  "verified_on": "2026-10-12",
+  "system_of_record": "WeddingRank",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "workflow_runs": [
+    {
+      "run_id": 38250030096,
+      "url": "https://github.com/shylth65/weddingrank/actions/runs/38250030096",
+      "outcome": "success",
+      "directory_before": 88,
+      "directory_after": 95,
+      "venue_added": 7,
+      "official_room_rows_later_added": 6
+    },
+    {
+      "run_id": 38250354802,
+      "url": "https://github.com/shylth65/weddingrank/actions/runs/38250354802",
+      "outcome": "success",
+      "directory_before": 95,
+      "directory_after": 95,
+      "additional_official_room_rows": 4,
+      "earlier_room_rows_total": 10
+    },
+    {
+      "run_id": 38251482483,
+      "url": "https://github.com/shylth65/weddingrank/actions/runs/38251482483",
+      "outcome": "success",
+      "directory_before": 95,
+      "directory_after": 100,
+      "venue_added": 5,
+      "additional_official_room_rows": 4
+    }
+  ],
+  "new_directory_venues": [
+    {
+      "name": "더컨벤션 영등포",
+      "official_url": "https://ydp.theconvention.co.kr/"
+    },
+    {
+      "name": "아이벡스컨벤션",
+      "official_url": "https://www.ivexwed.co.kr/"
+    },
+    {
+      "name": "포시즌스호텔 서울 웨딩",
+      "official_url": "https://www.fourseasons.com/kr/seoul/weddings/"
+    },
+    {
+      "name": "스카이베이호텔 경포 웨딩",
+      "official_url": "https://skybay.co.kr/502"
+    },
+    {
+      "name": "씨마크호텔 웨딩",
+      "official_url": "https://www.seamarqhotel.com/wedding"
+    },
+    {
+      "name": "호텔인터불고 원주 웨딩",
+      "official_url": "https://interwonju.koweb.co.kr/contents/04_wedding/sub01.html"
+    },
+    {
+      "name": "포항라한호텔 웨딩",
+      "official_url": "https://www.lahanhotels.com/pohang/ko/weddingHalls.do"
+    },
+    {
+      "name": "에이본 컨벤션",
+      "official_url": "https://www.avonhotel.co.kr/%EC%9B%A8%EB%94%A9"
+    },
+    {
+      "name": "코모도호텔 경주 웨딩",
+      "official_url": "https://www.commodorehotel.co.kr/html/04_banquet/02.php"
+    },
+    {
+      "name": "히든베이호텔 웨딩",
+      "official_url": "https://www.hiddenbay.co.kr/newpage.php?action=page&page=wedding01"
+    },
+    {
+      "name": "호텔더베이스 웨딩홀",
+      "official_url": "https://www.hotelthebase.com/"
+    },
+    {
+      "name": "디오션호텔 웨딩",
+      "official_url": "https://www.yeosu.go.kr/tour/lodge_food/lodge/hotel?idx=2390&mode=view",
+      "authority": "local government official tourism venue directory"
+    }
+  ],
+  "verified_specialist_database": {
+    "total_venue_candidates": 966,
+    "public_operating_venues_before": 88,
+    "public_operating_venues_after": 100,
+    "newly_public_venues": 12,
+    "room_rows_before": 342,
+    "room_rows_after": 356,
+    "new_official_room_rows": 14,
+    "price_rows": 284,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "public_external_ratings": 77,
+    "latest_rating_basis_utc": "2026-10-03T02:16:20.134556+00:00",
+    "incomplete_public_profiles": 29,
+    "public_without_room_rows": 14,
+    "public_without_price_rows": 24
+  },
+  "publication_integrity": {
+    "external_rating_publications": 0,
+    "external_rating_updates": 0,
+    "external_rating_dates_changed": 0,
+    "source_or_analysis_mutations": 0,
+    "member_review_publications": 0,
+    "pickrank_sync": false,
+    "original_price_rows_preserved": true,
+    "source_provenance_preserved": true,
+    "schedules_modified": false,
+    "only_verified_directory_profiles_and_official_rooms_published": true,
+    "governance": "Old independent review URL-only held cases remain unpublished until source-specific analysis and raw scores validate."
+  },
+  "operation_note": "SEO venue/area/sitemap page regeneration triggered by this audit-file push in existing scheduled generate-seo.yml; its cron and workflow are not edited."
+}
