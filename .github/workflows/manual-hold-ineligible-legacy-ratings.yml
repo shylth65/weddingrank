@@ -1,0 +1,32 @@
+name: WeddingRank manual hold ineligible public ratings
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/hold-ineligible-legacy-ratings.cjs'
+      - '.github/workflows/manual-hold-ineligible-legacy-ratings.yml'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-manual-evidence-minimum-hold
+  cancel-in-progress: false
+jobs:
+  hold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Read-only publication eligibility preflight
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/hold-ineligible-legacy-ratings.cjs
+      - name: Hold source-ineligible rating rows without touching historical score/date
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/hold-ineligible-legacy-ratings.cjs --apply
