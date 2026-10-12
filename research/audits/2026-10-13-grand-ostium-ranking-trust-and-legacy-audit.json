@@ -1,0 +1,60 @@
+{
+  "schema_version": "weddingrank-public-ratings-trust-audit-v1",
+  "audit_date": "2026-10-13",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "source_of_truth": "WeddingRank Supabase mozmxkmaynhxqwzovzhi",
+  "trigger": "User challenged screenshot of Grand Ostium position #2 with 4.62 score and 3 attributed sources",
+  "grand_ostium": {
+    "hall_id": "173a2fa7-0052-4483-b898-2a3312b65765",
+    "official_identity": "Correct: Incheon Michuhol-gu Maesohol-ro 618 (Munhak Stadium)",
+    "legacy_score": 4.62,
+    "legacy_rank": 2,
+    "methodology": "pickrank_canonical_sync_v2_20260919",
+    "independent_original_numeric_scores_3_of_3_verified": false,
+    "problems": [
+      "iwedding /enterprise/info was classified as independent review though it is a commercial venue page",
+      "weddingbook actual narrative says the author had not tasted the food, but a numerical food metric 4.40 was stored",
+      "first-person Tistory 2025-02-15 buffet tasting does not contain a 5-point numeric original rating",
+      "3 individual source URLs plus numeric analysis rows do not prove source-level original numeric scores"
+    ],
+    "correction": {
+      "workflow_url": "https://github.com/shylth65/weddingrank/actions/runs/38281609573",
+      "is_public_before": true,
+      "is_public_after": false,
+      "legacy_score_preserved": 4.62,
+      "legacy_rating_updated_at_preserved": "2026-09-19T02:33:12.675222+00:00",
+      "venue_directory_retained": true,
+      "source_rows_deleted": 0,
+      "analysis_rows_deleted": 0,
+      "iwedding_listing_reclassified_nonpublic": true
+    },
+    "republish_guard_commit": "600c444f681730926e8d69a1b203c2f538b81a62",
+    "guard_workflow_url": "https://github.com/shylth65/weddingrank/actions/runs/38281790034"
+  },
+  "public_rating_audit_after_fix": {
+    "total": 76,
+    "legacy_pickrank_canonical_sync_v2": 61,
+    "external_v1": 15,
+    "venues_with_active_iwedding_listing_as_public_review": 30,
+    "venues_with_at_least_one_missing_source_publication_date": 59,
+    "venues_with_fewer_than_3_inline_original_score_tags": 66,
+    "venues_with_fewer_than_3_linked_analysis_rows": 0,
+    "caution": "Rows can have separate independently audited original-score batches, so lacking inline tags alone is a review flag rather than definitive proof of fabrication. WeddingBook individual reviews may be independent if individually confirmed; platform identity alone does not disqualify every review."
+  },
+  "integrity_policy": {
+    "newly_publish_only_after_three_independent_individual_origins_with_approved_per_url_analysis_raw_score_scale_sample_and_quality": true,
+    "do_not_auto_republish_held_venue": true,
+    "preserve_source_urls_and_prior_numeric_records": true,
+    "do_not_change_rating_updated_at_without_new_evidence": true,
+    "avoid_mass_withdrawal_without_individual_verification": true,
+    "pickrank_no_sync": true,
+    "scheduled_github_actions_unchanged": true
+  },
+  "frontend_changes": {
+    "ranking_note": "Convey small-sample relative nature and pending legacy-source audits",
+    "ranking_code": "ranking-external-v590.js",
+    "index_cache_bust": "20261013-trust"
+  },
+  "follow_up": "Audit other 61 legacy-imported ratings one venue at a time, beginning at top ranks; prevent duplicate/commercial listings being counted as independent sources. Do not fabricate numeric category scores from prose."
+}
