@@ -1,0 +1,65 @@
+{
+  "schema_version": "weddingrank-manual-official-directory-promotion-v2",
+  "audited_on": "2026-10-12",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "goal": {
+    "directory": 200,
+    "verified_independent_ratings": 200
+  },
+  "policy": {
+    "venue_directory_only": true,
+    "review_or_external_rating_changes": false,
+    "no_unverified_rankings": true,
+    "keep_existing_prices_and_room_originals": true
+  },
+  "venues": [
+    {
+      "id": "ab18f9c9-7b7c-42f7-bb38-40cdc8fb4108",
+      "name": "H스퀘어웨딩홀",
+      "address": "서울특별시 성동구 마조로 22-2",
+      "phone": "02-2299-9999",
+      "website": "http://www.hsquare1939.com/",
+      "official": [
+        "https://www.hsquare1939.com/official.php/home/info/2085",
+        "https://www.hsquare1939.com/official.php/home/info/2055",
+        "http://www.hsquare1939.com/"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "546b5b2c-d0f3-4013-b152-1570c9c532e6",
+      "name": "은파팰리스웨딩",
+      "address": "전북특별자치도 군산시 은파순환길 20",
+      "phone": "063-461-7000",
+      "website": "https://eunpawedding.com/",
+      "official": [
+        "https://eunpawedding.com/"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "764bb604-822b-4958-bb36-df1ab956bc36",
+      "name": "청풍리조트 웨딩",
+      "address": "충청북도 제천시 청풍면 청풍호로 1798",
+      "phone": "043-640-7000",
+      "website": "https://www.cheongpungresort.co.kr/web/kor/asp/banquet/wedding_guide.asp",
+      "official": [
+        "https://www.cheongpungresort.co.kr/web/kor/asp/banquet/wedding_guide.asp",
+        "https://www.cheongpungresort.co.kr/view/viewLink.do?page=homepage%2FKOR%2Fbanquet%2Fwedding_guide"
+      ],
+      "rooms": []
+    },
+    {
+      "id": "ae832852-9731-4d81-b8e8-a2912941edfa",
+      "name": "서울대학교 교수회관 웨딩",
+      "address": "서울특별시 관악구 관악로 1 서울대학교 65동 교수회관",
+      "phone": "02-3285-2115",
+      "website": "https://www.snufacultyclub.com/",
+      "official": [
+        "https://www.snufacultyclub.com/"
+      ],
+      "rooms": []
+    }
+  ]
+}
