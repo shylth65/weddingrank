@@ -32,7 +32,7 @@ async function main(){
   const reasons=[];
   if(!row)reasons.push('missing_hall');
   else{
-   if(row.name!==v.name||row.road_address!==v.address||row.website!==v.website)reasons.push('identity_or_website_changed');
+   if(row.name!==v.name||row.road_address!==v.address||(row.website!==v.website&&row.website!==v.updated_website))reasons.push('identity_or_website_changed');
    if(row.phone!==v.phone&&row.phone!==v.updated_phone)reasons.push('phone_changed');
    if(row.operation_status!=='운영')reasons.push('not_confirmed_operating');
    if(!v.official?.length||v.official.some(s=>!/^https:\/\//.test(s)))reasons.push('official_url_absent');
