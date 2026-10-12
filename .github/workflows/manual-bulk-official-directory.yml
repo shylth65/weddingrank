@@ -1,0 +1,34 @@
+name: WeddingRank official evidence bulk directory publish
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/bulk-publish-official-wedding-directory.cjs'
+      - '.github/workflows/manual-bulk-official-directory.yml'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-bulk-publish-evidence-only
+  cancel-in-progress: false
+jobs:
+  bulk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Bulk official-source verification and guarded WeddingRank-only DB publish
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/bulk-publish-official-wedding-directory.cjs
+      - name: Save evidence, approvals and all held reasons
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: weddingrank-bulk-directory-evidence-20261013
+          path: weddingrank-bulk-official-publish-result.json
+          retention-days: 21
