@@ -8,6 +8,11 @@ if(verifiedPatch.schema_version!=='weddingrank-verified-patch-v1')throw new Erro
 const protectedHallIds=new Set(verifiedPatch.venues
   .filter(v=>v.external_rating_action==='unpublish_preserve_date')
   .map(v=>String(v.hall_id)));
+const grandOstiumHold=JSON.parse(readFileSync('research/patches/2026-10-13-grand-ostium-rating-evidence-hold.json','utf8'));
+if(grandOstiumHold.schema_version!=='weddingrank-source-rating-correction-v1'||
+   grandOstiumHold.decision?.ban_republication_without_full_audit!==true||
+   grandOstiumHold.scope!=='WeddingRank-only')throw Error('Grand Ostium evidence hold guard missing');
+protectedHallIds.add(String(grandOstiumHold.venue.hall_id));
 
 const verifiedRawBatches=[
   'research/audits/2026-10-03-held-review-analysis-batch-1.json',
