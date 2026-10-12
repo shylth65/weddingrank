@@ -1,0 +1,63 @@
+{
+  "schema_version": "weddingrank-source-rating-correction-v1",
+  "audit_date": "2026-10-13",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "venue": {
+    "hall_id": "173a2fa7-0052-4483-b898-2a3312b65765",
+    "name": "그랜드오스티엄",
+    "address": "인천광역시 미추홀구 매소홀로 618",
+    "official_url": "https://www.grandostium.co.kr/",
+    "identity_verified": true
+  },
+  "rating_before": {
+    "overall_score": 4.62,
+    "source_count": 3,
+    "is_public": true,
+    "updated_at": "2026-09-19T02:33:12.675222+00:00",
+    "methodology_version": "pickrank_canonical_sync_v2_20260919"
+  },
+  "findings": [
+    {
+      "source_id": "15866f9a-d3d4-43f8-9c32-30df0828b419",
+      "domain": "soilt-garden.tistory.com",
+      "evidence": "Individual 2025-02-15 family wedding buffet tasting; individual numeric 5-point score absent in original; qualitative independent firsthand observation is retained.",
+      "count_as_original_numeric_review": false,
+      "original_url": "https://soilt-garden.tistory.com/"
+    },
+    {
+      "source_id": "a803dee5-c57c-4242-8df6-b53f06a735d2",
+      "source_url": "https://www.iwedding.co.kr/enterprise/info/1440399467",
+      "domain": "iwedding.co.kr",
+      "evidence": "Commercial venue listing /enterprise/info/ rather than standalone author-attributable original experience, lacking publication date and original numeric score.",
+      "source_action": "reclassify_other_unpublish_source",
+      "count_as_independent_individual_review": false
+    },
+    {
+      "source_id": "a744f3b0-c016-4f4b-a755-e75ca0d7205a",
+      "source_url": "https://www.weddingbook.com/review/8fafce16-db58-11ed-87f6-0a8156bf2d4c",
+      "domain": "weddingbook.com",
+      "evidence": "2023-04-15 individual narrative: author explicitly says food not yet tasted but stored analysis has food_score=4.40; no source-level original numeric score/scale; keep narrative for manual reanalysis.",
+      "count_as_original_numeric_review": false
+    }
+  ],
+  "decision": {
+    "rating_action": "unpublish_preserve_date_and_score_for_audit",
+    "venue_directory_action": "preserve",
+    "original_analysis_action": "preserve",
+    "commercial_listing_source_action": "reclassify_not_independent",
+    "existing_rating_score_and_date": "preserve_without_refresh",
+    "ranking_visibility": "exclude_until_independently_reverified",
+    "ban_republication_without_full_audit": true
+  },
+  "reverification_threshold": "3+ distinct externally hosted firsthand individual original URLs each with audited source-quality, verified analysis and original numeric score/denominator/sample evidence, genuine posting date or explicit uncertainty; exclude advertisements and listings",
+  "db_scope": [
+    "external_wedding_ratings.is_public for exact hall only",
+    "wedding_review_sources.source_type/is_published for exact iwedding source only"
+  ],
+  "external_sources": [
+    "https://www.grandostium.co.kr/",
+    "https://www.weddingbook.com/review/8fafce16-db58-11ed-87f6-0a8156bf2d4c",
+    "https://www.iwedding.co.kr/enterprise/info/1440399467"
+  ]
+}
