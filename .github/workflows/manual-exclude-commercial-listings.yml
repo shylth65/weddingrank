@@ -1,0 +1,32 @@
+name: WeddingRank manual commercial listing source cleanup
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/exclude-commercial-wedding-listings.cjs'
+      - '.github/workflows/manual-exclude-commercial-listings.yml'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-manual-commercial-listing-cleanup
+  cancel-in-progress: false
+jobs:
+  audit-and-apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Source classification read-only preflight
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/exclude-commercial-wedding-listings.cjs
+      - name: Reclassify only individually unqualified business listing URLs
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/exclude-commercial-wedding-listings.cjs --apply
