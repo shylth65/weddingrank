@@ -400,3 +400,9 @@ parseAuthHash();
 restoreSession().then(()=>{if(recoveryFromLink&&currentUser)openSiteAuth("my")});
 load();
 
+
+
+window.addEventListener('weddingrank:top30-refreshed',()=>{
+  const status=window.WeddingRankTop30Status;
+  if(status&&$("#ratedCount"))$("#ratedCount").textContent=status.shown+"곳";
+});
