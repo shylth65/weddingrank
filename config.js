@@ -34,7 +34,7 @@ function wrMaybeLoadDetailEnhancements() {
 
 window.addEventListener("DOMContentLoaded", () => {
   wrLoadStyleOnce("wr-visual-restore", "visual-restore-v569.css?v=5.69");
-  wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=20261013-top30layout");
+  wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=20261013-exclusive-preview");
   wrMaybeLoadDetailEnhancements();
   window.addEventListener("hashchange", wrMaybeLoadDetailEnhancements);
 
