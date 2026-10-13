@@ -1,0 +1,31 @@
+name: WeddingRank TOP30 verified competition sync
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/audits/**'
+      - 'research/patches/2026-09-27-independent-source-correction.json'
+      - 'scripts/sync-verified-top30.cjs'
+      - '.github/workflows/top30-verified-competition.yml'
+  schedule:
+    - cron: '7,37 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-top30-verified-competition-sync
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Recalculate only source-traced TOP30 with protected original evidence
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/sync-verified-top30.cjs
