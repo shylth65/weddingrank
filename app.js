@@ -55,12 +55,12 @@ async function load(){
     const [hallRows,priceRows,ratingRows]=await Promise.all([
       api("wedding_halls?select=hall_id,name,sido,sigungu,road_address,phone,website,venue_type&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&order=name.asc&limit=500"),
       api("wedding_prices?select=hall_id,effective_date,rental_fee,meal_price_per_person&order=effective_date.desc&limit=1000"),
-      api("external_wedding_ratings?select=hall_id,source_count,overall_score,methodology_version&is_public=eq.true&source_count=gte.3&limit=1000")
+      api("weddingrank_top30_competition?select=hall_id,rank_position&order=rank_position.asc&limit=1000")
     ]);
     halls=hallRows;
     buildPriceMap(priceRows);
     if($("#publicCount")) $("#publicCount").textContent=halls.length+"곳";
-    if($("#ratedCount")) $("#ratedCount").textContent=ratingRows.filter(r=>halls.some(h=>h.hall_id===r.hall_id)&&window.WeddingRankEvidence?.isScoreTraced?.(r)).length+"곳";
+    if($("#ratedCount")) $("#ratedCount").textContent=Math.min(30,ratingRows.filter(r=>halls.some(h=>h.hall_id===r.hall_id)).length)+"곳";
     if($("#status")) $("#status").textContent=`공개 예식장 ${halls.length}곳 · 가격정보 ${priceByHall.size}곳`;
     setupRegions();
     render(true);
@@ -147,43 +147,46 @@ async function showDetail(id){
       api(`wedding_prices?select=effective_date,rental_fee,meal_price_per_person,minimum_guarantee,notes&hall_id=eq.${encodeURIComponent(id)}&order=effective_date.desc`),
       api(`reviews?select=visit_role,food_score,parking_score,access_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,review_text,created_at&hall_id=eq.${encodeURIComponent(id)}&order=created_at.desc&limit=100`),
       api(`external_wedding_ratings?select=source_count,methodology_version,food_score,access_score,parking_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,summary,updated_at&hall_id=eq.${encodeURIComponent(id)}&is_public=eq.true&limit=1`),
-      api(`wedding_review_sources?select=source_url,source_name,published_date,summary,quality_score&hall_id=eq.${encodeURIComponent(id)}&is_published=eq.true&source_type=eq.public_review&quality_score=gte.70&order=quality_score.desc&limit=30`)
+      api(`wedding_review_sources?select=source_url,source_name,published_date,summary,quality_score&hall_id=eq.${encodeURIComponent(id)}&is_published=eq.true&source_type=eq.public_review&quality_score=gte.70&order=quality_score.desc&limit=30`),
+      api(`weddingrank_top30_competition?select=hall_id,overall_score,source_count,rank_position,evidence_sources,evidence_publication_dates_complete,score_basis_at&hall_id=eq.${encodeURIComponent(id)}&limit=1`)
     ]);
     const rooms=results[0].status==="fulfilled"?results[0].value:[];
     const prices=results[1].status==="fulfilled"?results[1].value:[];
     const reviews=results[2].status==="fulfilled"?results[2].value:[];
     const externalRating=results[3].status==="fulfilled"?results[3].value[0]:null;
     const externalSources=results[4].status==="fulfilled"?results[4].value:[];
+    const approvedTop30=results[5].status==="fulfilled"?results[5].value[0]:null;
     $("#rooms").innerHTML=rooms.length?rooms.map(r=>`<div class="info-row"><b>${esc(r.room_name)}</b><span>${esc(r.floor||"")} ${r.capacity_min?`· 최소 ${r.capacity_min}명`:""} ${r.capacity_max?`· 최대 ${r.capacity_max}명`:""}</span></div>`).join(""):'<div class="pending">홀 정보 확인중</div>';
     $("#prices").innerHTML=prices.length?prices.map(p=>`<div class="pricebox"><div><small>기준일</small><b>${esc(p.effective_date||"-")}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
-    renderExternalReviews(id,externalRating,externalSources);renderReviews(reviews);renderAuth();setupConsultForm();
+    renderExternalReviews(id,approvedTop30,externalSources);renderReviews(reviews);renderAuth();setupConsultForm();
   }catch(e){console.error(e)}
 }
 
 
-function renderExternalReviews(hallId,rating,sources){
+function renderExternalReviews(hallId,ranked,sources){
   const box=$("#externalReviewSummary");if(!box)return;
-  if(!rating){
-    box.innerHTML='<div class="externalReviewBox"><b>외부후기 원점수 검증 준비중</b><p class="externalReviewNote">독립후기의 원문·원점수·척도·실제 표본을 확인한 후 비교자료를 공개합니다.</p></div>';
+  if(!ranked){
+    box.innerHTML='<div class="externalReviewBox"><b>TOP 30 진입 검증 대기</b><p class="externalReviewNote">원문 후기 3건 이상과 원점수·척도·실제 표본·분석 증빙을 확인하면 순위경쟁에 참여합니다. 기존 미검증 점수는 표시하지 않습니다.</p></div>';
     return;
   }
-  const audit=window.WeddingRankEvidence;
-  const record=audit?.records?.[hallId];
-  if(!audit?.isScoreTraced?.(rating)||!record){
-    box.innerHTML='<div class="externalReviewBox"><b>기존 외부평가 근거 재검증 중</b><p class="externalReviewNote">기존 점수는 감사용 원본으로 보존했지만 독립후기별 원점수·출처 적격성 확인 전에는 화면에 표시하지 않습니다. 업체 소개와 광고는 독립후기로 계산하지 않습니다.</p></div>';
-    return;
+  const originals=Array.isArray(ranked.evidence_sources)?ranked.evidence_sources:[];
+  if(originals.length<3||originals.length!==Number(ranked.source_count)){
+    box.innerHTML='<div class="externalReviewBox"><b>외부후기 원점수 대조 중</b><p class="externalReviewNote">근거자료가 불완전하여 순위 숫자를 잠시 표시하지 않습니다.</p></div>';return;
   }
-  const linked=record.sources.map(s=>({audit:s,source:sources.find(item=>item.source_url===s.url)}));
-  if(linked.some(x=>!x.source)){
-    box.innerHTML='<div class="externalReviewBox"><b>원문 출처 재확인 중</b><p class="externalReviewNote">감사자료와 현재 공개후기 URL이 일치하지 않아 이전 평가 점수는 표시하지 않습니다.</p></div>';
-    return;
-  }
-  box.innerHTML='<section class="externalReviewBox"><div class="externalReviewTop"><b>원점수 추적 참고 비교</b><span class="externalReviewScore">'+Number(rating.overall_score).toFixed(2)+' / 5</span></div>'+
-    '<p class="externalReviewNote">독립 원문 3건의 원점수·5점 척도·각 1명 표본을 대조한 참고 평균입니다. 정확한 원문 게시일과 음식·주차 등 항목별 숫자 근거는 별도 검증 중이며, 전국 전체 확정 순위가 아닙니다.</p>'+
+  const trustworthy=originals.every(s=>s.url&&Number(s.raw_scale)>0&&Number(s.sample_count)>=1&&
+    Number(s.raw_score)>=0&&Number(s.raw_score)<=Number(s.raw_scale));
+  if(!trustworthy){box.innerHTML='<div class="externalReviewBox">후기 원점수 자료 검증 중</div>';return;}
+  const linked=originals.map(s=>({audit:s,source:sources.find(item=>item.source_url===s.url)}));
+  box.innerHTML='<section class="externalReviewBox"><div class="externalReviewTop"><b>TOP 30 외부후기 종합 비교 · '+Number(ranked.rank_position)+'위</b>'+
+    '<span class="externalReviewScore">'+Number(ranked.overall_score).toFixed(2)+' / 5</span></div>'+
+    '<p class="externalReviewNote">원점수·척도·실제 표본을 대조한 독립후기 '+Number(ranked.source_count)+'건 기반입니다. 승인 자료가 추가되면 종합점수가 다시 계산되고 30위 이내 진입과 순위 변동이 발생합니다. '+
+    (ranked.evidence_publication_dates_complete?'후기 게시일 확인.':'정확한 원문 게시일 일자는 추가 확인 중.')+
+    ' 항목별 수치는 검증 전까지 공개하지 않습니다.</p>'+
     '<div class="externalSources">'+linked.map(x=>
-      '<a class="externalSource" href="'+esc(x.audit.url)+'" target="_blank" rel="noopener noreferrer"><b>'+esc(x.source.source_name||"원문 후기")+'</b> · 원문 확인'+
-      '<small>원점수 '+x.audit.score+'/'+x.audit.scale+' · 표본 '+x.audit.sample+'명 · 상담/방문 '+esc(x.audit.experience_period||"시기 미확인")+' · 원문 게시일 일자 추가확인 중</small></a>'
-    ).join('')+'</div><p class="externalDisclosure">위 점수는 각 출처의 종합 원점수만 사용했습니다. 입증되지 않은 세부항목 점수를 생성하거나, 자체 회원평가와 합산하지 않습니다.</p></section>';
+      '<a class="externalSource" href="'+esc(x.audit.url)+'" target="_blank" rel="noopener noreferrer"><b>'+esc(x.source?.source_name||"외부 원문 후기")+'</b> · 원문 확인'+
+      '<small>원점수 '+Number(x.audit.raw_score)+'/'+Number(x.audit.raw_scale)+' · 실제 표본 '+Number(x.audit.sample_count)+'명 · '+
+      (x.audit.published_date?'원문 게시일 '+esc(x.audit.published_date):'게시일 일자 추가확인 중')+'</small></a>'
+    ).join('')+'</div><p class="externalDisclosure">WeddingRank 자체 DB의 검증된 독립 후기 원점수만 비교하며 회원 직접평가·광고·업체 소개는 합산하지 않습니다.</p></section>';
 }
 
 function renderReviews(reviews){
