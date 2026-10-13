@@ -47,7 +47,8 @@ function start(){
   $('#search')?.addEventListener('input',()=>setTimeout(()=>applyFive(true),80),{passive:true});
   $('#sido')?.addEventListener('change',()=>setTimeout(()=>applyFive(true),80));
   [250,700,1400,2600].forEach(ms=>setTimeout(()=>applyFive(ms===250),ms));
-  loadTop10();
+  // TOP30 is owned exclusively by ranking-external-v590.js; never overwrite its live cards.
+  // Retain the legacy helper only for search/list pagination.
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
