@@ -1,0 +1,179 @@
+{
+  "schema_version": "weddingrank-directory-publication-audit-v1",
+  "verified_at": "2026-10-14T02:04:10+09:00",
+  "policy": {
+    "directory_publication": "official operating, address/contact and duplicate check",
+    "external_rating_publication": "at least 3 independent original URLs, each with analysis and raw-score evidence",
+    "member_reviews_count_as_independent": false,
+    "rating_date_rule": "preserve when no new numeric evidence",
+    "pickrank_sync": false
+  },
+  "before": {
+    "public_operating_venues": 128,
+    "public_external_ratings": 29,
+    "review_sources": 314,
+    "review_analyses": 251
+  },
+  "changes": {
+    "directory_published": [
+      {
+        "hall_id": "8d693a7c-611d-42c7-b9b8-e06e82f0f9bf",
+        "name": "휘닉스평창 웨딩",
+        "official_url": "https://phoenixhnr.co.kr/static/pyeongchang/party/wedding",
+        "verified_address": "강원특별자치도 평창군 봉평면 태기로 174",
+        "verified_phone": "033-330-6030"
+      },
+      {
+        "hall_id": "50c6b246-3b12-454b-8a3c-9f6f9beca33d",
+        "name": "파티더풀문",
+        "official_url": "https://www.partythefullmoon.com/products/wedding",
+        "verified_address": "부산광역시 기장군 기장읍 기장해안로 98 오시리아스퀘어 D101호",
+        "verified_phone": "1670-8515"
+      },
+      {
+        "hall_id": "3222b710-625a-4247-a9ce-eb5187506093",
+        "name": "대구AW호텔",
+        "official_url": "https://www.awhotel.co.kr/sub5_1.php",
+        "verified_address": "대구광역시 달서구 성서로 413",
+        "verified_phone": "053-589-6700"
+      },
+      {
+        "hall_id": "d71f5679-0a44-429d-8467-893aba0bb961",
+        "name": "JK컨벤션웨딩",
+        "official_url": "https://jkco.imweb.me/",
+        "verified_address": "경상남도 창원시 진해구 충장로 10-40",
+        "verified_phone": "055-552-7223"
+      }
+    ],
+    "rooms_added": [
+      {
+        "venue": "휘닉스평창 웨딩",
+        "room": "포레스트 홀",
+        "capacity_min": 200,
+        "capacity_max": 370,
+        "source_url": "https://phoenixhnr.co.kr/static/pyeongchang/party/wedding"
+      },
+      {
+        "venue": "파티더풀문",
+        "room": "메인홀",
+        "capacity_min": 100,
+        "capacity_max": 400,
+        "source_url": "https://www.partythefullmoon.com/products/wedding"
+      },
+      {
+        "venue": "파티더풀문",
+        "room": "소규모룸",
+        "capacity_min": 8,
+        "capacity_max": 16,
+        "source_url": "https://www.partythefullmoon.com/products/wedding"
+      },
+      {
+        "venue": "파티더풀문",
+        "room": "풀문룸",
+        "capacity_min": 20,
+        "capacity_max": 30,
+        "source_url": "https://www.partythefullmoon.com/products/wedding"
+      },
+      {
+        "venue": "파티더풀문",
+        "room": "베일홀",
+        "capacity_min": 40,
+        "capacity_max": 60,
+        "source_url": "https://www.partythefullmoon.com/products/wedding"
+      }
+    ],
+    "official_prices_added": [
+      {
+        "venue": "휘닉스평창 웨딩",
+        "room": "포레스트 홀",
+        "rental_fee_krw": 1500000,
+        "meal_price_from_krw": 45000,
+        "minimum_guarantee": 200,
+        "source_url": "https://phoenixhnr.co.kr/static/pyeongchang/party/wedding"
+      },
+      {
+        "venue": "파티더풀문",
+        "room": "메인홀",
+        "rental_fee_krw": 3900000,
+        "meal_price_from_krw": 79000,
+        "minimum_guarantee": 100,
+        "source_url": "https://www.partythefullmoon.com/products/wedding"
+      },
+      {
+        "venue": "파티더풀문",
+        "room": "소규모룸",
+        "rental_fee_krw": 400000,
+        "meal_price_from_krw": 79000,
+        "minimum_guarantee": 8,
+        "source_url": "https://www.partythefullmoon.com/products/wedding"
+      },
+      {
+        "venue": "파티더풀문",
+        "room": "풀문룸",
+        "rental_fee_krw": 800000,
+        "meal_price_from_krw": 79000,
+        "minimum_guarantee": 20,
+        "source_url": "https://www.partythefullmoon.com/products/wedding"
+      },
+      {
+        "venue": "파티더풀문",
+        "room": "베일홀",
+        "rental_fee_krw": 2500000,
+        "meal_price_from_krw": 79000,
+        "minimum_guarantee": 40,
+        "source_url": "https://www.partythefullmoon.com/products/wedding"
+      }
+    ],
+    "external_ratings_published": 0,
+    "external_rating_dates_changed": 0
+  },
+  "after": {
+    "total_halls": 966,
+    "public_operating_venues": 132,
+    "public_venues_with_price_records": 94,
+    "public_room_rows": 260,
+    "review_sources": 314,
+    "review_analyses": 251,
+    "public_external_ratings": 29,
+    "noncompliant_public_external_ratings": 0,
+    "latest_external_rating_updated_at": "2026-10-03T02:16:20.134556+00:00",
+    "duplicate_public_address_groups": 0
+  },
+  "legacy_hold": {
+    "original_flagged_count": 10,
+    "subsequently_verified_with_analyses": 8,
+    "remaining_unpublished_external_ratings": [
+      {
+        "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+        "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+        "analysis_count": 0
+      },
+      {
+        "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+        "name": "보타닉파크웨딩",
+        "analysis_count": 0
+      }
+    ]
+  },
+  "github_actions": {
+    "approved_review_aggregation": {
+      "run_id": 38329694615,
+      "url": "https://github.com/shylth65/weddingrank/actions/runs/38329694615",
+      "conclusion": "success",
+      "result": {
+        "halls_scanned": 966,
+        "public_operating_halls": 128,
+        "sources_scanned": 314,
+        "approved_sources": 164,
+        "raw_score_sources": 30,
+        "analysis_rows": 251,
+        "eligible_ratings": 29,
+        "updated": 0,
+        "unchanged": 29,
+        "ratings_requiring_review": 0
+      }
+    }
+  },
+  "errors": [],
+  "pickrank_actions": []
+}
