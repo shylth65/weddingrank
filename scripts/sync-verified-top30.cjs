@@ -61,7 +61,7 @@ async function main(){
   pages('wedding_halls','hall_id,name,is_public,operation_status'),
   pages('wedding_review_sources','source_id,hall_id,source_url,is_published,source_type,quality_score,published_date'),
   pages('wedding_review_analysis','source_id,hall_id,evidence_strength'),
-  pages('weddingrank_top30_competition','hall_id,overall_score,source_count,evidence_hash,rank_position,previous_rank,score_basis_at,last_rank_change_at,last_verified_at,created_at,evidence_publication_dates_complete')
+  pages('weddingrank_top30_competition','hall_id,overall_score,source_count,evidence_hash,rank_position,previous_rank,score_basis_at,last_rank_change_at,last_verified_at,created_at,evidence_publication_dates_complete,evidence_sources')
  ]);
  const hallById=new Map(halls.map(h=>[String(h.hall_id),h]));
  const analysisBySource=new Map(analysis.map(a=>[String(a.source_id),a]));
@@ -87,7 +87,7 @@ async function main(){
   const totalSamples=entries.reduce((x,e)=>x+e.sample,0);
   const precisePostingDates=entries.every(e=>Boolean(e.published_date));
   eligible.push({hall_id:id,name:hallById.get(id).name,overall_score:score,source_count:entries.length,
-    evidence_hash:hash(entries),evidence_publication_dates_complete:precisePostingDates,total_samples:totalSamples});
+    evidence_hash:hash(entries),evidence_publication_dates_complete:precisePostingDates,total_samples:totalSamples, evidence_sources:entries.map(e=>({url:e.url,raw_score:e.score,raw_scale:e.scale,sample_count:e.sample,published_date:e.published_date}))});
  }
  eligible.sort((a,b)=>b.overall_score-a.overall_score||b.source_count-a.source_count||a.name.localeCompare(b.name,'ko')||a.hall_id.localeCompare(b.hall_id));
  eligible.forEach((r,i)=>r.rank_position=i+1);
@@ -96,11 +96,11 @@ async function main(){
  for(const n of eligible){
   const previous=before.get(n.hall_id),basisChanged=!previous||previous.evidence_hash!==n.evidence_hash;
   const rankChanged=Boolean(previous&&previous.rank_position!==n.rank_position);
-  const needsUpdate=basisChanged||rankChanged||previous.evidence_publication_dates_complete!==n.evidence_publication_dates_complete||
+  const needsUpdate=basisChanged||rankChanged||!Array.isArray(previous?.evidence_sources)||previous.evidence_sources.length!==n.evidence_sources.length||previous.evidence_publication_dates_complete!==n.evidence_publication_dates_complete||
     Number(previous.overall_score)!==n.overall_score||previous.source_count!==n.source_count;
   if(!needsUpdate){unchanged++;continue;}
   const payload={hall_id:n.hall_id,overall_score:n.overall_score,source_count:n.source_count,
-   evidence_hash:n.evidence_hash,evidence_publication_dates_complete:n.evidence_publication_dates_complete,
+   evidence_hash:n.evidence_hash,evidence_sources:n.evidence_sources,evidence_publication_dates_complete:n.evidence_publication_dates_complete,
    rank_position:n.rank_position,
    previous_rank:previous?(rankChanged?previous.rank_position:previous.previous_rank):null,
    score_basis_at:basisChanged?now:previous.score_basis_at,
@@ -112,7 +112,7 @@ async function main(){
  }
  const stale=old.map(x=>x.hall_id).filter(id=>!afterIds.has(String(id)));
  if(stale.length){const {error}=await db.from('weddingrank_top30_competition').delete().in('hall_id',stale);if(error)throw error;}
- const final=await pages('weddingrank_top30_competition','hall_id,overall_score,source_count,rank_position,evidence_hash,evidence_publication_dates_complete');
+ const final=await pages('weddingrank_top30_competition','hall_id,overall_score,source_count,rank_position,evidence_hash,evidence_sources,evidence_publication_dates_complete');
  if(final.length!==eligible.length)throw Error('TOP30 count mismatch');
  const finalById=new Map(final.map(x=>[String(x.hall_id),x]));
  for(const x of eligible){const s=finalById.get(x.hall_id);
