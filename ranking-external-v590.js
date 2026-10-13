@@ -21,6 +21,37 @@
    #rankingView .rankTab{min-width:170px!important}
    #rankingBody .rankRow{cursor:pointer}
    #rankingBody .rankRow .rankScore small{display:block;color:#827887;font-size:11px}
+   /* TOP30 card: keep supporting text full width, never compress into vertical glyphs. */
+   #homeRankPreviewBody .externalHomeTop10 .previewTopCard{
+     display:flex!important;flex-direction:column!important;min-width:0!important;height:auto!important;
+   }
+   #homeRankPreviewBody .externalHomeTop10 .previewTopHall{min-width:0!important}
+   #homeRankPreviewBody .externalHomeTop10 .previewTopScore{
+     display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+     justify-content:flex-start!important;gap:5px!important;
+     min-width:0!important;width:100%!important;padding-top:13px!important;
+     margin-top:auto!important;text-align:left!important;
+   }
+   #homeRankPreviewBody .externalHomeTop10 .previewTopScore strong{
+     display:block!important;width:100%!important;line-height:1.2!important;font-size:27px!important;
+   }
+   #homeRankPreviewBody .externalHomeTop10 .previewTopScore span,
+   #homeRankPreviewBody .externalHomeTop10 .previewTopScore small{
+     display:block!important;min-width:0!important;width:100%!important;
+     flex:none!important;line-height:1.55!important;
+     white-space:normal!important;word-break:keep-all!important;overflow-wrap:break-word!important;
+     writing-mode:horizontal-tb!important;letter-spacing:0!important;
+   }
+   #homeRankPreviewBody .externalHomeTop10 .previewTopScore .wrTop30Badge,
+   #homeRankPreviewBody .externalHomeTop10 .previewTopScore .wrTop30Move{
+     display:inline-flex!important;width:auto!important;align-self:flex-start!important;
+     line-height:1.4!important;white-space:nowrap!important;margin-top:2px!important;
+   }
+   @media(max-width:800px){
+     #homeRankPreviewBody .externalHomeTop10 .previewTopCard{padding:17px!important}
+     #homeRankPreviewBody .externalHomeTop10 .previewTopScore strong{font-size:25px!important}
+   }
+
    .wrTop30Summary{padding:14px 18px;margin:0 0 16px;border:1px solid #e8deeb;border-radius:15px;line-height:1.7;background:#fffafb;color:#56505b}
    .wrTop30Badges{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:8px 0}
    .wrTop30Badge{font-size:11px;font-weight:800;border-radius:50px;background:#f2eef8;color:#685581;padding:4px 9px}
@@ -75,7 +106,7 @@
    '<div class="previewTopHall"><b>'+esc(x.name)+'</b><span>'+esc([x.sido,x.sigungu].filter(Boolean).join(' '))+'</span></div>'+
    '<div class="previewTopScore"><strong>'+Number(x.overall_score).toFixed(2)+'</strong>'+
    '<span>검증된 외부후기 '+Number(x.source_count)+'건</span><small>'+
-   (x.evidence_publication_dates_complete?'게시일 확인':'원문 게시일 일자 검증 중')+
+   (x.evidence_publication_dates_complete?'게시일 확인 완료':'원문 게시일 검증 중')+
    '</small>'+movement(x)+'</div></article>').join('')+'</div>';
   bind(host);
  }
