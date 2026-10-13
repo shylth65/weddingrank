@@ -29,6 +29,33 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   record('actual homepage public venue count',publicNum.trim()==='128곳',publicNum.trim(),'128곳');
   record('live TOP30 participant count matches public REST',ratedNum.trim()===expectedCount+'곳',ratedNum.trim(),expectedCount+'곳');
   await page.screenshot({path:'weddingrank-live-home-mobile.png',fullPage:false});
+  await page.waitForFunction(()=>document.querySelectorAll('#homeRankPreviewBody .externalHomeTop10 .previewTopCard').length>0,null,{timeout:20000});
+  const desktop=await browser.newPage({viewport:{width:1680,height:940},deviceScaleFactor:1});
+  desktop.on('pageerror',err=>errors.push('desktop:'+String(err.message||err).slice(0,180)));
+  await desktop.goto(BASE,{waitUntil:'domcontentloaded',timeout:45000});
+  await desktop.waitForFunction(()=>document.querySelectorAll('#homeRankPreviewBody .externalHomeTop10 .previewTopCard').length>=10,null,{timeout:30000});
+  const layout=await desktop.evaluate(()=>{
+    return [...document.querySelectorAll('#homeRankPreviewBody .externalHomeTop10 .previewTopCard')].map(card=>{
+      const score=card.querySelector('.previewTopScore'),date=score?.querySelector('small');
+      if(!score||!date)return {error:'missing score/date'};
+      const cs=getComputedStyle(score),ds=getComputedStyle(date);
+      const dateBox=date.getBoundingClientRect(),cardBox=card.getBoundingClientRect();
+      const lineHeight=parseFloat(ds.lineHeight)||18;
+      return {cardWidth:Math.round(cardBox.width),cardHeight:Math.round(cardBox.height),
+        scoreWidth:Math.round(score.getBoundingClientRect().width),
+        dateWidth:Math.round(dateBox.width),dateLines:Math.round(dateBox.height/lineHeight*10)/10,
+        direction:cs.flexDirection,writingMode:ds.writingMode,
+        dateText:date.textContent?.trim()};
+    });
+  });
+  const scoreLayoutOk=layout.length===10&&layout.every(x=>!x.error&&x.direction==='column'&&
+     x.writingMode==='horizontal-tb'&&x.dateWidth>=100&&x.dateLines<=3&&x.cardHeight<340);
+  record('TOP30 desktop score/date layout never vertical',scoreLayoutOk,
+    layout.map(x=>({width:x.dateWidth,lines:x.dateLines,cardHeight:x.cardHeight,mode:x.direction})),
+    '10 cards; column footer; >=100px date width; <=3 lines');
+  await desktop.screenshot({path:'weddingrank-live-home-desktop.png',fullPage:false});
+  await desktop.close();
+
   // First confirm real search results, then open a recently approved venue by exact known ID.
   await page.locator('#search').fill('디바인밸리');
   await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('디바인밸리'),{timeout:10000});
