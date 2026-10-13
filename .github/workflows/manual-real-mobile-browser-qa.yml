@@ -30,6 +30,7 @@ jobs:
           path: |
             weddingrank-live-browser-qa.json
             weddingrank-live-home-mobile.png
+            weddingrank-live-home-desktop.png
             weddingrank-live-detail-mobile.png
             weddingrank-live-rankings-mobile.png
           retention-days: 21
