@@ -29,13 +29,13 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   record('actual homepage public venue count',publicNum.trim()==='128곳',publicNum.trim(),'128곳');
   record('live TOP30 participant count matches public REST',ratedNum.trim()===expectedCount+'곳',ratedNum.trim(),expectedCount+'곳');
   await page.screenshot({path:'weddingrank-live-home-mobile.png',fullPage:false});
-  await page.waitForFunction(()=>document.querySelectorAll('#homeRankPreviewBody .externalHomeTop10 .previewTopCard').length>0,null,{timeout:20000});
+  await page.waitForFunction(()=>document.querySelectorAll('#top30CompetitionPreviewBody .externalHomeTop10 .previewTopCard').length>0,null,{timeout:20000});
   const desktop=await browser.newPage({viewport:{width:1680,height:940},deviceScaleFactor:1});
   desktop.on('pageerror',err=>errors.push('desktop:'+String(err.message||err).slice(0,180)));
   await desktop.goto(BASE,{waitUntil:'domcontentloaded',timeout:45000});
-  await desktop.waitForFunction(()=>document.querySelectorAll('#homeRankPreviewBody .externalHomeTop10 .previewTopCard').length>=10,null,{timeout:30000});
+  await desktop.waitForFunction(()=>document.querySelectorAll('#top30CompetitionPreviewBody .externalHomeTop10 .previewTopCard').length>=10,null,{timeout:30000});
   const layout=await desktop.evaluate(()=>{
-    return [...document.querySelectorAll('#homeRankPreviewBody .externalHomeTop10 .previewTopCard')].map(card=>{
+    return [...document.querySelectorAll('#top30CompetitionPreviewBody .externalHomeTop10 .previewTopCard')].map(card=>{
       const score=card.querySelector('.previewTopScore'),date=score?.querySelector('small');
       if(!score||!date)return {error:'missing score/date'};
       const cs=getComputedStyle(score),ds=getComputedStyle(date);
@@ -53,6 +53,31 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   record('TOP30 desktop score/date layout never vertical',scoreLayoutOk,
     layout.map(x=>({width:x.dateWidth,lines:x.dateLines,cardHeight:x.cardHeight,mode:x.direction})),
     '10 cards; column footer; >=100px date width; <=3 lines');
+  const reloadProof=[];
+  for(let n=0;n<3;n++){
+    await desktop.waitForTimeout(2400);
+    const proof=await desktop.evaluate(()=>{
+      const host=document.getElementById('top30CompetitionPreviewBody');
+      const current=host?.querySelectorAll('.externalHomeTop10 .previewTopCard').length||0;
+      const old=host?.querySelectorAll('.editorialHomeTop10').length||0;
+      const bogus=Boolean(document.getElementById('homeRankPreviewBody'));
+      const scripts=[...document.scripts].map(x=>x.src||'');
+      const configVersion=scripts.find(x=>x.includes('/config.js'))||'';
+      const helperVersion=scripts.find(x=>x.includes('/home-lite-v567.js'))||'';
+      return {current,old,bogus,configVersion,helperVersion,htmlSnippet:host?.textContent?.slice(0,70)||''};
+    });
+    reloadProof.push(proof);
+    const good=proof.current===expectedCount&&proof.old===0&&!proof.bogus&&
+      proof.configVersion.includes('20261013-exclusive-preview')&&
+      proof.helperVersion.includes('20261013-exclusive-preview');
+    record('TOP30 stable after desktop reload #'+(n+1),good,proof,
+      'exclusive TOP30 only, correct cache versions');
+    if(n<2){
+      await desktop.reload({waitUntil:'domcontentloaded',timeout:45000});
+      await desktop.waitForFunction(n=>document.querySelectorAll('#top30CompetitionPreviewBody .externalHomeTop10 .previewTopCard').length===n,expectedCount,{timeout:30000});
+    }
+  }
+
   await desktop.screenshot({path:'weddingrank-live-home-desktop.png',fullPage:false});
   await desktop.close();
 
