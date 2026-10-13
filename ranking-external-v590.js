@@ -21,35 +21,35 @@
    #rankingView .rankTab{min-width:170px!important}
    #rankingBody .rankRow{cursor:pointer}
    #rankingBody .rankRow .rankScore small{display:block;color:#827887;font-size:11px}
-   /* TOP30 card: keep supporting text full width, never compress into vertical glyphs. */
-   #homeRankPreviewBody .externalHomeTop10 .previewTopCard{
+   .homeRankingTop > #top30CompetitionPreviewBody{max-width:1320px;margin-left:auto;margin-right:auto;min-width:0}\n   /* TOP30 card: keep supporting text full width, never compress into vertical glyphs. */
+   #top30CompetitionPreviewBody .externalHomeTop10 .previewTopCard{
      display:flex!important;flex-direction:column!important;min-width:0!important;height:auto!important;
    }
-   #homeRankPreviewBody .externalHomeTop10 .previewTopHall{min-width:0!important}
-   #homeRankPreviewBody .externalHomeTop10 .previewTopScore{
+   #top30CompetitionPreviewBody .externalHomeTop10 .previewTopHall{min-width:0!important}
+   #top30CompetitionPreviewBody .externalHomeTop10 .previewTopScore{
      display:flex!important;flex-direction:column!important;align-items:flex-start!important;
      justify-content:flex-start!important;gap:5px!important;
      min-width:0!important;width:100%!important;padding-top:13px!important;
      margin-top:auto!important;text-align:left!important;
    }
-   #homeRankPreviewBody .externalHomeTop10 .previewTopScore strong{
+   #top30CompetitionPreviewBody .externalHomeTop10 .previewTopScore strong{
      display:block!important;width:100%!important;line-height:1.2!important;font-size:27px!important;
    }
-   #homeRankPreviewBody .externalHomeTop10 .previewTopScore span,
-   #homeRankPreviewBody .externalHomeTop10 .previewTopScore small{
+   #top30CompetitionPreviewBody .externalHomeTop10 .previewTopScore span,
+   #top30CompetitionPreviewBody .externalHomeTop10 .previewTopScore small{
      display:block!important;min-width:0!important;width:100%!important;
      flex:none!important;line-height:1.55!important;
      white-space:normal!important;word-break:keep-all!important;overflow-wrap:break-word!important;
      writing-mode:horizontal-tb!important;letter-spacing:0!important;
    }
-   #homeRankPreviewBody .externalHomeTop10 .previewTopScore .wrTop30Badge,
-   #homeRankPreviewBody .externalHomeTop10 .previewTopScore .wrTop30Move{
+   #top30CompetitionPreviewBody .externalHomeTop10 .previewTopScore .wrTop30Badge,
+   #top30CompetitionPreviewBody .externalHomeTop10 .previewTopScore .wrTop30Move{
      display:inline-flex!important;width:auto!important;align-self:flex-start!important;
      line-height:1.4!important;white-space:nowrap!important;margin-top:2px!important;
    }
    @media(max-width:800px){
-     #homeRankPreviewBody .externalHomeTop10 .previewTopCard{padding:17px!important}
-     #homeRankPreviewBody .externalHomeTop10 .previewTopScore strong{font-size:25px!important}
+     #top30CompetitionPreviewBody .externalHomeTop10 .previewTopCard{padding:17px!important}
+     #top30CompetitionPreviewBody .externalHomeTop10 .previewTopScore strong{font-size:25px!important}
    }
 
    .wrTop30Summary{padding:14px 18px;margin:0 0 16px;border:1px solid #e8deeb;border-radius:15px;line-height:1.7;background:#fffafb;color:#56505b}
@@ -92,7 +92,7 @@
   });
  }
  async function renderHome(data){
-  const host=document.getElementById('homeRankPreviewBody');if(!host)return;
+  const host=document.getElementById('top30CompetitionPreviewBody');if(!host)return;
   const title=document.querySelector('.homeRankingPreview h2'),desc=document.querySelector('.homeRankingPreview .sectionDesc');
   if(title)title.textContent='WeddingRank TOP 30 순위경쟁';
   if(desc)desc.textContent='독립 원문 3건 이상의 원점수·척도·표본 및 분석근거를 대조한 후보만 최대 30위까지 비교합니다. 자료 승인 후 재산정되며, 게시일 일자 미확인 자료는 표시합니다.';
@@ -150,7 +150,7 @@
   }catch(e){
    console.warn('[WeddingRank] TOP30 refresh failed',e);
    if(!loaded){
-    const host=document.getElementById('homeRankPreviewBody');
+    const host=document.getElementById('top30CompetitionPreviewBody');
     if(host)host.innerHTML='<div class="wrTop30Empty">TOP 30 공개 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해주세요.</div>';
     const body=document.getElementById('rankingBody');
     if(body&&!document.getElementById('rankingView')?.hidden)body.textContent='TOP 30 순위를 불러오지 못했습니다.';
