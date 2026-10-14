@@ -69,7 +69,13 @@ async function count(table,query,filter=()=>true){
   ['8fcc0fbc-22ba-49a1-9393-869aff665334','보라매시민안전체험관'],
   ['f257ef4b-8f89-4e12-9abb-c6ed75ea28db','광진구청 대강당홀'],
   ['ca49fafa-27c8-4b1d-af2d-5d093fd58136','도봉구청 선인봉홀'],
-  ['8843c1af-973a-4f98-8a0b-a34bb8b95bab','서울주택도시개발공사']
+  ['8843c1af-973a-4f98-8a0b-a34bb8b95bab','서울주택도시개발공사'],
+  ['43a37b29-23f6-42cb-8cd5-ad1905e4e77d','SY컨벤션웨딩홀'],
+  ['f812eda9-ba5e-45fd-b682-881bba0f9d8a','광명무역센터컨벤션'],
+  ['4455819b-9eb4-412b-beb9-2a8c9f20fd34','노블발렌티 대치'],
+  ['d7f71655-468b-4f3f-9ac8-d01271fedc73','보람컨벤션'],
+  ['890946fd-a262-439a-b1a7-5cef93a04ab9','경민컨벤션웨딩홀'],
+  ['5c47acd9-b1c3-43d4-8f90-072495a85150','모나밸리 웨딩']
  ])await resource('/venue/'+id+'/',name);
  await resource('/wedding-hall-ranking/','원점수');
  if(home&&!home.includes('ranking-external-v590.js'))report.errors.push('Current live index TOP30 ranking script is missing');
