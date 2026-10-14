@@ -77,6 +77,9 @@ async function count(table,query,filter=()=>true){
   ['890946fd-a262-439a-b1a7-5cef93a04ab9','경민컨벤션웨딩홀'],
   ['5c47acd9-b1c3-43d4-8f90-072495a85150','모나밸리 웨딩']
  ])await resource('/venue/'+id+'/',name);
+ // Verify a future-only official quote is not silently presented as a current booking price.
+ const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
+ if(gtcPage.includes('14,000,000원'))report.errors.push('Future 2027 GTC rental quote misrepresented in current SEO price box');
  await resource('/wedding-hall-ranking/','원점수');
  if(home&&!home.includes('ranking-external-v590.js'))report.errors.push('Current live index TOP30 ranking script is missing');
  if(!regions.includes(String(pub)))report.errors.push('Live regions count inconsistent with WeddingRank DB');
