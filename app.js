@@ -33,10 +33,12 @@ function money(v){return v==null?"확인중":Number(v).toLocaleString("ko-KR")+"
 function score(v){return v==null?"—":Number(v).toFixed(1)}
 function avg(arr,key){const vals=arr.map(x=>Number(x[key])).filter(v=>Number.isFinite(v)&&v>0);return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null}
 
+function todayKst(){return new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date())}
 function buildPriceMap(prices){
   priceByHall=new Map();
+  const today=todayKst();
   for(const p of prices){
-    if(!p.hall_id||priceByHall.has(p.hall_id)) continue;
+    if(!p.hall_id||priceByHall.has(p.hall_id)||(p.effective_date&&p.effective_date>today)) continue;
     priceByHall.set(p.hall_id,p);
   }
 }
@@ -144,7 +146,7 @@ async function showDetail(id){
   try{
     const results=await Promise.allSettled([
       api(`hall_rooms?select=room_name,floor,capacity_min,capacity_max&hall_id=eq.${encodeURIComponent(id)}`),
-      api(`wedding_prices?select=effective_date,rental_fee,meal_price_per_person,minimum_guarantee,notes&hall_id=eq.${encodeURIComponent(id)}&order=effective_date.desc`),
+      api(`wedding_prices?select=effective_date,rental_fee,meal_price_per_person,minimum_guarantee,notes,source_name,source_url&hall_id=eq.${encodeURIComponent(id)}&order=effective_date.desc`),
       api(`reviews?select=visit_role,food_score,parking_score,access_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,review_text,created_at&hall_id=eq.${encodeURIComponent(id)}&order=created_at.desc&limit=100`),
       api(`external_wedding_ratings?select=source_count,methodology_version,food_score,access_score,parking_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,summary,updated_at&hall_id=eq.${encodeURIComponent(id)}&is_public=eq.true&limit=1`),
       api(`wedding_review_sources?select=source_url,source_name,published_date,summary,quality_score&hall_id=eq.${encodeURIComponent(id)}&is_published=eq.true&source_type=eq.public_review&quality_score=gte.70&order=quality_score.desc&limit=30`),
@@ -157,7 +159,7 @@ async function showDetail(id){
     const externalSources=results[4].status==="fulfilled"?results[4].value:[];
     const approvedTop30=results[5].status==="fulfilled"?results[5].value[0]:null;
     $("#rooms").innerHTML=rooms.length?rooms.map(r=>`<div class="info-row"><b>${esc(r.room_name)}</b><span>${esc(r.floor||"")} ${r.capacity_min?`· 최소 ${r.capacity_min}명`:""} ${r.capacity_max?`· 최대 ${r.capacity_max}명`:""}</span></div>`).join(""):'<div class="pending">홀 정보 확인중</div>';
-    $("#prices").innerHTML=prices.length?prices.map(p=>`<div class="pricebox"><div><small>기준일</small><b>${esc(p.effective_date||"-")}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
+    $("#prices").innerHTML=prices.length?prices.map(p=>`<div class="pricebox"><div><small>적용 기준일</small><b>${esc(p.effective_date||"-")}${p.effective_date&&p.effective_date>todayKst()?" (적용 예정)":""}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p><p><small>가격 출처: ${esc(p.source_name||"추가 확인중")}${/^https?:\/\//i.test(p.source_url||"")?` · <a href="${esc(p.source_url)}" target="_blank" rel="noopener noreferrer">출처 보기 ↗</a>`:""} · 계약 전 재확인</small></p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
     renderExternalReviews(id,approvedTop30,externalSources);renderReviews(reviews);renderAuth();setupConsultForm();
   }catch(e){console.error(e)}
 }
