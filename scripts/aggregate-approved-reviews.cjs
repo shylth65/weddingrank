@@ -48,7 +48,9 @@ const isCommercialVenueListing=raw=>{
     const p=u.pathname.toLowerCase();
     return (host==='iwedding.co.kr'&&p.startsWith('/enterprise/info/'))||
       (host==='directwedding.co.kr'&&p.startsWith('/weddinghall/hall'))||
-      (host==='weddingbook.com'&&p.startsWith('/weddinghall/'));
+      (host==='weddingbook.com'&&p.startsWith('/weddinghall/'))||
+      (host==='diningcode.com'&&p==='/profile.php')||
+      (host==='weddingcrowd.kr'&&p.startsWith('/hall/view.php'));
   }catch{return true;}
 };
 const canonicalOriginalUrl=raw=>{
