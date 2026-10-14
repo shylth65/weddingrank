@@ -21,7 +21,9 @@ function isCatalog(url){
  try{const u=new URL(url);const h=u.hostname.toLowerCase().replace(/^www\./,'');const p=u.pathname.toLowerCase();
  return (h==='iwedding.co.kr'&&p.startsWith('/enterprise/info/'))||
  (h==='directwedding.co.kr'&&p.startsWith('/weddinghall/hall'))||
- (h==='weddingbook.com'&&p.startsWith('/weddinghall/'));
+ (h==='weddingbook.com'&&p.startsWith('/weddinghall/'))||
+ (h==='diningcode.com'&&p==='/profile.php')||
+ (h==='weddingcrowd.kr'&&p.startsWith('/hall/view.php'));
  }catch{return true;}
 }
 async function pages(t,select){let r=[];for(let n=0;;n+=500){const {data,error}=await db.from(t).select(select).range(n,n+499);if(error)throw error;r.push(...data);if(data.length<500)return r;}}
