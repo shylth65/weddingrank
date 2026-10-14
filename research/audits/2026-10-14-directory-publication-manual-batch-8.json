@@ -1,0 +1,182 @@
+{
+  "schema_version": "weddingrank-directory-publication-audit-v1",
+  "reviewed_at": "2026-10-14",
+  "batch": 8,
+  "scope": "WeddingRank-only specialist original DB",
+  "pickrank_sync": false,
+  "policy": "Catalog publication needs official operation/address/phone+duplicates. Ratings need >=3 separate independent source URLs, individual verified analyses, source-quality, original raw score, scale, real samples with specialist-reviewed audit. Hold legacy until fully proven.",
+  "before": {
+    "public_operating_venues": 165,
+    "public_rooms": 276,
+    "venues_with_price_rows": 106,
+    "independent_source_rows": 314,
+    "analyzed_source_rows": 251,
+    "old_public_external_rating_flags": 29,
+    "strict_top30": 10,
+    "undated_independent_public_reviews": 39
+  },
+  "verified_new_venues": [
+    {
+      "hall_id": "751aaeb2-b464-4a25-a1ed-8aa188feeb23",
+      "name": "제이오스티엘",
+      "official_url": "https://www.j-ostiel.co.kr/official.php/home/index",
+      "operating": true,
+      "duplicate_public_address": false,
+      "public_directory_only": true,
+      "external_rating_published": false
+    },
+    {
+      "hall_id": "443d99a5-9788-4e8b-93df-bfe421eade0a",
+      "name": "롤링힐스호텔 웨딩",
+      "official_url": "https://www.haevichi.com/rollinghills/ko/meeting/wedding/weding",
+      "operating": true,
+      "duplicate_public_address": false,
+      "public_directory_only": true,
+      "external_rating_published": false
+    },
+    {
+      "hall_id": "6320ab66-d8f2-41d4-b76e-3ff12cb5a701",
+      "name": "호텔인터내셔널 창원 웨딩",
+      "official_url": "https://www.hotelinternational.co.kr/bbs/content.php?co_id=03_05",
+      "operating": true,
+      "duplicate_public_address": false,
+      "public_directory_only": true,
+      "external_rating_published": false
+    },
+    {
+      "hall_id": "7a5404db-fd27-4260-a713-52c7e5a8c530",
+      "name": "소노벨 경주 웨딩",
+      "official_url": "https://mice.sonohotelsresorts.com/daemyung.front.saupjang.gyeongju.facility_wedding.ds/dmparse.dm?menuNo=02",
+      "operating": true,
+      "duplicate_public_address": false,
+      "public_directory_only": true,
+      "external_rating_published": false
+    },
+    {
+      "hall_id": "76ed2597-546b-414e-b459-528178e665f3",
+      "name": "호텔현대 바이 라한 울산 웨딩홀",
+      "official_url": "https://www.lahanhotels.com/ulsan/ko/wedding.do",
+      "operating": true,
+      "duplicate_public_address": false,
+      "public_directory_only": true,
+      "external_rating_published": false
+    }
+  ],
+  "verified_rooms_added": [
+    {
+      "venue": "제이오스티엘",
+      "room": "티파니홀",
+      "source_url": "https://www.j-ostiel.co.kr/official.php/home/index"
+    },
+    {
+      "venue": "롤링힐스호텔 웨딩",
+      "room": "그랜드볼룸",
+      "source_url": "https://www.haevichi.com/rollinghills/ko/meeting/meeting/grand-ballroom"
+    },
+    {
+      "venue": "호텔인터내셔널 창원 웨딩",
+      "room": "그랜드볼룸",
+      "source_url": "https://www.hotelinternational.co.kr/bbs/content.php?co_id=03_01"
+    },
+    {
+      "venue": "호텔인터내셔널 창원 웨딩",
+      "room": "누벨르홀",
+      "source_url": "https://www.hotelinternational.co.kr/bbs/content.php?co_id=03_02"
+    },
+    {
+      "venue": "호텔인터내셔널 창원 웨딩",
+      "room": "벨블랑쉬",
+      "source_url": "https://www.hotelinternational.co.kr/bbs/content.php?co_id=03_05"
+    },
+    {
+      "venue": "소노벨 경주 웨딩",
+      "room": "그랜드볼룸",
+      "source_url": "https://mice.sonohotelsresorts.com/daemyung.front.saupjang.gyeongju.facility_wedding.ds/dmparse.dm?menuNo=02"
+    }
+  ],
+  "existing_rooms_corrected": [
+    {
+      "venue": "호텔현대 바이 라한 울산 웨딩홀",
+      "old_room_name": "단독홀",
+      "new_room_name": "에메랄드홀",
+      "old_third_party_capacity_range": "150-600 (not accepted)",
+      "new_official_capacity_max": 180,
+      "source_url": "https://www.lahanhotels.com/ulsan/ko/weddingHalls/emerald.do",
+      "original_note_retained": true
+    },
+    {
+      "venue": "롤링힐스호텔 웨딩",
+      "old_room_name": "야외",
+      "new_room_name": "야외 원형 잔디광장",
+      "source_url": "https://www.haevichi.com/rollinghills/ko/meeting/wedding/weding",
+      "old_notes_retained": true
+    }
+  ],
+  "numeric_rating_integrity": {
+    "archived_unverified_public_flags_count": 19,
+    "affected_ratings": [
+      "JW메리어트호텔 서울 웨딩",
+      "그랜드블랑 웨딩홀",
+      "김해더파티웨딩홀",
+      "더채플앳 청담",
+      "더채플앳대치",
+      "더플라자호텔 웨딩",
+      "더화이트베일",
+      "라도무스아트센터",
+      "롯데호텔서울 웨딩",
+      "미래컨벤션웨딩홀",
+      "신도림 라마다호텔 웨딩",
+      "아펠가모 공덕",
+      "아펠가모 반포",
+      "아펠가모 잠실",
+      "앰배서더 서울 풀만 웨딩",
+      "여의도웨딩컨벤션",
+      "웨딩스퀘어 강변",
+      "인천아시아드웨딩컨벤션",
+      "호텔 인터불고 대구"
+    ],
+    "change": "external_wedding_ratings.is_public true -> false for records not included in fully reviewed weddingrank_top30_competition",
+    "score_fields_unchanged": true,
+    "review_analysis_unchanged": true,
+    "original_rating_updated_at_unchanged": true,
+    "no_row_deletion": true,
+    "public_external_before": 29,
+    "public_external_after": 10,
+    "verified_top30": 10,
+    "db_readback_rank_and_scores_match": true,
+    "future_republication": "Require new source-level independent original raw score, scale and real sample audits before any new specialist approval"
+  },
+  "explicitly_protected_20260927": [
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "source_urls": 5,
+      "review_analyses": 0,
+      "external_rating_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "source_urls": 6,
+      "review_analyses": 0,
+      "external_rating_public": false
+    }
+  ],
+  "after": {
+    "public_operating_venues": 170,
+    "public_rooms": 284,
+    "venues_with_price_rows": 109,
+    "independent_source_rows": 314,
+    "analysis_rows": 251,
+    "public_external_rating_flags": 10,
+    "strict_top30": 10,
+    "undated_independent_public_reviews": 39,
+    "duplicate_public_normalized_address_groups": 0,
+    "last_public_external_rating_update_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "holds": [
+    "Unverified 2026 current price of SonoBell Gyeongju: official PDF/page still lists 2023/2024 price, do not treat as 2026 quote",
+    "Remaining 39 missing publication dates not inferred from visit period",
+    "No new source or score approvals",
+    "Do not push rank to PICKRANK"
+  ],
+  "publication_status": "DB changes applied and read back; SEO, deployment, production browser/API checks to verify from Actions after audit push."
+}
