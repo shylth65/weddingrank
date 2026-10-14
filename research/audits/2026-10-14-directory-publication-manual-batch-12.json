@@ -1,0 +1,129 @@
+{
+  "schema_version": "weddingrank-specialist-directory-manual-audit-v1",
+  "audit_date": "2026-10-14",
+  "batch": 12,
+  "scope": "WeddingRank specialist original only",
+  "pickrank_sync": false,
+  "prior": {
+    "public_operating_venues": 180,
+    "public_hall_rooms": 297,
+    "priced_venues": 118,
+    "review_source_rows": 314,
+    "review_analyses": 251,
+    "undated_published_individual_reviews": 35,
+    "public_numeric_ratings": 10,
+    "top30": 10
+  },
+  "newly_public": [
+    {
+      "hall_id": "67b485cb-53f5-4722-b038-0ebd208f7770",
+      "name": "목화웨딩컨벤션",
+      "address": "부산광역시 연제구 중앙대로 1125 시티타워 15층",
+      "phone": "051-714-2243",
+      "operator_url": "https://www.wweddingcity.com/",
+      "evidence": [
+        "W웨딩시티 official page currently includes '목화웨딩홀' as a directly operated wedding venue",
+        "2026 contemporaneous independent trade directory agrees on Busan Yeonje, tower 15F, phone"
+      ],
+      "source_urls": [
+        "https://www.wweddingcity.com/",
+        "https://audi-design.co.kr/wedding/halls/d6c4d8a5"
+      ],
+      "limitations": [
+        "operator homepage is not individual hall detail",
+        "no primary-source current hall-by-hall seat or prices confirmed; no hall room records invented"
+      ]
+    },
+    {
+      "hall_id": "31278a47-7af4-4809-a790-c70043099c99",
+      "previous_name": "롯데호텔 울산 웨딩",
+      "name": "르엘컨벤션 (롯데호텔 울산)",
+      "address": "울산광역시 남구 삼산로 282",
+      "phone": "052-960-4330",
+      "operator_url": "https://www.le-elconvention.com/",
+      "support": [
+        "2026-07-15 to 2026-08-14 Le-El Convention wedding reservation office recruitment at Lotte Ulsan Hotel 1F",
+        "2026 business registration data shows operating operator at Ulsan Lotte Hotel"
+      ],
+      "external_proofs": [
+        "https://m.jobkorea.co.kr/Recruit/GI_Read/49585090?sc=621",
+        "https://www.incruit.com/company/1690395925"
+      ],
+      "limitations": [
+        "operator official domain returned 403 to automated fetch",
+        "wedding detail / raw official 2026-2027 price not directly confirmed; no hall records invented"
+      ]
+    }
+  ],
+  "protected_old_data": {
+    "original_hall_ids_not_removed": true,
+    "original_price_rows_not_removed": true,
+    "price_amounts_unchanged": true,
+    "old_legacy_name_saved_in_notes": true
+  },
+  "price_source_review": [
+    {
+      "hall_id": "67b485cb-53f5-4722-b038-0ebd208f7770",
+      "legacy_price_url": "https://www.directwedding.co.kr/weddinghall/hall0238",
+      "quoted_meal_krw": 42000,
+      "conflict": "Trade site quoting 2026 consumer price reporting 45000; platform estimate is NOT current operator-certified price",
+      "updated_only_note": true
+    },
+    {
+      "hall_id": "31278a47-7af4-4809-a790-c70043099c99",
+      "legacy_price_url": "https://www.directwedding.co.kr/weddinghall/hall0386",
+      "quoted_rental_krw": 1500000,
+      "quoted_meal_krw": 85000,
+      "caveat": "Pricing based on old Lotte Ulsan listing; current Le-El operator price and product equivalence unverified",
+      "updated_only_note": true
+    }
+  ],
+  "after_db": {
+    "public_operating_venues": 182,
+    "public_hall_rooms": 297,
+    "priced_venues_all_dates": 120,
+    "priced_venues_current": 119,
+    "review_source_rows": 314,
+    "review_analyses": 251,
+    "undated_published_individual_reviews": 35,
+    "public_numeric_ratings": 10,
+    "strict_top30": 10,
+    "last_rating_basis_utc": "2026-10-03T02:16:20.134556Z",
+    "normalized_duplicate_public_address_groups": 0
+  },
+  "holds": [
+    {
+      "name": "관가 그레이스 K",
+      "reason": "previous source declared operator official 2026 but operator domain currently fetch fails; unrelated flower sellers as corroboration insufficient to prove current direct reservation"
+    },
+    {
+      "name": "엘리시안강촌 웨딩",
+      "reason": "stored official URL points to Jeju resort wedding page; must prove Kangchon branch separately"
+    },
+    {
+      "name": "드마레웨딩컨벤션",
+      "reason": "brand reorganization and old pricing conflict"
+    },
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "unanalysed_urls": 5,
+      "rating_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "unanalysed_urls": 6,
+      "rating_public": false
+    }
+  ],
+  "unchanged": {
+    "approved_review_publications": 0,
+    "review_source_rows_added": 0,
+    "review_analyses_added": 0,
+    "new_top30_entrants": 0,
+    "rankings_updated": 0,
+    "rating_date_advanced": false,
+    "pickrank_sync": false,
+    "cron_schedule_modified": false
+  },
+  "check_scope": "GitHub Actions SEO generator, own source-traced top30, static production site public DB page and mobile browser QA to be checked after commit; avoid PICKRANK connections."
+}
