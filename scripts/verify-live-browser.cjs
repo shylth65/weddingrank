@@ -88,13 +88,13 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   await desktop.close();
 
   // First confirm real search results, then open a recently approved venue by exact known ID.
-  await page.locator('#search').fill('엘마리노');
-  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('엘마리노 앳 인천'),{timeout:10000});
-  record('newly published venue in live search',true,'엘마리노 앳 인천','present');
-  await page.evaluate(()=>{location.hash='#hall=d11d9068-354a-490c-97b9-dca2cedcaf7f'});
-  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('엘마리노 앳 인천'),{timeout:15000});
+  await page.locator('#search').fill('오펠리스');
+  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('오펠리스웨딩'),{timeout:10000});
+  record('newly published venue in live search',true,'오펠리스웨딩','present');
+  await page.evaluate(()=>{location.hash='#hall=db3cb91e-1e53-499b-a0c5-49ea696822d4'});
+  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('오펠리스웨딩'),{timeout:15000});
   const detail=await page.locator('#detailName').innerText();
-  record('newly published venue detail live',detail.includes('엘마리노 앳 인천'),detail,'엘마리노 앳 인천');
+  record('newly published venue detail live',detail.includes('오펠리스웨딩'),detail,'오펠리스웨딩');
   await page.evaluate(()=>{location.hash='#hall=51ddb9d2-3ec8-46d8-9766-0ad58fb008a9'});
   await page.waitForFunction(()=>document.querySelector('#externalReviewSummary')?.textContent?.includes('TOP 30 외부후기 종합 비교'),null,{timeout:15000});
   record('TOP30 approved score and source detail visible',true,'approved raw sources','true');
