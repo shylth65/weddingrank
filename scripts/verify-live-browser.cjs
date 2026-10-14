@@ -105,13 +105,13 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   await desktop.close();
 
   // First confirm real search results, then open a recently approved venue by exact known ID.
-  await page.locator('#search').fill('코모도호텔 부산');
-  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('코모도호텔 부산 그랜드볼룸'),{timeout:10000});
-  record('newly published venue in live search',true,'코모도호텔 부산 그랜드볼룸','present');
-  await page.evaluate(()=>{location.hash='#hall=9ca4a22f-67ff-47d7-8a0d-c363e87f22e7'});
-  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('코모도호텔 부산 그랜드볼룸'),{timeout:15000});
+  await page.locator('#search').fill('엠블던');
+  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('안산엠블던호텔'),{timeout:10000});
+  record('newly published venue in live search',true,'안산엠블던호텔','present');
+  await page.evaluate(()=>{location.hash='#hall=535488ad-4269-4ee8-b6c6-dc4dd8757140'});
+  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('안산엠블던호텔'),{timeout:15000});
   const detail=await page.locator('#detailName').innerText();
-  record('newly published venue detail live',detail.includes('코모도호텔 부산 그랜드볼룸'),detail,'코모도호텔 부산 그랜드볼룸');
+  record('newly published venue detail live',detail.includes('안산엠블던호텔'),detail,'안산엠블던호텔');
   await page.evaluate(()=>{location.hash='#hall=51ddb9d2-3ec8-46d8-9766-0ad58fb008a9'});
   await page.waitForFunction(()=>document.querySelector('#externalReviewSummary')?.textContent?.includes('TOP 30 외부후기 종합 비교'),null,{timeout:15000});
   record('TOP30 approved score and source detail visible',true,'approved raw sources','true');
