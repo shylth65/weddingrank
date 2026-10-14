@@ -50,7 +50,8 @@ const isCommercialVenueListing=raw=>{
       (host==='directwedding.co.kr'&&p.startsWith('/weddinghall/hall'))||
       (host==='weddingbook.com'&&p.startsWith('/weddinghall/'))||
       (host==='diningcode.com'&&p==='/profile.php')||
-      (host==='weddingcrowd.kr'&&p.startsWith('/hall/view.php'));
+      (host==='weddingcrowd.kr'&&p.startsWith('/hall/view.php'))||
+ (host==='oding.co.kr'&&p.startsWith('/placeview/'));
   }catch{return true;}
 };
 const canonicalOriginalUrl=raw=>{
