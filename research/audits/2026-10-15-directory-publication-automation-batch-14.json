@@ -74,7 +74,14 @@
     "numeric_ratings_public": 10,
     "noncompliant_numeric_ratings_public": 0,
     "duplicate_normalized_address_groups": 0,
-    "latest_numeric_rating_basis_utc": "2026-10-03T02:16:20.134556Z"
+    "latest_numeric_rating_basis_utc": "2026-10-03T02:16:20.134556Z",
+    "public_price_venues_current_effective": 120,
+    "future_only_price_venues": 1,
+    "future_only_price_venue": {
+      "hall_id": "f812eda9-ba5e-45fd-b682-881bba0f9d8a",
+      "name": "광명무역센터컨벤션",
+      "effective_date": "2027-01-01"
+    }
   },
   "latest_approved_review_aggregation": {
     "run_id": 38550737180,
@@ -102,5 +109,14 @@
     "official_price_amounts_added": 0,
     "original_rows_deleted": 0,
     "existing_cron_changed": false
+  },
+  "live_site": {
+    "verified_at_kst": "2026-10-15",
+    "public_operating_venues": 186,
+    "public_price_venues_current_effective": 120,
+    "top30_participants": 10,
+    "ciel_de_reve_detail_verified": true,
+    "epouser_detail_verified": true,
+    "site_origin_console_errors": 0
   }
 }
