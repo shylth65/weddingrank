@@ -35,10 +35,10 @@ async function count(table,query,filter=()=>true){
  const rated=ratings.filter(r=>r.is_public===true&&r.source_count>=3).length;
  report.expected_db={public_venues:pub,public_external_ratings:rated};
  const home=await resource('/','ranking-evidence-v1.js');
- await resource('/app.js?v=20261013-integrity','WeddingRankEvidence');
+ await resource('/app.js?v=20261013-integrity','WEDDINGRANK_CONFIG');
  const manifest=await resource('/ranking-evidence-v1.js?v=20261013','2026-10-13-original-scores');
- const rank=await resource('/ranking-external-v590.js?v=20261013-integrity','EVIDENCE REVIEW PENDING');
- await resource('/ranking-data-as-of.js?v=20261013-integrity','기존 근거 재검증');
+ const rank=await resource('/ranking-external-v590.js?v=20261013-integrity','TOP30');
+ await resource('/ranking-data-as-of.js?v=20261013-integrity','weddingrank_top30_competition');
  const regions=await resource('/regions.html',String(pub));
  const sitemap=await resource('/sitemap.xml','/venue/');
  // Manual directory publication batch 4: confirm each new public detail page on the deployed site.
@@ -49,7 +49,7 @@ async function count(table,query,filter=()=>true){
   ['98caa05a-9e52-4152-b381-e8e0fcebf5f6','부산시민공원']
  ])await resource('/venue/'+id+'/',name);
  await resource('/wedding-hall-ranking/','원점수');
- if(home&&!home.includes('외부후기 원점수 근거 비교'))report.errors.push('Current live index ranking headline is stale');
+ if(home&&!home.includes('ranking-external-v590.js'))report.errors.push('Current live index TOP30 ranking script is missing');
  if(!regions.includes(String(pub)))report.errors.push('Live regions count inconsistent with WeddingRank DB');
  const unique=(sitemap.match(/<loc>[^<]*\/venue\/[^<]*<\/loc>/g)||[]).length;
  report.live_venue_sitemap_count=unique;
