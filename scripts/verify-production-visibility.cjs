@@ -53,7 +53,23 @@ async function count(table,query,filter=()=>true){
   ['e99dc720-a490-4d61-8d7b-0fbef396c6ef','안동그랜드호텔 웨딩'],
   ['dfcfa3a0-6587-48d8-ab36-ed177f07675a','마리드메이'],
   ['db4e012e-c5b3-4474-87e9-99225dfcd3ea','HW컨벤션센터'],
-  ['392aa988-7514-434b-b0f0-55daf82b1725','메리다웨딩컨벤션']
+  ['392aa988-7514-434b-b0f0-55daf82b1725','메리다웨딩컨벤션'],
+  ['e40d3ed5-2cfe-4633-a4d0-9739d353d396','KW컨벤션'],
+  ['2805a3fe-736d-4a68-af0c-d3ba4f6024b6','스페이스566웨딩컨벤션'],
+  ['db3cb91e-1e53-499b-a0c5-49ea696822d4','오펠리스웨딩'],
+  ['f9a17b72-5d44-4f5c-95ab-f6108b0ebc78','어반폴'],
+  ['68cee415-6105-487c-ae5d-ae17719b3ba7','파로스컨벤션'],
+  ['ddea4ad0-0a8c-4a45-a962-9055b9630c27','서울한방진흥센터'],
+  ['dcc8a0d3-a4cc-4147-b496-91a29499d347','성북 예향재'],
+  ['4fded12a-b475-4dd5-9b01-e7e1e69dfbce','은평역사한옥박물관'],
+  ['baf6cb3a-3362-4b45-a05e-cb58e8d2bdce','백인제가옥'],
+  ['9f2ae713-326f-41db-944f-6480454320d2','서울식물원 사색의 정원'],
+  ['cd21cfaa-0e49-4102-9de7-1fa70d8740bd','선유도공원'],
+  ['4c773aff-0ebd-4a71-b040-4bf087969c02','매헌시민의숲'],
+  ['8fcc0fbc-22ba-49a1-9393-869aff665334','보라매시민안전체험관'],
+  ['f257ef4b-8f89-4e12-9abb-c6ed75ea28db','광진구청 대강당홀'],
+  ['ca49fafa-27c8-4b1d-af2d-5d093fd58136','도봉구청 선인봉홀'],
+  ['8843c1af-973a-4f98-8a0b-a34bb8b95bab','서울주택도시개발공사']
  ])await resource('/venue/'+id+'/',name);
  await resource('/wedding-hall-ranking/','원점수');
  if(home&&!home.includes('ranking-external-v590.js'))report.errors.push('Current live index TOP30 ranking script is missing');
