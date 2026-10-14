@@ -88,13 +88,13 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   await desktop.close();
 
   // First confirm real search results, then open a recently approved venue by exact known ID.
-  await page.locator('#search').fill('광명무역센터');
-  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('광명무역센터컨벤션'),{timeout:10000});
-  record('newly published venue in live search',true,'광명무역센터컨벤션','present');
-  await page.evaluate(()=>{location.hash='#hall=f812eda9-ba5e-45fd-b682-881bba0f9d8a'});
-  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('광명무역센터컨벤션'),{timeout:15000});
+  await page.locator('#search').fill('제이오스티엘');
+  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('제이오스티엘'),{timeout:10000});
+  record('newly published venue in live search',true,'제이오스티엘','present');
+  await page.evaluate(()=>{location.hash='#hall=751aaeb2-b464-4a25-a1ed-8aa188feeb23'});
+  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('제이오스티엘'),{timeout:15000});
   const detail=await page.locator('#detailName').innerText();
-  record('newly published venue detail live',detail.includes('광명무역센터컨벤션'),detail,'광명무역센터컨벤션');
+  record('newly published venue detail live',detail.includes('제이오스티엘'),detail,'제이오스티엘');
   await page.evaluate(()=>{location.hash='#hall=51ddb9d2-3ec8-46d8-9766-0ad58fb008a9'});
   await page.waitForFunction(()=>document.querySelector('#externalReviewSummary')?.textContent?.includes('TOP 30 외부후기 종합 비교'),null,{timeout:15000});
   record('TOP30 approved score and source detail visible',true,'approved raw sources','true');
