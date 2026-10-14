@@ -129,7 +129,9 @@ async function count(table,query,filter=()=>true){
   ['b8b5403e-2185-467a-aa96-cc0e016b666a','서울문화예술교육센터(은평)'],
   ['40903767-c396-46b0-8a94-60774a5f5e88','초안산 가드닝센터'],
   ['535488ad-4269-4ee8-b6c6-dc4dd8757140','안산엠블던호텔'],
-  ['52c099cd-86cc-467c-b165-0fc3873e2153','아모르웨딩컨벤션 순천']
+  ['52c099cd-86cc-467c-b165-0fc3873e2153','아모르웨딩컨벤션 순천'],
+  ['67b485cb-53f5-4722-b038-0ebd208f7770','목화웨딩컨벤션'],
+  ['31278a47-7af4-4809-a790-c70043099c99','르엘컨벤션']
  ])await resource('/venue/'+id+'/',name);
  // Verify a future-only official quote is not silently presented as a current booking price.
  const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
