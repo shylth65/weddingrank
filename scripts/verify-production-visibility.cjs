@@ -28,11 +28,21 @@ async function count(table,query,filter=()=>true){
  if(error)throw error;return data.filter(filter);
 }
 (async()=>{
- const [halls,ratings]=await Promise.all([
+ const [halls,ratings,competition]=await Promise.all([
  count('wedding_halls','hall_id,is_public,operation_status'),
- count('external_wedding_ratings','hall_id,is_public,source_count,methodology_version,overall_score')]);
+ count('external_wedding_ratings','hall_id,is_public,source_count,methodology_version,overall_score'),
+ count('weddingrank_top30_competition','hall_id,rank_position,overall_score,source_count')]);
  const pub=halls.filter(h=>h.is_public===true&&h.operation_status==='운영').length;
- const rated=ratings.filter(r=>r.is_public===true&&r.source_count>=3).length;
+ const publishedRatings=ratings.filter(r=>r.is_public===true);
+ const qualifiedIds=new Set(competition.map(x=>String(x.hall_id)));
+ const publicIds=new Set(publishedRatings.map(x=>String(x.hall_id)));
+ const notQualified=publishedRatings.filter(r=>!qualifiedIds.has(String(r.hall_id))||Number(r.source_count)<3);
+ const missingPublic=competition.filter(x=>!publicIds.has(String(x.hall_id)));
+ const scoreMismatch=publishedRatings.filter(r=>competition.some(t=>String(t.hall_id)===String(r.hall_id)&&Number(t.overall_score)!==Number(r.overall_score)));
+ const rated=publishedRatings.length;
+ report.rating_integrity={public_external_ratings:rated,strict_verified_entries:competition.length,unqualified_public:notQualified.length,missing_public:missingPublic.length,score_mismatches:scoreMismatch.length};
+ if(notQualified.length||missingPublic.length||scoreMismatch.length||rated!==competition.length)
+   report.errors.push('Public external ratings do not exactly match specialist source-traced TOP30 competition');
  report.expected_db={public_venues:pub,public_external_ratings:rated};
  const home=await resource('/','ranking-evidence-v1.js');
  await resource('/app.js?v=20261013-integrity','WEDDINGRANK_CONFIG');
@@ -75,7 +85,12 @@ async function count(table,query,filter=()=>true){
   ['4455819b-9eb4-412b-beb9-2a8c9f20fd34','노블발렌티 대치'],
   ['d7f71655-468b-4f3f-9ac8-d01271fedc73','보람컨벤션'],
   ['890946fd-a262-439a-b1a7-5cef93a04ab9','경민컨벤션웨딩홀'],
-  ['5c47acd9-b1c3-43d4-8f90-072495a85150','모나밸리 웨딩']
+  ['5c47acd9-b1c3-43d4-8f90-072495a85150','모나밸리 웨딩'],
+  ['751aaeb2-b464-4a25-a1ed-8aa188feeb23','제이오스티엘'],
+  ['443d99a5-9788-4e8b-93df-bfe421eade0a','롤링힐스호텔 웨딩'],
+  ['6320ab66-d8f2-41d4-b76e-3ff12cb5a701','호텔인터내셔널 창원 웨딩'],
+  ['7a5404db-fd27-4260-a713-52c7e5a8c530','소노벨 경주 웨딩'],
+  ['76ed2597-546b-414e-b459-528178e665f3','호텔현대 바이 라한 울산 웨딩홀']
  ])await resource('/venue/'+id+'/',name);
  // Verify a future-only official quote is not silently presented as a current booking price.
  const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
