@@ -1,0 +1,126 @@
+{
+  "schema_version": "weddingrank-directory-manual-audit-v1",
+  "audit_date": "2026-10-14",
+  "scope": "WeddingRank specialist source only",
+  "publication_criteria": "official identity, address, phone, active operation, duplicate review; external numeric ranking handled separately",
+  "baseline": {
+    "public_venues": 132,
+    "public_rooms": 260,
+    "venues_with_prices": 94,
+    "independent_source_urls": 314,
+    "analysis_rows": 251,
+    "public_external_ratings": 29,
+    "verified_top30": 10
+  },
+  "direct_database_changes": [
+    {
+      "id": "a2199c90-46d7-4980-95b8-01d4b13c6b47",
+      "name": "JNJ아트컨벤션",
+      "change": "directory published",
+      "identity_url": "https://www.jnjart.co.kr/",
+      "independent_current_operation_evidence": "https://www.jobkorea.co.kr/Recruit/GI_Read/49694124",
+      "address": "경기도 평택시 비전5로 20-46",
+      "phone": "031-653-5300",
+      "caveat": "Existing 2026-09 official verification in DB; live website fetch timed out, 2026 reservation-team hiring cross-check",
+      "duplicate_alias_held": "평택제이앤제이아트컨벤션"
+    },
+    {
+      "id": "d8371333-50aa-4656-8d3a-39679a72bcf1",
+      "name": "영도구청 대강당(공공예식장)",
+      "change": "directory published",
+      "address": "부산광역시 영도구 태종로 423",
+      "phone": "051-419-4162",
+      "government_source": "https://www.busan.go.kr/depart/pubwedding",
+      "source_announced": "2026-01-27"
+    },
+    {
+      "id": "bbaba30e-bf87-4ee0-877d-efccda8c6a62",
+      "name": "이바구복합문화체육센터(공공예식장)",
+      "change": "directory published",
+      "address": "부산광역시 동구 초량중로 113",
+      "phone": "051-440-4355",
+      "government_source": "https://www.busan.go.kr/depart/pubwedding",
+      "source_announced": "2026-01-27"
+    },
+    {
+      "id": "98caa05a-9e52-4152-b381-e8e0fcebf5f6",
+      "name": "부산시민공원(공공예식장)",
+      "change": "directory published",
+      "address": "부산광역시 부산진구 시민공원로 73",
+      "phone": "051-850-6014",
+      "government_source": "https://www.busan.go.kr/depart/pubwedding",
+      "booking_resource": "https://www.eshare.go.kr/UserPortal/Upv/UprResrcFacl/index.do?rsrc_no=FF28H5237055"
+    },
+    {
+      "id": "50c6b246-3b12-454b-8a3c-9f6f9beca33d",
+      "name": "파티더풀문",
+      "change": "fill missing website from existing official source",
+      "official_page": "https://www.partythefullmoon.com/products/wedding"
+    },
+    {
+      "id": "421c6da5-36cc-4449-ad2f-d8be5a2be72a",
+      "name": "상록아트홀",
+      "change": "fill missing phone",
+      "phone": "02-564-5757",
+      "cross_checks": [
+        "https://www.weddingnote.co.kr/halls/seoul/sangrok-art-hall",
+        "https://www.daangn.com/kr/pois/F26UgtzcMFSb"
+      ],
+      "caveat": "phone verified from matching independent directory listings, not direct official confirmation"
+    }
+  ],
+  "after_database_recheck": {
+    "public_venues": 136,
+    "public_rooms": 261,
+    "venues_with_prices": 95,
+    "independent_source_urls": 314,
+    "analysis_rows": 251,
+    "public_external_ratings": 29,
+    "verified_top30": 10,
+    "public_exact_duplicate_address_groups": 0,
+    "public_missing_phones": 3,
+    "public_missing_websites": 0,
+    "external_rating_last_updated_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "no_changes": {
+    "new_review_analysis": 0,
+    "new_external_rating_publications": 0,
+    "new_price_rows": 0,
+    "new_hall_room_rows": 0,
+    "new_numeric_scores": 0,
+    "rating_basis_date_advanced": false,
+    "pickrank_sync": false
+  },
+  "preserved_holds": [
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "original_urls": 5,
+      "analysis_rows": 0,
+      "publication": "held"
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "original_urls": 6,
+      "analysis_rows": 0,
+      "publication": "held"
+    },
+    {
+      "name": "삼정호텔 웨딩",
+      "publication": "held as duplicate venue of already public 삼정호텔 (address matches after 서울/서울특별시 normalization)"
+    }
+  ],
+  "known_legacy_data_issues": [
+    "3 public PICKRANK-snapshot profiles have no verified telephone and site-source points to WeddingRank itself: 디에스컨벤션 / 미래컨벤션웨딩홀 / 빌라드마리. No unverified numbers added; repair pending original-source check."
+  ],
+  "aggregation_check": {
+    "workflow_run": "https://github.com/shylth65/weddingrank/actions/runs/38481974192",
+    "conclusion": "success",
+    "approved_independent_sources": 165,
+    "raw_score_sources": 30,
+    "updated": 0,
+    "unchanged": 29,
+    "protected_unpublished": 2
+  },
+  "visibility_check_status": "DB committed and re-queried, published static SEO pages / production browser await following GitHub workflow execution verification",
+  "trigger_note": "this research/audits path invokes WeddingRank generate-seo and top30 workflows on push; preexisting schedules untouched"
+}
