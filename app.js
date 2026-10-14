@@ -34,11 +34,12 @@ function score(v){return v==null?"—":Number(v).toFixed(1)}
 function avg(arr,key){const vals=arr.map(x=>Number(x[key])).filter(v=>Number.isFinite(v)&&v>0);return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null}
 
 function todayKst(){return new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date())}
-function buildPriceMap(prices){
+function buildPriceMap(prices,publicHalls){
   priceByHall=new Map();
   const today=todayKst();
+  const publicIds=new Set(publicHalls.map(h=>h.hall_id));
   for(const p of prices){
-    if(!p.hall_id||priceByHall.has(p.hall_id)||(p.effective_date&&p.effective_date>today)) continue;
+    if(!p.hall_id||!publicIds.has(p.hall_id)||priceByHall.has(p.hall_id)||(p.effective_date&&p.effective_date>today)) continue;
     priceByHall.set(p.hall_id,p);
   }
 }
@@ -60,7 +61,7 @@ async function load(){
       api("weddingrank_top30_competition?select=hall_id,rank_position&order=rank_position.asc&limit=1000")
     ]);
     halls=hallRows;
-    buildPriceMap(priceRows);
+    buildPriceMap(priceRows,halls);
     if($("#publicCount")) $("#publicCount").textContent=halls.length+"곳";
     if($("#ratedCount")) $("#ratedCount").textContent=Math.min(30,ratingRows.filter(r=>halls.some(h=>h.hall_id===r.hall_id)).length)+"곳";
     if($("#status")) $("#status").textContent=`공개 예식장 ${halls.length}곳 · 가격정보 ${priceByHall.size}곳`;
