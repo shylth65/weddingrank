@@ -29,7 +29,7 @@ async function count(table,query,filter=()=>true){
 }
 (async()=>{
  const [halls,ratings,competition]=await Promise.all([
- count('wedding_halls','hall_id,is_public,operation_status'),
+ count('wedding_halls','hall_id,is_public,operation_status,name,road_address'),
  count('external_wedding_ratings','hall_id,is_public,source_count,methodology_version,overall_score'),
  count('weddingrank_top30_competition','hall_id,rank_position,overall_score,source_count')]);
  const pub=halls.filter(h=>h.is_public===true&&h.operation_status==='운영').length;
@@ -44,6 +44,34 @@ async function count(table,query,filter=()=>true){
  if(notQualified.length||missingPublic.length||scoreMismatch.length||rated!==competition.length)
    report.errors.push('Public external ratings do not exactly match specialist source-traced TOP30 competition');
  report.expected_db={public_venues:pub,public_external_ratings:rated};
+
+ // Normalize province abbreviations so 경남 and 경상남도 cannot both publish one address.
+ const provinceAliases=[
+  [/^서울\s+/,'서울특별시 '],[/^부산\s+/,'부산광역시 '],
+  [/^대구\s+/,'대구광역시 '],[/^인천\s+/,'인천광역시 '],
+  [/^광주\s+/,'광주광역시 '],[/^대전\s+/,'대전광역시 '],
+  [/^울산\s+/,'울산광역시 '],[/^경기\s+/,'경기도 '],
+  [/^경남\s+/,'경상남도 '],[/^경북\s+/,'경상북도 '],
+  [/^전남\s+/,'전라남도 '],[/^전북\s+/,'전북특별자치도 '],
+  [/^충남\s+/,'충청남도 '],[/^충북\s+/,'충청북도 '],
+  [/^강원도\s+/,'강원특별자치도 '],[/^제주\s+/,'제주특별자치도 ']
+ ];
+ const normalizeAddress=raw=>{
+  let address=String(raw||'').trim();
+  for(const [pattern,replacement] of provinceAliases)address=address.replace(pattern,replacement);
+  return address.toLowerCase().replace(/[^0-9a-z가-힣]/g,'');
+ };
+ const addressMap=new Map(),duplicateAddressGroups=[];
+ for(const h of halls.filter(x=>x.is_public===true&&x.operation_status==='운영')){
+  const k=normalizeAddress(h.road_address);if(!k)continue;
+  if(!addressMap.has(k))addressMap.set(k,[]);
+  addressMap.get(k).push({id:h.hall_id,name:h.name});
+ }
+ for(const list of addressMap.values())if(list.length>1)duplicateAddressGroups.push(list);
+ report.directory_integrity={normalized_public_duplicate_address_groups:duplicateAddressGroups.length,
+  duplicated_venue_names:duplicateAddressGroups.map(g=>g.map(x=>x.name))};
+ if(duplicateAddressGroups.length)report.errors.push('Duplicate public venue addresses after province-alias normalization');
+
  const home=await resource('/','ranking-evidence-v1.js');
  await resource('/app.js?v=20261013-integrity','WEDDINGRANK_CONFIG');
  const manifest=await resource('/ranking-evidence-v1.js?v=20261013','2026-10-13-original-scores');
@@ -90,7 +118,11 @@ async function count(table,query,filter=()=>true){
   ['443d99a5-9788-4e8b-93df-bfe421eade0a','롤링힐스호텔 웨딩'],
   ['6320ab66-d8f2-41d4-b76e-3ff12cb5a701','호텔인터내셔널 창원 웨딩'],
   ['7a5404db-fd27-4260-a713-52c7e5a8c530','소노벨 경주 웨딩'],
-  ['76ed2597-546b-414e-b459-528178e665f3','호텔현대 바이 라한 울산 웨딩홀']
+  ['76ed2597-546b-414e-b459-528178e665f3','호텔현대 바이 라한 울산 웨딩홀'],
+  ['9ca4a22f-67ff-47d7-8a0d-c363e87f22e7','코모도호텔 부산 그랜드볼룸'],
+  ['2d10c28a-8701-4f52-836d-66770b04121d','서울여성플라자 피움서울'],
+  ['2c5cad44-dc7b-4b4c-8e2c-74c431163596','용산가족공원'],
+  ['6010f9a6-0bc2-4f00-8038-610e0a2ce866','소노캄 거제']
  ])await resource('/venue/'+id+'/',name);
  // Verify a future-only official quote is not silently presented as a current booking price.
  const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
