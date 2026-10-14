@@ -1,0 +1,217 @@
+{
+  "schema_version": "weddingrank-directory-audit-v1",
+  "audit_date": "2026-10-14",
+  "batch": "6",
+  "original_site": "WeddingRank",
+  "other_site_synchronization": false,
+  "scope": "Original venue directory, official profile, operating state, independent review qualification; no PICKRANK output",
+  "baseline": {
+    "public_operating_venues": 143,
+    "public_rooms": 269,
+    "public_venues_with_price_rows": 97,
+    "review_urls": 314,
+    "review_analyses": 251,
+    "public_legacy_rating_rows": 29,
+    "strict_top30_participants": 10
+  },
+  "checks": {
+    "official_source_validity": "Individual source URLs directly searched; existing stored names/addresses/phone verified against original publisher or city official list",
+    "duplicate_name_and_normalized_address_groups": 0,
+    "operation_status": "운영",
+    "verification_status": "공식확인",
+    "is_public_originally_false": true,
+    "unsupported_ratings_promoted": false
+  },
+  "new_publications": {
+    "official_private": [
+      {
+        "hall_id": "e40d3ed5-2cfe-4633-a4d0-9739d353d396",
+        "name": "KW컨벤션",
+        "source_url": "https://www.kwconvention.com/",
+        "reason": "Official operating wedding information, contact, address; rating not promoted"
+      },
+      {
+        "hall_id": "2805a3fe-736d-4a68-af0c-d3ba4f6024b6",
+        "name": "스페이스566웨딩컨벤션",
+        "source_url": "https://space566.com/31",
+        "reason": "Official operating wedding information, contact, address; rating not promoted"
+      },
+      {
+        "hall_id": "db3cb91e-1e53-499b-a0c5-49ea696822d4",
+        "name": "오펠리스웨딩",
+        "source_url": "https://www.ofelis.com/location/",
+        "reason": "Official operating wedding information, contact, address; rating not promoted"
+      },
+      {
+        "hall_id": "f9a17b72-5d44-4f5c-95ab-f6108b0ebc78",
+        "name": "어반폴",
+        "source_url": "https://urbanfall.kr/wedding",
+        "reason": "Official operating wedding information, contact, address; rating not promoted"
+      },
+      {
+        "hall_id": "68cee415-6105-487c-ae5d-ae17719b3ba7",
+        "name": "파로스컨벤션",
+        "source_url": "https://www.pharosconvention.co.kr/location/",
+        "reason": "Official operating wedding information, contact, address; rating not promoted"
+      }
+    ],
+    "seoul_public_wedding_facilities": [
+      {
+        "hall_id": "ddea4ad0-0a8c-4a45-a962-9055b9630c27",
+        "name": "서울한방진흥센터(야외마당)",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "dcc8a0d3-a4cc-4147-b496-91a29499d347",
+        "name": "성북 예향재",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "4fded12a-b475-4dd5-9b01-e7e1e69dfbce",
+        "name": "은평역사한옥박물관(은평마당)",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "baf6cb3a-3362-4b45-a05e-cb58e8d2bdce",
+        "name": "백인제가옥",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "9f2ae713-326f-41db-944f-6480454320d2",
+        "name": "서울식물원 사색의 정원",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "cd21cfaa-0e49-4102-9de7-1fa70d8740bd",
+        "name": "선유도공원(원형무대)",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "4c773aff-0ebd-4a71-b040-4bf087969c02",
+        "name": "매헌시민의숲",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "8fcc0fbc-22ba-49a1-9393-869aff665334",
+        "name": "보라매시민안전체험관(다목적홀)",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "f257ef4b-8f89-4e12-9abb-c6ed75ea28db",
+        "name": "광진구청 대강당홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "ca49fafa-27c8-4b1d-af2d-5d093fd58136",
+        "name": "도봉구청 선인봉홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      },
+      {
+        "hall_id": "8843c1af-973a-4f98-8a0b-a34bb8b95bab",
+        "name": "서울주택도시개발공사(대강당홀)",
+        "source_url": "https://wedding.seoulwomen.or.kr/",
+        "operation": "Listed on current 2026 Seoul official venue guide",
+        "venue_phone": "DB existing facility-specific phone (not central booking)",
+        "booking_center": "1899-2154",
+        "caveat": "Specific available wedding dates & selected planners require individual booking consultation"
+      }
+    ]
+  },
+  "after_db": {
+    "public_venues": 159,
+    "public_rooms": 270,
+    "public_venues_with_price_rows": 102,
+    "review_sources": 314,
+    "review_analyses": 251,
+    "legacy_public_rating_rows": 29,
+    "top30": 10,
+    "missing_phone": 1,
+    "missing_website": 3,
+    "normalized_duplicate_public_address_groups": 0
+  },
+  "held_examples": [
+    {
+      "name": "초안산 가드닝센터",
+      "reason": "DB admin district 노원구 conflicts with road address 도봉구; not published"
+    },
+    {
+      "name": "HW컨벤션센터 웨딩홀",
+      "reason": "same address as canonical HW컨벤션센터; preserved hidden"
+    },
+    {
+      "name": "삼정호텔 웨딩",
+      "reason": "duplicate of public 삼정호텔"
+    },
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "review_urls": 5,
+      "review_analyses": 0,
+      "external_rating_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "review_urls": 6,
+      "review_analyses": 0,
+      "external_rating_public": false
+    }
+  ],
+  "reference_sources": [
+    "https://wedding.seoulwomen.or.kr/",
+    "https://wedding.seoulwomen.or.kr/intro",
+    "https://www.kwconvention.com/",
+    "https://space566.com/31",
+    "https://www.ofelis.com/location/",
+    "https://urbanfall.kr/wedding",
+    "https://www.pharosconvention.co.kr/location/"
+  ],
+  "preserved": {
+    "rating_last_updated_utc": "2026-10-03T02:16:20.134556Z",
+    "new_independent_reviews": 0,
+    "new_independent_review_analysis": 0,
+    "new_numeric_ratings": 0,
+    "original_venue_rows_archived_deleted": 0,
+    "automated_aggregation_workflow_schedule_changed": false,
+    "pickrank_sync": false
+  },
+  "deployment_verification": "pending upon audit commit; GitHub SEO and TOP30 actions trigger via research/audits/** push; production QA to be run and reported separately"
+}
