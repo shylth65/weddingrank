@@ -1,0 +1,124 @@
+{
+  "schema_version": "weddingrank-specialist-directory-manual-audit-v1",
+  "audit_date": "2026-10-14",
+  "batch": 11,
+  "scope": "WeddingRank-only canonical specialist project",
+  "dependencies": "GitHub Actions use their project-owned Supabase secrets; no active ChatGPT Supabase connector switching required for schedules",
+  "source_policy": "Public venue listings require official active venue, address, phone, alias-aware deduplication. Numeric ratings require >=3 distinct independent original public review URLs with individually analyzed score, raw scale, real sample and independently reviewed audit. No synthetic score/advertorial/aggregator profile.",
+  "baseline": {
+    "public_operating_venues": 178,
+    "public_hall_rooms": 293,
+    "venues_with_existing_prices": 117,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "undated_published_individual_review_rows": 36,
+    "public_numeric_ratings": 10,
+    "top30": 10
+  },
+  "publications": [
+    {
+      "hall_id": "535488ad-4269-4ee8-b6c6-dc4dd8757140",
+      "name": "안산엠블던호텔",
+      "canonical_operator_page": "https://mvldonhotel.com/wedding/",
+      "official_reservation": "https://mvldonhotel.com/reservation/wedding/",
+      "official_location": "https://mvldonhotel.com/embledon/location/",
+      "address": "경기도 안산시 단원구 중앙대로 869",
+      "official_wedding_phone": "031-413-1111",
+      "current_operation": "2027 wedding bookings open; official June 2026 event for 2027 H2",
+      "hall_records": [
+        {
+          "room": "루시아홀",
+          "floor": "3F",
+          "seats": 200,
+          "original": "https://mvldonhotel.com/wedding/lucia/"
+        },
+        {
+          "room": "스몰웨딩 전용 공간",
+          "floor": "5F / 22F 루프탑",
+          "people_min": 30,
+          "people_max": 70,
+          "original": "https://mvldonhotel.com/wedding/small/"
+        }
+      ],
+      "commercial_price_note": "Prior 11m rent, 100k meal, min200 are third-party estimates, NOT verified official contract price; previously stated 500 capacity contradicted by official Lucia 200 seats; DB note updated, numeric price kept."
+    },
+    {
+      "hall_id": "52c099cd-86cc-467c-b165-0fc3873e2153",
+      "name": "아모르웨딩컨벤션 순천",
+      "canonical_operator_page": "https://loveamor.co.kr/",
+      "official_hall1": "https://loveamor.co.kr/34",
+      "official_hall2": "https://loveamor.co.kr/2024286056",
+      "official_location": "https://loveamor.co.kr/35",
+      "address": "전라남도 순천시 서면 압곡길 94",
+      "phone": "061-752-1000",
+      "room_records": [
+        {
+          "room": "엘르홀",
+          "existing": true
+        },
+        {
+          "room": "그랜드볼룸",
+          "new": true
+        }
+      ],
+      "unknown_capacity_kept_null": true
+    }
+  ],
+  "additional_candidates_not_promoted": [
+    {
+      "name": "세인트존스호텔 웨딩",
+      "reason": "Official wedding menu exists but detail page https://new.stjohns.co.kr/post/1281 currently says 준비 중인 페이지; insufficient present venue detail corroboration",
+      "source": "https://new.stjohns.co.kr/post/1281"
+    },
+    {
+      "name": "목화웨딩컨벤션",
+      "reason": "Current official franchise source/individual hall access and independent corroboration not established to required level in this batch"
+    },
+    {
+      "name": "코오롱호텔 경주 웨딩",
+      "reason": "Current official 2026 wedding reservation detail not established"
+    }
+  ],
+  "independent_review_date_research": {
+    "url": "https://kkyaun.tistory.com/330",
+    "finding": "Individual first-person multi-venue comparative blog, article shows other posts from 2020 but exact main-article publish date absent in exposed original page. Do not infer date.",
+    "date_updated": false
+  },
+  "after_db": {
+    "public_operating_venues": 180,
+    "public_rooms": 297,
+    "public_venues_with_any_date_price_rows": 118,
+    "source_url_rows": 314,
+    "review_analyses": 251,
+    "undated_published_individual_review_rows": 36,
+    "public_numeric_ratings": 10,
+    "strict_top30": 10,
+    "public_duplicate_normalized_address_groups": 0,
+    "last_rating_basis_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "protected_holds": [
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "review_urls": 5,
+      "verified_analyses": 0,
+      "external_rating_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "review_urls": 6,
+      "verified_analyses": 0,
+      "external_rating_public": false
+    }
+  ],
+  "unchanged": {
+    "no_new_approved_independent_source_urls": true,
+    "no_new_review_analyses": true,
+    "no_numeric_rating_changes": true,
+    "no_score_basis_date_updates": true,
+    "no_top30_publication_changes": true,
+    "no_pickrank_push": true,
+    "no_original_hall_rows_removed": true,
+    "no_existing_cron_schedule_changes": true
+  },
+  "expected_actions": "Audit push runs SEO and TOP30 verification; manual site/mobile QA checks to follow after GitHub Pages is deployed."
+}
