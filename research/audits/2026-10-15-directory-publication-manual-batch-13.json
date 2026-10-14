@@ -1,0 +1,105 @@
+{
+  "schema_version": "weddingrank-specialist-directory-manual-audit-v1",
+  "audit_date": "2026-10-15",
+  "batch": 13,
+  "scope": "WeddingRank specialist only",
+  "central_sync": false,
+  "before": {
+    "public_operating_venues": 182,
+    "public_rooms": 297,
+    "price_venues_all_dates": 120,
+    "source_urls": 314,
+    "review_analysis_rows": 251,
+    "undated_published_original_reviews": 35,
+    "numeric_ratings_public": 10,
+    "top30_participants": 10
+  },
+  "verified_publications": [
+    {
+      "hall_id": "2f07fc6d-3a75-4926-9b1f-8fd2872e94e0",
+      "name": "라시따시어터",
+      "official_url": "https://lacittatheater.co.kr/",
+      "official_address": "서울 서초구 매헌로 16",
+      "official_phone": "02-2155-2222",
+      "operator_wedding_date_range": "2026-07 through 2027-12",
+      "room": {
+        "name": "그랜드볼룸",
+        "official_capacity_seats": 200,
+        "source": "https://lacittatheater.co.kr/"
+      },
+      "price_records_preserved": 2,
+      "price_clarifications": [
+        {
+          "period": "2026 H2 peak season",
+          "discount_rental_krw": 12000000,
+          "discount_meal_krw": 93000,
+          "regular_rental_krw": 16000000,
+          "regular_meal_krw": 110000
+        },
+        {
+          "period": "2026 H2 off season",
+          "discount_rental_krw": 8800000,
+          "discount_meal_krw": 85000
+        }
+      ],
+      "caveat": "Existing 2026 price rows retained, notes explain season/discount versus regular pricing; 2027 amounts not copied into 2026 rows."
+    },
+    {
+      "hall_id": "ac04fa36-365a-44e0-8726-5a192fd4438f",
+      "name": "서울도시건축전시관",
+      "official_url": "https://wedding.seoulwomen.or.kr/facilities/401",
+      "official_directory": "https://wedding.seoulwomen.or.kr/",
+      "address": "서울특별시 중구 세종대로 119",
+      "facility_phone": "02-736-8050",
+      "evidence": "2026 Seoul city public wedding venue listing and 2025 official venue partner guide; exact bookable wedding dates not independently confirmed",
+      "room_status": "Pre-existing room source moved from general city directory to venue URL; leave unknown capacity NULL",
+      "price_status": "No fabricated rental/meal price"
+    }
+  ],
+  "held": [
+    {
+      "name": "엘리시안강촌 웨딩",
+      "reason": "DB source points to about-jeju/wedding, which may be Jeju-specific. App developer lists both Gangchon and Jeju wedding business, but does not isolate current Gangchon original venue details. Need unambiguous Kangchon location original before directory release."
+    },
+    {
+      "name": "코오롱호텔 경주 웨딩",
+      "reason": "Hotel current offers and banquet services present, but current official wedding reservation or hall page unproven"
+    },
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "source_urls": 5,
+      "individually_analyzed": 0,
+      "external_rating_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "source_urls": 6,
+      "individually_analyzed": 0,
+      "external_rating_public": false
+    }
+  ],
+  "after_db": {
+    "public_operating_venues": 184,
+    "public_rooms": 299,
+    "priced_venues_all_dates": 121,
+    "priced_venues_current_effective": 120,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "undated_published_independent_review_urls": 35,
+    "numeric_ratings_public": 10,
+    "top30_participants": 10,
+    "duplicate_normalized_address_groups": 0,
+    "latest_numeric_rating_basis_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "no_changes": {
+    "new_independent_review_urls": 0,
+    "new_review_analysis": 0,
+    "new_numeric_rating_publication": 0,
+    "top30_score_or_rank_changes": 0,
+    "price_amounts_changed": 0,
+    "existing_cron_changed": false,
+    "pickrank_sync": false,
+    "original_rows_deleted": 0
+  },
+  "follow_on": "New audit triggers WeddingRank own SEO and TOP30 jobs. Verify published 184 venue pages with GitHub Pages and live mobile QA before completion."
+}
