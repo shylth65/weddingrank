@@ -1,0 +1,126 @@
+{
+  "schema_version": "weddingrank-specialist-directory-publication-audit-v1",
+  "review_date": "2026-10-14",
+  "batch": 9,
+  "scope": "WeddingRank specialist only",
+  "pickrank_sync": false,
+  "baseline": {
+    "public_operating_venues": 170,
+    "public_room_rows": 284,
+    "priced_public_venues": 109,
+    "independent_review_sources": 314,
+    "analyses": 251,
+    "strict_public_ratings": 10,
+    "top30": 10,
+    "undated_public_review_sources": 39
+  },
+  "new_directories": [
+    {
+      "hall_id": "9ca4a22f-67ff-47d7-8a0d-c363e87f22e7",
+      "name": "코모도호텔 부산 그랜드볼룸",
+      "official_url": "https://www.commodore.co.kr/html/04_banquet/02.php",
+      "address": "부산광역시 중구 중구로 151",
+      "general_phone": "051-466-9101",
+      "official_wedding_inquiry": "051-461-9770",
+      "room_added": "연리지가든",
+      "note": "Official 2026/2027 wedding promotion and event operating page; established source-priced record preserved. GrandBallroom capacity_min 200 was a guarantee, corrected to NULL."
+    },
+    {
+      "hall_id": "2d10c28a-8701-4f52-836d-66770b04121d",
+      "name": "서울여성플라자 피움서울",
+      "official_url": "https://wedding.seoulwomen.or.kr/facilities/520",
+      "address": "서울특별시 동작구 여의대방로54길 18",
+      "facility_phone": "02-810-5000",
+      "room_added": "피움서울(구 국제회의장)",
+      "capacity_min": 80,
+      "capacity_max": 150,
+      "official_rental_fee_krw": 0,
+      "provenance": "2026 Seoul city government facility guide. Catering, flowers and other planning fees separate. Facility office phone not a booking guarantee."
+    },
+    {
+      "hall_id": "2c5cad44-dc7b-4b4c-8e2c-74c431163596",
+      "name": "용산가족공원(연못광장)",
+      "official_url": "https://wedding.seoulwomen.or.kr/facilities/4187",
+      "address": "서울특별시 용산구 용산동6가 168-6",
+      "facility_phone": "02-3783-5997",
+      "room_added": "연못광장",
+      "capacity_min": 80,
+      "capacity_max": 150,
+      "rental_fee_krw": 0,
+      "added_new_price_row": false,
+      "operating_months": "April-June and September-November in 2026; check date individually"
+    }
+  ],
+  "duplicate_correction": {
+    "name": "소노캄거제 웨딩",
+    "unpublished_hall_id": "7aa79bf6-f70a-443c-86a4-76524e79410e",
+    "canonical_public_hall_id": "6010f9a6-0bc2-4f00-8038-610e0a2ce866",
+    "canonical_name": "소노캄 거제",
+    "official_source": "https://mice.sonohotelsresorts.com/daemyung.front.saupjang.geoje.facility_wedding.ds/dmparse.dm?menuNo=02",
+    "reason": "경남 and 경상남도 spelling variants of identical address, same property and exact same phone; canonical record has 3 independent review sources and a price record",
+    "action": "Keep duplicate as hidden original; preserve linked canonical three original sources and numeric data; correct canonical Grand Ballroom Hall B3 capacity 500, do not create new score",
+    "canonical_price_kept": "Buffet 50,000 KRW as shown by official page; requires fresh quotation before wedding contracting"
+  },
+  "provenance_corrections": [
+    {
+      "name": "여의도웨딩컨벤션",
+      "hall_id": "45492a24-f3d6-4126-9c8c-8586ad2ff365",
+      "official_url": "https://www.ywedding.co.kr/about/",
+      "official_venue_url": "https://www.ywedding.co.kr/wedding/grand/",
+      "phone": "02-761-3800",
+      "room_correction": "Grand Ballroom 3F 250 seats, remove unsupported 300-1150 capacity"
+    },
+    {
+      "name": "인천아시아드웨딩컨벤션",
+      "hall_id": "a68e23bd-34f6-43c5-a892-3cd668bfd3db",
+      "official_url": "https://www.asiadwed.co.kr/location/",
+      "phone": "032-765-6000",
+      "official_halls": [
+        "https://www.asiadwed.co.kr/wedding/grace/",
+        "https://www.asiadwed.co.kr/wedding/briller/",
+        "https://www.asiadwed.co.kr/wedding/viabella/"
+      ],
+      "room_correction": "Remove unsupported independent directory 250-1000 capacities for Grace and Briller; floor left as previously recorded; Viabella officially opened Aug 2026"
+    }
+  ],
+  "after_database_audit": {
+    "public_operating_venues": 173,
+    "public_rooms": 288,
+    "public_venues_with_existing_or_new_prices": 112,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "undated_published_public_review_rows": 39,
+    "public_rating_count": 10,
+    "strict_top30_count": 10,
+    "last_public_external_rating_basis_utc": "2026-10-03T02:16:20.134556Z",
+    "normalized_public_duplicate_addresses": 0
+  },
+  "no_changes": {
+    "new_approved_review_sources": 0,
+    "new_review_analyses": 0,
+    "new_external_ratings": 0,
+    "score_or_rank_changes": 0,
+    "original_review_or_venue_rows_deleted": 0,
+    "previous_published_rating_basis_changed": false,
+    "pickrank_sync": false
+  },
+  "historic_holds": [
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "review_sources": 5,
+      "verified_analyses": 0,
+      "rating_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "review_sources": 6,
+      "verified_analyses": 0,
+      "rating_public": false
+    }
+  ],
+  "unqualified_remain_held": [
+    "코오롱호텔 경주: official hotel events available but not sufficiently explicit wedding reservation current page",
+    "서울도시건축전시관: official 2026 wedding location current individual page not independently verified"
+  ],
+  "actions": "GitHub workflows from WeddingRank audit file push; not the PICKRANK central project. GitHub Secrets used for DB."
+}
