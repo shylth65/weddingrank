@@ -1,0 +1,173 @@
+{
+  "schema_version": "weddingrank-specialist-manual-audit-v1",
+  "audited_at": "2026-10-14",
+  "scope": "WeddingRank-only; no PICKRANK sync",
+  "before": {
+    "public_venues": 136,
+    "public_rooms": 261,
+    "public_venues_with_price_records": 95,
+    "review_source_urls": 314,
+    "review_analysis_rows": 251,
+    "public_legacy_ratings": 29,
+    "top30_participants": 10
+  },
+  "public_profile_promotions": [
+    {
+      "hall_id": "d11d9068-354a-490c-97b9-dca2cedcaf7f",
+      "name": "엘마리노 앳 인천",
+      "source_url": "https://www.elmarino.co.kr/",
+      "evidence": "official 2026 April open and live wedding service, address, tel"
+    },
+    {
+      "hall_id": "d606487e-0698-4c83-aca2-919805373cb7",
+      "name": "호텔인터시티 웨딩",
+      "source_url": "https://www.hotelinterciti.com/sub0501/view",
+      "evidence": "official Grace Hall 120 capacity + address and telephone",
+      "caveat": "preexisting 88000 KRW meal price is secondary-site sourced, not confirmed official; UI now labels provenance"
+    },
+    {
+      "hall_id": "ce8e779f-b458-4a87-a4f2-34c080aa1c0c",
+      "name": "연암컨벤션",
+      "source_url": "https://yeon-am.co.kr/reservation",
+      "evidence": "operator's wedding-reservation page and 052-288-7766 contact"
+    },
+    {
+      "hall_id": "e99dc720-a490-4d61-8d7b-0fbef396c6ef",
+      "name": "안동그랜드호텔 웨딩",
+      "source_url": "https://www.andonggrandhotel.com/web/html/wedding_main.php",
+      "evidence": "official Wedding&Event and separate wedding/banquet 054-852-1004",
+      "duplicate_nonpublic": "안동그랜드호텔"
+    },
+    {
+      "hall_id": "dfcfa3a0-6587-48d8-ab36-ed177f07675a",
+      "name": "마리드메이",
+      "source_url": "https://marieedemay.com/wedding-hall",
+      "evidence": "operator wedding page with Daegu address and 053-763-6161"
+    },
+    {
+      "hall_id": "db4e012e-c5b3-4474-87e9-99225dfcd3ea",
+      "name": "HW컨벤션센터",
+      "source_url": "https://www.hwcc.co.kr/wedding/price/",
+      "evidence": "2026 and 2027 official published wedding quotes and present reservation page; date handling distinguishes future quotes",
+      "duplicate_nonpublic": "HW컨벤션센터 웨딩홀"
+    },
+    {
+      "hall_id": "392aa988-7514-434b-b0f0-55daf82b1725",
+      "name": "메리다웨딩컨벤션",
+      "source_url": "https://merida.kr/",
+      "cross_checks": [
+        "https://www.jobkorea.co.kr/Recruit/GI_Read/49497530",
+        "https://bizno.net/article/4198802699"
+      ],
+      "evidence": "DB prior official verification of wedding rooms and consultation + 2026 July hiring and active wedding company registration",
+      "caveat": "direct official homepage fetch failed 502 this batch; website-current-status verification pending"
+    }
+  ],
+  "profile_corrected": [
+    {
+      "name": "빌라드마리",
+      "hall_id": "6b60cf23-ad25-4765-81fd-6d247979670d",
+      "phone": "032-299-1004",
+      "sources": [
+        "https://leehye.com/product/%EB%B9%8C%EB%9D%BC%EB%93%9C%EB%A7%88%EB%A6%AC/255/",
+        "https://www.directwedding.co.kr/weddinghall/hall0262"
+      ],
+      "website_reset_null_from_self_link": true,
+      "limitation": "not called operator to verify"
+    },
+    {
+      "name": "미래컨벤션웨딩홀",
+      "hall_id": "5e470f68-1ce2-4fdb-b710-ab931bf80d53",
+      "phone": "033-262-1300",
+      "sources": [
+        "https://www.saramin.co.kr/zf_user/company-info/view/csn/RjFWR3dBMkN5eEVnWTQ1WDQ4amVTdz09/company_nm/%EB%AF%B8%EB%9E%98%EC%BB%A8%EB%B2%A4%EC%85%98%EC%9B%A8%EB%94%A9%ED%99%80%EF%BC%8C%EB%B7%94%ED%8E%98",
+        "https://www.arangcard.co.kr/location.php?ml_addr=&ml_kind=&page=139&wedding_opt=&wedding_value="
+      ],
+      "website_reset_null_from_self_link": true,
+      "limitation": "direct operator verification not obtained"
+    },
+    {
+      "name": "디에스컨벤션",
+      "hall_id": "c5f6561e-96c7-4d70-97c1-a4b38ee6cda3",
+      "source_url": "https://m.jobkorea.co.kr/Recruit/GI_Read/49986708?sc=621",
+      "phone": null,
+      "website": null,
+      "caveat": "2026 Sep-Oct recruitment confirms active wedding facility; outdated directory number 031-227-8000 not accepted as current phone"
+    }
+  ],
+  "official_rooms_copied_with_original_preservation": {
+    "venue": "HW컨벤션센터",
+    "count": 3,
+    "rooms": [
+      "그랜드볼룸",
+      "크리스탈홀",
+      "에메랄드홀"
+    ],
+    "from_archival_hall_id": "7ba33413-dee9-413f-b7ac-86fc749e3c79",
+    "to_hall_id": "db4e012e-c5b3-4474-87e9-99225dfcd3ea",
+    "source_url_examples": [
+      "https://www.hwcc.co.kr/wedding/grand/",
+      "https://www.hwcc.co.kr/wedding/crystal/",
+      "https://www.hwcc.co.kr/wedding/emerald/"
+    ]
+  },
+  "code_integrity_changes": {
+    "client": "app.js",
+    "generator": "scripts/generate-seo.mjs",
+    "effects": [
+      "List prices use currently effective quotes rather than future dates",
+      "Future-effective quotes in detail explicitly labeled upcoming",
+      "Price source names and URLs displayed, with pre-existing raw price records retained"
+    ]
+  },
+  "after_db": {
+    "public_venues": 143,
+    "public_operating_venues": 143,
+    "public_hall_rooms": 269,
+    "public_venues_with_price_records": 97,
+    "public_venues_with_effective_price_records": 97,
+    "independent_source_urls": 314,
+    "review_analysis_rows": 251,
+    "external_public_ratings": 29,
+    "top30_participants": 10,
+    "normalized_public_duplicate_address_groups": 0,
+    "public_missing_phones": 1,
+    "public_missing_websites": 3,
+    "last_external_rating_updated_at_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "protected_holds": [
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "source_urls": 5,
+      "analysis": 0,
+      "external_is_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "source_urls": 6,
+      "analysis": 0,
+      "external_is_public": false
+    }
+  ],
+  "not_promoted": [
+    "삼정호텔 웨딩 (same address as public 삼정호텔)",
+    "HW컨벤션센터 웨딩홀 (archival duplicate - rooms copied not record published)",
+    "안동그랜드호텔 (duplicate canonical)",
+    "평택제이앤제이아트컨벤션 (duplicate JNJ canonical)",
+    "에뿌제웨딩홀 (official domain request timeout)",
+    "더빈컨벤션웨딩홀 (official domain request failure)",
+    "씨엘드레브 (official domain 403)"
+  ],
+  "unchanged": {
+    "new_approved_independent_reviews": 0,
+    "new_review_analyses": 0,
+    "new_review_source_rows": 0,
+    "new_price_rows": 0,
+    "external_rank_publications": 0,
+    "ranking_score_changes": 0,
+    "rating_date_advanced": false,
+    "pickrank_sync": false
+  },
+  "previous_approved_review_actions_run": "https://github.com/shylth65/weddingrank/actions/runs/38481974192",
+  "confirmation_scope": "DB changes directly re-read and code checks; actual deployed pages and public REST subject to post-deployment GitHub QA execution"
+}
