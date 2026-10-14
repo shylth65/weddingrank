@@ -34,6 +34,23 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   });
   record('actual homepage public venue count',publicNum.trim()===publicApiCount+'곳',publicNum.trim(),publicApiCount+'곳');
   record('live TOP30 participant count matches public REST',ratedNum.trim()===expectedCount+'곳',ratedNum.trim(),expectedCount+'곳');
+  // Compare home pricing count against only live public venues and currently effective quotes.
+  const expectedPriceCount=await page.evaluate(async()=>{
+    const cfg=window.WEDDINGRANK_CONFIG,key=cfg.SUPABASE_PUBLISHABLE_KEY||cfg.SUPABASE_ANON_KEY;
+    const headers={apikey:key,Authorization:'Bearer '+key},base=cfg.SUPABASE_URL+'/rest/v1/';
+    const [venueResponse,priceResponse]=await Promise.all([
+      fetch(base+'wedding_halls?select=hall_id&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&limit=1000',{headers,cache:'no-store'}),
+      fetch(base+'wedding_prices?select=hall_id,effective_date&order=effective_date.desc&limit=2000',{headers,cache:'no-store'})
+    ]);
+    if(!venueResponse.ok||!priceResponse.ok)throw Error('Public venue/price REST QA failed');
+    const venues=await venueResponse.json(),prices=await priceResponse.json();
+    const ids=new Set(venues.map(v=>v.hall_id));
+    const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+    return new Set(prices.filter(p=>ids.has(p.hall_id)&&(!p.effective_date||p.effective_date<=today)).map(p=>p.hall_id)).size;
+  });
+  const statusText=await page.locator('#status').innerText();
+  record('public current-price venue count excludes private and future quotes',
+    statusText.includes('가격정보 '+expectedPriceCount+'곳'),statusText,'가격정보 '+expectedPriceCount+'곳');
   await page.screenshot({path:'weddingrank-live-home-mobile.png',fullPage:false});
   await page.waitForFunction(()=>document.querySelectorAll('#top30CompetitionPreviewBody .externalHomeTop10 .previewTopCard').length>0,null,{timeout:20000});
   const desktop=await browser.newPage({viewport:{width:1680,height:940},deviceScaleFactor:1});
