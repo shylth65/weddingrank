@@ -1,0 +1,172 @@
+{
+  "schema_version": "weddingrank-specialist-manual-directory-audit-v1",
+  "audit_date": "2026-10-14",
+  "batch": 10,
+  "scope": "WeddingRank specialist original database and site only",
+  "pickrank_sync": false,
+  "rating_policy": "Only original independent review URLs >=3, individually verified analysis records, source quality and original score, scale and real sample qualifies for public specialist numeric rating; ads, syndicated material, review catalog pages and user self reviews excluded",
+  "baseline": {
+    "public_operating_venues": 173,
+    "public_rooms": 288,
+    "public_venues_with_price_records": 112,
+    "independent_source_records": 314,
+    "review_analysis_rows": 251,
+    "undated_published_individual_review_rows": 39,
+    "public_numeric_ratings": 10,
+    "strict_top30_entrants": 10
+  },
+  "verified_official_publications": [
+    {
+      "hall_id": "f9b67a2c-7a58-46bb-8bee-f17aa0c494b5",
+      "name": "라베아툼",
+      "source_url": "https://www.labeatum.co.kr/page/sub2_1",
+      "address": "경기도 평택시 경기대로1376번길 22",
+      "phone": "031-611-5577",
+      "venue": "라베아툼 단독 웨딩홀",
+      "capacity_null_reason": "Official ~300 pyeong venue area is not attendee capacity"
+    },
+    {
+      "hall_id": "8621c8be-ac32-424d-ba55-8e2d746ad5ba",
+      "name": "안다즈 서울 강남 웨딩",
+      "source_url": "https://www.hyatt.com/andaz/ko-KR/selaz-andaz-seoul-gangnam/hotel",
+      "address": "서울특별시 강남구 논현로 854",
+      "phone": "02-2193-1234",
+      "venue_existing": "안다즈 언베일드 웨딩",
+      "official_event_capacity_max": 150,
+      "note": "Hotel property aggregate rating is NOT venue-specific independent wedding score"
+    },
+    {
+      "hall_id": "40d7d1b3-3ebb-4234-803c-69398f121666",
+      "name": "서울문화예술교육센터(서초)",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+      "address": "서울특별시 서초구 신반포로19길 6",
+      "room": "서울체임버홀",
+      "floor": "5F",
+      "capacity_range": [
+        100,
+        200
+      ],
+      "verified_morning_rental_krw": 1200000,
+      "other_option": "afternoon 4H 1,800,000 KRW",
+      "restriction": "No reception, paid parking; scheduled dates vary"
+    },
+    {
+      "hall_id": "b8b5403e-2185-467a-aa96-cc0e016b666a",
+      "name": "서울문화예술교육센터(은평)",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+      "address": "서울특별시 은평구 수색로 322-2",
+      "room": "블랙박스공연장",
+      "floor": "1F",
+      "capacity_range": [
+        100,
+        210
+      ],
+      "verified_morning_rental_krw": 900000,
+      "other_option": "afternoon 1,800,000 KRW",
+      "restriction": "No reception and no parking; 2027 Jan Sep Oct Nov unavailable"
+    },
+    {
+      "hall_id": "40903767-c396-46b0-8a94-60774a5f5e88",
+      "name": "초안산 가드닝센터",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+      "address": "서울특별시 도봉구 노해로66길 98-122",
+      "phone": "02-2091-3789",
+      "room": "초안산 가드닝센터",
+      "capacity_range": [
+        30,
+        50
+      ],
+      "existing_free_rental_kept": true,
+      "correction": "DB sigungu 노원구 -> 도봉구; official source confirms"
+    }
+  ],
+  "new_official_room_records": 4,
+  "existing_and_new_price_records": {
+    "new": 2,
+    "product_type": "2026 public venue morning rental only",
+    "meal_prices_unverified_kept_null": true,
+    "minimum_guarantee_unverified_kept_null": true
+  },
+  "review_source_integrity": [
+    {
+      "source_id": "43068504-4b72-4863-9fe1-4d49f9d437f2",
+      "url": "https://www.tripadvisor.co.kr/ShowUserReviews-g612376-d1176474-r721991532-Grand_Mercure_Ambassador_Changwon_ex_Pullman-Changwon_Gyeongsangnam_do.html",
+      "published_date": "2019-10-28",
+      "review_kind": "individual wedding-guest hotel-trip review",
+      "independent_source_still_eligible_as_individual": true,
+      "note": "Hotel overall 3.5/5 and 440 hotel reviews not treated as this wedding review's original score or wedding sample"
+    },
+    {
+      "source_id": "9b054a5b-7650-43c1-bfeb-0371e42f521c",
+      "url": "https://www.diningcode.com/profile.php?rid=V6m4gTNCiVHa",
+      "change": "public_review,public -> other,private",
+      "reason": "Restaurant directory and review collection, not one wedding guest original",
+      "url_preserved": true,
+      "analysis_preserved": true
+    },
+    {
+      "source_id": "161b9c64-29f6-41a8-acac-5e68e3d210d6",
+      "url": "https://weddingcrowd.kr/hall/view.php?idx=365",
+      "change": "public_review,public -> other,private",
+      "reason": "Commercial venue/discount enquiry landing page listing multiple reviews, not an individual original",
+      "url_preserved": true,
+      "analysis_preserved": true
+    }
+  ],
+  "code_fixes": [
+    {
+      "path": "scripts/aggregate-approved-reviews.cjs",
+      "effect": "Reject diningcode profile pages and weddingcrowd venue pages as independent original reviews"
+    },
+    {
+      "path": "scripts/sync-verified-top30.cjs",
+      "effect": "Reject identical catalog page patterns for newly approved numerical rankings"
+    },
+    {
+      "path": "app.js",
+      "effect": "Home 'price information' venue count now filters to public operating venue IDs and currently effective records"
+    },
+    {
+      "path": "scripts/verify-live-browser.cjs",
+      "effect": "Real browser verifies pricing count against current public DB prices"
+    }
+  ],
+  "after_db": {
+    "public_operating_venues": 178,
+    "public_rooms": 293,
+    "public_venues_with_all_date_price_records": 117,
+    "public_venues_with_current_price_records": 116,
+    "source_records_total": 314,
+    "analysis_rows_total": 251,
+    "undated_published_individual_review_rows": 36,
+    "public_numeric_ratings": 10,
+    "strict_top30_entrants": 10,
+    "public_duplicate_address_groups": 0,
+    "latest_numeric_rating_basis_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "protected_holds": [
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "source_urls": 5,
+      "verified_analysis_records": 0,
+      "external_numeric_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "source_urls": 6,
+      "verified_analysis_records": 0,
+      "external_numeric_public": false
+    }
+  ],
+  "unchanged": {
+    "no_new_independent_source_urls": true,
+    "no_new_verified_analysis": true,
+    "no_new_external_numeric_ratings": true,
+    "no_new_top30_participants": true,
+    "no_rating_score_or_date_change": true,
+    "no_pickrank_sync": true,
+    "source_and_analysis_rows_deleted": 0,
+    "cron_schedules_untouched": true
+  },
+  "action_execution": "Check resulting specialist SEO, TOP30, approved aggregation, GitHub Pages deployment and live mobile browser after push; GitHub Secrets, no ChatGPT Supabase session switching."
+}
