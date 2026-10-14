@@ -90,7 +90,7 @@
     "public_venues_with_any_date_price_rows": 118,
     "source_url_rows": 314,
     "review_analyses": 251,
-    "undated_published_individual_review_rows": 36,
+    "undated_published_individual_review_rows": 35,
     "public_numeric_ratings": 10,
     "strict_top30": 10,
     "public_duplicate_normalized_address_groups": 0,
@@ -120,5 +120,20 @@
     "no_original_hall_rows_removed": true,
     "no_existing_cron_schedule_changes": true
   },
-  "expected_actions": "Audit push runs SEO and TOP30 verification; manual site/mobile QA checks to follow after GitHub Pages is deployed."
+  "expected_actions": "Audit push runs SEO and TOP30 verification; manual site/mobile QA checks to follow after GitHub Pages is deployed.",
+  "additional_review_source_correction": {
+    "source_id": "affbc8f6-cb4f-4740-a918-daf4d4740ac9",
+    "url": "https://oding.co.kr/placeView/35",
+    "old_classification": "public_review, is_published=true",
+    "corrected_classification": "other, is_published=false",
+    "rationale": "Verified source is Oding's commercial hotel wedding venue profile and event consultation / quote landing page; its REVIEW section merely links other Naver blog articles. It is NOT an individual independent original wedding guest review.",
+    "source_url_and_analysis_rows_preserved": true,
+    "consulted_page": "https://oding.co.kr/placeView/35",
+    "no_numeric_rating_reapproval": true,
+    "guards_updated": [
+      "scripts/aggregate-approved-reviews.cjs",
+      "scripts/sync-verified-top30.cjs"
+    ]
+  },
+  "publication_and_ranking_footnote": "Review catalog exclusion changes the eligible source count, not the stored URL row count or approved TOP30 data. Confirm with GitHub approved aggregation and TOP30 sync logs."
 }
