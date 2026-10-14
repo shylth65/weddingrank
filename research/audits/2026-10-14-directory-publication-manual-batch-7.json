@@ -1,0 +1,190 @@
+{
+  "schema_version": "weddingrank-directory-publication-audit-v1",
+  "date": "2026-10-14",
+  "batch": 7,
+  "scope": "WeddingRank-only specialist directory",
+  "pickrank_sync": false,
+  "before": {
+    "public_venues": 159,
+    "public_rooms": 270,
+    "venues_with_any_price": 102,
+    "independent_source_rows": 314,
+    "review_analysis_rows": 251,
+    "undated_published_public_review_rows": 42,
+    "public_legacy_external_ratings": 29,
+    "strict_top30_entries": 10
+  },
+  "published": [
+    {
+      "hall_id": "43a37b29-23f6-42cb-8cd5-ad1905e4e77d",
+      "name": "SY컨벤션웨딩홀",
+      "official_url": "https://syconvention.co.kr/reservation/",
+      "verified_address": "경기도 수원시 영통구 봉영로 1612 보보스프라자 9F~10F",
+      "phone": "031-206-6660"
+    },
+    {
+      "hall_id": "f812eda9-ba5e-45fd-b682-881bba0f9d8a",
+      "name": "광명무역센터컨벤션",
+      "official_url": "https://www.gtcwed.co.kr/reservation/wedding/",
+      "verified_address": "경기 광명시 일직로 72",
+      "phone": "02-899-3535"
+    },
+    {
+      "hall_id": "4455819b-9eb4-412b-beb9-2a8c9f20fd34",
+      "name": "노블발렌티 대치",
+      "official_url": "https://noblevalentidaechi.co.kr/Reservation",
+      "verified_address": "서울특별시 강남구 영동대로 325 S TOWER B1층",
+      "phone": "02-539-0400"
+    },
+    {
+      "hall_id": "d7f71655-468b-4f3f-9ac8-d01271fedc73",
+      "name": "보람컨벤션",
+      "official_url": "https://www.boramwed.com/index.php?sub=sub07_m01_c01",
+      "verified_address": "울산광역시 남구 왕생로 160",
+      "phone": "1551-0079"
+    },
+    {
+      "hall_id": "890946fd-a262-439a-b1a7-5cef93a04ab9",
+      "name": "경민컨벤션웨딩홀",
+      "official_url": "https://www.weddingkm.com/",
+      "verified_address": "경기 의정부시 서부로 545 경민대학교 정문 승태관 1층",
+      "phone": "031-826-6662",
+      "held_duplicate_hall_id": "2220c0bb-a49f-462d-b413-071c69c33e8c"
+    },
+    {
+      "hall_id": "5c47acd9-b1c3-43d4-8f90-072495a85150",
+      "name": "모나밸리 웨딩",
+      "official_url": "https://monavalley.co.kr/sub.php?Page=sub2-1",
+      "verified_address": "충청남도 아산시 순천향로 624",
+      "phone": "041-582-1004",
+      "caveat": "Same official brand also references separate Divine Valley 623 address. No merger; only Arena Hall verified at Mona 624."
+    }
+  ],
+  "new_official_rooms": [
+    {
+      "venue": "SY컨벤션웨딩홀",
+      "room": "플레르홀",
+      "seats": 260,
+      "source_url": "https://syconvention.co.kr/"
+    },
+    {
+      "venue": "광명무역센터컨벤션",
+      "room": "그랜드볼룸",
+      "floor": "3F",
+      "seats": 240,
+      "source_url": "https://www.gtcwed.co.kr/wedding/grand/"
+    },
+    {
+      "venue": "보람컨벤션",
+      "room": "루키아홀",
+      "floor": "3F",
+      "seats": 300,
+      "source_url": "https://boramwed.com/index.php?sub=sub02_m01_c01"
+    },
+    {
+      "venue": "보람컨벤션",
+      "room": "카리나홀",
+      "seats": null,
+      "source_url": "https://www.boramwed.com/"
+    },
+    {
+      "venue": "보람컨벤션",
+      "room": "블리스홀",
+      "seats": null,
+      "source_url": "https://www.boramwed.com/"
+    },
+    {
+      "venue": "모나밸리 웨딩",
+      "room": "아레나홀",
+      "seats": 200,
+      "source_url": "https://monavalley.co.kr/sub.php?Page=sub2-1"
+    }
+  ],
+  "price_correction": {
+    "venue": "광명무역센터컨벤션",
+    "price_id": "b1b1c8d3-ab32-4956-b06a-b77284150223",
+    "original_effective_date": "2026-08-30",
+    "corrected_effective_date": "2027-01-01",
+    "reason": "Published operator price explicitly states 2027 Jan-Jun normal rental 14000000 and meal 95000. Date 2026-08-30 was original verification date, NOT 2026 effective date.",
+    "source_url": "https://www.gtcwed.co.kr/guide/wedding/default.asp",
+    "numeric_price_changed": false
+  },
+  "verified_original_post_dates": [
+    {
+      "source_id": "d0d7f4a7-5cf7-4c35-854a-c24ca88b5f00",
+      "source_url": "https://stephustle.tistory.com/126",
+      "date": "2023-01-29",
+      "kind": "independent individual wedding guest blog",
+      "original_score_verified": false
+    },
+    {
+      "source_id": "44540894-881f-4da8-ac5b-4207ac30ec89",
+      "source_url": "https://lifensook.tistory.com/300",
+      "date": "2024-09-11",
+      "kind": "independent individual wedding guest blog",
+      "original_score_verified": false
+    },
+    {
+      "source_id": "8486dd9a-d97b-4090-a37a-289ddfca9939",
+      "source_url": "https://reveduete.tistory.com/25",
+      "date": "2023-07-05",
+      "kind": "independent original wedding consultation blog",
+      "original_score_verified": false
+    }
+  ],
+  "held": [
+    {
+      "name": "드마레웨딩컨벤션",
+      "reason": "2026 Oct brand reorganization '더베라 by 루클라비' claimed on third-party site while prior official uses old name; require owner-current brand cross-check",
+      "source_url": "https://www.directwedding.co.kr/weddinghall/hall0493"
+    },
+    {
+      "name": "https://jinzzawedding.com/reviews/2180",
+      "reason": "Tool could not fetch review original. Do not invent post date or reapprove score."
+    },
+    {
+      "name": "https://jinzzawedding.com/reviews/476",
+      "reason": "Tool could not fetch review original. Do not invent post date or reapprove score."
+    },
+    {
+      "name": "https://kkyaun.tistory.com/330",
+      "reason": "Page accessed but original publication date not verified; remain NULL."
+    },
+    {
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "original_url_count": 5,
+      "verified_review_analysis_count": 0,
+      "external_rating_public": false
+    },
+    {
+      "name": "보타닉파크웨딩",
+      "original_url_count": 6,
+      "verified_review_analysis_count": 0,
+      "external_rating_public": false
+    }
+  ],
+  "after_db": {
+    "public_venues": 165,
+    "public_rooms": 276,
+    "price_venues_all_dates": 106,
+    "price_venues_current_or_undated": 105,
+    "independent_review_source_rows": 314,
+    "analysis_rows": 251,
+    "undated_published_public_review_rows": 39,
+    "external_rating_public": 29,
+    "strict_top30_entries": 10,
+    "duplicate_normalized_public_addresses": 0,
+    "last_external_rating_updated_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "not_changed": {
+    "new_price_rows": 0,
+    "new_independent_review_rows": 0,
+    "new_verified_review_analysis_rows": 0,
+    "new_numeric_external_publications": 0,
+    "ranking_scores_or_eligibility": false,
+    "central_pickrank_push": false,
+    "scheduled_actions": false,
+    "source_rows_deleted": 0
+  },
+  "deployment_status": "GitHub trigger pending; verify live site and code Actions run separately"
+}
