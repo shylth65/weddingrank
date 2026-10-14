@@ -1,0 +1,106 @@
+{
+  "schema_version": "weddingrank-specialist-directory-automation-audit-v1",
+  "audit_date": "2026-10-15",
+  "batch": 14,
+  "scope": "WeddingRank specialist only",
+  "pickrank_sync": false,
+  "before": {
+    "public_operating_venues": 184,
+    "public_rooms": 299,
+    "public_price_venues": 121,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "numeric_ratings_public": 10
+  },
+  "verified_publications": [
+    {
+      "hall_id": "ae1b1bd7-9404-44e2-aed9-cd094149ab81",
+      "name": "씨엘드레브",
+      "official_url": "https://www.cieldereve.com/",
+      "official_address": "대전광역시 서구 계룡로314번길 8",
+      "official_phone": "010-5360-7383",
+      "official_room": {
+        "name": "Le Jardin",
+        "source_url": "https://www.cieldereve.com/LeJardin",
+        "capacity": "official capacity not published"
+      },
+      "evidence": "Official site exposes wedding reservation, Le Jardin wedding space, address and contact."
+    },
+    {
+      "hall_id": "80441c33-9223-4c48-818c-54c23b64bedc",
+      "name": "에뿌제웨딩홀",
+      "official_url": "https://epouser2.cafe24.com/",
+      "official_address": "전라남도 여수시 박람회길 1 국제관 C동",
+      "official_phone": "061-662-7333",
+      "official_rooms": [
+        "라벨르홀",
+        "펠리체홀"
+      ],
+      "evidence": "Current official operator site exposes both wedding halls and legal operator address."
+    }
+  ],
+  "held": [
+    {
+      "hall_id": "d216c9fc-3e06-4151-bbad-1e422b5d11cc",
+      "stored_name": "드마레웨딩컨벤션",
+      "reason": "Current market evidence says 2026-10 grand opening under 더베라 by 루클라비 (구 드마레). Hold until replacement operator identity has an unambiguous official source."
+    },
+    {
+      "hall_id": "7aaf5567-e69a-4872-9d43-73c555918912",
+      "stored_name": "관가 그레이스 K",
+      "reason": "Official site is a multi-branch franchise and the stored Gwangju address/phone could not be tied to a current branch-specific original page."
+    },
+    {
+      "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "review_source_urls": 5,
+      "analysis_rows": 0,
+      "external_rating_public": false
+    },
+    {
+      "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+      "name": "보타닉파크웨딩",
+      "review_source_urls": 6,
+      "analysis_rows": 0,
+      "external_rating_public": false
+    }
+  ],
+  "after_db": {
+    "public_operating_venues": 186,
+    "public_rooms": 302,
+    "public_price_venues": 121,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "numeric_ratings_public": 10,
+    "noncompliant_numeric_ratings_public": 0,
+    "duplicate_normalized_address_groups": 0,
+    "latest_numeric_rating_basis_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "latest_approved_review_aggregation": {
+    "run_id": 38550737180,
+    "url": "https://github.com/shylth65/weddingrank/actions/runs/38550737180",
+    "conclusion": "success",
+    "output": {
+      "halls_scanned": 966,
+      "public_operating_halls": 180,
+      "sources_scanned": 314,
+      "approved_sources": 162,
+      "raw_score_sources": 30,
+      "analysis_rows": 251,
+      "eligible_ratings": 10,
+      "updated": 0,
+      "unchanged": 10,
+      "new_publication_blocked_missing_raw_audit": 19,
+      "protected_unpublished": 2
+    }
+  },
+  "no_changes": {
+    "new_independent_review_urls": 0,
+    "new_review_analysis": 0,
+    "new_numeric_rating_publication": 0,
+    "rating_basis_dates_changed": 0,
+    "official_price_amounts_added": 0,
+    "original_rows_deleted": 0,
+    "existing_cron_changed": false
+  }
+}
