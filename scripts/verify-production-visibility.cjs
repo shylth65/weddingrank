@@ -131,7 +131,9 @@ async function count(table,query,filter=()=>true){
   ['535488ad-4269-4ee8-b6c6-dc4dd8757140','안산엠블던호텔'],
   ['52c099cd-86cc-467c-b165-0fc3873e2153','아모르웨딩컨벤션 순천'],
   ['67b485cb-53f5-4722-b038-0ebd208f7770','목화웨딩컨벤션'],
-  ['31278a47-7af4-4809-a790-c70043099c99','르엘컨벤션']
+  ['31278a47-7af4-4809-a790-c70043099c99','르엘컨벤션'],
+  ['2f07fc6d-3a75-4926-9b1f-8fd2872e94e0','라시따시어터'],
+  ['ac04fa36-365a-44e0-8726-5a192fd4438f','서울도시건축전시관']
  ])await resource('/venue/'+id+'/',name);
  // Verify a future-only official quote is not silently presented as a current booking price.
  const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
