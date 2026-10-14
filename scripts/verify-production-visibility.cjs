@@ -41,6 +41,13 @@ async function count(table,query,filter=()=>true){
  await resource('/ranking-data-as-of.js?v=20261013-integrity','기존 근거 재검증');
  const regions=await resource('/regions.html',String(pub));
  const sitemap=await resource('/sitemap.xml','/venue/');
+ // Manual directory publication batch 4: confirm each new public detail page on the deployed site.
+ for(const [id,name] of [
+  ['a2199c90-46d7-4980-95b8-01d4b13c6b47','JNJ아트컨벤션'],
+  ['d8371333-50aa-4656-8d3a-39679a72bcf1','영도구청 대강당'],
+  ['bbaba30e-bf87-4ee0-877d-efccda8c6a62','이바구복합문화체육센터'],
+  ['98caa05a-9e52-4152-b381-e8e0fcebf5f6','부산시민공원']
+ ])await resource('/venue/'+id+'/',name);
  await resource('/wedding-hall-ranking/','원점수');
  if(home&&!home.includes('외부후기 원점수 근거 비교'))report.errors.push('Current live index ranking headline is stale');
  if(!regions.includes(String(pub)))report.errors.push('Live regions count inconsistent with WeddingRank DB');
