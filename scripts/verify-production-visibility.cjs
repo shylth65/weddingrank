@@ -122,7 +122,12 @@ async function count(table,query,filter=()=>true){
   ['9ca4a22f-67ff-47d7-8a0d-c363e87f22e7','코모도호텔 부산 그랜드볼룸'],
   ['2d10c28a-8701-4f52-836d-66770b04121d','서울여성플라자 피움서울'],
   ['2c5cad44-dc7b-4b4c-8e2c-74c431163596','용산가족공원'],
-  ['6010f9a6-0bc2-4f00-8038-610e0a2ce866','소노캄 거제']
+  ['6010f9a6-0bc2-4f00-8038-610e0a2ce866','소노캄 거제'],
+  ['f9b67a2c-7a58-46bb-8bee-f17aa0c494b5','라베아툼'],
+  ['8621c8be-ac32-424d-ba55-8e2d746ad5ba','안다즈 서울 강남 웨딩'],
+  ['40d7d1b3-3ebb-4234-803c-69398f121666','서울문화예술교육센터(서초)'],
+  ['b8b5403e-2185-467a-aa96-cc0e016b666a','서울문화예술교육센터(은평)'],
+  ['40903767-c396-46b0-8a94-60774a5f5e88','초안산 가드닝센터']
  ])await resource('/venue/'+id+'/',name);
  // Verify a future-only official quote is not silently presented as a current booking price.
  const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
