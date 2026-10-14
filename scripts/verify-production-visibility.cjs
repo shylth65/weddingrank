@@ -46,7 +46,14 @@ async function count(table,query,filter=()=>true){
   ['a2199c90-46d7-4980-95b8-01d4b13c6b47','JNJ아트컨벤션'],
   ['d8371333-50aa-4656-8d3a-39679a72bcf1','영도구청 대강당'],
   ['bbaba30e-bf87-4ee0-877d-efccda8c6a62','이바구복합문화체육센터'],
-  ['98caa05a-9e52-4152-b381-e8e0fcebf5f6','부산시민공원']
+  ['98caa05a-9e52-4152-b381-e8e0fcebf5f6','부산시민공원'],
+  ['d11d9068-354a-490c-97b9-dca2cedcaf7f','엘마리노 앳 인천'],
+  ['d606487e-0698-4c83-aca2-919805373cb7','호텔인터시티 웨딩'],
+  ['ce8e779f-b458-4a87-a4f2-34c080aa1c0c','연암컨벤션'],
+  ['e99dc720-a490-4d61-8d7b-0fbef396c6ef','안동그랜드호텔 웨딩'],
+  ['dfcfa3a0-6587-48d8-ab36-ed177f07675a','마리드메이'],
+  ['db4e012e-c5b3-4474-87e9-99225dfcd3ea','HW컨벤션센터'],
+  ['392aa988-7514-434b-b0f0-55daf82b1725','메리다웨딩컨벤션']
  ])await resource('/venue/'+id+'/',name);
  await resource('/wedding-hall-ranking/','원점수');
  if(home&&!home.includes('ranking-external-v590.js'))report.errors.push('Current live index TOP30 ranking script is missing');
