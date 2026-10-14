@@ -26,7 +26,13 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
     return r.json();
   });
   const expectedCount=Math.min(30,current.length);
-  record('actual homepage public venue count',publicNum.trim()==='128곳',publicNum.trim(),'128곳');
+  const publicApiCount=await page.evaluate(async()=>{
+    const cfg=window.WEDDINGRANK_CONFIG,key=cfg.SUPABASE_PUBLISHABLE_KEY||cfg.SUPABASE_ANON_KEY;
+    const r=await fetch(cfg.SUPABASE_URL+'/rest/v1/wedding_halls?select=hall_id&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&limit=1000',{headers:{apikey:key,Authorization:'Bearer '+key},cache:'no-store'});
+    if(!r.ok)throw Error('Live WeddingRank public venue API '+r.status);
+    return (await r.json()).length;
+  });
+  record('actual homepage public venue count',publicNum.trim()===publicApiCount+'곳',publicNum.trim(),publicApiCount+'곳');
   record('live TOP30 participant count matches public REST',ratedNum.trim()===expectedCount+'곳',ratedNum.trim(),expectedCount+'곳');
   await page.screenshot({path:'weddingrank-live-home-mobile.png',fullPage:false});
   await page.waitForFunction(()=>document.querySelectorAll('#top30CompetitionPreviewBody .externalHomeTop10 .previewTopCard').length>0,null,{timeout:20000});
@@ -82,13 +88,13 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   await desktop.close();
 
   // First confirm real search results, then open a recently approved venue by exact known ID.
-  await page.locator('#search').fill('디바인밸리');
-  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('디바인밸리'),{timeout:10000});
-  record('newly published venue in live search',true,'디바인밸리 웨딩','present');
-  await page.evaluate(()=>{location.hash='#hall=26107bdd-491a-434c-a201-1c40542191e9'});
-  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('디바인밸리'),{timeout:15000});
+  await page.locator('#search').fill('엘마리노');
+  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('엘마리노 앳 인천'),{timeout:10000});
+  record('newly published venue in live search',true,'엘마리노 앳 인천','present');
+  await page.evaluate(()=>{location.hash='#hall=d11d9068-354a-490c-97b9-dca2cedcaf7f'});
+  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('엘마리노 앳 인천'),{timeout:15000});
   const detail=await page.locator('#detailName').innerText();
-  record('newly published venue detail live',detail.includes('디바인밸리'),detail,'디바인밸리 웨딩');
+  record('newly published venue detail live',detail.includes('엘마리노 앳 인천'),detail,'엘마리노 앳 인천');
   await page.evaluate(()=>{location.hash='#hall=51ddb9d2-3ec8-46d8-9766-0ad58fb008a9'});
   await page.waitForFunction(()=>document.querySelector('#externalReviewSummary')?.textContent?.includes('TOP 30 외부후기 종합 비교'),null,{timeout:15000});
   record('TOP30 approved score and source detail visible',true,'approved raw sources','true');
