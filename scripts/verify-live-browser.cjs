@@ -105,13 +105,13 @@ const record=(name,ok,observed,expected)=>{output.checks.push({name,ok,observed,
   await desktop.close();
 
   // First confirm real search results, then open a recently approved venue by exact known ID.
-  await page.locator('#search').fill('목화웨딩');
-  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('목화웨딩컨벤션'),{timeout:10000});
-  record('newly published venue in live search',true,'목화웨딩컨벤션','present');
-  await page.evaluate(()=>{location.hash='#hall=67b485cb-53f5-4722-b038-0ebd208f7770'});
-  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('목화웨딩컨벤션'),{timeout:15000});
+  await page.locator('#search').fill('라시따시어터');
+  await page.waitForFunction(()=>document.querySelector('#cards')?.textContent?.includes('라시따시어터'),{timeout:10000});
+  record('newly published venue in live search',true,'라시따시어터','present');
+  await page.evaluate(()=>{location.hash='#hall=2f07fc6d-3a75-4926-9b1f-8fd2872e94e0'});
+  await page.waitForFunction(()=>document.querySelector('#detailName')?.textContent?.includes('라시따시어터'),{timeout:15000});
   const detail=await page.locator('#detailName').innerText();
-  record('newly published venue detail live',detail.includes('목화웨딩컨벤션'),detail,'목화웨딩컨벤션');
+  record('newly published venue detail live',detail.includes('라시따시어터'),detail,'라시따시어터');
   await page.evaluate(()=>{location.hash='#hall=51ddb9d2-3ec8-46d8-9766-0ad58fb008a9'});
   await page.waitForFunction(()=>document.querySelector('#externalReviewSummary')?.textContent?.includes('TOP 30 외부후기 종합 비교'),null,{timeout:15000});
   record('TOP30 approved score and source detail visible',true,'approved raw sources','true');
