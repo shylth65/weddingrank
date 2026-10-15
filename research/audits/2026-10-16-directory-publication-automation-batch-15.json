@@ -1,0 +1,127 @@
+{
+  "schema_version": "weddingrank-specialist-directory-automation-audit-v1",
+  "audit_date": "2026-10-16",
+  "batch": 15,
+  "scope": "WeddingRank specialist only",
+  "pickrank_sync": false,
+  "before": {
+    "public_operating_venues": 186,
+    "public_rooms": 302,
+    "public_price_venues": 121,
+    "public_price_venues_current_effective": 120,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "numeric_ratings_public": 10
+  },
+  "verified_publications": [
+    {
+      "hall_id": "b759fde1-570a-456e-9b82-6bc1a57fa896",
+      "name": "오크밸리 웨딩",
+      "official_url": "https://oakvalley.co.kr/events/wedding",
+      "official_address": "강원특별자치도 원주시 지정면 오크밸리1길 66",
+      "official_phone": "1588-7676",
+      "official_rooms": [
+        {
+          "name": "힐스 빌리지 컨벤션 홀",
+          "capacity_max": 700
+        }
+      ],
+      "evidence": "Current official wedding and location pages confirm active wedding operation, address, inquiry number and hall capacity."
+    },
+    {
+      "hall_id": "3f04e554-730d-46bd-905a-6c5a8d99326d",
+      "name": "글래드 여의도 웨딩",
+      "official_url": "https://www.glad-hotels.com/yeouido/wedding/wedding.do",
+      "official_address": "서울특별시 영등포구 의사당대로 16",
+      "official_phone": "02-6222-5222",
+      "official_rooms": [
+        {
+          "name": "BLOOM",
+          "floor": "LLF",
+          "capacity_max": 300
+        },
+        {
+          "name": "WELCOMING",
+          "floor": "LLF",
+          "capacity_max": 50
+        }
+      ],
+      "evidence": "Current official GLAD wedding and location pages confirm active wedding operation, dedicated inquiry number and both rooms."
+    },
+    {
+      "hall_id": "2767a1ae-4c3f-40e1-9f18-774e73cede90",
+      "name": "세인트존스호텔 웨딩",
+      "official_url": "https://new.stjohns.co.kr/post/1281",
+      "official_address": "강원특별자치도 강릉시 창해로 307",
+      "official_phone": "033-660-9000",
+      "official_rooms": [],
+      "evidence": "Current official hotel site exposes the WEDDING page, address, representative phone and wedding contact. Hall names and capacities are not published as text and were not inferred."
+    }
+  ],
+  "held": [
+    {
+      "hall_id": "7aa79-shadow",
+      "stored_name": "소노캄 거제 웨딩",
+      "reason": "Unpublished shadow record duplicates an existing public WeddingRank venue; not republished."
+    },
+    {
+      "hall_id": "27148-shadow",
+      "stored_name": "삼정호텔 웨딩",
+      "reason": "Unpublished shadow record duplicates an existing public WeddingRank venue; not republished."
+    },
+    {
+      "hall_id": "7ba334-shadow",
+      "stored_name": "HW컨벤션센터",
+      "reason": "Unpublished shadow record duplicates an existing public WeddingRank venue; not republished."
+    },
+    {
+      "hall_id": "ef68053a-168b-4fe3-8416-6240b78ca5bf",
+      "stored_name": "AW컨벤션 안산",
+      "reason": "Official operation, address, phone and room names were confirmed, but official capacity evidence was not available; held to avoid exposing secondary capacity claims as official."
+    },
+    {
+      "hall_id": "e66fa249-5018-489d-aeb7-6dab88551317",
+      "stored_name": "W시티컨벤션 울산",
+      "reason": "Current operator microsite confirms operation, but official-source ownership remains ambiguous; held."
+    },
+    {
+      "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+      "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+      "review_source_urls": 5,
+      "analysis_rows": 0,
+      "external_rating_public": false
+    },
+    {
+      "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+      "name": "보타닉파크웨딩",
+      "review_source_urls": 6,
+      "analysis_rows": 0,
+      "external_rating_public": false
+    }
+  ],
+  "after_db": {
+    "total_venues": 966,
+    "public_operating_venues": 189,
+    "public_rooms": 305,
+    "public_price_venues": 122,
+    "public_price_venues_current_effective": 121,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "numeric_ratings_public": 10,
+    "duplicate_normalized_address_groups": 0,
+    "duplicate_normalized_name_groups": 0,
+    "latest_numeric_rating_basis_utc": "2026-10-03T02:16:20.134556Z"
+  },
+  "no_changes": {
+    "new_independent_review_urls": 0,
+    "new_review_analysis": 0,
+    "new_numeric_rating_publication": 0,
+    "rating_basis_dates_changed": 0,
+    "official_price_amounts_added": 0,
+    "original_rows_deleted": 0,
+    "existing_cron_changed": false
+  },
+  "live_site": {
+    "status": "pending deployment verification"
+  }
+}
