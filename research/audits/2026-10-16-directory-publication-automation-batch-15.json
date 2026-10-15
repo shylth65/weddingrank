@@ -122,6 +122,68 @@
     "existing_cron_changed": false
   },
   "live_site": {
-    "status": "pending deployment verification"
+    "verified_at_kst": "2026-10-16",
+    "public_operating_venues": 189,
+    "public_price_venues_current_effective": 121,
+    "top30_participants": 10,
+    "oak_valley_search_and_detail_verified": true,
+    "glad_yeouido_detail_verified": true,
+    "st_johns_detail_verified": true,
+    "async_detail_blocks_rechecked_after_data_load": true,
+    "site_origin_console_errors": 0,
+    "deployment_status": "success"
+  },
+  "github_actions": {
+    "audit_commit": "947b700029c3963b979fb3e6746c384580977a27",
+    "seo_generation": {
+      "run_id": 38775425259,
+      "conclusion": "success",
+      "generated_commit": "899999892546ecd8c308cee9bad911cd090925d6"
+    },
+    "top30_sync": {
+      "run_id": 38775425316,
+      "conclusion": "success",
+      "qualified_source_traced_venues": 10,
+      "shown_top30": 10,
+      "added": 0,
+      "updated": 0,
+      "unchanged": 10,
+      "exact_post_dates_pending": 10,
+      "existing_cron_untouched": true,
+      "pickrank_sync": false
+    },
+    "pages_deployment": {
+      "run_id": 38775450825,
+      "conclusion": "success",
+      "note": "Earlier run 38775423864 was cancelled because the SEO-generated commit superseded it."
+    },
+    "latest_approved_review_aggregation": {
+      "run_id": 38643820239,
+      "conclusion": "success",
+      "halls_scanned": 966,
+      "public_operating_halls": 186,
+      "sources_scanned": 314,
+      "approved_sources": 162,
+      "raw_score_sources": 30,
+      "analysis_rows": 251,
+      "eligible_ratings": 10,
+      "updated": 0,
+      "unchanged": 10,
+      "new_publication_blocked_missing_raw_audit": 19,
+      "protected_unpublished": 2
+    },
+    "latest_discovery_audit": {
+      "run_id": 38633691182,
+      "conclusion": "success",
+      "existing_source_count": 314,
+      "pages_scanned": 32,
+      "discovered_urls": 62,
+      "new_urls_examined": 32,
+      "new_leads": 32,
+      "matched_halls": 25,
+      "verified_and_publishable": 0,
+      "requires_manual_evidence_review": 32,
+      "errors": []
+    }
   }
 }
