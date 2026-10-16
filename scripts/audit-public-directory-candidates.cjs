@@ -43,7 +43,7 @@ const normalize=s=>String(s||'').toLowerCase().replace(/[^a-z0-9가-힣]/g,'');
   if(!h)return {id,error:'missing'};
   const dup=halls.filter(x=>x.hall_id!==id&&(normalize(x.name)===normalize(h.name)||(h.road_address&&normalize(x.road_address)===normalize(h.road_address))));
   return {hall_id:h.hall_id,name:h.name,address:h.road_address,phone:h.phone,website:h.website,operation_status:h.operation_status,is_public:h.is_public,
-   rooms:allRoomData.filter(x=>x.hall_id===id).map(x=>({name:x.room_name,source_url:x.source_url})),
+   rooms:allRoomData.filter(x=>x.hall_id===id).map(x=>({name:x.room_name,source_url:x.source_url,capacity_min:x.capacity_min,capacity_max:x.capacity_max,notes:x.notes})),
    prices:prices.filter(x=>x.hall_id===id).map(x=>({source_url:x.source_url,verified_at:x.verified_at})),
    duplicates:dup.map(x=>({id:x.hall_id,name:x.name,public:x.is_public}))};
  });
