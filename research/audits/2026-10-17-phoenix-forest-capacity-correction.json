@@ -1,0 +1,28 @@
+{
+  "schema_version": "weddingrank-specialist-official-room-correction-v1",
+  "date_kst": "2026-10-17",
+  "scope": "WeddingRank-only",
+  "hall_id": "8d693a7c-611d-42c7-b9b8-e06e82f0f9bf",
+  "hall_name": "휘닉스평창 웨딩",
+  "room_name": "포레스트 홀",
+  "official_url": "https://phoenixhnr.co.kr/static/pyeongchang/party/wedding",
+  "previous": {
+    "capacity_min": 200,
+    "capacity_max": 370
+  },
+  "verified": {
+    "capacity_min": 350,
+    "capacity_max": 370,
+    "minimum_contract_guests": 200
+  },
+  "db_update": "COMMITTED and read-back verified",
+  "earlier_workflow_error": {
+    "run_id": 38905356778,
+    "error": "permission denied for table hall_rooms (UPDATE)",
+    "fixed_by": "targeted privileged SQL correction; no broad service_role GRANT"
+  },
+  "existing_review_sources_preserved": true,
+  "rating_basis_date_preserved": true,
+  "pickrank_sync": false,
+  "static_site_note": "dynamic hall detail reads hall_rooms; existing SEO page may only display capacity_max"
+}
