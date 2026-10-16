@@ -75,6 +75,33 @@
     }
   ],
   "rating_basis_date_kst": "2026-10-03 11:16",
-  "live_site_post_generation": "pending independent live HTTP/public REST verification",
-  "scheduled_workflows_modified": false
+  "live_site_post_generation": {
+    "verified": true,
+    "github_actions_run_id": 38891967636,
+    "result": "LIVE_DATA_AND_STATIC_PROOF_OK",
+    "actual_http_shilla_detail_status": 200,
+    "actual_http_shilla_detail_contains": "대연회장",
+    "site_http_checks_passed": 67,
+    "site_http_checks_total": 67,
+    "site_http_error_count": 0,
+    "sitemap_public_venues": 190,
+    "public_rest_status": 200,
+    "public_rest_venues": 190,
+    "source_db_public_venues": 190,
+    "source_db_shilla_room_exists": true,
+    "source_db_shilla_room_count": 1,
+    "source_db_price_quote_insertion_count": 0,
+    "public_numeric_rating_count": 10,
+    "unqualified_public_rating_count": 0,
+    "public_normalized_duplicate_address_groups": 0,
+    "manual_browser_interaction_test": false
+  },
+  "scheduled_workflows_modified": false,
+  "verification_links": {
+    "db_write": "https://github.com/shylth65/weddingrank/actions/runs/38891631988",
+    "seo": "https://github.com/shylth65/weddingrank/actions/runs/38891809023",
+    "top30": "https://github.com/shylth65/weddingrank/actions/runs/38891808872",
+    "live_site": "https://github.com/shylth65/weddingrank/actions/runs/38891967636",
+    "approved_review_aggregation_last": "https://github.com/shylth65/weddingrank/actions/runs/38811871720"
+  }
 }
