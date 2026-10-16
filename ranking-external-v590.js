@@ -99,7 +99,7 @@
   const rows=data.slice(0,10);
   if(!rows.length){host.innerHTML='<div class="wrTop30Empty"><b>현재 순위 자격 검증 중</b><p>자격 미달 장소로 30위를 채우지 않습니다.</p></div>';return;}
   const latest=data.map(x=>x.score_basis_at).filter(Boolean).sort().reverse()[0];
-  host.innerHTML='<p class="wrTop30Status">현재 '+data.length+'곳 경쟁 · 정원 30곳 · 최종 점수 반영 '+esc(fmt(latest))+' · 운영화면 1분 간격 확인</p>'+
+  host.innerHTML='<p class="wrTop30Status">TOP 30 경쟁 오픈 · 검증 참가 '+data.length+'/30곳 · 남은 '+Math.max(0,30-data.length)+'자리 · 최종 점수 반영 '+esc(fmt(latest))+' · 운영화면 1분 간격 확인</p>'+
   '<div class="previewTopGrid externalHomeTop10">'+rows.map(x=>
    '<article class="previewTopCard" data-id="'+esc(x.hall_id)+'" tabindex="0" role="link">'+
    '<strong class="previewTopNo">'+x.rank_position+'</strong>'+
@@ -119,7 +119,7 @@
   const hero=document.querySelector('#rankingView .rankingHero p:last-child');
   if(hero)hero.textContent='검증된 독립후기 평가가 새로 승인되면 점수를 다시 계산해 최대 30위까지 정렬합니다. 결과는 자동 확인되며 전국 모든 예식장의 절대 품질 순위는 아닙니다.';
   if(note)note.textContent='※ 독립 원문별 원점수·척도·실제 표본과 분석근거를 확인합니다. 광고·업체 소개·복제·자체 회원평가는 제외합니다. 원문 게시일이 불명확한 기존 자료는 계속 그 상태를 표시합니다.';
-  const meta='<div class="wrTop30Summary"><b>TOP 30 검증 랭킹 · 현재 '+data.length+'곳</b>'+
+  const meta='<div class="wrTop30Summary"><b>TOP 30 경쟁 오픈 · 검증 참가 '+data.length+'/30곳</b>'+
     '<div class="wrTop30Badges"><span class="wrTop30Badge">최대 30위</span>'+
     '<span class="wrTop30Badge">승인 자료 기준 자동 재정렬</span>'+
     '<span class="wrTop30Badge">1분 간격 화면 갱신</span></div>'+
