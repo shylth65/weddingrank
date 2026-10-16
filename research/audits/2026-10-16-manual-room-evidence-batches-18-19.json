@@ -1,0 +1,154 @@
+{
+  "schema_version": "weddingrank-specialist-manual-official-room-audit-v1",
+  "date_kst": "2026-10-16",
+  "scope": "WeddingRank-only",
+  "batches": [
+    18,
+    19
+  ],
+  "originals_preserved": true,
+  "verification_mode": "Original first-party venue wedding pages matched by hall ID, name, address, official-domain and zero-existing-rooms DB preflight",
+  "batch18": {
+    "action": "https://github.com/shylth65/weddingrank/actions/runs/38905356778",
+    "outcome": "blocked",
+    "error": "permission denied for table hall_rooms (UPDATE)",
+    "changes_applied": 0,
+    "affected_hall": {
+      "name": "휘닉스평창 웨딩",
+      "room": "포레스트 홀",
+      "hall_id": "8d693a7c-611d-42c7-b9b8-e06e82f0f9bf",
+      "current_floor": "호텔 1층",
+      "current_capacity_min": 200,
+      "current_capacity_max": 370,
+      "first_party_source": "https://phoenixhnr.co.kr/static/pyeongchang/party/wedding",
+      "verified_original_wedding_capacity_min": 350,
+      "verified_original_wedding_capacity_max": 370,
+      "minimum_contract_guests": 200,
+      "status": "retain current DB original until permitted correction; numeric min currently conflates contract minimum with venue capacity"
+    },
+    "other_room_preflights": "호텔인터시티/롤링힐스/안산엠블던 existing floors already verified; preserved unchanged"
+  },
+  "batch19": {
+    "run": "https://github.com/shylth65/weddingrank/actions/runs/38905901884",
+    "result": "PASS",
+    "before": {
+      "public_halls": 190,
+      "all_halls": 966,
+      "all_rooms": 406,
+      "public_rooms": 313,
+      "numeric_ratings": 10,
+      "prices": 293,
+      "review_sources": 314,
+      "review_analyses": 251
+    },
+    "after": {
+      "public_halls": 190,
+      "all_halls": 966,
+      "all_rooms": 414,
+      "public_rooms": 321,
+      "numeric_ratings": 10,
+      "prices": 293,
+      "review_sources": 314,
+      "review_analyses": 251
+    },
+    "verified_insert_count": 8,
+    "held_on_db_preflight": 0,
+    "insert_errors": 0,
+    "newly_public_venues": 0,
+    "official_venues": [
+      {
+        "id": "1f98ca7f-a8b9-4223-85d5-316dd501afbf",
+        "name": "PJ호텔 웨딩",
+        "verified_rooms": [
+          {
+            "name": "헤스티아홀",
+            "floor": "4F",
+            "capacity_max": 250,
+            "source": "https://www.hotelpj.co.kr/view/viewLink.do?page=wedding/KOR/wedding/hestia"
+          },
+          {
+            "name": "뮤즈홀",
+            "floor": "1F",
+            "capacity_max": 170,
+            "source": "https://www.hotelpj.co.kr/view/viewLink.do?page=wedding/KOR/wedding/muse"
+          }
+        ]
+      },
+      {
+        "id": "8cc43c1d-099c-4757-90e0-1849f8134325",
+        "name": "신도림 라마다호텔 웨딩",
+        "verified_rooms": [
+          {
+            "name": "그랜드볼룸",
+            "floor": "2F"
+          },
+          {
+            "name": "세인트 그레이스",
+            "floor": "5F"
+          },
+          {
+            "name": "하늘정원",
+            "floor": "14F"
+          }
+        ],
+        "source": "https://www.ramadasindorim.com/myboard/sub05",
+        "capacities": "unknown"
+      },
+      {
+        "id": "97c52cd9-1b30-48c2-8684-7b4cfd1405d3",
+        "name": "로얄파크컨벤션",
+        "verified_rooms": [
+          {
+            "name": "파크홀"
+          },
+          {
+            "name": "로얄홀"
+          }
+        ],
+        "source": "https://www.royalpark.kr/20",
+        "capacities": "unknown"
+      },
+      {
+        "id": "3ddd003d-57a5-47fa-96c7-2dbf1a877166",
+        "name": "규수당 문래점",
+        "verified_rooms": [
+          {
+            "name": "카이타스홀"
+          }
+        ],
+        "source": "https://mm.kyusoodang.co.kr/",
+        "capacities": "unknown"
+      }
+    ]
+  },
+  "ratings": {
+    "public_count": 10,
+    "unverified_newly_published": 0,
+    "rating_basis_dates_changed": 0,
+    "latest_known_basis_kst": "2026-10-03 11:16",
+    "held_2026_09_27_zero_analysis_auto_released": 0
+  },
+  "price_changes": 0,
+  "review_sources_added": 0,
+  "analyses_added": 0,
+  "approved_review_cron_unchanged": true,
+  "known_holds": [
+    {
+      "name": "AW컨벤션 안산",
+      "reason": "Third-party guest capacity unverified vs operator"
+    },
+    {
+      "name": "삼정호텔 웨딩",
+      "reason": "Possible canonical duplicate; original operator pages disagree on seating"
+    },
+    {
+      "name": "제이원호텔 웨딩홀",
+      "reason": "First-party current wedding service not confirmed"
+    }
+  ],
+  "site_validation": {
+    "state": "pending-after-seo-and-live-http",
+    "expected_venue_count": 190,
+    "expected_public_room_count": 321
+  }
+}
