@@ -126,7 +126,16 @@
     "unverified_newly_published": 0,
     "rating_basis_dates_changed": 0,
     "latest_known_basis_kst": "2026-10-03 11:16",
-    "held_2026_09_27_zero_analysis_auto_released": 0
+    "held_2026_09_27_zero_analysis_auto_released": 0,
+    "recomputed_top30": {
+      "run_id": 38906085712,
+      "qualified": 10,
+      "shown": 10,
+      "added": 0,
+      "updated": 0,
+      "unchanged": 10,
+      "exact_post_dates_pending": 10
+    }
   },
   "price_changes": 0,
   "review_sources_added": 0,
@@ -147,8 +156,52 @@
     }
   ],
   "site_validation": {
-    "state": "pending-after-seo-and-live-http",
-    "expected_venue_count": 190,
-    "expected_public_room_count": 321
+    "state": "COMPLETE",
+    "db_source_to_live": "LIVE_DATA_AND_STATIC_PROOF_OK",
+    "website": "https://weddingrank.kr",
+    "after_final_optimized_deployment": true,
+    "first_http_attempt": {
+      "run_id": 38906193307,
+      "attempt": 1,
+      "result": "failure",
+      "reason": "Old generated static pages still served during Pages deployment; no DB discrepancy"
+    },
+    "retry_http_attempt": {
+      "run_id": 38906193307,
+      "attempt": 2,
+      "result": "success",
+      "total_checks": 71,
+      "passed_checks": 71,
+      "errors": 0,
+      "public_rest_venues": 190,
+      "sitemap_venues": 190,
+      "actual_public_rooms": 321,
+      "room_profile_site_matches": 8,
+      "official_source_db_profile_matches": 8
+    },
+    "actual_browser": {
+      "run_id": 38906525994,
+      "result": "LIVE_BROWSER_DISPLAY_CONFIRMED",
+      "tests_passed": 15,
+      "tests_total": 15,
+      "frontend_js_errors": 0,
+      "home_venues": 190,
+      "current_price_venues": 121,
+      "ranked_top30_entrants": 10,
+      "mobile_search_and_detail_pass": true,
+      "desktop_ranking_pass": true
+    },
+    "note": "Browser smoke test covers live homepage/search/selected detail/TOP30. The 8 new rooms separately passed source DB and live static-detail checks."
+  },
+  "latest_approved_review_aggregation": {
+    "run_id": 38811871720,
+    "result": "success",
+    "approved_sources": 163,
+    "raw_score_sources": 30,
+    "analyses": 251,
+    "eligible_ratings": 10,
+    "updated": 0,
+    "unchanged": 10,
+    "new_publication_blocked_missing_raw_audit": 19
   }
 }
