@@ -1,0 +1,95 @@
+{
+  "schema_version": "weddingrank-official-room-insert-v1",
+  "scope": "WeddingRank-only",
+  "batch": 19,
+  "audited_on": "2026-10-16",
+  "policy": {
+    "only_first_party_wedding_proofs": true,
+    "only_current_public_operating": true,
+    "only_halls_with_zero_room_rows": true,
+    "preserve_originals": true,
+    "no_price_review_rating_changes": true,
+    "do_not_change_cron": true
+  },
+  "venues": [
+    {
+      "id": "1f98ca7f-a8b9-4223-85d5-316dd501afbf",
+      "name": "PJ호텔 웨딩",
+      "address": "서울특별시 중구 마른내로 71",
+      "website": "https://www.hotelpj.co.kr/view/wedding.do",
+      "rooms": [
+        {
+          "name": "헤스티아홀",
+          "floor": "4F",
+          "capacity_max": 250,
+          "source_url": "https://www.hotelpj.co.kr/view/viewLink.do?page=wedding/KOR/wedding/hestia",
+          "notes": "공식 독립 웨딩홀, 4층 250석"
+        },
+        {
+          "name": "뮤즈홀",
+          "floor": "1F",
+          "capacity_max": 170,
+          "source_url": "https://www.hotelpj.co.kr/view/viewLink.do?page=wedding/KOR/wedding/muse",
+          "notes": "공식 하우스웨딩 홀, 1층 170석 (구형 검색 캐시의 180석 미사용)"
+        }
+      ]
+    },
+    {
+      "id": "8cc43c1d-099c-4757-90e0-1849f8134325",
+      "name": "신도림 라마다호텔 웨딩",
+      "address": "서울특별시 구로구 경인로 624",
+      "website": "https://www.ramadasindorim.com/myboard/sub05",
+      "rooms": [
+        {
+          "name": "그랜드볼룸",
+          "floor": "2F",
+          "source_url": "https://www.ramadasindorim.com/myboard/sub05",
+          "notes": "호텔 운영사 공식 웨딩 전용 메뉴 그랜드볼룸 2F"
+        },
+        {
+          "name": "세인트 그레이스",
+          "floor": "5F",
+          "source_url": "https://www.ramadasindorim.com/myboard/sub05",
+          "notes": "호텔 운영사 공식 웨딩 전용 메뉴 세인트 그레이스 5F"
+        },
+        {
+          "name": "하늘정원",
+          "floor": "14F",
+          "source_url": "https://www.ramadasindorim.com/myboard/sub05",
+          "notes": "호텔 운영사 공식 웨딩 전용 메뉴 하늘정원 14F"
+        }
+      ]
+    },
+    {
+      "id": "97c52cd9-1b30-48c2-8684-7b4cfd1405d3",
+      "name": "로얄파크컨벤션",
+      "address": "서울특별시 용산구 이태원로 29",
+      "website": "https://royalpark.kr/",
+      "rooms": [
+        {
+          "name": "파크홀",
+          "source_url": "https://www.royalpark.kr/20",
+          "notes": "공식 브랜드 스토리: 야외 가든형 파크홀"
+        },
+        {
+          "name": "로얄홀",
+          "source_url": "https://www.royalpark.kr/20",
+          "notes": "공식 브랜드 스토리: 호텔식 로얄홀"
+        }
+      ]
+    },
+    {
+      "id": "3ddd003d-57a5-47fa-96c7-2dbf1a877166",
+      "name": "규수당 문래점",
+      "address": "서울특별시 영등포구 문래로 164 SK리더스뷰 2층",
+      "website": "https://mm.kyusoodang.co.kr/",
+      "rooms": [
+        {
+          "name": "카이타스홀",
+          "source_url": "https://mm.kyusoodang.co.kr/",
+          "notes": "공식 규수당 문래점 Wedding Venue 현행 카이타스홀, 수용인원 미공개"
+        }
+      ]
+    }
+  ]
+}
