@@ -81,7 +81,8 @@ async function count(table,query,filter=()=>true){
  const sitemap=await resource('/sitemap.xml','/venue/');
  // Manual directory publication batch 4: confirm each new public detail page on the deployed site.
  for(const [id,name] of [
-  ['a2199c90-46d7-4980-95b8-01d4b13c6b47','JNJ아트컨벤션'],
+  ['ccd0cbb1-f050-4fd6-90a5-eed646ba5b88','다인오세아노호텔 웨딩'],
+ ['a2199c90-46d7-4980-95b8-01d4b13c6b47','JNJ아트컨벤션'],
   ['d8371333-50aa-4656-8d3a-39679a72bcf1','영도구청 대강당'],
   ['bbaba30e-bf87-4ee0-877d-efccda8c6a62','이바구복합문화체육센터'],
   ['98caa05a-9e52-4152-b381-e8e0fcebf5f6','부산시민공원'],
@@ -135,6 +136,8 @@ async function count(table,query,filter=()=>true){
   ['2f07fc6d-3a75-4926-9b1f-8fd2872e94e0','라시따시어터'],
   ['ac04fa36-365a-44e0-8726-5a192fd4438f','서울도시건축전시관']
  ])await resource('/venue/'+id+'/',name);
+ await resource('/venue/69dc2565-135a-466b-9a60-510b765561ef/','그레이스홀');
+ await resource('/venue/a6b9cc3e-8d7b-488b-9471-7ff4a006f7b9/','그랜드볼룸홀');
  // Verify a future-only official quote is not silently presented as a current booking price.
  const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
  if(gtcPage.includes('14,000,000원'))report.errors.push('Future 2027 GTC rental quote misrepresented in current SEO price box');
