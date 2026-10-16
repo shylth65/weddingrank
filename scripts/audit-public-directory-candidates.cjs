@@ -49,6 +49,11 @@ const normalize=s=>String(s||'').toLowerCase().replace(/[^a-z0-9가-힣]/g,'');
  });
  console.log('WEDDINGRANK_BULK_PREFLIGHT_20261016='+JSON.stringify(bulkPreflight));
 
+ const emptyPublic=halls.filter(h=>h.is_public===true&&h.operation_status==='운영'&&!(roomCounts.get(h.hall_id)>0))
+  .map(h=>({hall_id:h.hall_id,name:h.name,address:h.road_address,phone:h.phone,website:h.website}))
+  .sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+ console.log('WEDDINGRANK_PUBLIC_NO_ROOMS_20261016='+JSON.stringify({count:emptyPublic.length,venues:emptyPublic}));
+
  console.log('WEDDINGRANK_DIRECTORY_CANDIDATES='+JSON.stringify({mode:'read_only',pickrank_sync:false,all_venues:halls.length,public_operating:publicRows.filter(h=>h.operation_status==='운영').length,
  total_nonpublic:candidates.length,filtered:rows.length,top_ready:rows.filter(h=>h.complete&&h.confirmed&&!h.exact_public_duplicates.length).slice(0,65),preferred}));
 })().catch(e=>{console.error(e);process.exit(1)});
