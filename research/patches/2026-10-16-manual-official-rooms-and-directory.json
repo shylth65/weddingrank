@@ -67,6 +67,20 @@
           "source_url": "https://www.tmwedding.co.kr/8fhall2"
         }
       ]
+    },
+    {
+      "id": "74d8189a-c632-48f7-a93b-97651b65efc8",
+      "name": "신라스테이 서부산 웨딩컨벤션",
+      "address": "부산광역시 강서구 명지국제7로 38",
+      "phone": "010-2881-4020",
+      "website": "https://www.shillahotels.com/ko/shillastay/seobusan/",
+      "rooms": [
+        {
+          "room_name": "대연회장",
+          "floor": "2층",
+          "source_url": "https://www.shillahotels.com/ko/shillastay/seobusan/facilities/ballroom.do"
+        }
+      ]
     }
   ],
   "held_with_evidence": [
@@ -93,6 +107,14 @@
     {
       "name": "삼정호텔 웨딩",
       "reason": "Duplicate official facility shadow record noted in earlier audit; hold."
+    },
+    {
+      "name": "제이원호텔 웨딩홀",
+      "reason": "Official operator wedding hall source not independently confirmed; hotel accommodation listing alone does not establish current wedding service."
+    },
+    {
+      "name": "삼정호텔 웨딩",
+      "reason": "Official wedding hall confirms operation but duplicate/shadow classification unresolved; different official language pages list inconsistent seating capacity (250 vs 270); no publication."
     }
   ]
 }
