@@ -1,0 +1,106 @@
+{
+  "schema_version": "weddingrank-official-room-metadata-batch-v1",
+  "scope": "WeddingRank-only",
+  "audited_on": "2026-10-16",
+  "batch": 18,
+  "policy": {
+    "original_rows_preserved": true,
+    "room_metadata_only": true,
+    "review_rating_price_untouched": true,
+    "no_new_rating_publication": true,
+    "only_first_party_operator_sources": true,
+    "unchanged_approved_review_cron": true
+  },
+  "updates": [
+    {
+      "id": "8d693a7c-611d-42c7-b9b8-e06e82f0f9bf",
+      "name": "휘닉스평창 웨딩",
+      "address": "강원특별자치도 평창군 봉평면 태기로 174",
+      "room": "포레스트 홀",
+      "source": "https://phoenixhnr.co.kr/static/pyeongchang/party/wedding",
+      "expected": {
+        "floor": null,
+        "capacity_min": 200,
+        "capacity_max": 370
+      },
+      "corrected": {
+        "floor": "1층",
+        "capacity_min": 350,
+        "capacity_max": 370
+      },
+      "why": "Official wedding hall capacity 350–370 differs from minimum contract 200; preserve contract minimum separately, not in room capacity_min."
+    },
+    {
+      "id": "d606487e-0698-4c83-aca2-919805373cb7",
+      "name": "호텔인터시티 웨딩",
+      "address": "대전광역시 유성구 온천로 92",
+      "room": "Grace Hall",
+      "source": "https://hotelinterciti.com/sub0501/view",
+      "expected": {
+        "floor": null,
+        "capacity_min": null,
+        "capacity_max": 120
+      },
+      "corrected": {
+        "floor": "별관 2층",
+        "capacity_min": null,
+        "capacity_max": 120
+      },
+      "why": "Official wedding hall page states annex 2F and 120 guests."
+    },
+    {
+      "id": "443d99a5-9788-4e8b-93df-bfe421eade0a",
+      "name": "롤링힐스호텔 웨딩",
+      "address": "경기도 화성시 남양읍 시청로 290",
+      "room": "그랜드볼룸",
+      "source": "https://www.haevichi.com/rollinghills/ko/meeting/meeting/grand-ballroom",
+      "expected": {
+        "floor": null,
+        "capacity_min": null,
+        "capacity_max": null
+      },
+      "corrected": {
+        "floor": "2층",
+        "capacity_min": null,
+        "capacity_max": null
+      },
+      "why": "Operator confirms 2F; dining, theater etc seating is NOT substituted for wedding-specific capacity."
+    },
+    {
+      "id": "535488ad-4269-4ee8-b6c6-dc4dd8757140",
+      "name": "안산엠블던호텔",
+      "address": "경기 안산시 단원구 중앙대로 869",
+      "room": "루시아홀",
+      "source": "https://mvldonhotel.com/wedding/lucia/",
+      "expected": {
+        "floor": null,
+        "capacity_min": null,
+        "capacity_max": 200
+      },
+      "corrected": {
+        "floor": "3층",
+        "capacity_min": null,
+        "capacity_max": 200
+      },
+      "why": "Operator wedding hall page confirms Floor 3F and 200 seats."
+    }
+  ],
+  "held": [
+    {
+      "name": "AW컨벤션 안산",
+      "reason": "Official operator confirms 3 room names but secondary-source guest capacities in original DB remain unaudited; avoid publishing unverifiable numeric capacity."
+    },
+    {
+      "name": "제이원호텔 웨딩홀",
+      "reason": "First-party current wedding operation not yet verified; provider price listing alone insufficient."
+    },
+    {
+      "name": "삼정호텔 웨딩",
+      "reason": "Potential duplicate public hall identity unresolved and Korean/Japanese operator pages disagree on seated capacity (250 vs 270). Avoid changes to shadow record."
+    },
+    {
+      "name": "세인트존스호텔 웨딩",
+      "reason": "Official wedding entry is mostly image content; no unambiguous original room name and capacity found; no invented room."
+    }
+  ]
+}
