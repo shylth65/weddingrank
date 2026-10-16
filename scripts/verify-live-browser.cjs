@@ -1,5 +1,6 @@
 'use strict';
 // Real browser smoke verification for actual WeddingRank homepage, search, details
+// Re-run after batch 19: 190 public venues, 321 official public rooms, 10 ranked ratings.
 // and source-vetted rankings. No DB write, no schedule changes.
 const {chromium}=require('playwright-core');
 const {writeFileSync}=require('node:fs');
