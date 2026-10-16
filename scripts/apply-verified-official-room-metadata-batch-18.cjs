@@ -52,7 +52,7 @@ async function run(){
    if(!equal(old.floor??null,v.expected.floor)&&!equal(old.floor??null,v.corrected.floor))
       why.push('floor unexpectedly modified');
   }
-  if(why.length)audit.held.push({id:v.id,name:v.name,room:v.room,reasons:why});
+  if(why.length)audit.held.push({id:v.id,name:v.name,room:v.room,reasons:why,observed_room_fields:match[0]?roomFields(match[0]):null,observed_source:match[0]?.source_url||null});
   else audit.selected.push({id:v.id,name:v.name,room:v.room,room_id:match[0].room_id,
    source:v.source,old:roomFields(match[0]),desired:v.corrected,why:v.why});
  }
