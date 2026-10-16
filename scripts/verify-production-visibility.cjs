@@ -155,6 +155,37 @@ async function count(table,query,filter=()=>true){
  };
  if(verifiedRoom.length!==1)report.errors.push('Audited Shilla Stay Seobusan wedding room missing or altered in source DB');
  await resource('/venue/'+shillaHallId+'/','대연회장');
+ // Independent source-DB + actually served URL proof for manual official room batch 19.
+ const roomBatch19=[
+  {id:'1f98ca7f-a8b9-4223-85d5-316dd501afbf',name:'PJ호텔 웨딩',
+   rooms:[['헤스티아홀','4F',250],['뮤즈홀','1F',170]]},
+  {id:'8cc43c1d-099c-4757-90e0-1849f8134325',name:'신도림 라마다호텔 웨딩',
+   rooms:[['그랜드볼룸','2F',null],['세인트 그레이스','5F',null],['하늘정원','14F',null]]},
+  {id:'97c52cd9-1b30-48c2-8684-7b4cfd1405d3',name:'로얄파크컨벤션',
+   rooms:[['파크홀',null,null],['로얄홀',null,null]]},
+  {id:'3ddd003d-57a5-47fa-96c7-2dbf1a877166',name:'규수당 문래점',
+   rooms:[['카이타스홀',null,null]]}
+ ];
+ const batch19Results=[];
+ for(const v of roomBatch19){
+  const {data:roomRows,error:roomError}=await db.from('hall_rooms')
+   .select('room_name,floor,capacity_min,capacity_max,source_url').eq('hall_id',v.id);
+  if(roomError)throw roomError;
+  const missing=v.rooms.filter(([name,floor,capacity])=>!roomRows.some(r=>r.room_name===name &&
+   (r.floor??null)===floor&&(r.capacity_min??null)===null&&
+   (r.capacity_max??null)===capacity&&/^https:\/\//.test(r.source_url)));
+  const content=await resource('/venue/'+v.id+'/',v.rooms[0][0]);
+  const absentInLive=v.rooms.map(x=>x[0]).filter(n=>!content.includes(n));
+  const passed=missing.length===0&&absentInLive.length===0&&roomRows.length===v.rooms.length;
+  batch19Results.push({name:v.name,source_db_rows:roomRows.length,expected_rooms:v.rooms.length,
+    missing_db_evidence:missing.map(x=>x[0]),missing_live_room_names:absentInLive,passed});
+  if(!passed)report.errors.push('Batch19 room DB/site mismatch: '+v.name);
+ }
+ const completeRoomRows=await count('hall_rooms','hall_id,room_name');
+ const livePublicIds=new Set(halls.filter(h=>h.is_public===true&&h.operation_status==='운영').map(h=>String(h.hall_id)));
+ const publicRoomCount=completeRoomRows.filter(r=>livePublicIds.has(String(r.hall_id))).length;
+ report.batch19={venues:batch19Results,public_room_count:publicRoomCount,expected_public_room_count:321};
+ if(publicRoomCount!==321)report.errors.push('Current public room count mismatch after manual batch19: '+publicRoomCount);
  // Verify a future-only official quote is not silently presented as a current booking price.
  const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
  if(gtcPage.includes('14,000,000원'))report.errors.push('Future 2027 GTC rental quote misrepresented in current SEO price box');
