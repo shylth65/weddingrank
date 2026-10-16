@@ -138,6 +138,23 @@ async function count(table,query,filter=()=>true){
  ])await resource('/venue/'+id+'/',name);
  await resource('/venue/69dc2565-135a-466b-9a60-510b765561ef/','그레이스홀');
  await resource('/venue/a6b9cc3e-8d7b-488b-9471-7ff4a006f7b9/','그랜드볼룸홀');
+ // Independently verify the newly audited Shilla Stay Seobusan wedding hall against both
+ // original DB row evidence and the actual served detail page.
+ const shillaHallId='74d8189a-c632-48f7-a93b-97651b65efc8';
+ const shillaOfficial='https://www.shillahotels.com/ko/shillastay/seobusan/facilities/ballroom.do';
+ const {data:shillaRooms,error:shillaRoomError}=await db.from('hall_rooms')
+   .select('room_id,room_name,floor,capacity_min,capacity_max,source_url')
+   .eq('hall_id',shillaHallId);
+ if(shillaRoomError)throw shillaRoomError;
+ const verifiedRoom=(shillaRooms||[]).filter(r=>r.room_name==='대연회장'&&r.floor==='2층'&&
+   r.source_url===shillaOfficial&&r.capacity_min==null&&r.capacity_max==null);
+ report.shilla_official_room={
+   room_exists:verifiedRoom.length===1,
+   room_record_count:(shillaRooms||[]).length,
+   official_source_verified:verifiedRoom.length===1
+ };
+ if(verifiedRoom.length!==1)report.errors.push('Audited Shilla Stay Seobusan wedding room missing or altered in source DB');
+ await resource('/venue/'+shillaHallId+'/','대연회장');
  // Verify a future-only official quote is not silently presented as a current booking price.
  const gtcPage=await resource('/venue/f812eda9-ba5e-45fd-b682-881bba0f9d8a/','광명무역센터컨벤션');
  if(gtcPage.includes('14,000,000원'))report.errors.push('Future 2027 GTC rental quote misrepresented in current SEO price box');
