@@ -1,0 +1,28 @@
+name: WeddingRank manual official evidence expansion 2026-10-16
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/patches/2026-10-16-manual-official-rooms-and-directory.json'
+      - 'scripts/apply-manual-evidence-20261016.cjs'
+      - '.github/workflows/manual-evidence-expansion-20261016.yml'
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-manual-evidence-expansion-20261016
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Apply independently checked official data to WeddingRank DB only
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/apply-manual-evidence-20261016.cjs
