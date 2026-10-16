@@ -1,0 +1,100 @@
+{
+  "schema_version": "weddingrank-specialist-directory-manual-audit-v1",
+  "date_kst": "2026-10-16",
+  "batch": 16,
+  "scope": "WeddingRank-only",
+  "policy": {
+    "official_original_evidence_only": true,
+    "existing_data_preserved": true,
+    "unqualified_reviews_not_published": true,
+    "ranking_basis_dates_not_modified": true
+  },
+  "source_verification": [
+    {
+      "name": "다인오세아노호텔 웨딩",
+      "hall_id": "ccd0cbb1-f050-4fd6-90a5-eed646ba5b88",
+      "official_wedding_page": "https://dyneoceano.com/pages.php?p=7_1_1_1",
+      "official_home": "https://www.dyneoceano.com/",
+      "address": "제주 제주시 애월읍 애월해안로 394",
+      "phone": "1811-0012",
+      "evidence_note": "Operator website: SEMINAR & WEDDING / Wedding menu; independently corroborated address and phone; capacity not inferred",
+      "decision": "public_directory_only"
+    },
+    {
+      "name": "웨스턴베니비스 신도림",
+      "hall_id": "69dc2565-135a-466b-9a60-510b765561ef",
+      "official_url": "https://sindorim.thebennevis.co.kr/",
+      "added_rooms": [
+        "그레이스홀",
+        "아스타홀",
+        "다이너스티홀"
+      ],
+      "decision": "enrich_existing_public_venue"
+    },
+    {
+      "name": "테크노마트 웨딩시티",
+      "hall_id": "a6b9cc3e-8d7b-488b-9471-7ff4a006f7b9",
+      "official_urls": [
+        "https://www.tmwedding.co.kr/11fbride",
+        "https://www.tmwedding.co.kr/8fhall1",
+        "https://www.tmwedding.co.kr/8fhall2"
+      ],
+      "added_rooms": [
+        "그랜드볼룸홀",
+        "스타티스홀",
+        "아모르홀"
+      ],
+      "decision": "enrich_existing_public_venue"
+    }
+  ],
+  "db_verified": {
+    "public_venues_before": 189,
+    "public_venues_after": 190,
+    "public_rooms_before": 305,
+    "public_rooms_after": 312,
+    "review_sources": 314,
+    "review_analyses": 251,
+    "public_numeric_ratings": 10,
+    "price_rows_total": 293,
+    "price_changes": 0,
+    "ranking_basis_dates_changed": 0,
+    "existing_original_rows_deleted": 0
+  },
+  "held": [
+    {
+      "name": "AW컨벤션 안산",
+      "why": "secondary-source room capacities not verified by official operator"
+    },
+    {
+      "name": "보코 서울 강남",
+      "why": "preexisting pricing secondary provenance"
+    },
+    {
+      "name": "더빈컨벤션웨딩홀",
+      "why": "original operator source not retrievable; secondary room capacities"
+    },
+    {
+      "name": "엘리시안강촌 웨딩",
+      "why": "official wedding evidence located for Jeju instead of Gangchon"
+    },
+    {
+      "name": "W시티컨벤션",
+      "why": "original site operator attribution unresolved"
+    },
+    {
+      "name": "삼정호텔 웨딩",
+      "why": "duplicate venue shadow"
+    }
+  ],
+  "actions": {
+    "read_only_preflight": "https://github.com/shylth65/weddingrank/actions/runs/38889805990",
+    "rooms_applied": "https://github.com/shylth65/weddingrank/actions/runs/38890170320",
+    "venue_published": "https://github.com/shylth65/weddingrank/actions/runs/38890302350"
+  },
+  "live_site": {
+    "checked": false,
+    "expected_public_venues": 190,
+    "expected_public_rooms": 312
+  },
+  "approved_review_aggregation_latest_success_url": "https://github.com/shylth65/weddingrank/actions/runs/38811871720"
+}
