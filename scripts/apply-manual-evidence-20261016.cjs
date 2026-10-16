@@ -9,7 +9,7 @@ const url=process.env.SUPABASE_URL,key=process.env.SUPABASE_SERVICE_ROLE_KEY;
 if(!url||!key||new URL(url).hostname!=='mozmxkmaynhxqwzovzhi.supabase.co')throw Error('Wrong specialist GitHub Secrets');
 const db=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
 const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9가-힣]/g,'');
-const host=s=>{try{return new URL(s).hostname.replace(/^www\\./,'')}catch{return ''}};
+const host=s=>{try{return new URL(s).hostname.replace(/^www[.]/,'')}catch{return ''}};
 const validUrl=s=>typeof s==='string'&&s.startsWith('https://');
 async function all(table,columns){
  const rows=[];for(let i=0;;i+=500){
