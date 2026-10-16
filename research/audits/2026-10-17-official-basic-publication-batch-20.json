@@ -1,0 +1,121 @@
+{
+  "schema_version": "weddingrank-specialist-official-basic-listing-audit-v1",
+  "audit_date_kst": "2026-10-17",
+  "scope": "WeddingRank-only",
+  "pickrank_sync": false,
+  "original_data_preserved": true,
+  "baseline": {
+    "public_operating_venues": 190,
+    "public_room_rows": 321,
+    "public_specialist_ratings": 10,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251
+  },
+  "after": {
+    "public_operating_venues": 195,
+    "public_room_rows": 326,
+    "public_specialist_ratings": 10,
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "public_price_venues": 127,
+    "top30_rows": 10
+  },
+  "publication_type": "verified basic directory profile only; NO external numeric rating, NO ranking eligibility",
+  "published": [
+    {
+      "name": "금천구 녹색광장 잔디마당",
+      "hall_id": "de04eb19-9e9a-493b-beba-bdfa7bbf4f78",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3204",
+      "verified_rental_fee": 0
+    },
+    {
+      "name": "문학의 집 서울(산림문학관)",
+      "hall_id": "1d2c265b-99b6-4cec-9a4f-e6662f5c351b",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+      "verified_rental_fee": 500000,
+      "extra_fee_note": "2층 세미나실 200000원 별도; 본관 사용 불가"
+    },
+    {
+      "name": "불암산 힐링타운 철쭉동산",
+      "hall_id": "8a23852c-a2a1-4e76-bc34-d3afca176a66",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/761",
+      "verified_rental_fee": 0
+    },
+    {
+      "name": "솔밭근린공원",
+      "hall_id": "e1d18e69-cbd1-4361-854a-674ba9813d19",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+      "verified_rental_fee": 0
+    },
+    {
+      "name": "푸른수목원 잔디마당",
+      "hall_id": "92723b50-9409-4549-8fa3-925735e63cca",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3202",
+      "verified_rental_fee": 0
+    }
+  ],
+  "holds": [
+    {
+      "name": "용산아트홀 전시장",
+      "hall_id": "024c738f-f406-4fa7-9399-79501e62e250",
+      "reason": "2027 opening not confirmed; marked 오픈예정; directory withheld",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3219"
+    },
+    {
+      "name": "한성백제박물관 하늘정원 루프탑",
+      "hall_id": "eb088864-072f-4f14-8f4b-995d8c2c410a",
+      "reason": "Official header says 70 capacity but details say 50; withheld pending reconciliation",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3198"
+    },
+    {
+      "name": "여의도 한강공원 물빛무대",
+      "hall_id": "4356eb44-8d3a-423a-bbba-457ff2e0f1a0",
+      "reason": "Official specific dates, 2026-10-17 unavailable, free rental plus 1m operating fee, exact address mismatch; withheld",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/527"
+    }
+  ],
+  "ratings": {
+    "new_public": 0,
+    "legacy_canonical_public": 0,
+    "existing_public": 10,
+    "protected_zero_analysis_republished": 0,
+    "rating_basis_latest_at_utc": "2026-10-03T02:16:20.134556+00:00",
+    "all_top30_precise_publication_dates_pending": 10
+  },
+  "static_site": {
+    "github_files_updated": true,
+    "new_venue_pages": 5,
+    "new_district_pages": 3,
+    "updated_district_pages": 2,
+    "updated_seoul_region_page": true,
+    "updated_regions_page": true,
+    "updated_sitemap": true,
+    "sitemap_venue_url_count": 195,
+    "seo_jsonld_parse_valid": true,
+    "live_http_browser_verified": false,
+    "reason": "Live HTTP and deployment UI are not accessible through available tools; repo content and DB independently checked"
+  },
+  "approved_review_workflow": {
+    "path": ".github/workflows/approved-review-aggregation.yml",
+    "uses_own_github_secret": "SUPABASE_SERVICE_ROLE_KEY",
+    "schedule_kst": "03:40 daily",
+    "last_individually_verified_run_id": 38811871720,
+    "last_verified_job_id": 116686828521,
+    "last_verified_job_log_utc": "2026-10-15T21:42:27Z",
+    "result": "success",
+    "approved_sources": 163,
+    "raw_score_sources": 30,
+    "analysis_rows": 251,
+    "eligible_ratings": 10,
+    "updated": 0,
+    "unchanged": 10,
+    "new_publication_blocked_missing_raw_audit": 19,
+    "latest_scheduled_run_listing_verified": false
+  },
+  "notes": [
+    "Official rental fee is not total wedding cost",
+    "No telephone was invented from contractor numbers",
+    "No unverified original score or sample count was inferred",
+    "No PICKRANK approval feed or central public rank synchronization"
+  ]
+}
