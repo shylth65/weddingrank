@@ -19,12 +19,12 @@
       "room": "포레스트 홀",
       "source": "https://phoenixhnr.co.kr/static/pyeongchang/party/wedding",
       "expected": {
-        "floor": null,
+        "floor": "호텔 1층",
         "capacity_min": 200,
         "capacity_max": 370
       },
       "corrected": {
-        "floor": "1층",
+        "floor": "호텔 1층",
         "capacity_min": 350,
         "capacity_max": 370
       },
@@ -55,12 +55,12 @@
       "room": "그랜드볼룸",
       "source": "https://www.haevichi.com/rollinghills/ko/meeting/meeting/grand-ballroom",
       "expected": {
-        "floor": null,
+        "floor": "2F",
         "capacity_min": null,
         "capacity_max": null
       },
       "corrected": {
-        "floor": "2층",
+        "floor": "2F",
         "capacity_min": null,
         "capacity_max": null
       },
@@ -73,12 +73,12 @@
       "room": "루시아홀",
       "source": "https://mvldonhotel.com/wedding/lucia/",
       "expected": {
-        "floor": null,
+        "floor": "3F",
         "capacity_min": null,
         "capacity_max": 200
       },
       "corrected": {
-        "floor": "3층",
+        "floor": "3F",
         "capacity_min": null,
         "capacity_max": 200
       },
