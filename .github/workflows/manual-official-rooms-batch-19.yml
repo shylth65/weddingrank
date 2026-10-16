@@ -1,0 +1,36 @@
+name: WeddingRank manual 8 original wedding rooms batch 19
+on:
+  push:
+    paths:
+      - 'research/patches/2026-10-16-manual-official-room-insert-batch-19.json'
+      - 'scripts/apply-verified-official-rooms-batch-19.cjs'
+      - '.github/workflows/manual-official-rooms-batch-19.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-official-room-insert-19
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Insert original-source-only wedding rooms into WeddingRank database
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/apply-verified-official-rooms-batch-19.cjs
+      - name: Preserve source counts and per-room database change proof
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: weddingrank-manual-batch-19-proof
+          path: weddingrank-batch-19-proof.json
+          retention-days: 30
+          if-no-files-found: warn
