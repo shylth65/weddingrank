@@ -42,6 +42,7 @@
   <url><loc>https://weddingrank.kr/venue/e8e17048-e989-431c-9aa2-59e5e3e45ea1/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/venue/4455819b-9eb4-412b-beb9-2a8c9f20fd34/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/venue/af771fc1-9c1f-4578-a1ed-ab41de1a7a66/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://weddingrank.kr/venue/ccd0cbb1-f050-4fd6-90a5-eed646ba5b88/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/venue/3222b710-625a-4247-a9ce-eb5187506093/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/venue/1706631f-ad40-4cff-840c-614eab432222/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/venue/a1599bd2-a866-42b5-af5b-2e484c2a2a96/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -199,6 +200,7 @@
   <url><loc>https://weddingrank.kr/area/%EA%B2%BD%EA%B8%B0%EB%8F%84/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://weddingrank.kr/area/%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%A0%84%EB%9D%BC%EB%82%A8%EB%8F%84/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -206,7 +208,6 @@
   <url><loc>https://weddingrank.kr/area/%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%B6%A9%EC%B2%AD%EB%B6%81%EB%8F%84/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EA%B4%91%EC%A3%BC%EA%B4%91%EC%97%AD%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://weddingrank.kr/area/%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%84%B8%EC%A2%85%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C/%EA%B0%95%EB%82%A8%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C/%EC%84%9C%EC%B4%88%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -224,6 +225,7 @@
   <url><loc>https://weddingrank.kr/area/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B4%91%EB%AA%85%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C/%EC%9A%A9%EC%82%B0%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C/%EC%98%81%EB%93%B1%ED%8F%AC%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://weddingrank.kr/area/%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84/%EC%A0%9C%EC%A3%BC%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C/%EB%8B%AC%EC%84%9C%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%84%B1%EB%82%A8%EC%8B%9C%20%EB%B6%84%EB%8B%B9%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84/%EA%B2%BD%EC%A3%BC%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -239,7 +241,6 @@
   <url><loc>https://weddingrank.kr/area/%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C/%EB%B6%81%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%B6%A9%EC%B2%AD%EB%B6%81%EB%8F%84/%EC%B2%AD%EC%A3%BC%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EA%B4%91%EC%A3%BC%EA%B4%91%EC%97%AD%EC%8B%9C/%EA%B4%91%EC%82%B0%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://weddingrank.kr/area/%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84/%EC%A0%9C%EC%A3%BC%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84/%ED%8F%89%EC%B0%BD%EA%B5%B0/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C/%EC%97%B0%EC%A0%9C%EA%B5%AC/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://weddingrank.kr/area/%EC%84%B8%EC%A2%85%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EC%8B%9C/%EC%84%B8%EC%A2%85%EC%8B%9C/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
