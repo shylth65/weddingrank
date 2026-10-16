@@ -37,6 +37,18 @@ const normalize=s=>String(s||'').toLowerCase().replace(/[^a-z0-9가-힣]/g,'');
  });
  console.log('WEDDINGRANK_FOCUS_PREFLIGHT='+JSON.stringify({mode:'read_only',focus}));
 
+ const bulkIds=JSON.parse(require('node:fs').readFileSync('research/patches/2026-10-13-bulk-directory-36-candidates.json','utf8')).candidate_hall_ids;
+ const bulkPreflight=bulkIds.map(id=>{
+  const h=halls.find(x=>x.hall_id===id);
+  if(!h)return {id,error:'missing'};
+  const dup=halls.filter(x=>x.hall_id!==id&&(normalize(x.name)===normalize(h.name)||(h.road_address&&normalize(x.road_address)===normalize(h.road_address))));
+  return {hall_id:h.hall_id,name:h.name,address:h.road_address,phone:h.phone,website:h.website,operation_status:h.operation_status,is_public:h.is_public,
+   rooms:allRoomData.filter(x=>x.hall_id===id).map(x=>({name:x.room_name,source_url:x.source_url})),
+   prices:prices.filter(x=>x.hall_id===id).map(x=>({source_url:x.source_url,verified_at:x.verified_at})),
+   duplicates:dup.map(x=>({id:x.hall_id,name:x.name,public:x.is_public}))};
+ });
+ console.log('WEDDINGRANK_BULK_PREFLIGHT_20261016='+JSON.stringify(bulkPreflight));
+
  console.log('WEDDINGRANK_DIRECTORY_CANDIDATES='+JSON.stringify({mode:'read_only',pickrank_sync:false,all_venues:halls.length,public_operating:publicRows.filter(h=>h.operation_status==='운영').length,
  total_nonpublic:candidates.length,filtered:rows.length,top_ready:rows.filter(h=>h.complete&&h.confirmed&&!h.exact_public_duplicates.length).slice(0,65),preferred}));
 })().catch(e=>{console.error(e);process.exit(1)});
