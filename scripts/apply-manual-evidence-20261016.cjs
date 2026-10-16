@@ -23,12 +23,12 @@ async function main(){
   all('hall_rooms','room_id,hall_id,room_name,source_url,capacity_min,capacity_max'),
   all('wedding_prices','hall_id,source_url'),
   all('external_wedding_ratings','hall_id,is_public,updated_at'),
-  all('external_review_sources','hall_id'),all('external_review_analyses','hall_id')
+  all('wedding_review_sources','hall_id'),all('wedding_review_analysis','hall_id')
  ]);
  const state=a=>JSON.stringify(a.map(x=>[x.hall_id,x.is_public,x.updated_at]).sort((x,y)=>String(x[0]).localeCompare(String(y[0]))));
  const beforeRatings=state(ratings);
  const publicBefore=halls.filter(x=>x.is_public===true&&x.operation_status==='운영').length;
- const beforeRooms=rooms.length;const holds=[],validated=[];
+ const beforeRooms=rooms.length;const publicRoomBefore=rooms.filter(r=>halls.some(h=>h.hall_id===r.hall_id&&h.is_public===true&&h.operation_status==='운영')).length;const holds=[],validated=[];
  for(const v of [...patch.publish_venues,...patch.enrich_rooms]){
   const hall=halls.find(x=>x.hall_id===v.id);const why=[];
   if(!hall)why.push('not_found');
@@ -83,16 +83,17 @@ async function main(){
   all('wedding_halls','hall_id,name,is_public,operation_status'),
   all('hall_rooms','room_id,hall_id,room_name'),
   all('external_wedding_ratings','hall_id,is_public,updated_at'),
-  all('external_review_sources','hall_id'),all('external_review_analyses','hall_id'),all('wedding_prices','hall_id')
+  all('wedding_review_sources','hall_id'),all('wedding_review_analysis','hall_id'),all('wedding_prices','hall_id')
  ]);
  const publicAfter=afterHalls.filter(x=>x.is_public===true&&x.operation_status==='운영').length;
+ const publicRoomAfter=afterRooms.filter(r=>afterHalls.some(h=>h.hall_id===r.hall_id&&h.is_public===true&&h.operation_status==='운영')).length;
  if(publicAfter!==publicBefore+newlyPublic.length)throw Error('Unexpected public count difference');
  if(afterRooms.length!==beforeRooms+added.length)throw Error('Unexpected room count difference');
  if(state(afterRatings)!==beforeRatings||afterSources.length!==sources.length||afterAnalyses.length!==analyses.length||afterPrices.length!==prices.length)
   throw Error('Rating, source, analysis or price unexpectedly changed');
  for(const x of added)if(!afterRooms.some(y=>y.room_id===x.room_id))throw Error('Room insertion not persisted');
  console.log('WEDDINGRANK_MANUAL_20261016_RESULT='+JSON.stringify({
-  public_before:publicBefore,public_after:publicAfter,rooms_before:beforeRooms,rooms_after:afterRooms.length,
+  public_before:publicBefore,public_after:publicAfter,rooms_before_total:beforeRooms,rooms_after_total:afterRooms.length,public_rooms_before:publicRoomBefore,public_rooms_after:publicRoomAfter,
   newly_public:newlyPublic,new_rooms:added,room_insert_errors:roomErrors,held:holds.concat(patch.held_with_evidence),
   review_sources:sources.length,review_analyses:analyses.length,numeric_rating_public:afterRatings.filter(x=>x.is_public).length,
   price_rows:prices.length,ranking_basis_dates_changed:0,original_rows_deleted:0
