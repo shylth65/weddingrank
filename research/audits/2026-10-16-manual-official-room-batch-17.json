@@ -1,0 +1,80 @@
+{
+  "schema_version": "weddingrank-specialist-manual-source-expansion-v1",
+  "date_kst": "2026-10-16",
+  "batch": 17,
+  "scope": "WeddingRank-only",
+  "input": "manual original-operator web verification and stored DB preflight",
+  "confirmed_venue": {
+    "hall_id": "74d8189a-c632-48f7-a93b-97651b65efc8",
+    "name": "신라스테이 서부산 웨딩컨벤션",
+    "address": "부산광역시 강서구 명지국제7로 38",
+    "phone": "010-2881-4020",
+    "official_source": "https://www.shillahotels.com/ko/shillastay/seobusan/facilities/ballroom.do",
+    "new_room_name": "대연회장",
+    "floor": "2층",
+    "room_area_sqm": 433,
+    "capacity_min": null,
+    "capacity_max": null,
+    "price_additions": 0,
+    "evidence": "Korean first-party property page explicitly names a grand banquet facility and premium wedding service at 2F, 433sqm. Seat capacities in language variants describe configurations, not wedding-guaranteed attendance. No inferred numeric wedding capacity or contract price."
+  },
+  "db_change_verified": {
+    "github_actions_run_id": 38891631988,
+    "result": "success",
+    "public_venues_before": 190,
+    "public_venues_after": 190,
+    "public_rooms_before": 312,
+    "public_rooms_after": 313,
+    "total_rooms_before": 405,
+    "total_rooms_after": 406,
+    "inserted_room_id": "07904d69-f674-4071-b0bc-c542fb06cbf3",
+    "review_source_rows_before_after": [
+      314,
+      314
+    ],
+    "review_analysis_rows_before_after": [
+      251,
+      251
+    ],
+    "numeric_public_ratings_before_after": [
+      10,
+      10
+    ],
+    "price_rows_before_after": [
+      293,
+      293
+    ],
+    "rating_basis_dates_changed": 0,
+    "original_rows_deleted": 0,
+    "insert_errors": 0
+  },
+  "held": [
+    {
+      "name": "제이원호텔 웨딩홀",
+      "reason": "Current hotel accommodation listing exists but first-party source for active wedding service unverified; not published."
+    },
+    {
+      "name": "삼정호텔 웨딩",
+      "reason": "Existing duplicate/shadow classification not resolved; first-party language variants report conflicting 250 vs 270 seats; not republished."
+    },
+    {
+      "name": "AW컨벤션 안산",
+      "reason": "Existing room capacity figures trace to secondary listing and remain unverified against official source; held."
+    },
+    {
+      "name": "보코 서울 강남",
+      "reason": "Existing price provenance secondary; unchanged and held."
+    },
+    {
+      "name": "더빈컨벤션웨딩홀",
+      "reason": "Operator wedding source inaccessible; third-party room capacities; held."
+    },
+    {
+      "name": "W시티컨벤션",
+      "reason": "Operator identity and venue-site attribution not established; held."
+    }
+  ],
+  "rating_basis_date_kst": "2026-10-03 11:16",
+  "live_site_post_generation": "pending independent live HTTP/public REST verification",
+  "scheduled_workflows_modified": false
+}
