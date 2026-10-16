@@ -1,0 +1,98 @@
+{
+  "schema_version": "weddingrank-manual-evidence-directory-and-rooms-v1",
+  "scope": "WeddingRank-only",
+  "audited_on": "2026-10-16",
+  "policy": {
+    "preserve_existing_originals": true,
+    "only_verified_official_room_names": true,
+    "no_inferred_capacity": true,
+    "no_price_changes": true,
+    "no_review_or_rating_changes": true,
+    "no_review_publication": true
+  },
+  "publish_venues": [
+    {
+      "id": "ccd0cbb1-f050-4fd6-90a5-eed646ba5b88",
+      "name": "다인오세아노호텔 웨딩",
+      "address": "제주 제주시 애월읍 애월해안로 394",
+      "phone": "1811-0012",
+      "website": "https://www.dyneoceano.com/",
+      "official_url": "https://dyneoceano.com/pages.php?p=7_1_1_1",
+      "existing_room_name": "웨딩/연회장",
+      "notes": "Operator website contains dedicated WEDDING page. No independent numeric rating publication. Official room capacity not stated."
+    }
+  ],
+  "enrich_rooms": [
+    {
+      "id": "69dc2565-135a-466b-9a60-510b765561ef",
+      "name": "웨스턴베니비스 신도림",
+      "address": "서울특별시 구로구 새말로 97, 7층",
+      "phone": "02-2111-7000",
+      "website": "https://sindorim.thebennevis.co.kr/",
+      "rooms": [
+        {
+          "room_name": "그레이스홀",
+          "source_url": "https://sindorim.thebennevis.co.kr/"
+        },
+        {
+          "room_name": "아스타홀",
+          "source_url": "https://sindorim.thebennevis.co.kr/"
+        },
+        {
+          "room_name": "다이너스티홀",
+          "source_url": "https://sindorim.thebennevis.co.kr/"
+        }
+      ]
+    },
+    {
+      "id": "a6b9cc3e-8d7b-488b-9471-7ff4a006f7b9",
+      "name": "테크노마트 웨딩시티",
+      "address": "서울특별시 구로구 새말로 97 신도림테크노마트 8층",
+      "phone": "02-2111-8000",
+      "website": "https://www.tmwedding.co.kr/",
+      "rooms": [
+        {
+          "room_name": "그랜드볼룸홀",
+          "floor": "11층",
+          "source_url": "https://www.tmwedding.co.kr/11fbride"
+        },
+        {
+          "room_name": "스타티스홀",
+          "floor": "8층",
+          "source_url": "https://www.tmwedding.co.kr/8fhall1"
+        },
+        {
+          "room_name": "아모르홀",
+          "floor": "8층",
+          "source_url": "https://www.tmwedding.co.kr/8fhall2"
+        }
+      ]
+    }
+  ],
+  "held_with_evidence": [
+    {
+      "name": "AW컨벤션 안산",
+      "reason": "Official site confirms venue and three halls but existing secondary-sourced room capacity_min/max 250/1000 per hall uncorroborated by official source; keep private."
+    },
+    {
+      "name": "보코 서울 강남",
+      "reason": "Official wedding operation confirmed, but existing publicly displayed pricing source is secondary; defer publication pending official price provenance audit."
+    },
+    {
+      "name": "더빈컨벤션웨딩홀",
+      "reason": "Stored room capacities from third-party source; current official site could not be retrieved."
+    },
+    {
+      "name": "엘리시안강촌 웨딩",
+      "reason": "Found official wedding page for Elysian Jeju, not evidence for Gangchon location; hold."
+    },
+    {
+      "name": "W시티컨벤션",
+      "reason": "Operator ownership of microsite ambiguous; hold."
+    },
+    {
+      "name": "삼정호텔 웨딩",
+      "reason": "Duplicate official facility shadow record noted in earlier audit; hold."
+    }
+  ]
+}
