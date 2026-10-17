@@ -8,6 +8,9 @@
  const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
  const fmt=x=>x?new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(x)):'확인 중';
  const MAX_RANK=30,REFRESH_MS=60000;
+ // Unranked qualitative comparison shortlist. This is NOT an original-score rating.
+ const QUALITATIVE_CANDIDATES=["JW메리어트호텔 서울 웨딩","앰배서더 서울 풀만 웨딩","여의도웨딩컨벤션","그랜드블랑 웨딩홀","김해더파티웨딩홀","더채플앳 청담","더채플앳대치","더플라자호텔 웨딩","더화이트베일","라도무스아트센터","롯데호텔서울 웨딩","미래컨벤션웨딩홀","신도림 라마다호텔 웨딩","아펠가모 공덕","아펠가모 반포","아펠가모 잠실","웨딩스퀘어 강변","인천아시아드웨딩컨벤션","호텔 인터불고 대구"];
+
  let refreshing=false,loaded=false;
  async function get(path){if(!base||!key)throw Error('공개 데이터 연결 설정이 없습니다.');
  const r=await fetch(base+'/rest/v1/'+path,{headers,cache:'no-store'});
@@ -60,7 +63,7 @@
    .wrTop30Empty{padding:32px;border:1px solid #eee2ea;border-radius:15px;color:#60545c;background:#fffafb}
    .wrTop30Status{font-size:13px;color:#6d6470;margin:7px 0}
    .wrTop30Vacancy{border:1px dashed #d8cadb;background:#faf8fb;border-radius:12px;padding:13px 15px;color:#655b69;font-size:13px;line-height:1.5;margin-top:8px}
-   .wrTop30Vacancy strong{color:#534458}
+   .wrTop30Vacancy strong{color:#534458}\n   .wrCandidateGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-top:12px}\n   .wrCandidateName{background:#fff;border:1px solid #e9e1ea;border-radius:10px;padding:10px;font-weight:750}\n   .wrCandidateName small{display:block;color:#857b88;font-weight:500;margin-top:5px}
    @media(max-width:700px){
     .wrTop30Summary{padding:12px;margin-bottom:13px;font-size:13px}
     #rankingBody .rankRow{gap:10px!important}
@@ -121,6 +124,8 @@
   const hero=document.querySelector('#rankingView .rankingHero p:last-child');
   if(hero)hero.textContent='검증된 독립후기 평가가 새로 승인되면 점수를 다시 계산해 최대 30위까지 정렬합니다. 결과는 자동 확인되며 전국 모든 예식장의 절대 품질 순위는 아닙니다.';
   if(note)note.textContent='※ 독립 원문별 원점수·척도·실제 표본과 분석근거를 확인합니다. 광고·업체 소개·복제·자체 회원평가는 제외합니다. 원문 게시일이 불명확한 기존 자료는 계속 그 상태를 표시합니다.';
+  const pending=QUALITATIVE_CANDIDATES.filter(name=>!data.some(x=>x.name===name));
+  const pendingHtml='<section class="wrTop30Vacancy" aria-label="정성 후기 분석 비교 후보"><h3>별도 비교: 독립 후기 정성분석 후보 '+pending.length+'곳</h3><p>이 시설들은 독립 후기 URL과 분석 기록이 3건 이상 연결돼 있지만, 원문별 실제 평점·척도·표본 근거가 아직 확정되지 않았습니다. 아래는 순위가 아닌 가나다순 후보 목록이며 숫자 점수·순위는 부여하지 않습니다.</p><div class="wrCandidateGrid">'+pending.map(name=>'<div class="wrCandidateName">'+esc(name)+' <small>원점수 검증 대기</small></div>').join('')+'</div></section>';
   const meta='<div class="wrTop30Summary"><b>TOP 30 경쟁 오픈 · 검증 참가 '+data.length+'/30곳</b>'+
     '<div class="wrTop30Badges"><span class="wrTop30Badge">최대 30위</span>'+
     '<span class="wrTop30Badge">승인 자료 기준 자동 재정렬</span>'+
@@ -136,7 +141,7 @@
      '<div class="rankScore"><strong>'+Number(x.overall_score).toFixed(2)+'</strong>'+
      '<span>독립 원문 '+Number(x.source_count)+'건</span><small>'+
      (x.evidence_publication_dates_complete?'원문 게시일 확인':'원문 게시일 일자 재확인 중')+'</small></div></article>').join('')+
-     '<div class="wrTop30Vacancy"><strong>TOP 30 참가 모집 중 · 남은 '+Math.max(0,30-data.length)+'자리</strong><p>기존 WeddingRank DB의 외부 후기 후보를 검증 중입니다. 원점수·척도·표본과 개별 분석이 확인된 곳만 점수와 순위를 부여합니다.</p></div>'+
+     pendingHtml+'<div class="wrTop30Vacancy"><strong>TOP 30 참가 모집 중 · 남은 '+Math.max(0,30-data.length)+'자리</strong><p>기존 WeddingRank DB의 외부 후기 후보를 검증 중입니다. 원점수·척도·표본과 개별 분석이 확인된 곳만 점수와 순위를 부여합니다.</p></div>'+
      '<p class="wrTop30Status">30위를 넘는 적격 후보는 DB에 남아 있으며, 점수 변화 시 진입·탈락이 자동 재산정됩니다.</p>';
   bind(body);
  }
