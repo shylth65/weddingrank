@@ -59,6 +59,8 @@
    .wrTop30Move.down{color:#a05e58!important}
    .wrTop30Empty{padding:32px;border:1px solid #eee2ea;border-radius:15px;color:#60545c;background:#fffafb}
    .wrTop30Status{font-size:13px;color:#6d6470;margin:7px 0}
+   .wrTop30Vacancy{border:1px dashed #d8cadb;background:#faf8fb;border-radius:12px;padding:13px 15px;color:#655b69;font-size:13px;line-height:1.5;margin-top:8px}
+   .wrTop30Vacancy strong{color:#534458}
    @media(max-width:700px){
     .wrTop30Summary{padding:12px;margin-bottom:13px;font-size:13px}
     #rankingBody .rankRow{gap:10px!important}
@@ -134,6 +136,7 @@
      '<div class="rankScore"><strong>'+Number(x.overall_score).toFixed(2)+'</strong>'+
      '<span>독립 원문 '+Number(x.source_count)+'건</span><small>'+
      (x.evidence_publication_dates_complete?'원문 게시일 확인':'원문 게시일 일자 재확인 중')+'</small></div></article>').join('')+
+     '<div class="wrTop30Vacancy"><strong>TOP 30 참가 모집 중 · 남은 '+Math.max(0,30-data.length)+'자리</strong><p>기존 WeddingRank DB의 외부 후기 후보를 검증 중입니다. 원점수·척도·표본과 개별 분석이 확인된 곳만 점수와 순위를 부여합니다.</p></div>'+
      '<p class="wrTop30Status">30위를 넘는 적격 후보는 DB에 남아 있으며, 점수 변화 시 진입·탈락이 자동 재산정됩니다.</p>';
   bind(body);
  }
