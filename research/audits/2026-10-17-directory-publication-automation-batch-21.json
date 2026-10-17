@@ -1,0 +1,142 @@
+{
+  "schema_version": "weddingrank-specialist-official-basic-listing-audit-v1",
+  "audit_date_kst": "2026-10-17",
+  "scope": "WeddingRank-only",
+  "original_data_preserved": true,
+  "focused_delta": {
+    "before": {
+      "public_operating_venues": 197,
+      "public_room_rows": 328,
+      "public_price_venues": 129
+    },
+    "after_db": {
+      "public_operating_venues": 198,
+      "public_room_rows": 329,
+      "public_price_venues": 130,
+      "current_effective_price_venues": 129
+    },
+    "after_live_site": {
+      "public_operating_venues": 198,
+      "displayed_price_venues": 129,
+      "top30_rows": 10
+    }
+  },
+  "publication_type": "verified official basic directory profile only; NO external numeric rating, NO ranking eligibility",
+  "published": [
+    {
+      "name": "여의도 한강공원 물빛무대",
+      "hall_id": "4356eb44-8d3a-423a-bbba-457ff2e0f1a0",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/527",
+      "verified_at": "2026-10-17",
+      "official_address": "서울 영등포구 여의도동 84-1",
+      "stored_road_address": "서울특별시 영등포구 여의동로 330",
+      "room": {
+        "capacity_min": 50,
+        "capacity_max": 100,
+        "ceremony_type": "야외(공원)",
+        "meal_type": "케이터링(지정장소)"
+      },
+      "price": {
+        "effective_date": "2026-10-17",
+        "rental_fee": 0,
+        "extra_fee_note": "시스템 사용 및 운영비 1,000,000원 별도"
+      },
+      "official_schedule": "2026-09-19~20, 2026-10-17~18; 2027-04-16~17, 05-22~23, 06-12~13, 09-18~19",
+      "operation_note": "2026-10-17 자체 행사로 해당 일자만 대관 불가; 2027 일정 확인되어 운영 시설로 공개"
+    }
+  ],
+  "corrected_current_official_facts": [
+    {
+      "name": "문학의 집 서울(산림문학관)",
+      "hall_id": "1d2c265b-99b6-4cec-9a4f-e6662f5c351b",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+      "verified_at": "2026-10-17",
+      "current_rental_fee": 550000,
+      "prior_price_preserved": true,
+      "extras": "2층 세미나실 220,000원, 이사장실 110,000원 별도"
+    },
+    {
+      "name": "용산아트홀 전시장",
+      "hall_id": "024c738f-f406-4fa7-9399-79501e62e250",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3219",
+      "verified_at": "2026-10-17",
+      "is_public": false,
+      "operation_status": "미확인",
+      "reason": "현재 공식 상세 페이지가 시설 사정으로 예식 불가라고 명시"
+    },
+    {
+      "name": "한성백제박물관 하늘정원 루프탑",
+      "hall_id": "eb088864-072f-4f14-8f4b-995d8c2c410a",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3198",
+      "verified_at": "2026-10-17",
+      "is_public": false,
+      "operation_status": "미확인",
+      "capacity_max": 50,
+      "reason": "현재 공식 상세 페이지가 시설 사정으로 예식 불가라고 명시"
+    }
+  ],
+  "carried_forward_verified_publications": [
+    {
+      "name": "금천구 녹색광장 잔디마당",
+      "hall_id": "de04eb19-9e9a-493b-beba-bdfa7bbf4f78",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3204",
+      "verified_at": "2026-10-17"
+    },
+    {
+      "name": "불암산 힐링타운 철쭉동산",
+      "hall_id": "8a23852c-a2a1-4e76-bc34-d3afca176a66",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/761",
+      "verified_at": "2026-10-17"
+    },
+    {
+      "name": "솔밭근린공원",
+      "hall_id": "e1d18e69-cbd1-4361-854a-674ba9813d19",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+      "verified_at": "2026-10-17"
+    },
+    {
+      "name": "푸른수목원 잔디마당",
+      "hall_id": "92723b50-9409-4549-8fa3-925735e63cca",
+      "source_url": "https://wedding.seoulwomen.or.kr/facilities/3202",
+      "verified_at": "2026-10-17"
+    }
+  ],
+  "ratings": {
+    "review_source_rows": 314,
+    "review_analysis_rows": 251,
+    "public_specialist_ratings": 10,
+    "new_public": 0,
+    "rating_basis_latest_at_utc": "2026-10-03T02:16:20.134556+00:00",
+    "protected_zero_analysis_republished": 0
+  },
+  "live_site": {
+    "verified_url": "https://weddingrank.kr/#hall=4356eb44-8d3a-423a-bbba-457ff2e0f1a0",
+    "verified": true,
+    "observed_name": "여의도 한강공원 물빛무대",
+    "observed_room": "최소 50명 · 최대 100명",
+    "observed_price": "대관료 0원; 시스템 사용 및 운영비 1,000,000원 별도",
+    "observed_source": "서울시 더 아름다운 결혼식 공식"
+  },
+  "approved_review_workflow": {
+    "run_id": 38970658593,
+    "job_id": 117207934426,
+    "completed_at_utc": "2026-10-16T21:38:00Z",
+    "conclusion": "success",
+    "halls_scanned": 966,
+    "public_operating_halls_at_run": 195,
+    "sources_scanned": 314,
+    "approved_sources": 163,
+    "raw_score_sources": 30,
+    "analysis_rows": 251,
+    "eligible_ratings": 10,
+    "updated": 0,
+    "unchanged": 10,
+    "new_publication_blocked_missing_raw_audit": 19
+  },
+  "notes": [
+    "가격의 무료 표기는 대관료 기준이며 별도 운영·장비·웨딩 진행비용은 notes에 보존",
+    "협력업체 전화번호를 시설 대표번호로 대체하지 않음",
+    "외부후기 신규 원점수·표본 근거가 없어 평가 기준일은 유지",
+    "전문사이트 DB와 실제 목록·검색·상세만 갱신 및 검증"
+  ]
+}
