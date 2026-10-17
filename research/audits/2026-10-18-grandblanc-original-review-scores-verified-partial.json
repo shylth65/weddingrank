@@ -1,0 +1,45 @@
+{
+  "schema_version": "weddingrank-source-evidence-audit-v2",
+  "date_kst": "2026-10-18",
+  "hall_id": "2783d724-d10e-4612-970b-f263e1e8e327",
+  "hall_name": "그랜드블랑 웨딩홀",
+  "vendor_listing": "https://mywedlog.com/vendor/219?activeTab=reviews",
+  "observed_vendor_header": {
+    "displayed_rating": 4,
+    "displayed_review_count": 5,
+    "interpretation": "vendor aggregate, NOT review/330's individual score; review count 5 is vendor sample, NOT independent-source count"
+  },
+  "individual_review_scores": [
+    {
+      "url": "https://mywedlog.com/review/43",
+      "score": 4,
+      "date": "2025-04-08"
+    },
+    {
+      "url": "https://mywedlog.com/review/983",
+      "score": 4,
+      "date": "2025-12-09"
+    },
+    {
+      "url": "https://mywedlog.com/review/1719",
+      "score": 3,
+      "date": "2026-03-30"
+    },
+    {
+      "url": "https://mywedlog.com/review/330",
+      "score": 5,
+      "date": "2025-07-30",
+      "existing_db_source_id": "a3bc48c9-ed94-4c29-b326-fcde987ff2fe"
+    }
+  ],
+  "evidence": "Individual values explicitly appear next to their respective review titles in vendor listing; separate review detail pages display vendor aggregate header 4.0.",
+  "known_scale": "Appears 5-point based on maximum displayed 5.0; explicit platform scale documentation not independently verified",
+  "known_sample": "Vendor shows 5 total reviews but only 4 individual rating entries independently inspected; 5th score unverified",
+  "distinct_review_authors": 4,
+  "existing_db_original_sources": 4,
+  "existing_db_matching_scored_review_urls": 1,
+  "publication_decision": "HOLD: 3 individually scored independent original URLs are not yet joined to analyzed WeddingRank sources; scale and missing fifth review require verification",
+  "new_ranked_publication": false,
+  "ranking_date_preserved": true,
+  "pickrank_sync": false
+}
