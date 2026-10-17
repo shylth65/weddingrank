@@ -1,0 +1,28 @@
+{
+  "schema_version": "weddingrank-source-evidence-check-v1",
+  "date_kst": "2026-10-18",
+  "scope": "WeddingRank-only",
+  "hall_id": "2783d724-d10e-4612-970b-f263e1e8e327",
+  "hall_name": "그랜드블랑 웨딩홀",
+  "source_url": "https://mywedlog.com/review/330",
+  "source_id": "a3bc48c9-ed94-4c29-b326-fcde987ff2fe",
+  "analysis_id": "1d38393f-096d-4f0b-87af-a127a124fefe",
+  "published_date": "2025-07-30",
+  "evidence_found": {
+    "venue_page_rating_display": "4.0",
+    "vendor_review_listing_rating_display": "5.0",
+    "vendor_review_count_display": 5,
+    "other_same_venue_review_urls": [
+      "https://mywedlog.com/review/43",
+      "https://mywedlog.com/review/983",
+      "https://mywedlog.com/review/1719"
+    ]
+  },
+  "quality_issue": "Individual review score versus vendor aggregate differs between surfaces; verify page semantics and source-specific original score before rank calculation. Vendor review count 5 must not be substituted for an individual review's sample count.",
+  "approval_status": "pending",
+  "reviewed_by_specialist": false,
+  "source_evidence_validated": false,
+  "public_rank_action": "none",
+  "existing_rating_date_action": "preserve",
+  "pickrank_sync": false
+}
