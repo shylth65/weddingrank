@@ -1,13 +1,7 @@
 name: WeddingRank independent review discovery audit
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '10 17 * * *' # 02:10 KST, before approved aggregation
-  push:
-    paths:
-      - 'scripts/discover-independent-review-bulk.cjs'
-      - 'scripts/audit-independent-review-pipeline.cjs'
-      - '.github/workflows/independent-review-discovery-audit.yml'
+    - cron: '0 0,4,8,12 * * *' # 09:00,13:00,17:00,21:00 KST only
 permissions:
   contents: read
 concurrency:
