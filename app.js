@@ -174,13 +174,13 @@ async function renderApprovedQualitativeReviews(hallId){
   if(!anchor)return;
   let panel=document.querySelector('#weddingQualitativeReviews');
   if(!panel){panel=document.createElement('section');panel.id='weddingQualitativeReviews';panel.className='externalReviewBox';anchor.insertAdjacentElement('afterend',panel);}
-  panel.innerHTML='<b>독립 후기 정성 비교</b><p class="externalReviewNote">전문 검증을 완료한 독립 후기의 장단점만 표시합니다. TOP30 원점수와 별도입니다.</p>';
-  const rows=await api('wedding_qualitative_review_publications?select=source_url,summary,strengths,cautions,reviewed_at&approval_status=eq.approved&hall_id=eq.'+encodeURIComponent(hallId)+'&order=reviewed_at.desc&limit=20');
+  panel.innerHTML='<b>독립 후기 정성 비교</b><p class="externalReviewNote">AI 원문 검증 또는 사람의 전문 승인을 받은 독립 후기만 표시합니다. TOP30 원점수와 별도이며 AI 검증에는 오류 가능성이 있습니다.</p>';
+  const rows=await api('wedding_qualitative_review_publications?select=source_url,summary,strengths,cautions,reviewed_at,approval_status&approval_status=in.(approved,ai_verified)&hall_id=eq.'+encodeURIComponent(hallId)+'&order=reviewed_at.desc&limit=20');
   if(location.hash!=='#hall='+hallId)return;
-  if(!rows.length){panel.innerHTML+='<p class="externalReviewNote">현재 전문 승인된 정성 후기 분석은 없습니다.</p>';return;}
+  if(!rows.length){panel.innerHTML+='<p class="externalReviewNote">현재 공개 승인된 정성 후기 분석은 없습니다.</p>';return;}
   const list=document.createElement('div');list.className='externalSources';
   for(const r of rows){const row=document.createElement('article');row.className='externalSource';
-    const heading=document.createElement('b');heading.textContent='검증된 독립 후기';row.appendChild(heading);
+    const heading=document.createElement('b');heading.textContent=r.approval_status==='ai_verified'?'WeddingRank AI 원문 검증 후기':'사람이 전문 승인한 독립 후기';row.appendChild(heading);
     const summary=document.createElement('p');summary.textContent=r.summary||'';row.appendChild(summary);
     if(r.strengths){const p=document.createElement('p');p.textContent='확인된 장점: '+r.strengths;row.appendChild(p);}
     if(r.cautions){const p=document.createElement('p');p.textContent='주의할 점: '+r.cautions;row.appendChild(p);}
