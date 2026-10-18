@@ -31,6 +31,11 @@ jobs:
         run: |
           set -o pipefail
           node scripts/audit-independent-review-pipeline.cjs | tee review-eligibility.log
+      - name: Stage independently analysed reviews for specialist approval (no public release)
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/stage-qualitative-review-candidates.cjs
       - name: Upload discovery and eligibility audit logs
         if: always()
         uses: actions/upload-artifact@v6
