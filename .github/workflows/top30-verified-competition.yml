@@ -7,8 +7,6 @@ on:
       - 'research/patches/2026-09-27-independent-source-correction.json'
       - 'scripts/sync-verified-top30.cjs'
       - '.github/workflows/top30-verified-competition.yml'
-  schedule:
-    - cron: '7,37 * * * *'
 permissions:
   contents: read
 concurrency:
