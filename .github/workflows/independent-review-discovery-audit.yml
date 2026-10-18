@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --no-save @supabase/supabase-js@2.57.4
-      - name: Discover external individual review leads (read-only)
+      - name: Discover and stage only new or changed independent review candidates
         env:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
