@@ -36,6 +36,10 @@ let queueAdded=0,queueChanged=0,queueUnchanged=0;
 for(const lead of leads){
  const prior=existingQueue.get(lead.url);
  if(prior&&prior.content_sha256===lead.content_sha256){queueUnchanged++;continue;}
+ if(prior&&['qualitative_approved','quantitative_approved'].includes(prior.status)){
+  console.log('::warning::Previously approved candidate changed and requires specialist manual review: '+lead.url);
+  continue;
+ }
  const patch={canonical_url:lead.url,original_url:lead.url,source_domain:new URL(lead.url).hostname,content_sha256:lead.content_sha256,source_title:lead.title||null,hall_id:lead.matched_hall_id||null,status:'needs_review',validation_reason:prior?'source_content_changed_requires_revalidation':'new_unverified_candidate',last_checked_at:new Date().toISOString()};
  if(prior){patch.previous_content_sha256=prior.content_sha256||null;
   const {error}=await db.from('wedding_review_candidate_queue').update(patch).eq('canonical_url',lead.url);
