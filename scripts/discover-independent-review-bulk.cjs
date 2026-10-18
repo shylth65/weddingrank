@@ -16,9 +16,10 @@ async function fetchPage(url){const ctl=new AbortController(),timer=setTimeout((
 function links(html,base){return [...new Set([...html.matchAll(/href=["']([^"'#]+)["']/gi)].map(m=>{try{const u=new URL(m[1],base);return u.hostname==='jinzzawedding.com'&&allowed(u.pathname)?u.origin+u.pathname:null}catch{return null}}).filter(Boolean))]}
 function jsonld(html){const out=[];for(const m of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){try{const j=JSON.parse(m[1]);out.push(...(Array.isArray(j)?j:(j['@graph']||[j])))}catch{}}return out}
 async function main(){
-const [halls,sources,ranking]=await Promise.all([getAll('wedding_halls','hall_id,name,operation_status'),getAll('wedding_review_sources','source_url'),getAll('weddingrank_top30_competition','hall_id')]);
+const [halls,sources,ranking,queued]=await Promise.all([getAll('wedding_halls','hall_id,name,operation_status'),getAll('wedding_review_sources','source_url'),getAll('weddingrank_top30_competition','hall_id'),getAll('wedding_review_candidate_queue','canonical_url,content_sha256,status')]);
 if(ranking.length>=30){console.log('WEDDINGRANK_DISCOVERY_SKIPPED=TOP30_COMPLETE');return;}
 const known=new Set(sources.map(s=>{try{return canonical(s.source_url)}catch{return null}}).filter(Boolean));
+const existingQueue=new Map(queued.map(q=>[q.canonical_url,q]));
 const hallNames=new Map();for(const h of halls.filter(h=>h.operation_status==='운영'))for(const n of aliases(h.name)){const a=hallNames.get(n)||[];a.push(h);hallNames.set(n,a)}
 // The generic /reviews path returns HTTP 404; discover individual review links from live pages instead.
 const seeds=new Set(['/','/halls']);
@@ -31,6 +32,19 @@ const leads=[];for(let i=0;i<urls.length;i+=5){await Promise.all(urls.slice(i,i+
 const name=rv.itemReviewed?.name||'',matches=[...new Map(aliases(name).flatMap(n=>hallNames.get(n)||[]).map(h=>[h.hall_id,h])).values()],hall=matches.length===1?matches[0]:null,rating=rv.reviewRating||{},score=Number(rating.ratingValue),scale=Number(rating.bestRating);
 leads.push({url:canonical(url),content_sha256:sha256(html),title,venue_name:name,matched_hall_id:hall?.hall_id||null,identity_candidates:matches.map(h=>({hall_id:h.hall_id,name:h.name})),identity_status:hall?'candidate_match_unverified':matches.length?'ambiguous':'unmatched',raw_score:Number.isFinite(score)?score:null,raw_scale:Number.isFinite(scale)?scale:null,published_date:rv.datePublished||null,author_present:Boolean(rv.author?.name),verified:false,publish_eligible:false});
 }catch(e){errors.push({url,error:String(e).slice(0,80)})}}))}
-console.log('WEDDINGRANK_BULK_DISCOVERY_JSON='+JSON.stringify({timestamp:new Date().toISOString(),scope:'WeddingRank-only',mode:'read_only',pickrank_sync:false,existing_source_count:known.size,source_hash_scope:'new_leads_only; read_only; not a persisted change baseline',seed_pages:seedUrls.length,pages_scanned:pages,discovered_urls:candidates.size,new_urls_examined:urls.length,new_leads:leads.length,matched_halls:leads.filter(l=>l.matched_hall_id).length,verified_and_publishable:0,requires_manual_evidence_review:leads.length,errors:errors.slice(0,40),leads}));
+let queueAdded=0,queueChanged=0,queueUnchanged=0;
+for(const lead of leads){
+ const prior=existingQueue.get(lead.url);
+ if(prior&&prior.content_sha256===lead.content_sha256){queueUnchanged++;continue;}
+ const patch={canonical_url:lead.url,original_url:lead.url,source_domain:new URL(lead.url).hostname,content_sha256:lead.content_sha256,source_title:lead.title||null,hall_id:lead.matched_hall_id||null,status:'needs_review',validation_reason:prior?'source_content_changed_requires_revalidation':'new_unverified_candidate',last_checked_at:new Date().toISOString()};
+ if(prior){patch.previous_content_sha256=prior.content_sha256||null;
+  const {error}=await db.from('wedding_review_candidate_queue').update(patch).eq('canonical_url',lead.url);
+  if(error)throw Error('candidate changed update: '+error.message);queueChanged++;
+ } else {
+  const {error}=await db.from('wedding_review_candidate_queue').insert(patch);
+  if(error)throw Error('candidate insert: '+error.message);queueAdded++;
+ }
+}
+console.log('WEDDINGRANK_BULK_DISCOVERY_JSON='+JSON.stringify({timestamp:new Date().toISOString(),scope:'WeddingRank-only',mode:'candidate_queue_only_no_publication',pickrank_sync:false,queue_added:queueAdded,queue_changed:queueChanged,queue_unchanged:queueUnchanged,existing_source_count:known.size,source_hash_scope:'candidate_queue_previous_hash_persisted; no approved_source_overwrite',seed_pages:seedUrls.length,pages_scanned:pages,discovered_urls:candidates.size,new_urls_examined:urls.length,new_leads:leads.length,matched_halls:leads.filter(l=>l.matched_hall_id).length,verified_and_publishable:0,requires_manual_evidence_review:leads.length,errors:errors.slice(0,40),leads}));
 }
 main().catch(e=>{console.error(e);process.exitCode=1});
