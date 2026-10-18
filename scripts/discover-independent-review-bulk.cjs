@@ -1,6 +1,9 @@
 'use strict';
 // Batch discovery of candidate URLs only. No database writes or publication.
 const {createClient}=require('@supabase/supabase-js');
+const {createHash}=require('node:crypto');
+function canonical(raw){const u=new URL(raw);u.hash='';u.hostname=u.hostname.toLowerCase().replace(/^www\./,'');for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k)||['fbclid','gclid'].includes(k.toLowerCase()))u.searchParams.delete(k);u.searchParams.sort();return u.origin+u.pathname.replace(/\/$/,'')+(u.search||'');}
+const sha256=s=>createHash('sha256').update(s).digest('hex');
 const u=process.env.SUPABASE_URL,k=process.env.SUPABASE_SERVICE_ROLE_KEY;
 if(!u||!k||new URL(u).hostname!=='mozmxkmaynhxqwzovzhi.supabase.co')throw Error('WeddingRank project secrets missing');
 const db=createClient(u,k,{auth:{persistSession:false,autoRefreshToken:false}});
@@ -13,8 +16,9 @@ async function fetchPage(url){const ctl=new AbortController(),timer=setTimeout((
 function links(html,base){return [...new Set([...html.matchAll(/href=["']([^"'#]+)["']/gi)].map(m=>{try{const u=new URL(m[1],base);return u.hostname==='jinzzawedding.com'&&allowed(u.pathname)?u.origin+u.pathname:null}catch{return null}}).filter(Boolean))]}
 function jsonld(html){const out=[];for(const m of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){try{const j=JSON.parse(m[1]);out.push(...(Array.isArray(j)?j:(j['@graph']||[j])))}catch{}}return out}
 async function main(){
-const [halls,sources]=await Promise.all([getAll('wedding_halls','hall_id,name,operation_status'),getAll('wedding_review_sources','source_url')]);
-const known=new Set(sources.map(s=>String(s.source_url||'').replace(/\/$/,'')));
+const [halls,sources,ranking]=await Promise.all([getAll('wedding_halls','hall_id,name,operation_status'),getAll('wedding_review_sources','source_url'),getAll('weddingrank_top30_competition','hall_id')]);
+if(ranking.length>=30){console.log('WEDDINGRANK_DISCOVERY_SKIPPED=TOP30_COMPLETE');return;}
+const known=new Set(sources.map(s=>{try{return canonical(s.source_url)}catch{return null}}).filter(Boolean));
 const hallNames=new Map();for(const h of halls.filter(h=>h.operation_status==='운영'))for(const n of aliases(h.name)){const a=hallNames.get(n)||[];a.push(h);hallNames.set(n,a)}
 // The generic /reviews path returns HTTP 404; discover individual review links from live pages instead.
 const seeds=new Set(['/','/halls']);
@@ -22,11 +26,11 @@ for(const s of sources){try{const x=new URL(s.source_url);if(x.hostname==='jinzz
 const seedUrls=[...seeds].slice(0,350).map(p=>root+p);
 const candidates=new Set(),errors=[];let pages=0;
 for(let i=0;i<seedUrls.length;i+=5){await Promise.all(seedUrls.slice(i,i+5).map(async url=>{try{const html=await fetchPage(url);pages++;for(const l of links(html,url))candidates.add(l)}catch(e){errors.push({url,error:String(e).slice(0,80)})}}))}
-const urls=[...candidates].filter(url=>!known.has(url)).slice(0,250);
+const urls=[...candidates].filter(url=>!known.has(canonical(url))).slice(0,250);
 const leads=[];for(let i=0;i<urls.length;i+=5){await Promise.all(urls.slice(i,i+5).map(async url=>{try{const html=await fetchPage(url),rv=jsonld(html).find(v=>String(v['@type']||'').includes('Review'))||{},title=(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)||[])[1]?.trim()||'';
 const name=rv.itemReviewed?.name||'',matches=[...new Map(aliases(name).flatMap(n=>hallNames.get(n)||[]).map(h=>[h.hall_id,h])).values()],hall=matches.length===1?matches[0]:null,rating=rv.reviewRating||{},score=Number(rating.ratingValue),scale=Number(rating.bestRating);
-leads.push({url,title,venue_name:name,matched_hall_id:hall?.hall_id||null,identity_candidates:matches.map(h=>({hall_id:h.hall_id,name:h.name})),identity_status:hall?'candidate_match_unverified':matches.length?'ambiguous':'unmatched',raw_score:Number.isFinite(score)?score:null,raw_scale:Number.isFinite(scale)?scale:null,published_date:rv.datePublished||null,author_present:Boolean(rv.author?.name),verified:false,publish_eligible:false});
+leads.push({url:canonical(url),content_sha256:sha256(html),title,venue_name:name,matched_hall_id:hall?.hall_id||null,identity_candidates:matches.map(h=>({hall_id:h.hall_id,name:h.name})),identity_status:hall?'candidate_match_unverified':matches.length?'ambiguous':'unmatched',raw_score:Number.isFinite(score)?score:null,raw_scale:Number.isFinite(scale)?scale:null,published_date:rv.datePublished||null,author_present:Boolean(rv.author?.name),verified:false,publish_eligible:false});
 }catch(e){errors.push({url,error:String(e).slice(0,80)})}}))}
-console.log('WEDDINGRANK_BULK_DISCOVERY_JSON='+JSON.stringify({timestamp:new Date().toISOString(),scope:'WeddingRank-only',mode:'read_only',pickrank_sync:false,existing_source_count:known.size,seed_pages:seedUrls.length,pages_scanned:pages,discovered_urls:candidates.size,new_urls_examined:urls.length,new_leads:leads.length,matched_halls:leads.filter(l=>l.matched_hall_id).length,verified_and_publishable:0,requires_manual_evidence_review:leads.length,errors:errors.slice(0,40),leads}));
+console.log('WEDDINGRANK_BULK_DISCOVERY_JSON='+JSON.stringify({timestamp:new Date().toISOString(),scope:'WeddingRank-only',mode:'read_only',pickrank_sync:false,existing_source_count:known.size,source_hash_scope:'new_leads_only; read_only; not a persisted change baseline',seed_pages:seedUrls.length,pages_scanned:pages,discovered_urls:candidates.size,new_urls_examined:urls.length,new_leads:leads.length,matched_halls:leads.filter(l=>l.matched_hall_id).length,verified_and_publishable:0,requires_manual_evidence_review:leads.length,errors:errors.slice(0,40),leads}));
 }
 main().catch(e=>{console.error(e);process.exitCode=1});
