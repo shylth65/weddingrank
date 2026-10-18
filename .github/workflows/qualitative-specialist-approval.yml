@@ -1,0 +1,35 @@
+name: WeddingRank qualitative specialist approval
+on:
+  workflow_dispatch:
+    inputs:
+      source_id:
+        description: Verified existing WeddingRank source UUID
+        type: string
+        required: true
+      approval_reference:
+        description: Evidence of actual specialist review / approval
+        type: string
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: weddingrank-qualitative-specialist-approval
+  cancel-in-progress: false
+jobs:
+  approve:
+    environment: weddingrank-specialist-approval
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save @supabase/supabase-js@2.57.4
+      - name: Apply explicitly authorized specialist qualitative approval only
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          WEDDING_SOURCE_ID: ${{ inputs.source_id }}
+          SPECIALIST_APPROVAL_REFERENCE: ${{ inputs.approval_reference }}
+        run: node scripts/approve-qualitative-review.cjs
