@@ -162,9 +162,33 @@ async function showDetail(id){
     $("#rooms").innerHTML=rooms.length?rooms.map(r=>`<div class="info-row"><b>${esc(r.room_name)}</b><span>${esc(r.floor||"")} ${r.capacity_min?`· 최소 ${r.capacity_min}명`:""} ${r.capacity_max?`· 최대 ${r.capacity_max}명`:""}</span></div>`).join(""):'<div class="pending">홀 정보 확인중</div>';
     $("#prices").innerHTML=prices.length?prices.map(p=>`<div class="pricebox"><div><small>적용 기준일</small><b>${esc(p.effective_date||"-")}${p.effective_date&&p.effective_date>todayKst()?" (적용 예정)":""}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p><p><small>가격 출처: ${esc(p.source_name||"추가 확인중")}${/^https?:\/\//i.test(p.source_url||"")?` · <a href="${esc(p.source_url)}" target="_blank" rel="noopener noreferrer">출처 보기 ↗</a>`:""} · 계약 전 재확인</small></p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
     renderExternalReviews(id,approvedTop30,externalSources);renderReviews(reviews);renderAuth();setupConsultForm();
+    renderApprovedQualitativeReviews(id).catch(e=>console.warn('Qualitative reviews unavailable:',e));
   }catch(e){console.error(e)}
 }
 
+
+
+// C-platform qualitative evidence is separate from the scored TOP30 and user reviews.
+async function renderApprovedQualitativeReviews(hallId){
+  const anchor=document.querySelector('#externalReviewSummary');
+  if(!anchor)return;
+  let panel=document.querySelector('#weddingQualitativeReviews');
+  if(!panel){panel=document.createElement('section');panel.id='weddingQualitativeReviews';panel.className='externalReviewBox';anchor.insertAdjacentElement('afterend',panel);}
+  panel.innerHTML='<b>독립 후기 정성 비교</b><p class="externalReviewNote">전문 검증을 완료한 독립 후기의 장단점만 표시합니다. TOP30 원점수와 별도입니다.</p>';
+  const rows=await api('wedding_qualitative_review_publications?select=source_url,summary,strengths,cautions,reviewed_at&approval_status=eq.approved&hall_id=eq.'+encodeURIComponent(hallId)+'&order=reviewed_at.desc&limit=20');
+  if(location.hash!=='#hall='+hallId)return;
+  if(!rows.length){panel.innerHTML+='<p class="externalReviewNote">현재 전문 승인된 정성 후기 분석은 없습니다.</p>';return;}
+  const list=document.createElement('div');list.className='externalSources';
+  for(const r of rows){const row=document.createElement('article');row.className='externalSource';
+    const heading=document.createElement('b');heading.textContent='검증된 독립 후기';row.appendChild(heading);
+    const summary=document.createElement('p');summary.textContent=r.summary||'';row.appendChild(summary);
+    if(r.strengths){const p=document.createElement('p');p.textContent='확인된 장점: '+r.strengths;row.appendChild(p);}
+    if(r.cautions){const p=document.createElement('p');p.textContent='주의할 점: '+r.cautions;row.appendChild(p);}
+    if(/^https:\/\//i.test(r.source_url||'')){const a=document.createElement('a');a.href=r.source_url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='후기 원문 확인 ↗';row.appendChild(a);}
+    list.appendChild(row);
+  }
+  panel.appendChild(list);
+}
 
 function renderExternalReviews(hallId,ranked,sources){
   const box=$("#externalReviewSummary");if(!box)return;
