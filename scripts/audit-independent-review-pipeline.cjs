@@ -13,7 +13,8 @@ async function main(){
   pages('external_wedding_ratings','hall_id,is_public,updated_at')]);
  const analysisBySource=new Map(analyses.map(a=>[a.source_id,a]));
  const ratingByHall=new Map(ratings.map(r=>[r.hall_id,r]));
- const findings=[],stats={halls:halls.length,sources:sources.length,analyses:analyses.length,public_ratings:ratings.filter(r=>r.is_public).length,ready_for_manual_review:0,held:0,public_at_risk:0};
+ const findings=[],stats={halls:halls.length,sources:sources.length,analyses:analyses.length,public_ratings:ratings.filter(r=>r.is_public).length,ready_for_manual_review:0,held:0,public_at_risk:0,unanalysed_public_quality_sources:0};
+ for(const source of sources){if(source.is_published&&source.source_type==='public_review'&&Number(source.quality_score)>=70&&!analysisBySource.has(source.source_id))stats.unanalysed_public_quality_sources++;}
  for(const h of halls){
   const ss=sources.filter(s=>s.hall_id===h.hall_id), distinct=new Map(),reasons=new Set();
   for(const s of ss){
@@ -36,6 +37,8 @@ async function main(){
  }
  const output={timestamp:new Date().toISOString(),scope:'WeddingRank-only',mode:'read_only_no_auto_publication',pickrank_sync:false,stats,findings:findings.slice(0,150)};
  console.log('WEDDINGRANK_DISCOVERY_AUDIT_JSON='+JSON.stringify(output));
+ if(stats.unanalysed_public_quality_sources>0)console.log('::warning::WeddingRank has '+stats.unanalysed_public_quality_sources+' quality-screened public review sources without analysis. Discovery and audit are read-only; candidate verification, specialist approval, and ranking publication are NOT completed by this workflow.');
+ if(stats.ready_for_manual_review>0)console.log('::warning::WeddingRank has '+stats.ready_for_manual_review+' venues eligible for specialist review; no automatic approval or publication was performed.');
  if(stats.public_at_risk)console.log('WARNING: public ratings require human review; no ratings changed');
 }
 main().catch(e=>{console.error(e);process.exitCode=1});
