@@ -26,7 +26,7 @@ async function main(){
    if(srcResult.error||analysisResult.error)throw Error('DB verification lookup failed');
    const src=srcResult.data,a=analysisResult.data;
    if(!src||!a||src.hall_id!==x.hall_id||a.hall_id!==x.hall_id||src.source_url!==x.source_url||src.source_type!=='public_review'||!src.is_published||Number(src.quality_score)<70||Number(a.evidence_strength)<70){held++;continue;}
-   const u=safeUrl(x.source_url);examined++;
+   let u;try{u=safeUrl(x.source_url);}catch(err){if(String(err.message)==='URL host unapproved'){const {error:holdError}=await db.from('wedding_qualitative_review_publications').update({approval_status:'held',reviewed_at:new Date().toISOString()}).eq('publication_id',x.publication_id).eq('approval_status','pending');if(holdError)throw holdError;held++;console.log('::warning::Unapproved source domain held without AI charge '+x.source_id);continue;}throw err;}examined++;
    const res=await fetch(u.toString(),{signal:AbortSignal.timeout(10000),headers:{'User-Agent':'WeddingRankEvidenceAudit/1.0'}});
    if(!res.ok)throw Error('Original unavailable HTTP '+res.status);
    const original=textOnly((await res.text()).slice(0,400000)).slice(0,14000);
