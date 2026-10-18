@@ -42,6 +42,13 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node scripts/analyze-new-wedding-review-candidates.cjs
+      - name: Conservatively AI-verify previously analysed originals (max two per run)
+        env:
+          SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MAX_AI_REVIEWS: '2'
+        run: node scripts/verify-qualitative-ai-publication.cjs
       - name: Upload discovery and eligibility audit logs
         if: always()
         uses: actions/upload-artifact@v6
