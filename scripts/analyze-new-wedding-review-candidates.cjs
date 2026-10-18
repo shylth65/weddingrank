@@ -29,9 +29,10 @@ async function main(){
    const obj=JSON.parse((await resp.json()).choices[0].message.content);
    if(obj.is_independent_firsthand!==true){held++;continue;}
    const record={source_url:u.toString(),summary:String(obj.summary||'').slice(0,400),strengths:String(obj.strengths||'').slice(0,300),cautions:String(obj.cautions||'').slice(0,300),content_sha256:lead.content_sha256,approval_status:'pending',reviewed_at:new Date().toISOString(),hall_id:lead.hall_id};
-   // Candidate queue is not a verified source: do not write to final publication table without matching source_id.
-   // Keep AI extraction in the private queue review reason only as a pointer; explicit evidence import and specialist review required.
-   console.log('WEDDINGRANK_AI_PENDING='+JSON.stringify({candidate_id:lead.candidate_id,hall_id:lead.hall_id,summary:record.summary,strengths:record.strengths,cautions:record.cautions,content_sha256:record.content_sha256,requires_specialist_approval:true}));
+   // Persist private analysis, NOT specialist approval or public publication.
+   const {error:writeError}=await db.from('wedding_review_candidate_queue').update({ai_summary:record.summary,ai_strengths:record.strengths,ai_cautions:record.cautions,ai_model:'gpt-4o-mini',ai_analyzed_at:new Date().toISOString(),status:'analysed',validation_reason:'ai_qualitative_extraction_pending_specialist_approval'}).eq('candidate_id',lead.candidate_id).eq('content_sha256',lead.content_sha256).eq('status','needs_review');
+   if(writeError)throw writeError;
+   console.log('WEDDINGRANK_AI_PENDING='+JSON.stringify({candidate_id:lead.candidate_id,hall_id:lead.hall_id,content_sha256:record.content_sha256,requires_specialist_approval:true}));
    analysed++;
   }catch(e){held++;console.log('::warning::AI candidate failed '+lead.candidate_id+': '+String(e.message).slice(0,120));}
  }
