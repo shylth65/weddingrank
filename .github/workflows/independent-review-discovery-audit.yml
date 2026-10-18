@@ -36,6 +36,15 @@ jobs:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: node scripts/stage-qualitative-review-candidates.cjs
+      - name: Verify WeddingRank AI key configured (do not disclose value)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error title=WeddingRank AI disabled::OPENAI_API_KEY is missing from this repository's Actions secrets. Candidate collection may run but AI approval and publication cannot proceed."
+            exit 1
+          fi
+          echo "WeddingRank AI key is configured (value not printed)."
       - name: Analyse at most three new independent originals (pending only)
         env:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
