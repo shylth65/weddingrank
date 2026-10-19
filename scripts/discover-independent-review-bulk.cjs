@@ -4,6 +4,8 @@ const {createClient}=require('@supabase/supabase-js');
 const {createHash}=require('node:crypto');
 function canonical(raw){const u=new URL(raw);u.hash='';u.hostname=u.hostname.toLowerCase().replace(/^www\./,'');for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k)||['fbclid','gclid'].includes(k.toLowerCase()))u.searchParams.delete(k);u.searchParams.sort();return u.origin+u.pathname.replace(/\/$/,'')+(u.search||'');}
 const sha256=s=>createHash('sha256').update(s).digest('hex');
+// Hash only an independently attributable review body, never dynamic whole-page HTML.
+const reviewBodyHash=review=>{const body=String(review?.reviewBody||'').replace(/\s+/g,' ').trim();return body.length>=200?sha256('review-body-v1\n'+body):null;};
 const u=process.env.SUPABASE_URL,k=process.env.SUPABASE_SERVICE_ROLE_KEY;
 if(!u||!k||new URL(u).hostname!=='mozmxkmaynhxqwzovzhi.supabase.co')throw Error('WeddingRank project secrets missing');
 const db=createClient(u,k,{auth:{persistSession:false,autoRefreshToken:false}});
@@ -30,17 +32,21 @@ for(let i=0;i<seedUrls.length;i+=5){await Promise.all(seedUrls.slice(i,i+5).map(
 const urls=[...candidates].filter(url=>!known.has(canonical(url))).slice(0,250);
 const leads=[];for(let i=0;i<urls.length;i+=5){await Promise.all(urls.slice(i,i+5).map(async url=>{try{const html=await fetchPage(url),rv=jsonld(html).find(v=>String(v['@type']||'').includes('Review'))||{},title=(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)||[])[1]?.trim()||'';
 const name=rv.itemReviewed?.name||'',matches=[...new Map(aliases(name).flatMap(n=>hallNames.get(n)||[]).map(h=>[h.hall_id,h])).values()],hall=matches.length===1?matches[0]:null,rating=rv.reviewRating||{},score=Number(rating.ratingValue),scale=Number(rating.bestRating);
-leads.push({url:canonical(url),content_sha256:sha256(html),title,venue_name:name,matched_hall_id:hall?.hall_id||null,identity_candidates:matches.map(h=>({hall_id:h.hall_id,name:h.name})),identity_status:hall?'candidate_match_unverified':matches.length?'ambiguous':'unmatched',raw_score:Number.isFinite(score)?score:null,raw_scale:Number.isFinite(scale)?scale:null,published_date:rv.datePublished||null,author_present:Boolean(rv.author?.name),verified:false,publish_eligible:false});
+leads.push({url:canonical(url),content_sha256:reviewBodyHash(rv),title,venue_name:name,matched_hall_id:hall?.hall_id||null,identity_candidates:matches.map(h=>({hall_id:h.hall_id,name:h.name})),identity_status:hall?'candidate_match_unverified':matches.length?'ambiguous':'unmatched',raw_score:Number.isFinite(score)?score:null,raw_scale:Number.isFinite(scale)?scale:null,published_date:rv.datePublished||null,author_present:Boolean(rv.author?.name),verified:false,publish_eligible:false});
 }catch(e){errors.push({url,error:String(e).slice(0,80)})}}))}
 let queueAdded=0,queueChanged=0,queueUnchanged=0;
 for(const lead of leads){
  const prior=existingQueue.get(lead.url);
+ // Previous stored fingerprints were whole-HTML hashes. They cannot establish body changes.
+ // Preserve old queued records until a separately verified baseline migration.
+ if(prior){queueUnchanged++;console.log('::notice::EXISTING_HTML_HASH_BASELINE_UNVERIFIED '+lead.url);continue;}
+ if(!lead.content_sha256){console.log('::notice::REVIEW_BODY_UNAVAILABLE_HELD '+lead.url);continue;}
  if(prior&&prior.content_sha256===lead.content_sha256){queueUnchanged++;continue;}
  if(prior&&['qualitative_approved','quantitative_approved'].includes(prior.status)){
   console.log('::warning::Previously approved candidate changed and requires specialist manual review: '+lead.url);
   continue;
  }
- const patch={canonical_url:lead.url,original_url:lead.url,source_domain:new URL(lead.url).hostname,content_sha256:lead.content_sha256,source_title:lead.title||null,hall_id:lead.matched_hall_id||null,status:'needs_review',validation_reason:prior?'source_content_changed_requires_revalidation':'new_unverified_candidate',last_checked_at:new Date().toISOString()};
+ const patch={canonical_url:lead.url,original_url:lead.url,source_domain:new URL(lead.url).hostname,content_sha256:lead.content_sha256,source_title:lead.title||null,hall_id:lead.matched_hall_id||null,status:'needs_review',validation_reason:'review_body_v1_new_unverified_candidate',last_checked_at:new Date().toISOString()};
  if(prior){patch.previous_content_sha256=prior.content_sha256||null;
   const {error}=await db.from('wedding_review_candidate_queue').update(patch).eq('canonical_url',lead.url);
   if(error)throw Error('candidate changed update: '+error.message);queueChanged++;
