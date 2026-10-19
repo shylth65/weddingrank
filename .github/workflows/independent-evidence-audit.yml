@@ -1,0 +1,92 @@
+name: WeddingRank independent evidence audit
+
+on:
+  schedule:
+    - cron: '17 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weddingrank-independent-evidence-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Inspect locally tracked wedding evidence without publishing
+        shell: python
+        run: |
+          import csv, json, pathlib, re, os
+          root = pathlib.Path('.')
+          candidates = []
+          flagged = []
+          checked = 0
+          for p in root.rglob('*'):
+              if not p.is_file() or p.suffix.lower() not in ('.csv', '.json', '.jsonl'):
+                  continue
+              if any(part in ('.git', 'node_modules', 'dist', 'build', '.next') for part in p.parts):
+                  continue
+              if p.stat().st_size > 2_000_000:
+                  continue
+              checked += 1
+              try:
+                  if p.suffix == '.csv':
+                      with p.open(encoding='utf-8-sig', newline='') as f:
+                          records = list(csv.DictReader(f))[:3000]
+                  elif p.suffix == '.jsonl':
+                      records = [json.loads(line) for line in p.read_text(encoding='utf-8').splitlines()[:3000] if line.strip()]
+                  else:
+                      obj = json.loads(p.read_text(encoding='utf-8'))
+                      records = obj if isinstance(obj, list) else (obj.get('records', []) if isinstance(obj, dict) else [])
+                  for i, rec in enumerate(records):
+                      if not isinstance(rec, dict):
+                          continue
+                      keys = {str(k).lower(): v for k, v in rec.items()}
+                      review_related = any(('review' in k or 'source' in k or '후기' in k) for k in keys)
+                      if not review_related:
+                          continue
+                      candidates.append((str(p), i+1))
+                      missing = []
+                      for label, terms in {
+                          'original_url': ('source_url', 'original_url', 'review_url'),
+                          'publication_date': ('published_at', 'publication_date', 'review_date'),
+                          'raw_score': ('raw_score', 'original_score'),
+                          'score_scale': ('score_scale', 'rating_scale'),
+                          'sample_count': ('sample_count', 'review_count', 'actual_count')
+                      }.items():
+                          if not any(keys.get(k) not in (None, '') for k in terms):
+                              missing.append(label)
+                      if missing:
+                          flagged.append((str(p), i+1, ', '.join(missing)))
+              except (ValueError, UnicodeError, OSError, csv.Error) as e:
+                  flagged.append((str(p), 0, 'file parse error: ' + type(e).__name__))
+          report = [
+              '# WeddingRank independent evidence audit',
+              '',
+              '- Mode: read-only; no database writes, ranking changes, or PICKRANK sync',
+              '- This checks only evidence files tracked in this repository, NOT the Supabase database',
+              '- Data files scanned: ' + str(checked),
+              '- Review-related records detected: ' + str(len(candidates)),
+              '- Records/files requiring manual verification: ' + str(len(flagged)),
+              '',
+              '## Items needing verification'
+          ]
+          report += ['- '+p+' record '+str(i)+': '+reason for p,i,reason in flagged[:100]]
+          if not flagged:
+              report.append('- No missing-field flags in the locally detected records; this is not approval for publication.')
+          if not candidates:
+              report.append('- No recognizable review evidence records found in tracked CSV/JSON files. Database review requires a separate, authorized integration.')
+          report.append('')
+          report.append('Never publish based on this audit alone. Independent original sources, actual dates, raw scores/scales, and sample counts require human/source validation.')
+          summary = '\n'.join(report) + '\n'
+          print(summary)
+          if os.environ.get('GITHUB_STEP_SUMMARY'):
+              with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+                  f.write(summary)
