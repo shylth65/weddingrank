@@ -32,3 +32,13 @@ jobs:
           SUPABASE_URL: https://mozmxkmaynhxqwzovzhi.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: node scripts/aggregate-approved-reviews.cjs
+
+      - name: Install browser for live public-site QA
+        if: success()
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Verify WeddingRank live list search detail and ranking (read-only)
+        if: success()
+        run: node scripts/daily-live-smoke-qa.cjs
