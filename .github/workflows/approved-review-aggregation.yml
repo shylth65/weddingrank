@@ -8,6 +8,7 @@ on:
   push:
     paths:
       - 'scripts/aggregate-approved-reviews.cjs'
+      - 'scripts/daily-live-smoke-qa.cjs'
       - '.github/workflows/approved-review-aggregation.yml'
 
 permissions:
