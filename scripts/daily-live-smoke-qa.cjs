@@ -8,7 +8,7 @@ const { chromium } = require('playwright');
     const page = await browser.newPage({viewport:{width:1280,height:900}});
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('https://weddingrank.kr/',{waitUntil:'networkidle',timeout:60000});
-    await page.waitForFunction(() => /^\d+곳$/.test((document.querySelector('#publicCount')?.textContent||'').trim()),null,{timeout:30000});
+    await page.waitForFunction(() => /\d+\s*곳/.test((document.querySelector('#publicCount')?.textContent||'').trim()),null,{timeout:30000});
     const count = (await page.locator('#publicCount').textContent()).trim();
     await page.goto('https://weddingrank.kr/#find',{waitUntil:'networkidle',timeout:60000});
     await page.locator('#search').fill('케이터틀');
