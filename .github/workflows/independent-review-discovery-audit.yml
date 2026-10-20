@@ -4,7 +4,7 @@ on:
     paths:
       - '.github/workflows/independent-review-discovery-audit.yml'
   schedule:
-    - cron: '0 0,4,8,12 * * *' # 09:00,13:00,17:00,21:00 KST only
+    - cron: '0 0 * * *' # 09:00 KST once daily
 permissions:
   contents: read
 concurrency:
