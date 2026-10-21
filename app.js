@@ -255,7 +255,7 @@ function route(){
     if($("#detailView"))$("#detailView").hidden=true;
     if($("#rankingView"))$("#rankingView").hidden=false;
     // Dedicated external-evidence TOP30 renderer owns this screen.
-    if(typeof window.loadRankings==="function"&&window.loadRankings!==loadRankings){
+    if(typeof window.loadRankings==="function"){
       window.loadRankings();
     }else{
       document.dispatchEvent(new Event('weddingrank:ranking-route'));
