@@ -48,7 +48,8 @@
     return `<article class="rankRow${ready?'':' pendingRank'}${isExtra?' rankPendingExtra':''}${medal}" data-id="${h.hall_id}"><div class="rankNo">${ready?rankNo:'대기'}</div><div class="rankHall"><b>${esc(h.name)}</b><span>${esc(area)}</span></div><div class="rankScore">${ready?`<strong>${Number(h[key]).toFixed(2)}</strong><span>${Number(h.review_count)||0}개 평가</span>`:'<strong>평가대기</strong><span>첫 평가 등록 후 순위 산정</span>'}</div></article>`;
   }
 
-  loadRankings=async function(){
+  // Preserve legacy renderer for diagnostics only; TOP30 is owned by the dedicated ranking script.
+  window.wrLegacyCompactRankings=async function(){
     ensureRankingVisual();
     if($('#listView'))$('#listView').hidden=true;if($('#detailView'))$('#detailView').hidden=true;if($('#rankingView'))$('#rankingView').hidden=false;
     const body=$('#rankingBody'); if(!body)return; body.innerHTML='<div class="pending big">랭킹을 불러오는 중…</div>';
