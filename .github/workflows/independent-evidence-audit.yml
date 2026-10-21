@@ -27,13 +27,14 @@ jobs:
           node --check ranking-external-v590.js
           node --check ranking-recovery-v1.js
           node --check ranking-compact-v570.js
+          node --check navigation-fixes-v1.js
           node --check app.js
           node --check config.js
           node --check ranking-data-as-of.js
           python3 - <<'PY'
           from pathlib import Path
           html=Path('index.html').read_text(encoding='utf-8')
-          required=['ranking-external-v590.js','ranking-recovery-v1.js','ranking-compact-v570.js']
+          required=['ranking-external-v590.js','ranking-recovery-v1.js','ranking-compact-v570.js','navigation-fixes-v1.js']
           missing=[x for x in required if x not in html]
           if missing:
               raise SystemExit('Missing ranking assets: '+', '.join(missing))
@@ -43,7 +44,19 @@ jobs:
           compact=Path('ranking-compact-v570.js').read_text(encoding='utf-8')
           if 'loadRankings=async function()' in compact:
               raise SystemExit('Legacy ranking overrides the dedicated TOP30 renderer')
-          print('PASS: script syntax, ranking assets, separate source tables, legacy override guard')
+          from html.parser import HTMLParser
+          class NavParser(HTMLParser):
+              def __init__(self):
+                  super().__init__();self.ids=set();self.anchors=[]
+              def handle_starttag(self, tag, attrs):
+                  a=dict(attrs)
+                  if a.get('id'):self.ids.add(a['id'])
+                  if tag=='a' and str(a.get('href','')).startswith('#'):self.anchors.append(a['href'][1:])
+          p=NavParser();p.feed(html)
+          dynamic={'wrPriceBand'}
+          broken=sorted({x for x in p.anchors if x and not x.startswith('hall=') and x not in p.ids and x not in dynamic})
+          if broken:raise SystemExit('Broken internal navigation targets: '+', '.join(broken))
+          print('PASS: script syntax, internal anchors, ranking assets, separate source tables, legacy override guard')
           PY
       - name: Check public site response (non-publishing)
         shell: bash
