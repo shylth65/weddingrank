@@ -1,0 +1,38 @@
+name: WeddingRank daily TOP30 data audit
+
+on:
+  schedule:
+    # 09:17 Asia/Seoul every day (UTC 00:17)
+    - cron: '17 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weddingrank-daily-top30-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check syntax
+        run: python -m py_compile scripts/weddingrank_daily_audit.py
+      - name: Inspect public data and limited official websites
+        run: python scripts/weddingrank_daily_audit.py
+      - name: Preserve audit results as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weddingrank-top30-daily-audit
+          path: reports/daily/
+          if-no-files-found: warn
+          retention-days: 30
