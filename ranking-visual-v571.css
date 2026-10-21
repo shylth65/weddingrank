@@ -48,8 +48,8 @@ body #rankingView #rankingBody .rankPendingToggleWrap{display:none!important}
 #siteAuthLogout:not([hidden]){display:block!important;position:sticky!important;bottom:0!important;z-index:8!important;width:100%!important;margin-top:12px!important;background:#5f5656!important;color:#fff!important;box-shadow:0 -8px 18px rgba(255,255,255,.94),0 8px 20px rgba(74,54,54,.14)!important}
 
 /* User-facing review login button: simpler wording */
-#loginBtn{font-size:0!important}
-#loginBtn::after{content:'로그인';font-size:16px;font-weight:900}
+#loginBtn{font-size:16px!important}
+#loginBtn::after{content:none}
 
 @media(max-width:700px){
   .rankingHero{padding:30px 18px 22px}

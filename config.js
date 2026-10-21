@@ -29,12 +29,12 @@ function wrLoadStyleOnce(id, href) {
   document.head.appendChild(l);
 }
 function wrMaybeLoadDetailEnhancements() {
-  if (/^#hall=/.test(location.hash)) wrLoadScriptOnce("wr-detail-enhancements", "enhancements.js?v=5.69");
+  if (/^#hall=/.test(location.hash)) wrLoadScriptOnce("wr-detail-enhancements", "enhancements.js?v=20261022-qa");
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   wrLoadStyleOnce("wr-visual-restore", "visual-restore-v569.css?v=5.69");
-  wrLoadScriptOnce("wr-home-lite", "home-lite-v567.js?v=20261013-exclusive-preview");
+  // app.js owns filtering and pagination. Do not hide its live load-more controls.
   wrMaybeLoadDetailEnhancements();
   window.addEventListener("hashchange", wrMaybeLoadDetailEnhancements);
 

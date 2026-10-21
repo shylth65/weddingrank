@@ -21,3 +21,7 @@ footer{padding:34px 6vw;border-top:1px solid var(--line);font-size:12px;color:va
 @media(max-width:1120px){.top{padding-left:4vw;padding-right:4vw}.top .mainNav{gap:14px}.headerActions{gap:6px}.headerBtn{padding:8px 10px;font-size:12px}}
 @media(max-width:800px){.top{height:auto;min-height:62px;align-items:flex-start;flex-wrap:wrap;padding-top:12px;padding-bottom:10px;gap:8px}.brand{padding-top:8px}.headerActions{order:3;width:100%;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.headerBtn{display:flex;align-items:center;justify-content:center;min-height:38px;padding:8px 5px;font-size:12px}.hero{padding-top:34px}.searchbar{top:116px}}
 @media(max-width:380px){.headerBtn{font-size:11px}.siteAuthCard{padding:26px 20px}}
+
+/* Honor hidden controls and keep account dialogs above the sticky header. */
+[hidden]{display:none!important}
+.siteAuthModal{z-index:2000}
