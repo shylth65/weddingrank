@@ -23,7 +23,7 @@
   const e=document.createElement('style');e.id='wr-top30-live-style';
   e.textContent=`
    #rankingView .rankTabs{display:flex!important;flex:1}
-   #rankingView .rankTab{min-width:170px!important}
+   #rankingView .rankTab{min-width:0!important;flex:1 1 0!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;color:#57444f!important;-webkit-text-fill-color:#57444f!important;font-size:15px!important;font-weight:800!important;opacity:1!important;visibility:visible!important;white-space:nowrap!important;padding:15px 8px!important}\n   #rankingView .rankTab.active{color:#7d395c!important;-webkit-text-fill-color:#7d395c!important;background:#fff5fa!important}
    #rankingBody .rankRow{cursor:pointer}
    #rankingBody .rankRow .rankScore small{display:block;color:#827887;font-size:11px}
    .homeRankingTop > #top30CompetitionPreviewBody{max-width:1320px;margin-left:auto;margin-right:auto;min-width:0}\n   /* TOP30 card: keep supporting text full width, never compress into vertical glyphs. */
@@ -183,11 +183,12 @@
  };
  function start(){
   style();
+  const stale=document.querySelector('#rankingView .rankingHero > p:first-child');if(stale&&/TOP 30 경쟁|원점수 변경|게시일 추가/.test(stale.textContent||''))stale.textContent='추천 TOP30은 공개 정보 증빙 기준이며, 전문 후기평가는 별도 검증 자료 기준입니다.';
   const tabs=document.querySelector('#rankingView .rankTabs');
   if(tabs){tabs.innerHTML='<button class="rankTab active" type="button" data-mode="featured">추천 TOP30</button><button class="rankTab" type="button" data-mode="specialist">전문 후기평가</button>';tabs.addEventListener('click',e=>{const btn=e.target.closest('[data-mode]');if(!btn)return;mode=btn.dataset.mode;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));const h=document.querySelector('#rankingView .rankingHero h1');if(h)h.textContent=mode==='featured'?'웨딩홀 추천 TOP30':'검증된 전문 후기평가 순위';if(loaded)renderFull(lastData);else refresh();});}
   refresh();
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});
-  window.addEventListener('focus',refresh);
+  window.addEventListener('focus',refresh);\n  window.addEventListener('hashchange',()=>{if(location.hash==='#rankings'&&loaded)renderFull(lastData);});
   window.setInterval(refresh,REFRESH_MS);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
