@@ -33,6 +33,7 @@ function money(v){return v==null?"확인중":Number(v).toLocaleString("ko-KR")+"
 function score(v){return v==null?"—":Number(v).toFixed(1)}
 function avg(arr,key){const vals=arr.map(x=>Number(x[key])).filter(v=>Number.isFinite(v)&&v>0);return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null}
 
+function dateKst(v){const d=new Date(v);return v&&Number.isFinite(d.getTime())?new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(d):""}
 function todayKst(){return new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date())}
 function buildPriceMap(prices,publicHalls){
   priceByHall=new Map();
@@ -240,11 +241,12 @@ function renderExternalReviews(hallId,ranked,sources){
 
 function renderReviews(reviews){
   const box=$("#reviewSummary"),list=$("#reviewList");if(!box||!list)return;
-  if(!reviews.length){box.innerHTML='<div class="pending big">아직 등록된 평가가 없습니다.<br><small>첫 평가가 등록되면 랭킹에 자동 반영됩니다.</small></div>';list.innerHTML="";return}
+  delete list.dataset.rep; // Refresh helpful controls and profile totals after a saved review.
+  if(!reviews.length){box.innerHTML='<div class="pending big">아직 등록된 평가가 없습니다.<br><small>회원 평가는 독립 외부후기 순위와 별도로 표시됩니다.</small></div>';list.innerHTML="";return}
   const metrics=[["음식","food_score"],["교통/접근성","access_score"],["주차","parking_score"],["예식홀/시설","facility_score"],["신부대기실","bride_waiting_score"],["연회장","banquet_score"],["서비스","service_score"],["가성비","value_score"]];
   const overall=avg(reviews,"overall_score");
   box.innerHTML=`<div class="reviewScore"><div><small>종합평점</small><strong>${score(overall)}</strong><span>/ 5.0</span><p>${reviews.length}개 평가</p></div><div class="metricGrid">${metrics.map(([n,k])=>`<div><span>${n}</span><b>${score(avg(reviews,k))}</b></div>`).join("")}</div></div>`;
-  list.innerHTML=reviews.filter(r=>r.review_text).slice(0,10).map(r=>`<article class="reviewItem"><div><b>${esc(r.visit_role||"이용자")}</b><span>${esc((r.created_at||"").slice(0,10))}</span></div><p>${esc(r.review_text)}</p></article>`).join("");
+  list.innerHTML=reviews.filter(r=>r.review_text).slice(0,10).map(r=>`<article class="reviewItem"><div><b>${esc(r.visit_role||"이용자")}</b><span>${esc(dateKst(r.created_at))}</span></div><p>${esc(r.review_text)}</p></article>`).join("");
 }
 
 function route(){
@@ -328,7 +330,7 @@ async function loadMyReviewHistory(){
       const found=await api(`wedding_halls?select=hall_id,name,sido,sigungu&hall_id=in.(${missing.map(encodeURIComponent).join(",")})`);
       found.forEach(h=>hallMap.set(String(h.hall_id),h));
     }
-    box.innerHTML='<h3>내가 작성한 평가</h3>'+(rows.length?rows.map(r=>{const h=hallMap.get(String(r.hall_id))||{},area=[h.sido,h.sigungu].filter(Boolean).join(" ");return `<article class="myReviewItem"><div class="myReviewHead"><b>${esc(h.name||"예식장")}</b><strong>${r.overall_score!=null?Number(r.overall_score).toFixed(1)+"점":"평가완료"}</strong></div><div class="myReviewMeta">${esc(area)}${area?" · ":""}${esc((r.created_at||"").slice(0,10))} · ${esc(r.visit_role||"이용자")}</div>${r.review_text?`<p class="myReviewText">${esc(r.review_text)}</p>`:""}<button type="button" class="myReviewLink" data-hall-id="${esc(r.hall_id)}">해당 예식장 보기 →</button></article>`}).join(""):'<p>아직 작성한 예식장 평가가 없습니다.</p>');
+    box.innerHTML='<h3>내가 작성한 평가</h3>'+(rows.length?rows.map(r=>{const h=hallMap.get(String(r.hall_id))||{},area=[h.sido,h.sigungu].filter(Boolean).join(" ");return `<article class="myReviewItem"><div class="myReviewHead"><b>${esc(h.name||"예식장")}</b><strong>${r.overall_score!=null?Number(r.overall_score).toFixed(1)+"점":"평가완료"}</strong></div><div class="myReviewMeta">${esc(area)}${area?" · ":""}${esc(dateKst(r.created_at))} · ${esc(r.visit_role||"이용자")}</div>${r.review_text?`<p class="myReviewText">${esc(r.review_text)}</p>`:""}<button type="button" class="myReviewLink" data-hall-id="${esc(r.hall_id)}">해당 예식장 보기 →</button></article>`}).join(""):'<p>아직 작성한 예식장 평가가 없습니다.</p>');
     box.querySelectorAll("[data-hall-id]").forEach(button=>button.addEventListener("click",()=>{closeSiteAuth();location.hash=`hall=${button.dataset.hallId}`}));
   }catch(e){box.innerHTML='<h3>내가 작성한 평가</h3><p>평가 내역을 불러오지 못했습니다. 잠시 후 다시 확인해주세요.</p>';console.warn("MY 평가 조회 실패",e)}
 }
@@ -409,7 +411,7 @@ async function renderReviewForm(){
   wrap.innerHTML='<div class="pending">내 평가 여부를 확인하는 중입니다…</div>';
   try{
     const existing=await authRest(`reviews?select=review_id,overall_score,created_at&hall_id=eq.${encodeURIComponent(hallId)}&user_id=eq.${encodeURIComponent(currentUser.id)}&limit=1`);
-    if(existing.length){const r=existing[0];wrap.innerHTML=`<div class="pending big"><b>이 예식장은 이미 평가하셨습니다.</b><br><small>등록일 ${esc((r.created_at||"").slice(0,10))}${r.overall_score!=null?` · 종합평점 ${Number(r.overall_score).toFixed(2)}점`:""}</small><br><small>현재는 예식장당 1인 1평가만 등록할 수 있습니다.</small></div>`;return}
+    if(existing.length){const r=existing[0];wrap.innerHTML=`<div class="pending big"><b>이 예식장은 이미 평가하셨습니다.</b><br><small>등록일 ${esc(dateKst(r.created_at))}${r.overall_score!=null?` · 종합평점 ${Number(r.overall_score).toFixed(2)}점`:""}</small><br><small>현재는 예식장당 1인 1평가만 등록할 수 있습니다.</small></div>`;return}
   }catch(e){console.warn("기존 평가 확인 실패",e)}
   const metrics=[["food_score","음식"],["access_score","교통/접근성"],["parking_score","주차"],["facility_score","예식홀/시설"],["bride_waiting_score","신부대기실"],["banquet_score","연회장"],["service_score","서비스"],["value_score","가성비"]];
   wrap.innerHTML=`<form id="reviewForm"><label>방문 역할<select name="visit_role" required><option value="">선택</option><option>신랑신부</option><option>혼주</option><option>하객</option></select></label><div class="scoreInputs">${metrics.map(([k,n])=>`<label>${n}<select name="${k}" required><option value="">점수</option>${[5,4,3,2,1].map(v=>`<option value="${v}">${v}점</option>`).join("")}</select></label>`).join("")}</div><label>후기<textarea name="review_text" maxlength="1000" required></textarea></label><button type="submit" class="submitReview">평가 등록</button></form>`;
@@ -422,7 +424,7 @@ async function submitReview(e){
   try{
     const r=await fetch(`${getUrl()}/rest/v1/reviews`,{method:"POST",headers:{...authHeaders(),Prefer:"return=representation"},body:JSON.stringify(payload)}),t=await r.text();
     if(!r.ok){if(r.status===409||t.includes("23505")||t.includes("reviews_user_hall_unique")){alert("이미 이 예식장을 평가하셨습니다. 예식장당 1인 1평가만 등록할 수 있습니다.");await renderReviewForm();return}throw new Error(t||`HTTP ${r.status}`)}
-    alert("평가가 등록되었습니다. 랭킹에 바로 반영됩니다.");await showDetail(hallId);
+    alert("회원 평가가 등록되었습니다. 독립 외부후기 순위에는 합산하지 않습니다.");await showDetail(hallId);
   }catch(err){alert("평가 등록 오류: "+err.message)}finally{if(btn&&document.body.contains(btn)){btn.disabled=false;btn.textContent="평가 등록"}}
 }
 
