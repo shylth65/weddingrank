@@ -11,7 +11,7 @@
  // Unranked qualitative comparison shortlist. This is NOT an original-score rating.
  const QUALITATIVE_CANDIDATES=["JW메리어트호텔 서울 웨딩","앰배서더 서울 풀만 웨딩","여의도웨딩컨벤션","그랜드블랑 웨딩홀","김해더파티웨딩홀","더채플앳 청담","더채플앳대치","더플라자호텔 웨딩","더화이트베일","라도무스아트센터","롯데호텔서울 웨딩","미래컨벤션웨딩홀","신도림 라마다호텔 웨딩","아펠가모 공덕","아펠가모 반포","아펠가모 잠실","웨딩스퀘어 강변","인천아시아드웨딩컨벤션","호텔 인터불고 대구"];
 
- let refreshing=false,loaded=false; let featured=[]; let mode='featured';
+ let refreshing=false,loaded=false; let featured=[]; let mode='featured';let lastData=[];
  const validEvidence=x=>Boolean(x.verified_at)&&/^https?:\/\//i.test(String(x.source_url||''));
  function infoIndex(h,prices,rooms){const latest=[h.verified_at,h.source_updated_at].filter(Boolean).sort().reverse()[0];const recent=latest&&Date.now()-Date.parse(latest)<=365*86400000;return (h.road_address?15:0)+(h.phone?10:0)+(h.website?10:0)+(prices.some(validEvidence)?25:0)+(rooms.some(validEvidence)?25:0)+(recent?15:0);}
  async function get(path){if(!base||!key)throw Error('공개 데이터 연결 설정이 없습니다.');
@@ -156,7 +156,7 @@
   if(refreshing||document.visibilityState==='hidden')return;
   refreshing=true;
   try{
-   const data=await loadData();
+   const data=await loadData();lastData=data;
    await renderHome(data);
    if(location.hash==='#rankings'&&document.getElementById('rankingView')?.hidden!==true)await renderFull(data);
    loaded=true;
@@ -177,12 +177,14 @@
   if(document.getElementById('detailView'))document.getElementById('detailView').hidden=true;
   if(document.getElementById('rankingView'))document.getElementById('rankingView').hidden=false;
   const body=document.getElementById('rankingBody');if(body)body.textContent='TOP 30 순위를 확인하는 중…';
+  if(loaded){await renderFull(lastData);return;}
   await refresh();
+  if(loaded)await renderFull(lastData);
  };
  function start(){
   style();
   const tabs=document.querySelector('#rankingView .rankTabs');
-  if(tabs){tabs.innerHTML='<button class="rankTab active" type="button" data-mode="featured">추천 TOP30</button><button class="rankTab" type="button" data-mode="specialist">전문 후기평가</button>';tabs.addEventListener('click',e=>{const btn=e.target.closest('[data-mode]');if(!btn)return;mode=btn.dataset.mode;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));const h=document.querySelector('#rankingView .rankingHero h1');if(h)h.textContent=mode==='featured'?'웨딩홀 추천 TOP30':'검증된 전문 후기평가 순위';refresh();});}
+  if(tabs){tabs.innerHTML='<button class="rankTab active" type="button" data-mode="featured">추천 TOP30</button><button class="rankTab" type="button" data-mode="specialist">전문 후기평가</button>';tabs.addEventListener('click',e=>{const btn=e.target.closest('[data-mode]');if(!btn)return;mode=btn.dataset.mode;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));const h=document.querySelector('#rankingView .rankingHero h1');if(h)h.textContent=mode==='featured'?'웨딩홀 추천 TOP30':'검증된 전문 후기평가 순위';if(loaded)renderFull(lastData);else refresh();});}
   refresh();
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});
   window.addEventListener('focus',refresh);
