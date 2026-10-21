@@ -56,6 +56,24 @@ jobs:
           dynamic={'wrPriceBand'}
           broken=sorted({x for x in p.anchors if x and not x.startswith('hall=') and x not in p.ids and x not in dynamic})
           if broken:raise SystemExit('Broken internal navigation targets: '+', '.join(broken))
+          app=Path('app.js').read_text(encoding='utf-8')
+          nav=Path('navigation-fixes-v1.js').read_text(encoding='utf-8')
+          checks={
+              'region button handler': "rb.onclick=e=>" in app and "results.scrollIntoView" in app,
+              'search handler': '#search' in app and 'addEventListener("input"' in app,
+              'filter reset': 'clearFilters' in app or 'clearFilters' in Path('find-fixes-v582.js').read_text(),
+              'venue card detail': 'location.hash=' in app and 'hall=' in app,
+              'account and logout': 'siteAccountBtn' in app and 'siteAuthLogout' in app,
+              'signup and reset': 'siteAuthSwitch' in app and 'siteAuthReset' in app,
+              'consultation submit': 'setupConsultForm' in app and 'submitConsult' in app,
+              'dedicated TOP30 route': 'window.loadRankings()' in app,
+              'ranking tab navigation': 'data-mode="featured"' in Path('ranking-external-v590.js').read_text(),
+              'internal anchor scroll': 'scrollIntoView' in nav,
+              'region and ranking targets': 'regions' in p.ids and 'rankingView' in p.ids,
+          }
+          for name,ok in checks.items():
+              print(('PASS' if ok else 'FAIL')+': '+name)
+          if not all(checks.values()):raise SystemExit('One or more navigation smoke checks failed')
           print('PASS: script syntax, internal anchors, ranking assets, separate source tables, legacy override guard')
           PY
       - name: Check public site response (non-publishing)
