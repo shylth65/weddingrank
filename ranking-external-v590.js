@@ -12,7 +12,7 @@
  const QUALITATIVE_CANDIDATES=["JW메리어트호텔 서울 웨딩","앰배서더 서울 풀만 웨딩","여의도웨딩컨벤션","그랜드블랑 웨딩홀","김해더파티웨딩홀","더채플앳 청담","더채플앳대치","더플라자호텔 웨딩","더화이트베일","라도무스아트센터","롯데호텔서울 웨딩","미래컨벤션웨딩홀","신도림 라마다호텔 웨딩","아펠가모 공덕","아펠가모 반포","아펠가모 잠실","웨딩스퀘어 강변","인천아시아드웨딩컨벤션","호텔 인터불고 대구"];
 
  let refreshing=false,loaded=false; let featured=[]; let mode='featured';
- const validEvidence=x=>Boolean(x.verified_at)&&String(x.source_url||'').startsWith('https://');
+ const validEvidence=x=>Boolean(x.verified_at)&&/^https?:\/\//i.test(String(x.source_url||''));
  function infoIndex(h,prices,rooms){const latest=[h.verified_at,h.source_updated_at].filter(Boolean).sort().reverse()[0];const recent=latest&&Date.now()-Date.parse(latest)<=365*86400000;return (h.road_address?15:0)+(h.phone?10:0)+(h.website?10:0)+(prices.some(validEvidence)?25:0)+(rooms.some(validEvidence)?25:0)+(recent?15:0);}
  async function get(path){if(!base||!key)throw Error('공개 데이터 연결 설정이 없습니다.');
  const r=await fetch(base+'/rest/v1/'+path,{headers,cache:'no-store'});
@@ -76,7 +76,7 @@
  async function loadData(){
   const [ratings,halls,featuredRows,prices,rooms]=await Promise.all([
    get('weddingrank_top30_competition?select=hall_id,overall_score,source_count,rank_position,previous_rank,last_rank_change_at,score_basis_at,last_verified_at,evidence_publication_dates_complete&order=rank_position.asc&limit=1000'),
-   get('wedding_halls?select=hall_id,name,sido,sigungu,is_public,operation_status&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&limit=1000'),
+   get('wedding_halls?select=hall_id,name,sido,sigungu,road_address,phone,website,verified_at,source_updated_at,is_public,operation_status&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&limit=1000'),
    get('weddingrank_featured_top100?select=hall_id,name,sido,sigungu,selection_rank,editorial_index,selection_reason,methodology_version&order=selection_rank.asc&limit=100'),
    get('wedding_prices?select=hall_id,source_url,verified_at&limit=1000'),
    get('hall_rooms?select=hall_id,source_url,verified_at&limit=1000')
@@ -110,10 +110,10 @@
   const rows=featured.slice(0,10);
   if(!rows.length){host.innerHTML='<div class="wrTop30Empty"><b>현재 순위 자격 검증 중</b><p>자격 미달 장소로 30위를 채우지 않습니다.</p></div>';return;}
   const latest=data.map(x=>x.score_basis_at).filter(Boolean).sort().reverse()[0];
-  host.innerHTML='<p class="wrTop30Status">TOP 30 경쟁 오픈 · 검증 참가 '+data.length+'/30곳 · 남은 '+Math.max(0,30-data.length)+'자리 · 최종 점수 반영 '+esc(fmt(latest))+' · 운영화면 1분 간격 확인</p>'+
+  host.innerHTML='<p class="wrTop30Status">정보 증빙 지수 기준 추천 TOP30 · 공개 자료의 충실도 평가이며 이용자 만족도 순위가 아닙니다.</p>'+
   '<div class="previewTopGrid externalHomeTop10">'+rows.map(x=>
    '<article class="previewTopCard" data-id="'+esc(x.hall_id)+'" tabindex="0" role="link">'+
-   '<strong class="previewTopNo">'+x.selection_rank+'</strong>'+
+   '<strong class="previewTopNo">'+x.recommendation_rank+'</strong>'+
    '<div class="previewTopHall"><b>'+esc(x.name)+'</b><span>'+esc([x.sido,x.sigungu].filter(Boolean).join(' '))+'</span></div>'+
    '<div class="previewTopScore"><strong>추천 '+Number(x.recommendation_rank)+'위</strong>'+
    '<span>정보 증빙 '+x.info_index+'/100</span><small>품질·후기 평점 아님</small></div></article>').join('')+'</div>';
@@ -131,7 +131,7 @@
   if(mode==='featured'){
     body.innerHTML='<div class="wrTop30Summary"><b>웨딩홀 추천 TOP30 · '+filtered.length+'곳</b><p>정보 증빙 지수로 정렬합니다: 주소 15·연락처 10·웹사이트 10·출처와 검증일이 있는 가격 25·홀 정보 25·최근 1년 기본정보 15점. 동점은 기존 편집 순서입니다. 품질 평점이 아닙니다.</p></div>'+filtered.map((x,i)=>'<article class="rankRow" data-id="'+esc(x.hall_id)+'" tabindex="0" role="link"><div class="rankNo">'+Number(x.recommendation_rank)+'</div><div class="rankHall"><b>'+esc(x.name)+'</b><span>'+esc([x.sido,x.sigungu].filter(Boolean).join(' '))+'</span></div><div class="rankScore"><strong>추천</strong><small>편집 정보 기준</small></div></article>').join('');bind(body);return;
   }
-  const pending=QUALITATIVE_CANDIDATES.filter(name=>!data.some(x=>x.name===name));
+  const pending=[]; // Unverified hardcoded names must not be presented as evidence-backed candidates.
   const pendingHtml='<section class="wrTop30Vacancy" aria-label="정성 후기 분석 비교 후보"><h3>별도 비교: 독립 후기 정성분석 후보 '+pending.length+'곳</h3><p>이 시설들은 독립 후기 URL과 분석 기록이 3건 이상 연결돼 있지만, 원문별 실제 평점·척도·표본 근거가 아직 확정되지 않았습니다. 아래는 순위가 아닌 가나다순 후보 목록이며 숫자 점수·순위는 부여하지 않습니다.</p><div class="wrCandidateGrid">'+pending.map(name=>'<div class="wrCandidateName">'+esc(name)+' <small>원점수 검증 대기</small></div>').join('')+'</div></section>';
   const meta='<div class="wrTop30Summary"><b>TOP 30 경쟁 오픈 · 검증 참가 '+data.length+'/30곳</b>'+
     '<div class="wrTop30Badges"><span class="wrTop30Badge">최대 30위</span>'+
@@ -148,7 +148,7 @@
      '<div class="rankScore"><strong>'+Number(x.overall_score).toFixed(2)+'</strong>'+
      '<span>독립 원문 '+Number(x.source_count)+'건</span><small>'+
      (x.evidence_publication_dates_complete?'원문 게시일 확인':'원문 게시일 일자 재확인 중')+'</small></div></article>').join('')+
-     pendingHtml+'<div class="wrTop30Vacancy"><strong>TOP 30 참가 모집 중 · 남은 '+Math.max(0,30-data.length)+'자리</strong><p>기존 WeddingRank DB의 외부 후기 후보를 검증 중입니다. 원점수·척도·표본과 개별 분석이 확인된 곳만 점수와 순위를 부여합니다.</p></div>'+
+     (pending.length?pendingHtml:'')+'<div class="wrTop30Vacancy"><strong>TOP 30 참가 모집 중 · 남은 '+Math.max(0,30-data.length)+'자리</strong><p>기존 WeddingRank DB의 외부 후기 후보를 검증 중입니다. 원점수·척도·표본과 개별 분석이 확인된 곳만 점수와 순위를 부여합니다.</p></div>'+
      '<p class="wrTop30Status">30위를 넘는 적격 후보는 DB에 남아 있으며, 점수 변화 시 진입·탈락이 자동 재산정됩니다.</p>';
   bind(body);
  }
