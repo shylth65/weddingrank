@@ -80,7 +80,29 @@ function setupRegions(){
   const rb=$("#regionButtons");
   if(rb){
     rb.innerHTML=regions.map(x=>`<button data-region="${esc(x)}">${esc(x)}</button>`).join("");
-    rb.onclick=e=>{if(e.target.dataset.region){$("#sido").value=e.target.dataset.region;visibleHallCount=PAGE_SIZE;showList();render()}};
+    rb.onclick=e=>{
+      const btn=e.target.closest('button[data-region]');
+      if(!btn)return;
+      const selected=btn.dataset.region;
+      const select=$("#sido");
+      if(!select)return;
+      select.value=selected;
+      if($("#search"))$("#search").value="";
+      if($("#priceFilter"))$("#priceFilter").value="";
+      visibleHallCount=PAGE_SIZE;
+      showList();
+      render();
+      rb.querySelectorAll('button[data-region]').forEach(b=>{
+        const active=b===btn;
+        b.classList.toggle('active',active);
+        b.setAttribute('aria-pressed',String(active));
+      });
+      const results=$("#cards");
+      if(results){
+        results.setAttribute('tabindex','-1');
+        results.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    };
   }
 }
 function showList(){if($("#listView"))$("#listView").hidden=false;if($("#detailView"))$("#detailView").hidden=true;if($("#rankingView"))$("#rankingView").hidden=true}
