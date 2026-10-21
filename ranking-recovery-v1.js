@@ -17,6 +17,7 @@ function row(x,n,special){
  return '<article class="rankRow" data-id="'+esc(x.hall_id)+'" tabindex="0"><div class="rankNo">'+n+'</div><div class="rankHall"><b>'+name+'</b><span>'+place+'</span></div><div class="rankScore"><strong>'+score+'</strong><small>'+(special?'검증 후기평가':'정보 기반 편집 추천')+'</small></div></article>';
 }
 function draw(){
+ if(window.WeddingRankTop30Status && window.WeddingRankTop30Status.shown>0)return;
  const host=document.getElementById('top30CompetitionPreviewBody');
  if(host&&entries.length&&(!host.querySelector('.previewTopCard')||/불러오는 중/.test(host.textContent||''))){
  host.innerHTML='<div class="previewTopGrid externalHomeTop10">'+entries.slice(0,10).map((x,i)=>'<article class="previewTopCard" data-id="'+esc(x.hall_id)+'" tabindex="0"><strong class="previewTopNo">'+(i+1)+'</strong><div class="previewTopHall"><b>'+esc(x.name)+'</b><span>'+esc(x.sido||'')+'</span></div><div class="previewTopScore"><strong>추천 '+(i+1)+'위</strong><span>편집 추천</span></div></article>').join('')+'</div>';
@@ -34,7 +35,7 @@ function draw(){
 }
 async function init(){
  const tabs=document.querySelector('#rankingView .rankTabs');
- if(tabs){tabs.innerHTML='<button type="button" class="rankTab active" data-recovery="featured">추천 TOP30</button><button type="button" class="rankTab" data-recovery="specialist">전문 후기평가</button>';tabs.addEventListener('click',e=>{const btn=e.target.closest('[data-recovery]');if(!btn)return;mode=btn.dataset.recovery;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));draw()});}
+ if(tabs && !tabs.querySelector('[data-mode]')){tabs.innerHTML='<button type="button" class="rankTab active" data-recovery="featured">추천 TOP30</button><button type="button" class="rankTab" data-recovery="specialist">전문 후기평가</button>';tabs.addEventListener('click',e=>{const btn=e.target.closest('[data-recovery]');if(!btn)return;mode=btn.dataset.recovery;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));draw()});}
  const style=document.createElement('style');style.textContent='#rankingView .rankTabs .rankTab{flex:1;min-width:0!important;color:#593b4c!important;-webkit-text-fill-color:#593b4c!important;font-weight:800!important;visibility:visible!important;opacity:1!important}';document.head.appendChild(style);
  try{
  const [featured,ranking,publicHalls]=await Promise.all([
