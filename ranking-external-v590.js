@@ -11,7 +11,7 @@
  // Unranked qualitative comparison shortlist. This is NOT an original-score rating.
  const QUALITATIVE_CANDIDATES=["JW메리어트호텔 서울 웨딩","앰배서더 서울 풀만 웨딩","여의도웨딩컨벤션","그랜드블랑 웨딩홀","김해더파티웨딩홀","더채플앳 청담","더채플앳대치","더플라자호텔 웨딩","더화이트베일","라도무스아트센터","롯데호텔서울 웨딩","미래컨벤션웨딩홀","신도림 라마다호텔 웨딩","아펠가모 공덕","아펠가모 반포","아펠가모 잠실","웨딩스퀘어 강변","인천아시아드웨딩컨벤션","호텔 인터불고 대구"];
 
- let refreshing=false,loaded=false;
+ let refreshing=false,loaded=false; let featured=[]; let mode='featured';
  async function get(path){if(!base||!key)throw Error('공개 데이터 연결 설정이 없습니다.');
  const r=await fetch(base+'/rest/v1/'+path,{headers,cache:'no-store'});
  if(!r.ok)throw Error('WeddingRank 공개 자료 응답 '+r.status);
@@ -72,11 +72,13 @@
   document.head.appendChild(e);
  }
  async function loadData(){
-  const [ratings,halls]=await Promise.all([
+  const [ratings,halls,featuredRows]=await Promise.all([
    get('weddingrank_top30_competition?select=hall_id,overall_score,source_count,rank_position,previous_rank,last_rank_change_at,score_basis_at,last_verified_at,evidence_publication_dates_complete&order=rank_position.asc&limit=1000'),
-   get('wedding_halls?select=hall_id,name,sido,sigungu,is_public,operation_status&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&limit=1000')
+   get('wedding_halls?select=hall_id,name,sido,sigungu,is_public,operation_status&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&limit=1000'),
+   get('weddingrank_featured_top100?select=hall_id,name,sido,sigungu,selection_rank,editorial_index,selection_reason,methodology_version&order=selection_rank.asc&limit=100')
   ]);
   const hm=new Map(halls.map(h=>[String(h.hall_id),h]));
+  featured=featuredRows.filter(x=>hm.has(String(x.hall_id))).slice(0,30);
   return ratings.map(r=>({...r,...(hm.get(String(r.hall_id))||{})}))
    .filter(x=>x.name&&Number.isFinite(Number(x.overall_score))&&Number(x.source_count)>=3)
    .sort((a,b)=>Number(a.rank_position)-Number(b.rank_position));
@@ -99,31 +101,32 @@
  async function renderHome(data){
   const host=document.getElementById('top30CompetitionPreviewBody');if(!host)return;
   const title=document.querySelector('.homeRankingPreview h2'),desc=document.querySelector('.homeRankingPreview .sectionDesc');
-  if(title)title.textContent='WeddingRank TOP 30 순위경쟁';
-  if(desc)desc.textContent='독립 원문 3건 이상의 원점수·척도·표본 및 분석근거를 대조한 후보만 최대 30위까지 비교합니다. 자료 승인 후 재산정되며, 게시일 일자 미확인 자료는 표시합니다.';
-  const rows=data.slice(0,10);
+  if(title)title.textContent='웨딩홀 추천 TOP30';
+  if(desc)desc.textContent='공개 운영정보와 편집 추천 지수를 바탕으로 선정한 30곳입니다. 독립 후기 전문평가 순위와 별개이며, 추천 지수는 이용 만족도 점수가 아닙니다.';
+  const rows=featured.slice(0,10);
   if(!rows.length){host.innerHTML='<div class="wrTop30Empty"><b>현재 순위 자격 검증 중</b><p>자격 미달 장소로 30위를 채우지 않습니다.</p></div>';return;}
   const latest=data.map(x=>x.score_basis_at).filter(Boolean).sort().reverse()[0];
   host.innerHTML='<p class="wrTop30Status">TOP 30 경쟁 오픈 · 검증 참가 '+data.length+'/30곳 · 남은 '+Math.max(0,30-data.length)+'자리 · 최종 점수 반영 '+esc(fmt(latest))+' · 운영화면 1분 간격 확인</p>'+
   '<div class="previewTopGrid externalHomeTop10">'+rows.map(x=>
    '<article class="previewTopCard" data-id="'+esc(x.hall_id)+'" tabindex="0" role="link">'+
-   '<strong class="previewTopNo">'+x.rank_position+'</strong>'+
+   '<strong class="previewTopNo">'+x.selection_rank+'</strong>'+
    '<div class="previewTopHall"><b>'+esc(x.name)+'</b><span>'+esc([x.sido,x.sigungu].filter(Boolean).join(' '))+'</span></div>'+
-   '<div class="previewTopScore"><strong>'+Number(x.overall_score).toFixed(2)+'</strong>'+
-   '<span>검증된 외부후기 '+Number(x.source_count)+'건</span><small>'+
-   (x.evidence_publication_dates_complete?'게시일 확인 완료':'원문 게시일 검증 중')+
-   '</small>'+movement(x)+'</div></article>').join('')+'</div>';
+   '<div class="previewTopScore"><strong>추천 '+Number(x.selection_rank)+'위</strong>'+
+   '<span>정보 기반 편집 추천</span><small>전문 후기 평점과 별개</small></div></article>').join('')+'</div>';
   bind(host);
  }
  async function renderFull(data){
   const body=document.getElementById('rankingBody');if(!body)return;
   const region=document.getElementById('rankingRegion')?.value||'';
-  const filtered=data.filter(x=>!region||x.sido===region).slice(0,MAX_RANK);
+  const filtered=(mode==='featured'?featured:data).filter(x=>!region||x.sido===region).slice(0,MAX_RANK);
   const latest=data.map(x=>x.score_basis_at).filter(Boolean).sort().reverse()[0];
   const note=document.querySelector('#rankingView .rankingNote');
   const hero=document.querySelector('#rankingView .rankingHero p:last-child');
-  if(hero)hero.textContent='검증된 독립후기 평가가 새로 승인되면 점수를 다시 계산해 최대 30위까지 정렬합니다. 결과는 자동 확인되며 전국 모든 예식장의 절대 품질 순위는 아닙니다.';
-  if(note)note.textContent='※ 독립 원문별 원점수·척도·실제 표본과 분석근거를 확인합니다. 광고·업체 소개·복제·자체 회원평가는 제외합니다. 원문 게시일이 불명확한 기존 자료는 계속 그 상태를 표시합니다.';
+  if(hero)hero.textContent=mode==='featured'?'공개 운영정보와 편집 기준으로 선정한 추천 목록입니다. 실제 만족도 순위나 검증된 후기 점수가 아닙니다.':'검증된 독립후기 평가가 새로 승인되면 점수를 다시 계산해 최대 30위까지 정렬합니다. 결과는 자동 확인되며 전국 모든 예식장의 절대 품질 순위는 아닙니다.';
+  if(note)note.textContent=mode==='featured'?'추천 순위는 객관적 정보와 편집 기준에 따른 참고 목록입니다. 후기 원점수 기반 전문평가와 혼동하지 마세요.':'※ 독립 원문별 원점수·척도·실제 표본과 분석근거를 확인합니다. 광고·업체 소개·복제·자체 회원평가는 제외합니다. 원문 게시일이 불명확한 기존 자료는 계속 그 상태를 표시합니다.';
+  if(mode==='featured'){
+    body.innerHTML='<div class="wrTop30Summary"><b>웨딩홀 추천 TOP30 · '+filtered.length+'곳</b><p>기존 편집 추천 데이터의 선정 순서를 표시합니다. 이용후기 평점이 아닌 정보 기반 추천이며, 순위 산정 기준을 재검증할 예정입니다.</p></div>'+filtered.map((x,i)=>'<article class="rankRow" data-id="'+esc(x.hall_id)+'" tabindex="0" role="link"><div class="rankNo">'+Number(x.selection_rank)+'</div><div class="rankHall"><b>'+esc(x.name)+'</b><span>'+esc([x.sido,x.sigungu].filter(Boolean).join(' '))+'</span></div><div class="rankScore"><strong>추천</strong><small>편집 정보 기준</small></div></article>').join('');bind(body);return;
+  }
   const pending=QUALITATIVE_CANDIDATES.filter(name=>!data.some(x=>x.name===name));
   const pendingHtml='<section class="wrTop30Vacancy" aria-label="정성 후기 분석 비교 후보"><h3>별도 비교: 독립 후기 정성분석 후보 '+pending.length+'곳</h3><p>이 시설들은 독립 후기 URL과 분석 기록이 3건 이상 연결돼 있지만, 원문별 실제 평점·척도·표본 근거가 아직 확정되지 않았습니다. 아래는 순위가 아닌 가나다순 후보 목록이며 숫자 점수·순위는 부여하지 않습니다.</p><div class="wrCandidateGrid">'+pending.map(name=>'<div class="wrCandidateName">'+esc(name)+' <small>원점수 검증 대기</small></div>').join('')+'</div></section>';
   const meta='<div class="wrTop30Summary"><b>TOP 30 경쟁 오픈 · 검증 참가 '+data.length+'/30곳</b>'+
@@ -153,7 +156,7 @@
    await renderHome(data);
    if(location.hash==='#rankings'&&document.getElementById('rankingView')?.hidden!==true)await renderFull(data);
    loaded=true;
-   window.WeddingRankTop30Status={count:data.length,shown:Math.min(MAX_RANK,data.length),refreshed_at:new Date().toISOString()};
+   window.WeddingRankTop30Status={count:featured.length,shown:featured.length,refreshed_at:new Date().toISOString()};
    window.dispatchEvent(new Event('weddingrank:top30-refreshed'));
   }catch(e){
    console.warn('[WeddingRank] TOP30 refresh failed',e);
@@ -173,7 +176,10 @@
   await refresh();
  };
  function start(){
-  style();refresh();
+  style();
+  const tabs=document.querySelector('#rankingView .rankTabs');
+  if(tabs){tabs.innerHTML='<button class="rankTab active" type="button" data-mode="featured">추천 TOP30</button><button class="rankTab" type="button" data-mode="specialist">전문 후기평가</button>';tabs.addEventListener('click',e=>{const btn=e.target.closest('[data-mode]');if(!btn)return;mode=btn.dataset.mode;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));const h=document.querySelector('#rankingView .rankingHero h1');if(h)h.textContent=mode==='featured'?'웨딩홀 추천 TOP30':'검증된 전문 후기평가 순위';refresh();});}
+  refresh();
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});
   window.addEventListener('focus',refresh);
   window.setInterval(refresh,REFRESH_MS);
