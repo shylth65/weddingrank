@@ -247,7 +247,23 @@ function renderReviews(reviews){
   list.innerHTML=reviews.filter(r=>r.review_text).slice(0,10).map(r=>`<article class="reviewItem"><div><b>${esc(r.visit_role||"이용자")}</b><span>${esc((r.created_at||"").slice(0,10))}</span></div><p>${esc(r.review_text)}</p></article>`).join("");
 }
 
-function route(){const m=location.hash.match(/^#hall=(.+)$/);if(m)showDetail(m[1]);else if(location.hash==="#rankings")loadRankings();else showList()}
+function route(){
+  const m=location.hash.match(/^#hall=(.+)$/);
+  if(m){showDetail(decodeURIComponent(m[1]));return}
+  if(location.hash==="#rankings"){
+    if($("#listView"))$("#listView").hidden=true;
+    if($("#detailView"))$("#detailView").hidden=true;
+    if($("#rankingView"))$("#rankingView").hidden=false;
+    // Dedicated external-evidence TOP30 renderer owns this screen.
+    if(typeof window.loadRankings==="function"&&window.loadRankings!==loadRankings){
+      window.loadRankings();
+    }else{
+      document.dispatchEvent(new Event('weddingrank:ranking-route'));
+    }
+    return;
+  }
+  showList();
+}
 
 async function authApi(path,options={}){
   const key=getKey(),h={apikey:key,"Content-Type":"application/json",...(options.headers||{})};if(accessToken)h.Authorization=`Bearer ${accessToken}`;
@@ -423,7 +439,7 @@ async function submitConsult(e){
 
 function setupRankingUI(){
   document.querySelectorAll(".rankTab").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".rankTab").forEach(x=>x.classList.remove("active"));btn.classList.add("active");rankingMode=btn.dataset.rank;loadRankings()}));
-  $("#rankingRegion")?.addEventListener("change",loadRankings);
+  // The dedicated TOP30 renderer owns ranking region changes.
 }
 async function loadRankings(){
   if($("#listView"))$("#listView").hidden=true;if($("#detailView"))$("#detailView").hidden=true;if($("#rankingView"))$("#rankingView").hidden=false;
