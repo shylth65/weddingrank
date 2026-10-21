@@ -188,7 +188,8 @@
   if(tabs){tabs.innerHTML='<button class="rankTab active" type="button" data-mode="featured">추천 TOP30</button><button class="rankTab" type="button" data-mode="specialist">전문 후기평가</button>';tabs.addEventListener('click',e=>{const btn=e.target.closest('[data-mode]');if(!btn)return;mode=btn.dataset.mode;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));const h=document.querySelector('#rankingView .rankingHero h1');if(h)h.textContent=mode==='featured'?'웨딩홀 추천 TOP30':'검증된 전문 후기평가 순위';if(loaded)renderFull(lastData);else refresh();});}
   refresh();
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});
-  window.addEventListener('focus',refresh);\n  window.addEventListener('hashchange',()=>{if(location.hash==='#rankings'&&loaded)renderFull(lastData);});
+  window.addEventListener('focus',refresh);
+  window.addEventListener('hashchange',()=>{if(location.hash==='#rankings'&&loaded)renderFull(lastData);});
   window.setInterval(refresh,REFRESH_MS);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
