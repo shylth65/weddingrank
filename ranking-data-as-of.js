@@ -15,9 +15,8 @@
    const data=await r.json(),visible=data.slice(0,30);
    const last=data.map(v=>v.score_basis_at).filter(Boolean).sort().reverse()[0];
    const pending=data.filter(v=>!v.evidence_publication_dates_complete).length;
-   const message='TOP 30 경쟁 '+visible.length+' / 30곳 · 승인된 원점수 변경 시 자동 재정렬 · 최종 점수 반영 '+fmt(last)+
-    ' · 게시일 추가검증 '+pending+'곳';
-   hosts.forEach(x=>{x.textContent=message;x.title='순위는 승인된 후기 원점수·척도·표본을 기준으로 재산정합니다. 화면은 1분 간격으로 최신 순위 DB를 확인합니다. 게시일 미확인 자료는 표기합니다.';});
+   const message='추천 TOP30 · 공개 운영정보 기준 | 전문 후기평가 '+visible.length+'곳 별도 운영';
+   hosts.forEach(x=>{x.textContent=message;x.title='추천 TOP30과 검증된 전문 후기평가를 구분해 운영합니다.';});
   }catch(e){hosts.forEach(x=>x.textContent='TOP 30 순위 자료 확인 중');console.warn('[WeddingRank] TOP30 status error',e);}
  }
  function start(){render();document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')render();});
