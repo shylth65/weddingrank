@@ -78,7 +78,7 @@
    get('weddingrank_featured_top100?select=hall_id,name,sido,sigungu,selection_rank,editorial_index,selection_reason,methodology_version&order=selection_rank.asc&limit=100')
   ]);
   const hm=new Map(halls.map(h=>[String(h.hall_id),h]));
-  featured=featuredRows.filter(x=>hm.has(String(x.hall_id))).slice(0,30);
+  featured=featuredRows.filter(x=>hm.has(String(x.hall_id))&&Number(x.selection_rank)>=1&&Number(x.selection_rank)<=30).sort((a,b)=>Number(a.selection_rank)-Number(b.selection_rank));
   return ratings.map(r=>({...r,...(hm.get(String(r.hall_id))||{})}))
    .filter(x=>x.name&&Number.isFinite(Number(x.overall_score))&&Number(x.source_count)>=3)
    .sort((a,b)=>Number(a.rank_position)-Number(b.rank_position));
@@ -112,7 +112,7 @@
    '<strong class="previewTopNo">'+x.selection_rank+'</strong>'+
    '<div class="previewTopHall"><b>'+esc(x.name)+'</b><span>'+esc([x.sido,x.sigungu].filter(Boolean).join(' '))+'</span></div>'+
    '<div class="previewTopScore"><strong>추천 '+Number(x.selection_rank)+'위</strong>'+
-   '<span>정보 기반 편집 추천</span><small>전문 후기 평점과 별개</small></div></article>').join('')+'</div>';
+   '<span>편집 선정 순서</span><small>후기 평점과 별개 · 상세 선정 사유 확인</small></div></article>').join('')+'</div>';
   bind(host);
  }
  async function renderFull(data){
@@ -125,7 +125,7 @@
   if(hero)hero.textContent=mode==='featured'?'공개 운영정보와 편집 기준으로 선정한 추천 목록입니다. 실제 만족도 순위나 검증된 후기 점수가 아닙니다.':'검증된 독립후기 평가가 새로 승인되면 점수를 다시 계산해 최대 30위까지 정렬합니다. 결과는 자동 확인되며 전국 모든 예식장의 절대 품질 순위는 아닙니다.';
   if(note)note.textContent=mode==='featured'?'추천 순위는 객관적 정보와 편집 기준에 따른 참고 목록입니다. 후기 원점수 기반 전문평가와 혼동하지 마세요.':'※ 독립 원문별 원점수·척도·실제 표본과 분석근거를 확인합니다. 광고·업체 소개·복제·자체 회원평가는 제외합니다. 원문 게시일이 불명확한 기존 자료는 계속 그 상태를 표시합니다.';
   if(mode==='featured'){
-    body.innerHTML='<div class="wrTop30Summary"><b>웨딩홀 추천 TOP30 · '+filtered.length+'곳</b><p>기존 편집 추천 데이터의 선정 순서를 표시합니다. 이용후기 평점이 아닌 정보 기반 추천이며, 순위 산정 기준을 재검증할 예정입니다.</p></div>'+filtered.map((x,i)=>'<article class="rankRow" data-id="'+esc(x.hall_id)+'" tabindex="0" role="link"><div class="rankNo">'+Number(x.selection_rank)+'</div><div class="rankHall"><b>'+esc(x.name)+'</b><span>'+esc([x.sido,x.sigungu].filter(Boolean).join(' '))+'</span></div><div class="rankScore"><strong>추천</strong><small>편집 정보 기준</small></div></article>').join('');bind(body);return;
+    body.innerHTML='<div class="wrTop30Summary"><b>웨딩홀 추천 TOP30 · '+filtered.length+'곳</b><p>기존 편집 선정 순서입니다. 평가 점수나 품질 우열을 의미하지 않습니다. 각 예식장의 등록된 선정 사유를 확인할 수 있으며, 객관적 가중치 산식은 아직 확정되지 않았습니다.</p></div>'+filtered.map((x,i)=>'<article class="rankRow" data-id="'+esc(x.hall_id)+'" tabindex="0" role="link"><div class="rankNo">'+Number(x.selection_rank)+'</div><div class="rankHall"><b>'+esc(x.name)+'</b><span>'+esc([x.sido,x.sigungu].filter(Boolean).join(' '))+'</span></div><div class="rankScore"><strong>추천</strong><small>편집 정보 기준</small></div></article>').join('');bind(body);return;
   }
   const pending=QUALITATIVE_CANDIDATES.filter(name=>!data.some(x=>x.name===name));
   const pendingHtml='<section class="wrTop30Vacancy" aria-label="정성 후기 분석 비교 후보"><h3>별도 비교: 독립 후기 정성분석 후보 '+pending.length+'곳</h3><p>이 시설들은 독립 후기 URL과 분석 기록이 3건 이상 연결돼 있지만, 원문별 실제 평점·척도·표본 근거가 아직 확정되지 않았습니다. 아래는 순위가 아닌 가나다순 후보 목록이며 숫자 점수·순위는 부여하지 않습니다.</p><div class="wrCandidateGrid">'+pending.map(name=>'<div class="wrCandidateName">'+esc(name)+' <small>원점수 검증 대기</small></div>').join('')+'</div></section>';
