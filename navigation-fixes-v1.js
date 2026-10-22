@@ -1,6 +1,6 @@
 /* WeddingRank navigation and touch/keyboard safety. No data mutations. */
 (()=>{'use strict';
-const targets=new Set(['#find','#regions','#wrPriceBand','#about','#rankings']);
+const targets=new Set(['#find','#evaluate','#regions','#wrPriceBand','#about','#rankings']);
 function visible(el){return !!el&&!el.closest('[hidden]')}
 function go(hash){
  if(hash==='#rankings'){
