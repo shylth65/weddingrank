@@ -25,11 +25,15 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check syntax
-        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py
+        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py scripts/weddingrank_apply_verified_prices.py
       - name: Inspect public data and limited official websites
         run: python scripts/weddingrank_daily_audit.py
       - name: Check stale price sources (read-only, limited requests)
         run: python scripts/weddingrank_price_source_audit.py
+      - name: Apply verified price changes only when approved evidence and existing write credential are present
+        env:
+          WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
+        run: python scripts/weddingrank_apply_verified_prices.py
       - name: Preserve audit results as workflow artifact
         if: always()
         uses: actions/upload-artifact@v4
