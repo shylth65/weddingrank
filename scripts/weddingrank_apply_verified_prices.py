@@ -42,6 +42,14 @@ def main():
             amount = item["rental_fee"]
             if type(amount) is not int or not 0 <= amount <= 100000000: raise ValueError("Invalid rental fee")
             if len(item["source_quote"]) < 6 or len(item["source_quote"]) > 500: raise ValueError("Invalid source excerpt")
+            # Verify the approved quote still occurs in the live source, not just the manifest.
+            src = urllib.request.Request(item["source_url"], headers={"User-Agent": "Mozilla/5.0 WeddingRankPriceVerifier/1.0"})
+            with urllib.request.urlopen(src, timeout=12) as page:
+                html = page.read(500000).decode("utf-8", errors="replace")
+            plain = re.sub(r"<[^>]+>", " ", html)
+            normalize = lambda t: re.sub(r"\\s+", "", t)
+            if normalize(item["source_quote"]) not in normalize(plain):
+                raise ValueError("Approved price excerpt no longer matches official source")
             if not KEY:
                 record["status"] = "needs_existing_write_credential"
             else:
@@ -53,7 +61,7 @@ def main():
                 payload = {"rental_fee": amount, "verified_at": TODAY.isoformat()}
                 updated = request("PATCH", "wedding_prices?" + qs, payload)
                 record["status"] = "updated" if len(updated) == 1 else "conflict_or_not_found"
-        except (ValueError, KeyError, TypeError) as exc:
+        except (ValueError, KeyError, TypeError, OSError) as exc:
             record["status"] = "invalid_evidence"
             record["reason"] = str(exc)
         results.append(record)
