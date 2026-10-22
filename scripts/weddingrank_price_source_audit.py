@@ -11,7 +11,7 @@ import urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONFIG = (ROOT / "config.js").read_text(encoding="utf-8")
 def cfg(key):
-    match = re.search(r"\\b" + re.escape(key) + r'\\s*:\\s*"([^"]+)"', CONFIG)
+    match = re.search(r"\b" + re.escape(key) + r'\s*:\s*"([^"]+)"', CONFIG)
     if not match:
         raise RuntimeError("Missing public configuration: " + key)
     return match.group(1)
@@ -39,9 +39,9 @@ def probe(url):
         with urllib.request.urlopen(req, timeout=10) as response:
             body = response.read(350000).decode("utf-8", errors="replace")
             clean = re.sub(r"<[^>]+>", " ", body)
-            clean = re.sub(r"\\s+", " ", clean)
+            clean = re.sub(r"\s+", " ", clean)
             return {"status": "http_ok", "http_status": response.status,
-                    "price_terms_present": bool(re.search(r"식대|대관료|웨딩.*가격|만원|₩|\\d[\\d,]*\\s*원", clean)),
+                    "price_terms_present": bool(re.search(r"식대|대관료|웨딩.*가격|만원|₩|\\d[\\d,]*\s*원", clean)),
                     "note": "Text presence does not prove any stored amount is current."}
     except urllib.error.HTTPError as ex:
         return {"status": "http_" + str(ex.code)}
@@ -74,13 +74,13 @@ def main():
         "stale_over_30_days": len(candidates), "source_url_probes": checks,
         "database_writes": 0, "automatic_price_updates": 0,
         "warning": "Effective date is not source verification date. HTTP status and price terms do not verify stored amounts. Human/source-level comparison required before updates."}
-    (OUT / "latest.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    (OUT / "latest.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = ["## WeddingRank price source audit — " + TODAY.isoformat(), "",
         "- Price records: " + str(len(rows)), "- Effective dates older than 30 days: " + str(len(candidates)),
         "- Source links checked: " + str(len(checks)), "- Database writes: **0**",
         "- HTTP success does not verify the listed prices.", "", "### Source checks"]
     lines += ["- " + r["hall_name"] + " | " + r["status"] + " | " + str(r.get("price_terms_present", "unknown")) + " | " + r["source_url"] for r in checks]
-    summary = "\\n".join(lines) + "\\n"
+    summary = "\n".join(lines) + "\n"
     (OUT / "latest.md").write_text(summary, encoding="utf-8")
     print(summary)
     return 0
