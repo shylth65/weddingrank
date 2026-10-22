@@ -180,7 +180,7 @@ async function showDetail(id){
     const results=await Promise.allSettled([
       api(`hall_rooms?select=room_name,floor,capacity_min,capacity_max&hall_id=eq.${encodeURIComponent(id)}`),
       api(`wedding_prices?select=effective_date,rental_fee,meal_price_per_person,minimum_guarantee,notes,source_name,source_url&hall_id=eq.${encodeURIComponent(id)}&order=effective_date.desc`),
-      api(`reviews?select=visit_role,food_score,parking_score,access_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,review_text,created_at&hall_id=eq.${encodeURIComponent(id)}&order=created_at.desc&limit=100`),
+      api(`reviews?select=review_id,visit_role,food_score,parking_score,access_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,review_text,created_at&hall_id=eq.${encodeURIComponent(id)}&order=created_at.desc&limit=100`),
       api(`external_wedding_ratings?select=source_count,methodology_version,food_score,access_score,parking_score,facility_score,bride_waiting_score,banquet_score,service_score,value_score,overall_score,summary,updated_at&hall_id=eq.${encodeURIComponent(id)}&is_public=eq.true&limit=1`),
       api(`wedding_review_sources?select=source_url,source_name,published_date,summary,quality_score&hall_id=eq.${encodeURIComponent(id)}&is_published=eq.true&source_type=eq.public_review&quality_score=gte.70&order=quality_score.desc&limit=30`),
       api(`weddingrank_top30_competition?select=hall_id,overall_score,source_count,rank_position,evidence_sources,evidence_publication_dates_complete,score_basis_at&hall_id=eq.${encodeURIComponent(id)}&limit=1`)
@@ -255,7 +255,7 @@ function renderReviews(reviews){
   const metrics=[["음식","food_score"],["교통/접근성","access_score"],["주차","parking_score"],["예식홀/시설","facility_score"],["신부대기실","bride_waiting_score"],["연회장","banquet_score"],["서비스","service_score"],["가성비","value_score"]];
   const overall=avg(reviews,"overall_score");
   box.innerHTML=`<div class="reviewScore"><div><small>종합평점</small><strong>${score(overall)}</strong><span>/ 5.0</span><p>${reviews.length}개 평가</p></div><div class="metricGrid">${metrics.map(([n,k])=>`<div><span>${n}</span><b>${score(avg(reviews,k))}</b></div>`).join("")}</div></div>`;
-  list.innerHTML=reviews.filter(r=>r.review_text).slice(0,10).map(r=>`<article class="reviewItem"><div><b>${esc(r.visit_role||"이용자")}</b><span>${esc(dateKst(r.created_at))}</span></div><p>${esc(r.review_text)}</p></article>`).join("");
+  list.innerHTML=reviews.filter(r=>r.review_text).slice(0,10).map(r=>`<article class="reviewItem" data-review-id="${esc(r.review_id)}"><div><b>${esc(r.visit_role||"이용자")}</b><span>${esc(dateKst(r.created_at))}</span></div><p class="wrReviewText">${esc(r.review_text)}</p></article>`).join("");
 }
 
 function route(){
@@ -323,6 +323,7 @@ async function restoreSession(){
 async function logoutUser(){try{if(accessToken)await authApi("logout",{method:"POST"})}catch(_){}clearAuthSession();renderAuth();closeSiteAuth();alert("로그아웃되었습니다.")}
 function syncHeaderAuth(){const account=$("#siteAccountBtn");if(account){account.textContent=currentUser?"MY":"로그인";account.dataset.authMode=currentUser?"my":"login"}}
 function renderAuth(){
+  window.dispatchEvent(new Event("wr-auth-changed"));
   const reviewList=$("#reviewList");if(reviewList)delete reviewList.dataset.rep;
   syncHeaderAuth();const box=$("#authBox");if(!box)return;
   box.innerHTML=currentUser?`<div class="signed"><span>${esc(currentUser.email||"로그인 사용자")}</span><button id="logoutBtn">로그아웃</button></div>`:`<div class="loginRow"><button id="loginBtn" type="button">로그인</button><button id="signupBtn" type="button">신규 회원가입</button></div><small>이메일과 비밀번호로 로그인하거나 가입합니다.</small>`;
@@ -489,3 +490,5 @@ window.addEventListener('weddingrank:top30-refreshed',()=>{
   const status=window.WeddingRankTop30Status;
   if(status&&$("#ratedCount"))$("#ratedCount").textContent=status.shown+"곳";
 });
+
+document.addEventListener("wr-content-changed",e=>{if(e.detail?.kind==="review")route()});
