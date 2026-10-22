@@ -11,7 +11,7 @@ import urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONFIG = (ROOT / "config.js").read_text(encoding="utf-8")
 def config(name):
-    m = re.search(r"\b" + re.escape(name) + r'\\s*:\\s*"([^"]+)"', CONFIG)
+    m = re.search(r"\b" + re.escape(name) + r'\s*:\s*"([^"]+)"', CONFIG)
     if not m: raise RuntimeError("Missing " + name)
     return m.group(1)
 BASE = config("SUPABASE_URL").rstrip("/")
