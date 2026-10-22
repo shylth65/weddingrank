@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check syntax
-        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py scripts/weddingrank_apply_verified_prices.py
+        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py scripts/weddingrank_apply_verified_prices.py scripts/weddingrank_expansion_candidates.py
       - name: Inspect public data and limited official websites
         run: python scripts/weddingrank_daily_audit.py
       - name: Check stale price sources (read-only, limited requests)
