@@ -13,7 +13,8 @@ function setup(fetch) {
   };
   const context = vm.createContext({
     fetch, AbortController, setTimeout, clearTimeout, encodeURIComponent,
-    fields, alerts: [], siteAuthMode: 'login', currentUser: null,
+    fields, alerts: [], siteAuthMode: 'login', siteAuthBusy: false, currentUser: null,
+    document: {querySelector: () => null},
     accessToken: null, isAdminUser: false, rendered: false, closed: false,
     $: selector => fields[selector], getUrl: () => 'https://example.invalid',
     getKey: () => 'public-test-key', authHeaders: () => ({}),
@@ -43,11 +44,12 @@ test('successful login does not wait for admin lookup or request user again', as
   });
   c.authRest = () => new Promise(() => {});
   await c.submitSiteAuth();
+  await new Promise(resolve => setTimeout(resolve, 5));
   assert.equal(c.currentUser.id, 'qa-user');
   assert.equal(c.closed && c.rendered, true);
   assert.equal(c.fields['#siteAuthSubmit'].disabled, false);
   assert.equal(calls.length, 1);
-  assert.deepEqual(c.alerts, ['로그인되었습니다.']);
+  assert.deepEqual(c.alerts, []);
 });
 test('missing login token never falls through to signup', async () => {
   const calls = [];

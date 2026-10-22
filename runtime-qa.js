@@ -12,10 +12,13 @@ function focusSearch(){const s=document.getElementById('search');if(s){s.disable
 function ensureReviewLogin(){
  const wrap=document.getElementById('reviewFormWrap');
  if(!wrap)return;
+ // A signed-in homepage can retain the guest message in its hidden detail view.
+ // Never add login controls there, and mark any fallback so observing it is idempotent.
+ if(document.querySelector('#authBox .signed')||document.getElementById('siteAccountBtn')?.dataset.authMode==='my')return;
  const hasForm=!!document.getElementById('reviewForm');
  const hasLogin=!!document.getElementById('loginBtn')||!!document.getElementById('reviewLoginBtn');
  if(!hasForm&&!hasLogin&&/로그인/.test(wrap.textContent||'')){
-   const b=document.createElement('button');b.type='button';b.className='submitReview';b.textContent='로그인';
+   const b=document.createElement('button');b.id='reviewLoginBtn';b.type='button';b.className='submitReview';b.textContent='로그인';
    b.addEventListener('click',()=>{if(typeof window.openSiteAuth==='function')window.openSiteAuth('login');else document.getElementById('siteAccountBtn')?.click()});
    wrap.appendChild(b);
  }

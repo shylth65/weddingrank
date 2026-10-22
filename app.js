@@ -363,9 +363,9 @@ async function submitSiteAuth(){
  if(siteAuthMode==="my")return changeSitePassword();
  const email=$("#siteAuthEmail")?.value.trim().toLowerCase(),password=$("#siteAuthPassword")?.value||"",button=$("#siteAuthSubmit");
  if(siteAuthBusy||button.disabled)return;
- siteAuthBusy=true;
  if(!email||!email.includes("@"))return alert("이메일 주소를 확인해주세요.");
  if(password.length<8)return alert("비밀번호는 8자 이상 입력해주세요.");
+ siteAuthBusy=true;
  button.disabled=true;button.textContent="확인 중…";
  const pendingTimer=setTimeout(()=>{if(button.disabled)button.textContent="서버 응답 대기 중…"},3500);
  const hardTimer=setTimeout(()=>{if(button.disabled){button.disabled=false;button.textContent="다시 로그인";const hint=document.querySelector(".siteAuthHint");if(hint)hint.textContent="로그인 응답이 지연되고 있습니다. 다시 시도하거나 비밀번호 재설정을 이용해주세요."}},11000);
@@ -438,8 +438,9 @@ function parseAuthHash(){
 }
 async function renderReviewForm(){
   const wrap=$("#reviewFormWrap");if(!wrap)return;
+  const hallId=(location.hash.match(/^#hall=(.+)$/)||[])[1];
+  if(!hallId){wrap.replaceChildren();return}
   if(!currentUser){wrap.innerHTML='<div class="pending">평가를 작성하려면 먼저 이메일로 로그인해주세요.</div>';return}
-  const hallId=(location.hash.match(/^#hall=(.+)$/)||[])[1];if(!hallId)return;
   wrap.innerHTML='<div class="pending">내 평가 여부를 확인하는 중입니다…</div>';
   try{
     const existing=await authRest(`reviews?select=review_id,overall_score,created_at&hall_id=eq.${encodeURIComponent(hallId)}&user_id=eq.${encodeURIComponent(currentUser.id)}&limit=1`);
