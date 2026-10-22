@@ -332,13 +332,13 @@ async function restoreSession(){
 async function logoutUser(){try{if(accessToken)await authApi("logout",{method:"POST"})}catch(_){}clearAuthSession();renderAuth();closeSiteAuth();alert("로그아웃되었습니다.")}
 function syncHeaderAuth(){const account=$("#siteAccountBtn");if(account){account.textContent=currentUser?"MY":"로그인";account.dataset.authMode=currentUser?"my":"login"}}
 function renderAuth(){
-  window.dispatchEvent(new Event("wr-auth-changed"));
   const reviewList=$("#reviewList");if(reviewList)delete reviewList.dataset.rep;
   syncHeaderAuth();const box=$("#authBox");if(!box)return;
   box.innerHTML=currentUser?`<div class="signed"><span>${esc(currentUser.email||"로그인 사용자")}</span><button id="logoutBtn">로그아웃</button></div>`:`<div class="loginRow"><button id="loginBtn" type="button">로그인</button><button id="signupBtn" type="button">신규 회원가입</button></div><small>이메일과 비밀번호로 로그인하거나 가입합니다.</small>`;
   $("#logoutBtn")?.addEventListener("click",logoutUser);
   $("#loginBtn")?.addEventListener("click",()=>openSiteAuth(currentUser?"my":"login"));
   $("#signupBtn")?.addEventListener("click",()=>openSiteAuth("signup"));renderReviewForm();
+  setTimeout(()=>window.dispatchEvent(new Event("wr-auth-changed")),0);
 }
 async function loadMyReviewHistory(){
   const box=$("#myReviewHistory");
@@ -371,7 +371,7 @@ async function submitSiteAuth(){
   if(siteAuthMode==="login"){
     const d=await authApi("token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});
     if(!d.access_token)throw new Error("로그인 응답을 확인하지 못했습니다. 다시 시도해주세요.");
-    saveAuthSession(d);currentUser=d.user?.id?d.user:await authApi("user",{method:"GET"});isAdminUser=false;renderAuth();void refreshAdminAccess();closeSiteAuth();alert("로그인되었습니다.");return;
+    saveAuthSession(d);currentUser=d.user?.id?d.user:await authApi("user",{method:"GET"});isAdminUser=false;renderAuth();void refreshAdminAccess();closeSiteAuth();return;
   }
   const d=await authApi("signup",{method:"POST",body:JSON.stringify({email,password,data:{display_name:"WeddingRank 회원"}})});
   if(d.access_token){
