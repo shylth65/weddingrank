@@ -29,7 +29,7 @@ function wrLoadStyleOnce(id, href) {
   document.head.appendChild(l);
 }
 function wrMaybeLoadDetailEnhancements() {
-  if (/^#hall=/.test(location.hash)) wrLoadScriptOnce("wr-detail-enhancements", "enhancements.js?v=20261022-admin-content");
+  if (/^#hall=/.test(location.hash)) wrLoadScriptOnce("wr-detail-enhancements", "enhancements.js?v=20261022-comments");
 }
 
 window.addEventListener("DOMContentLoaded", () => {
