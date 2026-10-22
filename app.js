@@ -53,11 +53,18 @@ function buildPriceMap(prices,publicHalls){
     priceByHall.set(p.hall_id,p);
   }
 }
+function priceDateLabel(date){
+ if(!date)return " · 확인일 미상";
+ const today=todayKst();
+ if(date>today)return " · 적용 예정";
+ const age=Math.floor((Date.parse(today+"T00:00:00Z")-Date.parse(date+"T00:00:00Z"))/86400000);
+ return age>30?" · 과거 자료 / 최신 가격 미확인":" · 최근 30일 내 기준일";
+}
 function priceBadge(hallId){
   const p=priceByHall.get(hallId);
   if(!p) return '<span class="badge price pendingPrice">가격정보 확인중</span>';
-  if(p.meal_price_per_person!=null) return `<span class="badge price verifiedPrice">식대 ${Number(p.meal_price_per_person).toLocaleString("ko-KR")}원</span>`;
-  if(p.rental_fee!=null) return `<span class="badge price verifiedPrice">대관 ${Number(p.rental_fee).toLocaleString("ko-KR")}원</span>`;
+  if(p.meal_price_per_person!=null) return `<span class="badge price ${priceDateLabel(p.effective_date).includes("과거 자료")?"pendingPrice":"verifiedPrice"}">식대 ${Number(p.meal_price_per_person).toLocaleString("ko-KR")}원${priceDateLabel(p.effective_date).includes("과거 자료")?" (과거 기준)":""}</span>`;
+  if(p.rental_fee!=null) return `<span class="badge price ${priceDateLabel(p.effective_date).includes("과거 자료")?"pendingPrice":"verifiedPrice"}">대관 ${Number(p.rental_fee).toLocaleString("ko-KR")}원${priceDateLabel(p.effective_date).includes("과거 자료")?" (과거 기준)":""}</span>`;
   return '<span class="badge price verifiedPrice">가격정보 있음</span>';
 }
 
@@ -192,7 +199,7 @@ async function showDetail(id){
     const externalSources=results[4].status==="fulfilled"?results[4].value:[];
     const approvedTop30=results[5].status==="fulfilled"?results[5].value[0]:null;
     $("#rooms").innerHTML=rooms.length?rooms.map(r=>`<div class="info-row"><b>${esc(r.room_name)}</b><span>${esc(r.floor||"")} ${r.capacity_min?`· 최소 ${r.capacity_min}명`:""} ${r.capacity_max?`· 최대 ${r.capacity_max}명`:""}</span></div>`).join(""):'<div class="pending">홀 정보 확인중</div>';
-    $("#prices").innerHTML=prices.length?prices.map(p=>`<div class="pricebox"><div><small>적용 기준일</small><b>${esc(p.effective_date||"-")}${p.effective_date&&p.effective_date>todayKst()?" (적용 예정)":""}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p><p><small>가격 출처: ${esc(p.source_name||"추가 확인중")}${/^https?:\/\//i.test(p.source_url||"")?` · <a href="${esc(p.source_url)}" target="_blank" rel="noopener noreferrer">출처 보기 ↗</a>`:""} · 계약 전 재확인</small></p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
+    $("#prices").innerHTML=prices.length?prices.map(p=>`<div class="pricebox"><div><small>적용 기준일</small><b>${esc(p.effective_date||"-")}${priceDateLabel(p.effective_date)}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p><p><small>가격 출처: ${esc(p.source_name||"추가 확인중")}${/^https?:\/\//i.test(p.source_url||"")?` · <a href="${esc(p.source_url)}" target="_blank" rel="noopener noreferrer">출처 보기 ↗</a>`:""} · 계약 전 재확인</small></p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
     renderExternalReviews(id,approvedTop30,externalSources);renderReviews(reviews);renderAuth();
     renderApprovedQualitativeReviews(id).catch(e=>console.warn('Qualitative reviews unavailable:',e));
   }catch(e){console.error(e)}
