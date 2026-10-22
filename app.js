@@ -310,6 +310,7 @@ async function restoreSession(){
 async function logoutUser(){try{if(accessToken)await authApi("logout",{method:"POST"})}catch(_){}clearAuthSession();renderAuth();closeSiteAuth();alert("로그아웃되었습니다.")}
 function syncHeaderAuth(){const account=$("#siteAccountBtn");if(account){account.textContent=currentUser?"MY":"로그인";account.dataset.authMode=currentUser?"my":"login"}}
 function renderAuth(){
+  const reviewList=$("#reviewList");if(reviewList)delete reviewList.dataset.rep;
   syncHeaderAuth();const box=$("#authBox");if(!box)return;
   box.innerHTML=currentUser?`<div class="signed"><span>${esc(currentUser.email||"로그인 사용자")}</span><button id="logoutBtn">로그아웃</button></div>`:`<div class="loginRow"><button id="loginBtn" type="button">로그인</button><button id="signupBtn" type="button">신규 회원가입</button></div><small>이메일과 비밀번호로 로그인하거나 가입합니다.</small>`;
   $("#logoutBtn")?.addEventListener("click",logoutUser);
