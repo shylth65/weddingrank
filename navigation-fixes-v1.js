@@ -19,7 +19,7 @@ function go(hash){
 }
 function init(){
  const style=document.createElement('style');
- style.textContent='html{scroll-padding-top:16px}#rankingView,#find,#regions,#wrPriceBand,#about{scroll-margin-top:16px}a,button,[role="link"]{touch-action:manipulation}';
+ style.textContent='html{scroll-padding-top:16px}#rankingView,#find,#evaluate,#regions,#wrPriceBand,#about{scroll-margin-top:16px}a,button,[role="link"]{touch-action:manipulation}';
  document.head.appendChild(style);
  document.addEventListener('click',event=>{
    const a=event.target.closest?.('a[href^="#"]');
