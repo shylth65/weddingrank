@@ -68,7 +68,7 @@
     const controls=button.closest('.wrModeration'),kind=controls.dataset.kind,spec=kinds[kind],card=controls.closest(spec.selector),status=controls.querySelector('[role="status"]');
     if(!admin||checkedToken!==token()){await refresh();return}
     if(button.dataset.moderationAction==='edit'){startEdit(card,kind);return}
-    if(!confirm(`${spec.label}을 삭제할까요? 삭제한 내용과 연결된 반응·인증 자료는 복구할 수 없습니다.`))return;
+    if(!confirm(`${spec.label}을 삭제할까요? 삭제한 내용과 연결된 댓글·답글·반응·인증 자료는 복구할 수 없습니다.`))return;
     button.disabled=true;status.textContent='삭제 중…';
     try{const rows=await mutate(kind,card.dataset[spec.data],'DELETE');if(!rows.length)throw new Error('삭제 권한이 없거나 이미 삭제된 자료입니다.');
       card.remove();document.dispatchEvent(new CustomEvent('wr-content-changed',{detail:{kind}}));
