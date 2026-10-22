@@ -22,9 +22,18 @@ async function api(path){
   if(!r.ok) throw new Error(`Supabase ${r.status}: ${text.slice(0,300)}`);
   return text?JSON.parse(text):[];
 }
+async function fetchAuthText(url,options={},timeoutMs=12000){
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeoutMs);
+  try{
+    const response=await fetch(url,{...options,signal:controller.signal});
+    return {response,text:await response.text()};
+  }catch(e){
+    if(controller.signal.aborted)throw new Error("서버 응답이 지연되고 있습니다. 잠시 후 다시 시도해주세요.");
+    throw e;
+  }finally{clearTimeout(timer)}
+}
 async function authRest(path){
-  const r=await fetch(`${getUrl()}/rest/v1/${path}`,{headers:authHeaders()});
-  const text=await r.text();
+  const {response:r,text}=await fetchAuthText(`${getUrl()}/rest/v1/${path}`,{headers:authHeaders()});
   if(!r.ok) throw new Error(`Supabase ${r.status}: ${text.slice(0,300)}`);
   return text?JSON.parse(text):[];
 }
@@ -269,7 +278,7 @@ function route(){
 
 async function authApi(path,options={}){
   const key=getKey(),h={apikey:key,"Content-Type":"application/json",...(options.headers||{})};if(accessToken)h.Authorization=`Bearer ${accessToken}`;
-  const r=await fetch(`${getUrl()}/auth/v1/${path}`,{...options,headers:h}),t=await r.text();let data={};try{data=t?JSON.parse(t):{}}catch(_){}if(!r.ok)throw new Error(data.msg||data.message||`Auth ${r.status}`);return data;
+  const {response:r,text:t}=await fetchAuthText(`${getUrl()}/auth/v1/${path}`,{...options,headers:h});let data={};try{data=t?JSON.parse(t):{}}catch(_){}if(!r.ok)throw new Error(data.msg||data.message||`Auth ${r.status}`);return data;
 }
 function saveAuthSession(d){
   accessToken=d?.access_token||accessToken;
@@ -283,10 +292,14 @@ function clearAuthSession(){
 }
 async function refreshAdminAccess(){
   if(!currentUser||!accessToken){isAdminUser=false;return}
+  const userId=currentUser.id,sessionToken=accessToken;let allowed=false;
   try{
-    const rows=await authRest(`admin_users?select=user_id&user_id=eq.${encodeURIComponent(currentUser.id)}&limit=1`);
-    isAdminUser=Array.isArray(rows)&&rows.length>0;
-  }catch(_){isAdminUser=false}
+    const rows=await authRest(`admin_users?select=user_id&user_id=eq.${encodeURIComponent(userId)}&limit=1`);
+    allowed=Array.isArray(rows)&&rows.length>0;
+  }catch(_){}
+  if(currentUser?.id!==userId||accessToken!==sessionToken)return;
+  isAdminUser=allowed;
+  const link=$("#siteAdminLink");if(link)link.hidden=!(siteAuthMode==="my"&&isAdminUser);
 }
 async function refreshAuthSession(){
   const refreshToken=localStorage.getItem("wr_refresh_token");
@@ -301,9 +314,9 @@ async function restoreSession(){
   accessToken=localStorage.getItem("wr_access_token");
   const expiresAt=Number(localStorage.getItem("wr_expires_at")||0);
   if((!accessToken||expiresAt-Date.now()<60000)&&!(await refreshAuthSession())){clearAuthSession();renderAuth();return}
-  try{currentUser=await authApi("user",{method:"GET"});await refreshAdminAccess();renderAuth()}
+  try{currentUser=await authApi("user",{method:"GET"});renderAuth();void refreshAdminAccess()}
   catch(e){
-    if(await refreshAuthSession()){try{currentUser=await authApi("user",{method:"GET"});await refreshAdminAccess();renderAuth();return}catch(_){}}
+    if(await refreshAuthSession()){try{currentUser=await authApi("user",{method:"GET"});renderAuth();void refreshAdminAccess();return}catch(_){}}
     clearAuthSession();renderAuth();
   }
 }
@@ -338,18 +351,20 @@ async function loadMyReviewHistory(){
 async function submitSiteAuth(){
  if(siteAuthMode==="my")return changeSitePassword();
  const email=$("#siteAuthEmail")?.value.trim().toLowerCase(),password=$("#siteAuthPassword")?.value||"",button=$("#siteAuthSubmit");
+ if(button.disabled)return;
  if(!email||!email.includes("@"))return alert("이메일 주소를 확인해주세요.");
  if(password.length<8)return alert("비밀번호는 8자 이상 입력해주세요.");
  button.disabled=true;button.textContent="확인 중…";
  try{
   if(siteAuthMode==="login"){
     const d=await authApi("token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});
-    if(d.access_token){saveAuthSession(d);currentUser=await authApi("user",{method:"GET"});await refreshAdminAccess();renderAuth();closeSiteAuth();alert("로그인되었습니다.");return;}
+    if(!d.access_token)throw new Error("로그인 응답을 확인하지 못했습니다. 다시 시도해주세요.");
+    saveAuthSession(d);currentUser=d.user?.id?d.user:await authApi("user",{method:"GET"});isAdminUser=false;renderAuth();void refreshAdminAccess();closeSiteAuth();alert("로그인되었습니다.");return;
   }
   const d=await authApi("signup",{method:"POST",body:JSON.stringify({email,password,data:{display_name:"WeddingRank 회원"}})});
   if(d.access_token){
    saveAuthSession(d);
-   currentUser=await authApi("user",{method:"GET"});await refreshAdminAccess();renderAuth();closeSiteAuth();alert("간편회원가입과 로그인이 완료되었습니다.");return;
+   currentUser=d.user?.id?d.user:await authApi("user",{method:"GET"});isAdminUser=false;renderAuth();void refreshAdminAccess();closeSiteAuth();alert("간편회원가입과 로그인이 완료되었습니다.");return;
   }
   const isNew=Array.isArray(d.user?.identities)&&d.user.identities.length>0;
   alert(isNew?"가입 확인 메일을 보냈습니다. 이메일 확인 후 같은 화면에서 로그인해주세요.":"등록된 이메일입니다. 비밀번호가 틀렸다면 비밀번호 재설정을 이용해주세요.");
