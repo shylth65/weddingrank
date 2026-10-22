@@ -250,12 +250,14 @@ function renderExternalReviews(hallId,ranked,sources){
 
 function renderReviews(reviews){
   const box=$("#reviewSummary"),list=$("#reviewList");if(!box||!list)return;
+  const commentPanels=new Map([...list.querySelectorAll("[data-review-id]")].map(card=>[card.dataset.reviewId,card.querySelector(".wrComments")]).filter(([,panel])=>panel));
   delete list.dataset.rep; // Refresh helpful controls and profile totals after a saved review.
   if(!reviews.length){box.innerHTML='<div class="pending big">아직 등록된 평가가 없습니다.<br><small>회원 평가는 독립 외부후기 순위와 별도로 표시됩니다.</small></div>';list.innerHTML="";return}
   const metrics=[["음식","food_score"],["교통/접근성","access_score"],["주차","parking_score"],["예식홀/시설","facility_score"],["신부대기실","bride_waiting_score"],["연회장","banquet_score"],["서비스","service_score"],["가성비","value_score"]];
   const overall=avg(reviews,"overall_score");
   box.innerHTML=`<div class="reviewScore"><div><small>종합평점</small><strong>${score(overall)}</strong><span>/ 5.0</span><p>${reviews.length}개 평가</p></div><div class="metricGrid">${metrics.map(([n,k])=>`<div><span>${n}</span><b>${score(avg(reviews,k))}</b></div>`).join("")}</div></div>`;
   list.innerHTML=reviews.filter(r=>r.review_text).slice(0,10).map(r=>`<article class="reviewItem" data-review-id="${esc(r.review_id)}"><div><b>${esc(r.visit_role||"이용자")}</b><span>${esc(dateKst(r.created_at))}</span></div><p class="wrReviewText">${esc(r.review_text)}</p></article>`).join("");
+  list.querySelectorAll("[data-review-id]").forEach(card=>{const panel=commentPanels.get(card.dataset.reviewId);if(panel)card.append(panel)});
 }
 
 function route(){

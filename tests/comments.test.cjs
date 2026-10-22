@@ -30,5 +30,9 @@ test('review enhancement refresh preserves the open thread and an unsaved draft'
  const source=readFileSync(require('node:path').join(__dirname,'../enhancements.js'),'utf8'),start=source.indexOf('async function reviews('),end=source.indexOf("document.addEventListener('click'",start);
  Object.assign(q.w,{$:s=>q.w.document.querySelector(s),hallId:()=> 'hall-1',uid:async()=>null,rest:async()=>[{review_id:'review-1',user_id:'other',visit_role:'하객',review_text:'Refreshed review',created_at:'2026-10-22T00:00:00Z'}],profile:async()=>{},esc:s=>String(s||''),dateKst:()=> '2026-10-22',verifyMarkup:()=>''});
  q.w.eval('{let reviewBusy=false,lastHall="";'+source.slice(start,end)+';window.qaRefreshReviews=reviews;}');
- await q.w.qaRefreshReviews(true);await pause();assert.equal(q.w.document.querySelector('#reviewList .wrComments'),d);assert.equal(d.open,true);assert.equal(d.querySelector('.wrRootComposer textarea').value,'Unsaved draft');q.w.close();
+ await q.w.qaRefreshReviews(true);await pause();assert.equal(q.w.document.querySelector('#reviewList .wrComments'),d);assert.equal(d.open,true);assert.equal(d.querySelector('.wrRootComposer textarea').value,'Unsaved draft');
+ const app=readFileSync(require('node:path').join(__dirname,'../app.js'),'utf8');
+ q.w.avg=()=>3;q.w.score=()=> '3.0';const summary=q.w.document.createElement('div');summary.id='reviewSummary';q.w.document.body.append(summary);
+ q.w.eval(app.slice(app.indexOf('function renderReviews('),app.indexOf('async function authApi(')));
+ q.w.renderReviews([{review_id:'review-1',review_text:'Base refresh',visit_role:'하객',created_at:'2026-10-22T00:00:00Z'}]);await pause();assert.equal(q.w.document.querySelector('#reviewList .wrComments'),d);assert.equal(d.open,true);assert.equal(d.querySelector('.wrRootComposer textarea').value,'Unsaved draft');q.w.close();
 });
