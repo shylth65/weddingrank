@@ -477,22 +477,31 @@ async function loadRankings(){
 }
 
 function setupEvaluationSearch(){
- const form=$("#evaluationSearchForm"),input=$("#evaluationHallName"),status=$("#evaluationSearchStatus");
- if(!form||!input||form.dataset.ready)return;
+ const form=$("#evaluationSearchForm"),input=$("#evaluationHallName"),status=$("#evaluationSearchStatus"),results=$("#evaluationSearchResults");
+ if(!form||!input||!results||form.dataset.ready)return;
  form.dataset.ready="1";
  form.addEventListener("submit",e=>{
   e.preventDefault();
   const name=input.value.trim();
   if(!name){input.focus();return}
-  if($("#search"))$("#search").value=name;
-  if($("#sido"))$("#sido").value="";
-  if($("#priceFilter"))$("#priceFilter").value="";
-  showList();
-  render(true);
-  const matches=halls.filter(h=>(h.name||"").toLowerCase().includes(name.toLowerCase()));
-  if(status)status.textContent=matches.length?name+" 검색 결과 "+matches.length+"곳입니다. 아래 예식장을 선택해 평가하세요.":"해당 상호의 예식장을 찾지 못했습니다. 다른 상호나 일부 이름으로 다시 검색해 주세요.";
-  if(matches.length===1){location.hash="hall="+encodeURIComponent(matches[0].hall_id);return}
-  $("#cards")?.scrollIntoView({behavior:"smooth",block:"start"});
+  if(!halls.length){
+   status.textContent="예식장 정보를 불러오지 못했습니다. 잠시 후 다시 검색해 주세요.";
+   results.replaceChildren();return;
+  }
+  const norm=x=>String(x||"").toLocaleLowerCase("ko").replace(/\\s+/g,"");
+  const matches=halls.filter(h=>norm(h.name).includes(norm(name)));
+  results.replaceChildren();
+  status.textContent=matches.length?("검색 결과 "+matches.length+"곳 · 예식장을 선택하면 평가 작성 화면으로 이동합니다."):"검색 결과가 없습니다. 상호 일부만 입력하거나 다른 이름으로 검색해 주세요.";
+  matches.slice(0,40).forEach(h=>{
+   const btn=document.createElement("button");btn.type="button";
+   const label=document.createElement("strong");label.textContent=h.name||"예식장";
+   const area=document.createElement("small");area.textContent=[h.sido,h.sigungu].filter(Boolean).join(" ");
+   btn.append(label,area);
+   btn.addEventListener("click",()=>{location.hash="hall="+encodeURIComponent(h.hall_id);});
+   results.appendChild(btn);
+  });
+  if(matches.length>40){const note=document.createElement("p");note.textContent="40곳만 표시했습니다. 상호를 더 구체적으로 입력해 주세요.";results.appendChild(note)}
+  results.scrollIntoView({behavior:"smooth",block:"nearest"});
  });
 }
 $("#search")?.addEventListener("input",()=>render(true));
