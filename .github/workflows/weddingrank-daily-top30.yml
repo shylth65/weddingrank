@@ -25,14 +25,16 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check syntax
-        run: python -m py_compile scripts/weddingrank_daily_audit.py
+        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py
       - name: Inspect public data and limited official websites
         run: python scripts/weddingrank_daily_audit.py
+      - name: Check stale price sources (read-only, limited requests)
+        run: python scripts/weddingrank_price_source_audit.py
       - name: Preserve audit results as workflow artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: weddingrank-top30-daily-audit
-          path: reports/daily/
+          path: |\n            reports/daily/\n            reports/prices/
           if-no-files-found: warn
           retention-days: 30
