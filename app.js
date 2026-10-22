@@ -193,7 +193,7 @@ async function showDetail(id){
     const approvedTop30=results[5].status==="fulfilled"?results[5].value[0]:null;
     $("#rooms").innerHTML=rooms.length?rooms.map(r=>`<div class="info-row"><b>${esc(r.room_name)}</b><span>${esc(r.floor||"")} ${r.capacity_min?`· 최소 ${r.capacity_min}명`:""} ${r.capacity_max?`· 최대 ${r.capacity_max}명`:""}</span></div>`).join(""):'<div class="pending">홀 정보 확인중</div>';
     $("#prices").innerHTML=prices.length?prices.map(p=>`<div class="pricebox"><div><small>적용 기준일</small><b>${esc(p.effective_date||"-")}${p.effective_date&&p.effective_date>todayKst()?" (적용 예정)":""}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p><p><small>가격 출처: ${esc(p.source_name||"추가 확인중")}${/^https?:\/\//i.test(p.source_url||"")?` · <a href="${esc(p.source_url)}" target="_blank" rel="noopener noreferrer">출처 보기 ↗</a>`:""} · 계약 전 재확인</small></p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
-    renderExternalReviews(id,approvedTop30,externalSources);renderReviews(reviews);renderAuth();setupConsultForm();
+    renderExternalReviews(id,approvedTop30,externalSources);renderReviews(reviews);renderAuth();
     renderApprovedQualitativeReviews(id).catch(e=>console.warn('Qualitative reviews unavailable:',e));
   }catch(e){console.error(e)}
 }
@@ -445,17 +445,6 @@ async function submitReview(e){
     if(!r.ok){if(r.status===409||t.includes("23505")||t.includes("reviews_user_hall_unique")){alert("이미 이 예식장을 평가하셨습니다. 예식장당 1인 1평가만 등록할 수 있습니다.");await renderReviewForm();return}throw new Error(t||`HTTP ${r.status}`)}
     alert("회원 평가가 등록되었습니다. 독립 외부후기 순위에는 합산하지 않습니다.");await showDetail(hallId);
   }catch(err){alert("평가 등록 오류: "+err.message)}finally{if(btn&&document.body.contains(btn)){btn.disabled=false;btn.textContent="평가 등록"}}
-}
-
-function setupConsultForm(){const f=$("#consultForm");if(!f||f.dataset.ready)return;f.dataset.ready="1";f.addEventListener("submit",submitConsult)}
-async function submitConsult(e){
-  e.preventDefault();const hallId=(location.hash.match(/^#hall=(.+)$/)||[])[1],fd=new FormData(e.target),status=$("#consultStatus");if(!hallId)return;
-  const payload={hall_id:hallId,customer_name:String(fd.get("customer_name")||"").trim(),phone:String(fd.get("phone")||"").trim(),preferred_date:fd.get("preferred_date")||null,guest_count:fd.get("guest_count")?Number(fd.get("guest_count")):null,message:String(fd.get("message")||"").trim(),privacy_agreed:fd.get("privacy_agreed")==="on"};
-  if(!payload.customer_name||!payload.phone||!payload.privacy_agreed)return alert("이름, 연락처와 개인정보 동의를 확인해주세요.");
-  status.textContent="상담 신청을 접수하는 중입니다…";
-  const r=await fetch(`${getUrl()}/rest/v1/consultation_requests`,{method:"POST",headers:{apikey:getKey(),Authorization:`Bearer ${getKey()}`,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify(payload)});
-  if(!r.ok){status.textContent="상담 접수 중 오류가 발생했습니다.";return alert("상담 신청을 처리하지 못했습니다. 잠시 후 다시 시도해주세요.")}
-  e.target.reset();status.textContent="상담 신청이 접수되었습니다. 확인 후 연락드리겠습니다.";alert("상담 신청이 접수되었습니다.");
 }
 
 function setupRankingUI(){
