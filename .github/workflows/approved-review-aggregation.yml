@@ -34,12 +34,21 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: node scripts/aggregate-approved-reviews.cjs
 
+      - name: Decide weekly browser QA
+        id: browser_qa
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" != "schedule" || "$(TZ=Asia/Seoul date +%u)" == "7" ]]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          fi
       - name: Install browser for live public-site QA
-        if: success()
+        if: success() && steps.browser_qa.outputs.run == 'true'
         run: |
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
       - name: Verify WeddingRank live list search detail and ranking (read-only)
-        if: success()
+        if: success() && steps.browser_qa.outputs.run == 'true'
         run: node scripts/daily-live-smoke-qa.cjs
