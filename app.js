@@ -476,12 +476,31 @@ async function loadRankings(){
   }catch(e){body.innerHTML=`<div class="pending big">랭킹 조회 오류: ${esc(e.message)}</div>`}
 }
 
+function setupEvaluationSearch(){
+ const form=$("#evaluationSearchForm"),input=$("#evaluationHallName"),status=$("#evaluationSearchStatus");
+ if(!form||!input||form.dataset.ready)return;
+ form.dataset.ready="1";
+ form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=input.value.trim();
+  if(!name){input.focus();return}
+  if($("#search"))$("#search").value=name;
+  if($("#sido"))$("#sido").value="";
+  if($("#priceFilter"))$("#priceFilter").value="";
+  showList();
+  render(true);
+  const matches=halls.filter(h=>(h.name||"").toLowerCase().includes(name.toLowerCase()));
+  if(status)status.textContent=matches.length?name+" 검색 결과 "+matches.length+"곳입니다. 아래 예식장을 선택해 평가하세요.":"해당 상호의 예식장을 찾지 못했습니다. 다른 상호나 일부 이름으로 다시 검색해 주세요.";
+  if(matches.length===1){location.hash="hall="+encodeURIComponent(matches[0].hall_id);return}
+  $("#cards")?.scrollIntoView({behavior:"smooth",block:"start"});
+ });
+}
 $("#search")?.addEventListener("input",()=>render(true));
 $("#sido")?.addEventListener("change",()=>render(true));
 $("#priceFilter")?.addEventListener("change",()=>render(true));
 $("#clearFilters")?.addEventListener("click",()=>{if($("#search"))$("#search").value="";if($("#sido"))$("#sido").value="";if($("#priceFilter"))$("#priceFilter").value="";render(true)});
 window.addEventListener("hashchange",route);
-window.addEventListener("DOMContentLoaded",()=>{setupRankingUI();setupHeaderActions()});
+window.addEventListener("DOMContentLoaded",()=>{setupRankingUI();setupHeaderActions();setupEvaluationSearch()});
 parseAuthHash();
 restoreSession().then(()=>{if(recoveryFromLink&&currentUser)openSiteAuth("my")});
 load();
