@@ -286,8 +286,8 @@ function route(){
 }
 
 async function authApi(path,options={}){
-  const key=getKey(),h={apikey:key,"Content-Type":"application/json",...(options.headers||{})};if(accessToken)h.Authorization=`Bearer ${accessToken}`;
-  const {response:r,text:t}=await fetchAuthText(`${getUrl()}/auth/v1/${path}`,{...options,headers:h},9000);let data={};try{data=t?JSON.parse(t):{}}catch(_){}if(!r.ok)throw new Error(data.msg||data.message||`Auth ${r.status}`);return data;
+  const key=getKey(),h={apikey:key,"Content-Type":"application/json",...(options.headers||{})};if(accessToken && !/^token\?grant_type=|^signup(?:\?|$)|^recover\?/.test(path))h.Authorization=`Bearer ${accessToken}`;
+  const {response:r,text:t}=await fetchAuthText(`${getUrl()}/auth/v1/${path}`,{...options,headers:h},6500);let data={};try{data=t?JSON.parse(t):{}}catch(_){}if(!r.ok)throw new Error(data.msg||data.message||`Auth ${r.status}`);return data;
 }
 function saveAuthSession(d){
   accessToken=d?.access_token||accessToken;
@@ -366,6 +366,7 @@ async function submitSiteAuth(){
  if(password.length<8)return alert("비밀번호는 8자 이상 입력해주세요.");
  button.disabled=true;button.textContent="확인 중…";
  const pendingTimer=setTimeout(()=>{if(button.disabled)button.textContent="서버 응답 대기 중…"},3500);
+ const hardTimer=setTimeout(()=>{if(button.disabled){button.disabled=false;button.textContent="다시 로그인";const hint=document.querySelector(".siteAuthHint");if(hint)hint.textContent="로그인 응답이 지연되고 있습니다. 다시 시도하거나 비밀번호 재설정을 이용해주세요."}},11000);
  try{
   if(siteAuthMode==="login"){
     const d=await authApi("token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});
@@ -385,7 +386,7 @@ async function submitSiteAuth(){
   else if(/invalid login credentials/i.test(message)) alert("이메일 또는 비밀번호가 맞지 않습니다. 신규 회원은 ‘신규 회원가입’을 이용해주세요.");
   else if(/email rate limit exceeded/i.test(message)) alert("이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.");
   else alert("로그인·가입 오류: "+message);
- }finally{clearTimeout(pendingTimer);button.disabled=false;button.textContent=siteAuthMode==="signup"?"신규 회원가입":"로그인"}
+ }finally{clearTimeout(pendingTimer);clearTimeout(hardTimer);button.disabled=false;button.textContent=siteAuthMode==="signup"?"신규 회원가입":"로그인"}
 }
 async function changeSitePassword(){const newPassword=$("#siteAuthNewPassword")?.value||"",confirmPassword=$("#siteAuthConfirmPassword")?.value||"",button=$("#siteAuthSubmit");if(!currentUser||!accessToken)return alert("로그인 후 이용해주세요.");if(newPassword.length<8)return alert("새 비밀번호는 8자 이상 입력해주세요.");if(newPassword!==confirmPassword)return alert("새 비밀번호가 서로 일치하지 않습니다.");button.disabled=true;button.textContent="변경 중…";try{await authApi("user",{method:"PUT",body:JSON.stringify({password:newPassword})});$("#siteAuthNewPassword").value="";$("#siteAuthConfirmPassword").value="";alert("비밀번호가 변경되었습니다. 관리자 화면에서도 새 비밀번호를 사용하세요.")}catch(e){alert("비밀번호 변경 오류: "+e.message)}finally{button.disabled=false;button.textContent="비밀번호 변경"}}
 async function resetSitePassword(){const email=$("#siteAuthEmail")?.value.trim();if(!email||!email.includes("@"))return alert("이메일 주소를 먼저 입력해주세요.");try{await authApi("recover?redirect_to="+encodeURIComponent("https://weddingrank.kr/"),{method:"POST",body:JSON.stringify({email})});alert("비밀번호 재설정 메일을 보냈습니다.")}catch(e){alert(e.message==="email rate limit exceeded"?"이메일 발송 한도를 초과했습니다. 잠시 후 다시 시도해주세요.":"재설정 메일 오류: "+e.message)}}
