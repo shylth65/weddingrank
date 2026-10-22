@@ -32,6 +32,7 @@ def main():
     entries = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if not isinstance(entries, list): raise ValueError("Manifest must be a list")
     results = []
+    print("Price write credential configured:", bool(KEY))
     for item in entries[:30]:
         record = {"price_id": item.get("price_id"), "status": "skipped"}
         try:
