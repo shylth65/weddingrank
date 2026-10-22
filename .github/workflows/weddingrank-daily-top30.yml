@@ -39,6 +39,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: weddingrank-top30-daily-audit
-          path: |\n            reports/daily/\n            reports/prices/
+          path: |
+            reports/daily/
+            reports/prices/
           if-no-files-found: warn
           retention-days: 30
