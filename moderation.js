@@ -38,8 +38,8 @@
     }else if(checking)return;
     decorate();
     const panel=document.querySelector('#moderationPanel');
-    if(panel&&admin&&!panelLoaded){panelLoaded=true;buildPanel(panel)}
-    if(panel&&!admin&&!checking&&panel.textContent!=='관리자 로그인 후 후기·게시글을 관리할 수 있습니다.')panel.textContent='관리자 로그인 후 후기·게시글을 관리할 수 있습니다.';
+    if(panel&&admin&&!panelLoaded){panelLoaded=true;panel.dataset.wrAdminState='logged-in';buildPanel(panel)}
+    if(panel&&!admin&&!checking&&panel.dataset.wrAdminState!=='logged-out'){panel.dataset.wrAdminState='logged-out';panel.textContent='관리자 로그인 후 후기·게시글을 관리할 수 있습니다.';}
   }
   function startEdit(card,kind){
     if(card.querySelector('.wrModerationEditor'))return;
