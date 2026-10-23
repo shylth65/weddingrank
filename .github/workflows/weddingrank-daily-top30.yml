@@ -2,8 +2,8 @@ name: WeddingRank daily TOP30 data audit
 
 on:
   schedule:
-    # 09:17 Asia/Seoul every day (UTC 00:17)
-    - cron: '17 0 * * *'
+    # 08:00 Asia/Seoul every day (UTC previous day 23:00)
+    - cron: '0 23 * * *'
   workflow_dispatch:
 
 permissions:
