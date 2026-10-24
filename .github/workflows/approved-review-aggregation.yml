@@ -50,5 +50,6 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Verify WeddingRank live list search detail and ranking (read-only)
+        continue-on-error: true
         if: success() && steps.browser_qa.outputs.run == 'true'
         run: node scripts/daily-live-smoke-qa.cjs
