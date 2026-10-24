@@ -66,7 +66,7 @@ jobs:
               'venue card detail': 'location.hash=' in app and 'hall=' in app,
               'account and logout': 'siteAccountBtn' in app and 'siteAuthLogout' in app,
               'signup and reset': 'siteAuthSwitch' in app and 'siteAuthReset' in app,
-              'consultation submit': 'setupConsultForm' in app and 'submitConsult' in app,
+              'consultation removed': 'setupConsultForm' not in app and 'submitConsult' not in app and 'consultForm' not in html,
               'dedicated TOP30 route': 'window.loadRankings()' in app,
               'ranking tab navigation': 'data-mode="featured"' in Path('ranking-external-v590.js').read_text(),
               'internal anchor scroll': 'scrollIntoView' in nav,
