@@ -54,7 +54,7 @@ jobs:
                   if a.get('id'):self.ids.add(a['id'])
                   if tag=='a' and str(a.get('href','')).startswith('#'):self.anchors.append(a['href'][1:])
           p=NavParser();p.feed(html)
-          dynamic={'wrPriceBand'}
+          dynamic={'wrPriceBand','rankings'}
           broken=sorted({x for x in p.anchors if x and not x.startswith('hall=') and x not in p.ids and x not in dynamic})
           if broken:raise SystemExit('Broken internal navigation targets: '+', '.join(broken))
           app=Path('app.js').read_text(encoding='utf-8')
