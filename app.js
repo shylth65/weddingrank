@@ -1,6 +1,7 @@
 const cfg = window.WEDDINGRANK_CONFIG || {};
 let halls = [];
 let priceByHall = new Map();
+let comparisonRankRows = [];
 let currentUser = null;
 let isAdminUser = false;
 let accessToken = null;
@@ -73,11 +74,12 @@ async function load(){
     if(!getUrl()) throw new Error("SUPABASE_URL이 없습니다.");
     if(!getKey()) throw new Error("Publishable key가 없습니다.");
     const [hallRows,priceRows,ratingRows]=await Promise.all([
-      api("wedding_halls?select=hall_id,name,sido,sigungu,road_address,phone,website,venue_type&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&order=name.asc&limit=500"),
-      api("wedding_prices?select=hall_id,effective_date,rental_fee,meal_price_per_person&order=effective_date.desc&limit=1000"),
-      api("weddingrank_top30_competition?select=hall_id,rank_position&order=rank_position.asc&limit=1000")
+      api("wedding_halls?select=hall_id,name,sido,sigungu,road_address,phone,website,venue_type,verification_status,verified_at,source_url&is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81&order=name.asc&limit=500"),
+      api("wedding_prices?select=hall_id,effective_date,rental_fee,decor_fee,meal_price_per_person,minimum_guarantee,source_url,source_name,verified_at&order=effective_date.desc&limit=1000"),
+      api("weddingrank_top30_competition?select=hall_id,rank_position,overall_score,source_count,evidence_sources,score_basis_at,last_verified_at&order=rank_position.asc&limit=1000")
     ]);
     halls=hallRows;
+    comparisonRankRows=ratingRows;
     buildPriceMap(priceRows,halls);
     if($("#publicCount")) $("#publicCount").textContent=halls.length+"곳";
     if($("#ratedCount")) $("#ratedCount").textContent=Math.min(30,ratingRows.filter(r=>halls.some(h=>h.hall_id===r.hall_id)).length)+"곳";
@@ -85,6 +87,7 @@ async function load(){
     setupRegions();
     render(true);
     route();
+    window.WeddingTools?.refresh();
   }catch(e){showError(e)}
 }
 
@@ -169,16 +172,19 @@ function render(reset=false){
   const more=$("#loadMoreBtn");
   if(more){more.hidden=visible.length>=filtered.length;more.textContent=`예식장 더보기 (${Math.min(PAGE_SIZE,filtered.length-visible.length)}곳)`}
   document.querySelectorAll(".card[data-id]").forEach(c=>{
-    const go=()=>location.hash=`hall=${c.dataset.id}`;
+    const go=e=>{if(e?.target.closest("button"))return;location.hash=`hall=${c.dataset.id}`};
     c.onclick=go;
-    c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}};
+    c.onkeydown=e=>{if(e.target===c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();go()}};
   });
+  window.WeddingTools?.decorate();
 }
 
 async function showDetail(id){
   const h=halls.find(x=>x.hall_id===id);if(!h)return;
   $("#listView").hidden=true;$("#detailView").hidden=false;if($("#rankingView"))$("#rankingView").hidden=true;window.scrollTo(0,0);
+  $("#rooms").textContent="홀 정보 확인 중…";$("#prices").textContent="가격 정보 확인 중…";
   $("#detailName").textContent=h.name;
+  window.WeddingTools?.detail(id);
   $("#detailArea").textContent=[h.sido,h.sigungu].filter(Boolean).join(" ");
   $("#detailAddress").textContent=h.road_address||"주소 확인중";
   $("#detailPhone").textContent=h.phone||"전화번호 확인중";
@@ -192,6 +198,7 @@ async function showDetail(id){
       api(`wedding_review_sources?select=source_url,source_name,published_date,summary,quality_score&hall_id=eq.${encodeURIComponent(id)}&is_published=eq.true&source_type=eq.public_review&quality_score=gte.70&order=quality_score.desc&limit=30`),
       api(`weddingrank_top30_competition?select=hall_id,overall_score,source_count,rank_position,evidence_sources,evidence_publication_dates_complete,score_basis_at&hall_id=eq.${encodeURIComponent(id)}&limit=1`)
     ]);
+    if(location.hash!=="#hall="+id)return;
     const rooms=results[0].status==="fulfilled"?results[0].value:[];
     const prices=results[1].status==="fulfilled"?results[1].value:[];
     const reviews=results[2].status==="fulfilled"?results[2].value:[];

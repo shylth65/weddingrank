@@ -13,7 +13,9 @@
 
  let refreshing=false,loaded=false; let featured=[]; let mode='featured';let lastData=[];
  const validEvidence=x=>Boolean(x.verified_at)&&/^https?:\/\//i.test(String(x.source_url||''));
- function infoIndex(h,prices,rooms){const latest=[h.verified_at,h.source_updated_at].filter(Boolean).sort().reverse()[0];const recent=latest&&Date.now()-Date.parse(latest)<=365*86400000;return (h.road_address?15:0)+(h.phone?10:0)+(h.website?10:0)+(prices.some(validEvidence)?25:0)+(rooms.some(validEvidence)?25:0)+(recent?15:0);}
+ function infoParts(h,prices,rooms){const latest=[h.verified_at,h.source_updated_at].filter(Boolean).sort().reverse()[0];const recent=latest&&Date.now()-Date.parse(latest)<=365*86400000;return {'주소':h.road_address?15:0,'연락처':h.phone?10:0,'웹사이트':h.website?10:0,'가격 출처·검증일':prices.some(validEvidence)?25:0,'홀 출처·검증일':rooms.some(validEvidence)?25:0,'최근 1년 기본정보':recent?15:0};}
+ function infoIndex(h,prices,rooms){return Object.values(infoParts(h,prices,rooms)).reduce((a,b)=>a+b,0);}
+
  async function get(path){if(!base||!key)throw Error('공개 데이터 연결 설정이 없습니다.');
  const r=await fetch(base+'/rest/v1/'+path,{headers,cache:'no-store'});
  if(!r.ok)throw Error('WeddingRank 공개 자료 응답 '+r.status);
@@ -82,7 +84,8 @@
    get('hall_rooms?select=hall_id,source_url,verified_at&limit=1000')
   ]);
   const hm=new Map(halls.map(h=>[String(h.hall_id),h]));
-  featured=featuredRows.filter(x=>hm.has(String(x.hall_id))).map(x=>{const hall=hm.get(String(x.hall_id));return {...x,info_index:infoIndex(hall,prices.filter(p=>p.hall_id===x.hall_id),rooms.filter(r=>r.hall_id===x.hall_id))}}).sort((a,b)=>b.info_index-a.info_index||a.selection_rank-b.selection_rank).slice(0,30).map((x,i)=>({...x,recommendation_rank:i+1}));
+  featured=featuredRows.filter(x=>hm.has(String(x.hall_id))).map(x=>{const hall=hm.get(String(x.hall_id));return {...x,info_components:infoParts(hall,prices.filter(p=>p.hall_id===x.hall_id),rooms.filter(r=>r.hall_id===x.hall_id)),info_index:infoIndex(hall,prices.filter(p=>p.hall_id===x.hall_id),rooms.filter(r=>r.hall_id===x.hall_id))}}).sort((a,b)=>b.info_index-a.info_index||a.selection_rank-b.selection_rank).slice(0,30).map((x,i)=>({...x,recommendation_rank:i+1}));
+  window.WeddingTools?.setFeatured(featured);
   return ratings.map(r=>({...r,...(hm.get(String(r.hall_id))||{})}))
    .filter(x=>x.name&&Number.isFinite(Number(x.overall_score))&&Number(x.source_count)>=3)
    .sort((a,b)=>Number(a.rank_position)-Number(b.rank_position));

@@ -1,0 +1,4097 @@
+[
+  {
+    "hall_id": "ac3489c7-1697-4d52-89cb-f77b557f1047",
+    "name": "아모르아트웨딩컨벤션",
+    "source_url": "http://www.amourart.co.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "56b5801400a5a842412689075bb1d3a673faab4557a12cf19505a0f1a77b11df",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "73bc8e0f-a1c0-4bf3-abfc-47409872487e",
+    "name": "보타닉파크웨딩",
+    "source_url": "https://botanicparkwedding.com/",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "시설 자체 공식 예식 안내 및 도로명주소 수동 대조 완료. 미확인 계약 가격은 채우지 않음.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 강서구 마곡중앙5로 6",
+        "source_url": "https://botanicparkwedding.com/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "카라홀 · 오키드홀",
+        "source_url": "https://botanicparkwedding.com/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "뷔페 (공식 홈페이지 연회 안내)",
+        "source_url": "https://botanicparkwedding.com/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "c01efa6b7cb11374a517b21155a84d9fcd3f05354d09547bd38059534fd84157",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "e99dc720-a490-4d61-8d7b-0fbef396c6ef",
+    "name": "안동그랜드호텔 웨딩",
+    "source_url": "https://www.andonggrandhotel.com/web/html/wedding_main.php",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "53b21fbb-0463-4a93-8056-750bea92ae1c",
+    "name": "서울신라호텔 웨딩",
+    "source_url": "https://www.shillahotels.com/ko/theshilla/seoul/meetingEvent/index.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "ee3221dae355956fc0ac89f8bc85e569e202d32fbce6677a252b7b2416db3b80",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ea026116-dd93-4dd9-8eff-8a4f46a1c19d",
+    "name": "코리아나호텔 웨딩",
+    "source_url": "https://koreanahotel.com/en/banquet/grand.htm",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "6cfed7c93179c67ead175afa95bf5c139439fb32f2cd0f3e6c918b97753f58b3",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2d10c28a-8701-4f52-836d-66770b04121d",
+    "name": "서울여성플라자 피움서울",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/520",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "2f0215c6dff1bce3ba58c65cbfe169fd6eb173a74565130c6bd31e23b583da2e",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "48d1de8f-fd94-462a-98a2-32cfe4854132",
+    "name": "스카이컨벤션웨딩 춘천",
+    "source_url": "https://www.skyconvention.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ddea4ad0-0a8c-4a45-a962-9055b9630c27",
+    "name": "서울한방진흥센터(야외마당)",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8cf5df70-1b80-4784-8861-32aeb6f67cf6",
+    "name": "더컨벤션 영등포",
+    "source_url": "https://ydp.theconvention.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "43ba281d46fe1ebcd2d395daa41935205a19121179fee121940afb9b7619b6bb",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "65be2004-b693-4013-91fb-81ebc4893480",
+    "name": "창원그랜드머큐어호텔 웨딩",
+    "source_url": "https://www.ambatel.com/grandmercure/changwon/en/weddingView.do?wedding_contents_seq=64",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "ab808898da7c011783ff7db66c15205e567eedb961f6088269e25c95e9fb1d0c",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "47239fce-ad32-416b-9609-c6955840d28c",
+    "name": "DMC타워웨딩",
+    "source_url": "https://www.dmcwedding.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f8e64d0f-8522-4df1-a2f8-9b806d89abea",
+    "name": "남산 한남 웨딩가든",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3191",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "8d1966aa6962714cf7f488a733ccd40a2775fd2dd622bb94afc261758cd3a2df",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a408ba2b-f540-476b-934c-0329dfedd8e7",
+    "name": "JW메리어트호텔 서울 웨딩",
+    "source_url": "https://modules.marriott.com/weddings/seljw-jw-marriott-hotel-seoul/weddings",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "5c8cab045d9f609173ee5008ae119ce17e4147bf24b1d61888fc4d44ba1cd5be",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ac48c777-f2b2-48f5-a390-80d82ec67fbc",
+    "name": "호텔인터불고 원주 웨딩",
+    "source_url": "https://interwonju.koweb.co.kr/contents/04_wedding/sub01.html",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "de3d58f0-43e8-49c1-8fe6-9227ef93c218",
+    "name": "그랜드 하얏트 서울 웨딩",
+    "source_url": "https://www.hyatt.com/grand-hyatt/ko-KR/selrs-grand-hyatt-seoul/weddings",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "b61244ebea9fc924eabd5f41c4f4ec85c9963a5ad0bab197dce8a170a31f0d07",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "733fe067-2524-452b-ba6e-431eca1dda63",
+    "name": "라한호텔 전주 예식장",
+    "source_url": "https://www.lahanhotels.com/jeonju/ko/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "403",
+    "sha256": "ab768623070128ccef048c88def86155dbe776c3d8db423cc8fa89432673d8a8",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "43367442-8eee-4738-a4c0-4708c5680967",
+    "name": "콘래드 서울",
+    "source_url": "https://www.conradseoul.co.kr/hub/ko/gather/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "010a48a8ebe76af206ed505ea0b050b46b2812ed94544e43a3a151f91cdc8958",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5ee05a50-f544-4f02-8efb-e9777dcb16c9",
+    "name": "페어몬트 앰배서더 서울",
+    "source_url": "https://www.fairmont.com/en/hotels/seoul/fairmont-ambassador-seoul/weddings.html",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "51c8c7f125fcfc74086ece5406ab04cc7f9321cef7e2170ff0ed870ddc0487f8",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "de0d8f53-365f-4808-956b-f1c81d0a2d4e",
+    "name": "아펠가모 공덕",
+    "source_url": "https://www.apelgamo.com/home/index",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "6f93afbf20b02a3d63ea6dc399d34e73bc3a0f96294a3781d0aedbb8e3971f5a",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "97c52cd9-1b30-48c2-8684-7b4cfd1405d3",
+    "name": "로얄파크컨벤션",
+    "source_url": "https://royalpark.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "d630a0b54a098a22b3110b3a58b7b4e1bfae61a9672031a214071caff4b31f1b",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "74d8189a-c632-48f7-a93b-97651b65efc8",
+    "name": "신라스테이 서부산 웨딩컨벤션",
+    "source_url": "https://www.shillahotels.com/ko/shillastay/seobusan/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "404",
+    "sha256": "6e620b3fe4964cc6780ce69bc8692dcd9fcefe262537c5cca61b8b080227be91",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "4ecea3c0-0252-404d-bec6-96b97d744393",
+    "name": "나인트리 프리미어 로카우스 웨딩",
+    "source_url": "https://www.rokaushotel.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "7ed959749d20d69f29c88cbfd2c20f16271ca1de6a28956ebd4911112351f095",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "afabd0e1-56bf-4696-8a0e-3922a413f23b",
+    "name": "라마다프라자 수원호텔",
+    "source_url": "https://www.ramadaplazasuwon.com/view/viewLink.do?page=homepage%2FKOR%2Fwedding%2Fgrand",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d8211c49-c46d-4a56-a7ea-854ac4dd18b5",
+    "name": "서울가든호텔 웨딩",
+    "source_url": "https://www.seoulgarden.co.kr/view/viewLink.do?page=homepage%2FKOR%2Ffacilities%2Fwedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "b26549ff828d1a818f1ca3a71e53f81bf168014eb8de49335935f765869461ae",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "6575a292-7e5a-48eb-b30e-5f2f286a8aec",
+    "name": "로얄호텔서울 웨딩",
+    "source_url": "https://royal.co.kr/bbs/page.php?hid=m05_01",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "853619f1f640bd2d0d74d5cb873fab7b702fbd3ed60ae4556649a6fc2b506d0d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "50a85808-a68e-4ab6-b82b-f5cd58379f53",
+    "name": "디오션호텔 웨딩",
+    "source_url": "https://www.theoceanresort.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "26c9460ee888eafefaa16d94756fe10d6d5633ced688811137fcf79223ef3580",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "60645c07-baa6-4e5f-bfac-3589241cbeaf",
+    "name": "SP웨딩 소풍컨벤션",
+    "source_url": "https://www.sopoongwedding.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "e48fd6ed-d176-412a-99ec-fff657beddef",
+    "name": "더베르루미에",
+    "source_url": "https://theverdelumie.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "4d4e9cf6a96cbdfbf58e3391aa7ed814ba470a46c71bb7e8a6d8e63997e7f383",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5532dadf-eef7-49b1-a486-78e7f211b6ed",
+    "name": "KU컨벤션웨딩홀",
+    "source_url": "https://www.kkweddinghall.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "954700aa-4089-481c-aab4-62a1471ebde6",
+    "name": "A웨딩&파티",
+    "source_url": "https://www.a-wedding5567.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "e01d0726a681f599c31c909cfbdf39ccc1289ee4f5ed6824d4158d67180d4d1e",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "c71f9280-b03f-4438-b007-90700f821b8d",
+    "name": "더프라미스 웨딩컨벤션",
+    "source_url": "https://wd.kangdongcnl.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "804ef0aed38fc6b8d8f7a45cb8fe3c7d05faf56f745750d705906637598f2da0",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "6010f9a6-0bc2-4f00-8038-610e0a2ce866",
+    "name": "소노캄 거제",
+    "source_url": "https://mice.sonohotelsresorts.com/daemyung.front.saupjang.geoje.facility_wedding.ds/dmparse.dm?menuNo=02",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "a8b9c9b204a8823b13d3da712f26f2d3417e8a353ebbdff2cbb9489d1c277c2d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "7b234b34-7133-4a31-a71c-9c851d1a54cd",
+    "name": "에이본 컨벤션",
+    "source_url": "https://www.avonhotel.co.kr/meetings-banquet",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "2eb744e3eb51191a6716cf2f4ccc3f3f7f64a08bb22706bb32ca7575408d6d8f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "41c6c3e8-0713-4396-964b-1a0ad984b4a0",
+    "name": "코트야드 메리어트 서울 명동 웨딩",
+    "source_url": "https://www.marriott.com/en-us/hotels/selsn-courtyard-seoul-myeongdong/weddings/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "a197a40133e82b1f0d858abccd0e026c5be05038d71952e55b8e8ff2296c8848",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5ce72def-171a-4469-89a5-00b8a92f1130",
+    "name": "라한셀렉트 경주 웨딩",
+    "source_url": "https://lahanhotels.com/gyeongju/ko/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "403",
+    "sha256": "ab768623070128ccef048c88def86155dbe776c3d8db423cc8fa89432673d8a8",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "546b5b2c-d0f3-4013-b152-1570c9c532e6",
+    "name": "은파팰리스웨딩",
+    "source_url": "https://eunpawedding.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "e70f33d3dc7cb5e8d192505906fb75103e0c3be134a37f10931d2960f133d08a",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "309c2313-e94b-4773-9c16-2d3dcbb2ea27",
+    "name": "코트야드 메리어트 서울 보타닉파크 웨딩",
+    "source_url": "https://www.marriott.com/ko/hotels/selcs-courtyard-seoul-botanic-park/overview/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "43abdf6c04287a47d4afdf176843fae4711112a8e2dc88e15fa80ebf6946d295",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "71e4b0fe-ba83-4096-8c64-f1993457e763",
+    "name": "라카이샌드파인 웨딩",
+    "source_url": "https://www.lakaisandpine.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "19ffd8eddcf1197fec1b59bb38bc6d5ddf31487c82a009c9f65eac792c9500f2",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a31bef79-67c4-4873-ba6d-4da0d6c4b2f4",
+    "name": "파티움하우스 순천",
+    "source_url": "https://www.xn--o01bo9v3rdues4zz8jufm6w.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "504ca4adb8eda052661335acbe505966e1febd9f052bc8a9e30327756315b459",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d71f5679-0a44-429d-8467-893aba0bb961",
+    "name": "JK컨벤션웨딩",
+    "source_url": "https://jkco.imweb.me/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "6b6d259ef0bff30816c06767a99423c2657bd7b929ea678505d323c2e53ba280",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "7393fcb1-eac3-4749-b347-b1940cba273a",
+    "name": "코모도호텔 경주 웨딩",
+    "source_url": "https://www.commodorehotel.co.kr/html/04_banquet/02.php",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "8396929858cab8ca10b106112397773eb7872ab0d72579869c7f13659f065e84",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d8371333-50aa-4656-8d3a-39679a72bcf1",
+    "name": "영도구청 대강당(공공예식장)",
+    "source_url": "https://www.busan.go.kr/depart/pubwedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "50c6b246-3b12-454b-8a3c-9f6f9beca33d",
+    "name": "파티더풀문",
+    "source_url": "https://www.partythefullmoon.com/products/wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "2b63221ca357abd63f6baca5de6d4f154afc4db2b30fe41b0a00a68bc0ac3740",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2f6fe903-8849-45af-aff3-3db3f0b6a055",
+    "name": "스카이베이호텔 경포 웨딩",
+    "source_url": "https://skybay.co.kr/502",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "a55a4f57764a5d0f1293347b6cc09231dda30ef67c3b3eeb0cbb242780c4d218",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "433fea2d-85a6-4acc-b864-710c122de704",
+    "name": "씨마크호텔 웨딩",
+    "source_url": "https://www.seamarqhotel.com/wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "a2b814b08ac0ed94bedda2e37ca7300db5d7736dc90a27d484016b7f5091bf20",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "c5f6561e-96c7-4d70-97c1-a4b38ee6cda3",
+    "name": "디에스컨벤션",
+    "source_url": "https://m.jobkorea.co.kr/Recruit/GI_Read/49986708?sc=621",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "abb52e049fedcdf753990eb2b9b2fb2d694e57558f283b0854ca30c44f7db407",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "040fb08d-d078-4d7b-af6b-3261ef76d657",
+    "name": "모나용평 웨딩",
+    "source_url": "https://www.yongpyong.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "fd2c15b54af0fc27cb268fbab0058cfabafa08c7d3a18a0d1710ef5b46e65d64",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8d693a7c-611d-42c7-b9b8-e06e82f0f9bf",
+    "name": "휘닉스평창 웨딩",
+    "source_url": "https://phoenixhnr.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "815b9fd0b9f1f1963f718a3cc9da2018db62c59f357ae646f55ed9405445d6e9",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "db4e012e-c5b3-4474-87e9-99225dfcd3ea",
+    "name": "HW컨벤션센터",
+    "source_url": "https://www.hwcc.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "e40d3ed5-2cfe-4633-a4d0-9739d353d396",
+    "name": "KW컨벤션",
+    "source_url": "https://www.kwconvention.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "db3cb91e-1e53-499b-a0c5-49ea696822d4",
+    "name": "오펠리스웨딩",
+    "source_url": "https://www.ofelis.com/location/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "68cee415-6105-487c-ae5d-ae17719b3ba7",
+    "name": "파로스컨벤션",
+    "source_url": "https://www.pharosconvention.co.kr/location/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "4356eb44-8d3a-423a-bbba-457ff2e0f1a0",
+    "name": "여의도 한강공원 물빛무대",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/527",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 시설 운영자료 확보, 도로명주소 추가 대조 필요",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "26637b5bfb79482df67cfd61ab1524e9aca279c8366bb02b8a93b9b0cfff4a37",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "dc7c438a-74c5-4db3-9874-966fc357f860",
+    "name": "망원 루프탑 웨딩홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 마포구 마포나루길 442 수상택시",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "망원 루프탑 웨딩홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~80명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "235대 가능(※주말 만차 가능성 높음)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "위치 : 망원 한강버스 선착장 루프탑 예식가능일자(26년) : 10월~12월.  월 2주, 4주 일(2식) 예식가능일자(27년) : 1월~12월.  월 2주, 4주 일(2식) 예식불가일자 :  ~’26년9월까지 (자체 행사)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3193",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "210dcf26137b833a02bf80e8f52a099d35584b60e36f875a0b65cb9a1b7e68d9",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "baf6cb3a-3362-4b45-a05e-cb58e8d2bdce",
+    "name": "백인제가옥",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "9f2ae713-326f-41db-944f-6480454320d2",
+    "name": "서울식물원 사색의 정원",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "cd21cfaa-0e49-4102-9de7-1fa70d8740bd",
+    "name": "선유도공원(원형무대)",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "4c773aff-0ebd-4a71-b040-4bf087969c02",
+    "name": "매헌시민의숲",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ca49fafa-27c8-4b1d-af2d-5d093fd58136",
+    "name": "도봉구청 선인봉홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "7a5404db-fd27-4260-a713-52c7e5a8c530",
+    "name": "소노벨 경주 웨딩",
+    "source_url": "https://mice.sonohotelsresorts.com/daemyung.front.saupjang.gyeongju.facility_wedding.ds/dmparse.dm?menuNo=02",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "c66dffb7c1b869ed1516f04281c8c52991e6380d9aeef358b1901e8e5d791541",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2f75999b-e924-4c82-940e-148032d04299",
+    "name": "뚝섬 루프탑 웨딩홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 광진구 강변북로 2216",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "뚝섬 루프탑 웨딩홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~80명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "235대 가능(유료, ※주말 만차 가능성 높음)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "위치 : 뚝섬 한강버스 선착장 루프탑 예식가능일자(26년) : 10월~12월.  월 2주, 4주 일(2식) 예식가능일자(27년) : 1월~12월.  월 2주, 4주 일(2식) 예식불가일자 :  ~’26년9월까지 (자체 행사), 결혼식장 예약은 3개월 직전에는 불가 (예식불가:  ’27년 4월, 5월, 9월, 10월)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3196",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "df18717260c85e60f150579648f83977aaa29b7098eeff6c52c987d9e76abb5c",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1e85da20-b643-4872-8998-0bcac0f70b02",
+    "name": "카페마루 웨딩홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 중구 서소문로 124, 시티스퀘어 20층",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "카페마루 웨딩홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명 이하",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "130대(유료) (※ 주말 시위로 혼잡할 수 있음)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료 (※ 카페마루 옆 회의실 공간사용 불가)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1월~12월.  매주 토(2식) 일(2식) 예식가능일자(27년) : 1월~12월.  매주 토(2식) 일(2식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3216",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "f98811fa720a4d50cc749345d951fa0b076b5f2064ab53a8a39605087727f9b7",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "40903767-c396-46b0-8a94-60774a5f5e88",
+    "name": "초안산 가드닝센터",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 도봉구 노해로66길 98-122",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "초안산 가드닝센터",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "30~50명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "도시락",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "16대 가능(무료)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 3월~12월.  월 2주 일(1식) 예식가능일자(27년) : 3월~12월.  월 2주 일(1식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3222",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "5c155d7292bbd5db1684de96a99461acfd02285802b705ecabf08ec9ea0cb4da",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "67b485cb-53f5-4722-b038-0ebd208f7770",
+    "name": "목화웨딩컨벤션",
+    "source_url": "https://www.wweddingcity.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "e19e99480d47a69c02e1ce3923c678fa13136d4ee99a324724951579f1d74822",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "31278a47-7af4-4809-a790-c70043099c99",
+    "name": "르엘컨벤션 (롯데호텔 울산)",
+    "source_url": "https://www.le-elconvention.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "5cc99a96c90ee2b90bda55df1d65308d945a2403b77ae11bb713ee75ed21cd14",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2767a1ae-4c3f-40e1-9f18-774e73cede90",
+    "name": "세인트존스호텔 웨딩",
+    "source_url": "https://new.stjohns.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "7d1450e8a93a87b29daab7e5eda14c84390a6e591ff7a08ed2e8fcd6bb23719a",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "b4ff74c0-a956-4c65-83ae-5092354503ce",
+    "name": "케이터틀",
+    "source_url": "https://k-turtle.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "3f04e554-730d-46bd-905a-6c5a8d99326d",
+    "name": "글래드 여의도 웨딩",
+    "source_url": "https://www.glad-hotels.com/yeouido/wedding/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "47b4d960dc6a6fe9bee739da7a9c2f2cffaa6ffa7fb8074369197ec831046f63",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "c515fc40-67d5-4d09-96b7-3760a25a4091",
+    "name": "포시즌스호텔 서울 웨딩",
+    "source_url": "https://www.fourseasons.com/kr/seoul/weddings/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "c843194a855db93f6c75ffa4189ca8c01ce56b89e0599e448a331f71092ecd32",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "92723b50-9409-4549-8fa3-925735e63cca",
+    "name": "푸른수목원 잔디마당",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3202",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 시설 운영자료 확보, 도로명주소 추가 대조 필요",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "0a1aa0b0b1b6e93b3f57e53a65c30799f01a63ba5e524a61d92884c1d3eb0d21",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "de04eb19-9e9a-493b-beba-bdfa7bbf4f78",
+    "name": "금천구 녹색광장 잔디마당",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3204",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 시설 운영자료 확보, 도로명주소 추가 대조 필요",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "493890a215a15b118559d93373292b283ee580f69f69b967ccc0894bc92d8ad1",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "e1d18e69-cbd1-4361-854a-674ba9813d19",
+    "name": "솔밭근린공원",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울 강북구 삼양로 561",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "솔밭근린공원",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~100명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "도시락",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "불가 (인근 공영주차장 이용)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 3월~6월, 8월~11월.  월 2주, 4주 토(1식) 예식가능일자(27년) : 3월~6월, 8월~11월.  월 2주, 4주 토(1식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/754",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/754",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "8c63efbff2959e8958807bed73895800279e8fedc5454d8a7314b92e88c9502c",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "4f50ecdf-f76d-4381-b910-315a3f96af3c",
+    "name": "서울식물원 잔디마당",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울 강서구 마곡동로 161",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서울식물원 잔디마당",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~100명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "도시락",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "184대 가능(유료, 주말 무조건 만차)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 6월~12월.  매주 금(저녁 1식) 토(1식) 일(1식) 예식가능일자(27년) : 6, 9, 10월.  매주 토(2식) 일(2식) 대관불가일자 :  ’26년 3~5월31일, 6월14일, 18일~20일, 10월2일~18일 / ※ 26년 5월까지 일대 공사 예정",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3201",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "889c46a5708e72db8cc44708f62faa99f61f09c522991ee2739d9bd70f17a422",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "40d7d1b3-3ebb-4234-803c-69398f121666",
+    "name": "서울문화예술교육센터(서초)",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 서초구 신반포로19길 6",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서울문화예술교육센터(서초)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "100명~200명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "불가",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "58대(유료)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "(오전 3H) 1,200천원 (오후 4H) 1,800천원 등록공연장 시설로 공연법에 따른 안전절차 준수",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1월~12월.  월  3째주 일(1식) 예식가능일자(27년) : 2,3,7,8,12월.  월  3째주 일(1식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3212",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "db68a5b5be90b4957beec1c6e3f9498f9a8df57220c8b5cb0f169c63fc6e8bbc",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "16463c53-2745-45a1-953e-99c0bf3f84ef",
+    "name": "서울시 인재개발원(인재홀)",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 서초구 남부순환로340길 58",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서울시 인재개발원(인재홀)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "100명~200명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링  (구내식당에서 피로연 진행)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "217대",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1월 24,25,31일/ 2월 1,7,8일/  7월 25,26일/  8월 1,2일/ 11월 7,8일, 토,일(2식) 예식가능일자(27년) : 추후 오픈일자 확정 안내",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/487",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "44049f0dc85ba56cd45624e56c3de35e029e97a3526827735efb341146e38779",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "6c93a7b3-b662-477a-98ec-49da675d550b",
+    "name": "마곡광장(썬큰마당)",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/758",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 시설 운영자료 확보, 도로명주소 추가 대조 필요",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "55096ef3d1e1ddcdb95b5d4266f1da56b2b13eb6367dbb1dd278672a10cd3b44",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5b607fb4-e6c0-4042-836c-4efec571c1c2",
+    "name": "노원구 화랑대 철도공원",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 노원구 화랑로 608",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "노원구 화랑대 철도공원",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~100명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "도시락",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "142대 가능(※주말 만차 가능성 높음)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 7월~8월. 매주 토(1식) 예식가능일자(27년) : 1월~12월. 매주 토(1식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3205",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "c35ddf844fcf91a0fc75f1330acba01cb8ca2fa3feb41c758db253d3770d56e4",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "bf5e28f3-653c-4887-b1b3-0546e0dd6ab5",
+    "name": "남산 장충 웨딩가든",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3190",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "adc630ae5e63ff92c1cbc957932e45740a0fd387aefd63ea7e5fdaff385a849c",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "0a77a769-294e-4cbc-b430-65deae4ddd0c",
+    "name": "월드컵공원 평화잔디광장",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울 마포구 증산로 32",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "월드컵공원 평화잔디광장",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~100명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "도시락",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "평화의 공원 주차장 이용(유료), 월드컵공원과 월드컵경기장 등 주변 행사 시 주차가 어려울 수 있음(하객:",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 3월~12월.  매주 토(1식) 일(1식) 예식불가일자(26년) : 추석연휴 9월26일~27일 예식가능일자(27년) : 1월~12월.  매주 토(1식) 일(1식) 일정참고사항: 마라톤 행사 시 공원 혼잡, 일정 확정 시 통보 예정",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3480",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "437f90925c59f5838194f1711c32e0118719c21e8a845fe5d35c10c4c600fec9",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "946b9ac4-5158-4e96-a45d-e4a6b1ef7cd7",
+    "name": "성균관컨벤션웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "e8e17048-e989-431c-9aa2-59e5e3e45ea1",
+    "name": "노보텔 앰배서더 서울 동대문",
+    "source_url": "https://www.ambatel.com/novotel/dongdaemun/kr/weddingList.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "a7823895f3224354ad30215f66c2e3f5e81c1a0d241d64b3112df29536b15137",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "e0c2f205-83ae-4f21-8b35-620f6f8884c1",
+    "name": "베어트리파크 웨딩",
+    "source_url": "https://beartreepark.com/wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "43bee9cddd0b984c6df1562ed56f8a063847ee572f8dae1a01d99f5a46951cd9",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "05c8a7fe-1632-47be-8893-86ec36396063",
+    "name": "월드컵공원 평화의 공원(새록결혼식)",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 마포구 증산로 32",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "월드컵공원 평화의 공원(새록결혼식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "80명~150명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "평화의 공원 주차장 이용(유료), 월드컵공원과 월드컵경기장 등 주변 행사 시 주차가 어려울 수 있음(하객:",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 3월~12월. 매주 토(1식) 일(1식) 예식불가일자(26년)  : 추석연휴 9월26일~27일 예식가능일자(27년) : 1월~12월. 매주 토(1식) 일(1식) 일정참고사항: 마라톤 행사 시 공원 혼잡, 일정 확정 시 통보 예정",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3206",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "41557c6aa755ab95d091dcbc1cc07923d3e41fc04d11ef79118a1fb55f8319e5",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "bb652e41-6b0f-44c1-9cc1-0a4a5845bd1d",
+    "name": "소피텔 앰배서더 서울 웨딩",
+    "source_url": "https://www.sofitel-seoul.com/events/weddings/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "301",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "6be4f1dc-168a-4cb3-986a-6efada06a68f",
+    "name": "쉐라톤 그랜드 인천",
+    "source_url": "https://www.marriott.com/ko/hotels/selgi-sheraton-grand-incheon-hotel/events/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "21d606a07c4406317d6c2d76473dc71cbc92642ed8c30d14261e1c7372a73e1e",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "67af4806-5d29-401d-87c2-c95f275baf50",
+    "name": "호텔리베라 청담",
+    "source_url": "https://www.hotelriviera.co.kr/cheongdam/ko/wedding/wedding_03",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "9e3218736539dba185e972bb38e6c082b88a6aa2919c490ebfb187329257dcf6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "3ecdd3d9-ec5d-4024-b552-da436e02f548",
+    "name": "호텔JCS여수 웨딩홀",
+    "source_url": "https://hoteljcs.com/content/banquet?id=15",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "802c7b6c3e90b7b6af4e717f59cb48cd40948702849dd7c02c46579d4090792d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "b82b97cd-18e6-4ce1-b7c7-262776b814ad",
+    "name": "아만티호텔서울 웨딩",
+    "source_url": "https://www.hotelamanti.com/view/viewLink.do?page=homepage/KOR/banquetWedding/wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "9e14c8d7e72b624e1d3610134dd0fbaab33bc69346e095f9e4854ca01a34585d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "808a9672-908e-4767-8a41-d7fd7ebfa076",
+    "name": "파크하얏트서울 웨딩",
+    "source_url": "https://www.hyatt.com/park-hyatt/ko-KR/selph-park-hyatt-seoul/weddings",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1c4019ed66534b29003ea897b1fc190ff3e421a1f4543e7328daf068b89ea86b",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "b6cc12fa-aa74-47b3-9d22-89209d546779",
+    "name": "선운각",
+    "source_url": "https://www.sunwoongak-kwedding.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "8d8a95fa1839cf06db75aae94cc2dc1a3f1af91acb8c8f811df50398748c35a5",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "872aa27e-a16e-4914-b048-f4e61ab27ac4",
+    "name": "반얀트리 클럽 앤 스파 서울 웨딩",
+    "source_url": "https://www.banyantree.com/ko/south-korea/club-and-spa-seoul/wedding-venues",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "111c72097d3950f2023ba80f5cc8a39e0ed24372094e691facb6d1f37c451841",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a1599bd2-a866-42b5-af5b-2e484c2a2a96",
+    "name": "더블트리 바이 힐튼 서울 판교",
+    "source_url": "https://www.hilton.com/ko/hotels/selsedi-doubletree-seoul-pangyo/events/weddings/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "5039dcf74e47f55eedee25204c71bc3ade93db2ca2b15c980c005d5bc70936da",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "fd595e88-dc86-49e7-97db-b8566b191ed4",
+    "name": "메리포엠웨딩홀",
+    "source_url": "https://marryfoem.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "eee8151010673fa266a6e6cd216cf4340fc013e044e2c742dafd89c677a705ce",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1f0f630d-3bfa-4d42-a1a9-648ce08d99c9",
+    "name": "세인트메리스",
+    "source_url": "https://www.saintmaries.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "82df4e4f9539e030312316b358ef0993496c210c84e85dff515f0ab25708c33c",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8132a569-767d-4769-8078-74a9e0af0b84",
+    "name": "팜파스13",
+    "source_url": "https://pampas13.com/contact/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "e19a18a8b0c09eedd739c6c332939b362b1270b7089c73fbf248a69e5efb3ecd",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "0b7bcade-baac-469d-9625-b3067f10c9b0",
+    "name": "CN웨딩홀 주안점",
+    "source_url": "https://www.juancnwedd.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "52131a055ef09224090cd71303fc09505bec71a65cc4488d54575bcaf824bfe6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5628dfab-f784-40d9-8159-4e362f66cd38",
+    "name": "호텔 인터불고 대구",
+    "source_url": "https://www.hotel-interburgo-daegu.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "6f305717d6d39bad806e30a0440520d414ed96a081884f8ea9f054bef3d67154",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "663302b8-49f3-46fa-959a-3c6e17550565",
+    "name": "롯데리조트속초 웨딩",
+    "source_url": "https://www.lotteresort.com/sokcho/ko/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "fe5df5e1ef3607a0f9f0f3d8f3d75e49bbfadc1ee698e8ccb61556f347c0fa22",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "020526e6-9a0a-4f8f-8b25-facc80254334",
+    "name": "로터스101",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a65374af-e266-4e71-a4fa-750e602b1932",
+    "name": "웨스턴라이프호텔 웨딩&컨벤션",
+    "source_url": "https://hotel.westernlifehotel.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "22577663fcec59e0c3cdd7689273d564cf4eda6df55d94d29b3471db0db99c86",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "80441c33-9223-4c48-818c-54c23b64bedc",
+    "name": "에뿌제웨딩홀",
+    "source_url": "https://epouser2.cafe24.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "10252ddb07eabaa8552113fb1a9f88473a6c06ce52d30ac25e44e1a85ef1f05b",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "26107bdd-491a-434c-a201-1c40542191e9",
+    "name": "디바인밸리 웨딩",
+    "source_url": "https://monavalley.co.kr/sub.php?Page=sub2-2",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "edda6d83f2829b7ede54660805df41285fca0d1090b728a40ca78ae0aa9867a1",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a2199c90-46d7-4980-95b8-01d4b13c6b47",
+    "name": "JNJ아트컨벤션",
+    "source_url": "https://www.jnjart.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f9b67a2c-7a58-46bb-8bee-f17aa0c494b5",
+    "name": "라베아툼",
+    "source_url": "https://www.labeatum.co.kr/page/sub2_1",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "43626433-e5ae-4e71-aa5c-0e59f7b2e075",
+    "name": "나비스퀘어",
+    "source_url": "https://www.nabisquare.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "41933b9185c329c2bd17ae33b55a0176f3a708c120076b9985ac8e6647db938c",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "392aa988-7514-434b-b0f0-55daf82b1725",
+    "name": "메리다웨딩컨벤션",
+    "source_url": "https://merida.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "317652f7-72c6-4464-8bda-27e2836918ee",
+    "name": "포항라한호텔 웨딩",
+    "source_url": "https://lahanhotels.com/pohang/ko/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "403",
+    "sha256": "ab768623070128ccef048c88def86155dbe776c3d8db423cc8fa89432673d8a8",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ae832852-9731-4d81-b8e8-a2912941edfa",
+    "name": "서울대학교 교수회관 웨딩",
+    "source_url": "https://www.snufacultyclub.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "f0cbec8393dffe74c14966b7c675ff5dfc93d7caff3661afaf5c509555fcc5d3",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "886a1b65-9aba-486c-b140-b6f7e85a33a3",
+    "name": "AC 호텔 바이 메리어트 서울 강남",
+    "source_url": "https://www.marriott.com/ko/hotels/selag-ac-hotel-seoul-gangnam/events/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1d0c157d754d1e5b6124714cd9c1d01dbf0932c0db6e18b1cb76583f41c40920",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8182c8a6-3219-40fd-94cc-3adbac0ab2e1",
+    "name": "머큐어 앰배서더 울산",
+    "source_url": "https://www.ambatel.com/mercure/ulsan/ko/weddingList.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "728975da40a15b3c497a0c64c36f809611f099f52b848db8cca4add2bf1e6f5a",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "890946fd-a262-439a-b1a7-5cef93a04ab9",
+    "name": "경민컨벤션웨딩홀",
+    "source_url": "https://www.weddingkm.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "530d3276-7111-4ca9-9fb0-8aacc9f1296d",
+    "name": "서울시립대 자작마루",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "096b79a3e10df3566c88b04849dfbf3b20889320e5a4141dbee5d97731c5fc9f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "137f1b3c-22fe-42bb-9dab-3cfb8ee25381",
+    "name": "SETEC 컨벤션홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "096b79a3e10df3566c88b04849dfbf3b20889320e5a4141dbee5d97731c5fc9f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d23ed113-6698-42af-a79e-b63ec9bd3fd3",
+    "name": "서울새활용플라자",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "096b79a3e10df3566c88b04849dfbf3b20889320e5a4141dbee5d97731c5fc9f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "51ddb9d2-3ec8-46d8-9766-0ad58fb008a9",
+    "name": "아모리스 역삼GS타워점",
+    "source_url": "https://www.amoris.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "180e2a0cf4d4c2dbc51a5017e102263f6579815ef3611269f7b46f03046b8382",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8843c1af-973a-4f98-8a0b-a34bb8b95bab",
+    "name": "서울주택도시개발공사(대강당홀)",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "76ed2597-546b-414e-b459-528178e665f3",
+    "name": "호텔현대 바이 라한 울산 웨딩홀",
+    "source_url": "https://www.lahanhotels.com/ulsan/ko/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "403",
+    "sha256": "ab768623070128ccef048c88def86155dbe776c3d8db423cc8fa89432673d8a8",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "dcc8a0d3-a4cc-4147-b496-91a29499d347",
+    "name": "성북 예향재",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "4fded12a-b475-4dd5-9b01-e7e1e69dfbce",
+    "name": "은평역사한옥박물관(은평마당)",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1d675c50-f039-4beb-b042-ff37c9580056",
+    "name": "서울교육대학교 그랜드홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 서초구 서초중앙로 96",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서울교육대학교 그랜드홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "100명~200명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링, 도시락",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "300대(유료) 가능",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "시간당374,690원(환절기 기준/ 4월~5월, 10월~11월) / 시간당 424,690원(동·하절기 기준/6월~9월, 12월~3월)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1~12월, 사전협의일(1식)  ※ 대관 날짜 수시 변동 확인 예식가능일자(27년) : 추후 오픈일자 확정 안내",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3224",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "2ec5f07f56847faac84d43353b7c16850ee79035d229cb1d35a925bce03b3cb1",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "69dc2565-135a-466b-9a60-510b765561ef",
+    "name": "웨스턴베니비스 신도림",
+    "source_url": "https://sindorim.thebennevis.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "76b9a6e2dd80488ebd0bcb9750367fd47418f6dc235c5645e0deaac1631f6dcd",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "51b3b219-f74a-43db-ae23-1ab243cbd356",
+    "name": "서울숲 포플러정원",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/6411",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 시설 운영자료 확보, 도로명주소 추가 대조 필요",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "75bae3666df783cb7f6d367585a1e29914ce675862e695fb21d2dee460de8516",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "9af7148d-cc76-4757-a926-ad292dd7ca35",
+    "name": "서울숲 설렘정원",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "096b79a3e10df3566c88b04849dfbf3b20889320e5a4141dbee5d97731c5fc9f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "dbaa2197-43ec-41f5-a1a2-077eedc98aac",
+    "name": "서대문 안산 잔디마당",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 서대문구 연희로32길 134",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서대문 안산 잔디마당",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명 이하",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "도시락",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "불가",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1월~3월, 6월~8월,11월~12월.  매주 토(1식) 예식가능일자(27년) : 추후 오픈일자 확정 안내 대관불가일자 : 구청 행사가 있는 주간 운영 불가( ’26년 4,5,9,10월)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3203",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "b3aafca24158f3ef60d70e92773b80af455d7069619c22d3dd62bb6ed7d34ecc",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a6b9cc3e-8d7b-488b-9471-7ff4a006f7b9",
+    "name": "테크노마트 웨딩시티",
+    "source_url": "https://www.tmwedding.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "6f4ce42e8f234fbe95fbee212e2c864ae1e7d99c01ef7c5f1ba4906e122d1aeb",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "45c2de01-c893-4114-b41b-36c068c3cb5d",
+    "name": "라마다 송도 호텔",
+    "source_url": "https://www.ramada-songdo.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "3facd9a36afa89d9b298430292ee30e72950ebb6709131518bc1345f030fea11",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "6e285998-3c74-4fdf-99d6-455764a4995f",
+    "name": "서울시민대학 다시가는 캠퍼스",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 관악구 낙성대로 70",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서울시민대학 다시가는 캠퍼스",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50~70명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "32대(유료) 가능",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 6월~12월 매주 토(1식) ※ ’26년 7월~9월 중 건축 공사에 따른 외부 일부공간 사용제한 있음 예식불가일자(26년) : 추석연휴 9월26일 예식가능일자(27년) : 1월~12월.매주 토(1식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3223",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "6e041265ce89fe2faef34c9763f691f9994f72b905db7ae16ee5d9a1c87db42f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "9664ccbc-61db-4de6-8730-895bb6d358e4",
+    "name": "어울림플라자 공연장",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3214",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 시설 운영자료 확보, 도로명주소 추가 대조 필요",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "5fba9f827c75ddef4319d4a2dd50ddb8d2d8baf386e83b4e703c0c2bac3bf9b6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2ebd4ac3-0607-4539-a110-b6f9aade2814",
+    "name": "카리스호텔웨딩컨벤션",
+    "source_url": "https://www.hotelcharis.co.kr/weddingReservation",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "시설 자체 공식 예식 안내 및 도로명주소 수동 대조 완료. 미확인 계약 가격은 채우지 않음.",
+    "fields": {
+      "road_address": {
+        "value": "인천광역시 계양구 계양대로 28",
+        "source_url": "https://www.hotelcharis.co.kr/weddingReservation",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://www.hotelcharis.co.kr/weddingReservation",
+        "source_url": "https://www.hotelcharis.co.kr/weddingReservation",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "aba1095464e9be1abeb623692c2de1f0fe69be7a2aeaea19f7b7574bbb1bd041",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "98caa05a-9e52-4152-b381-e8e0fcebf5f6",
+    "name": "부산시민공원(공공예식장)",
+    "source_url": "https://www.busan.go.kr/depart/pubwedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "401",
+    "sha256": "b46b8f48b530f0a370a89152e59063639e06b2a59823f579a6574f1227b4a554",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f2e4650b-8271-4edf-bbf7-2adf4be4148b",
+    "name": "벨라루체웨딩홀 서울점",
+    "source_url": "https://bellaluceseoul.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5b6eef0b-b4ec-414b-b1b1-f9fb18a017e4",
+    "name": "마이어스 웨딩&파티",
+    "source_url": "https://www.myus.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "bbaba30e-bf87-4ee0-877d-efccda8c6a62",
+    "name": "이바구복합문화체육센터(공공예식장)",
+    "source_url": "https://www.busan.go.kr/depart/pubwedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "401",
+    "sha256": "b46b8f48b530f0a370a89152e59063639e06b2a59823f579a6574f1227b4a554",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "61e36702-03cb-42f8-ad46-f949e1ff6ef3",
+    "name": "JK아트컨벤션",
+    "source_url": "https://m.jkart.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1a991ee9-32ee-4860-8999-0af95076c538",
+    "name": "aT포레웨딩홀",
+    "source_url": "https://atforet.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ab18f9c9-7b7c-42f7-bb38-40cdc8fb4108",
+    "name": "H스퀘어웨딩홀",
+    "source_url": "http://www.hsquare1939.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d11d9068-354a-490c-97b9-dca2cedcaf7f",
+    "name": "엘마리노 앳 인천",
+    "source_url": "https://www.elmarino.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2f07fc6d-3a75-4926-9b1f-8fd2872e94e0",
+    "name": "라시따시어터",
+    "source_url": "https://lacittatheater.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "11156887-bc5f-402e-940c-02a6ca05523c",
+    "name": "더 바실리움",
+    "source_url": "https://thebasilium.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1feddc158779ce3d3c98c4da3489ac6c0bef9e6243fbb6464fce4f54ad4bd8e2",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "14475f55-0536-46a6-b63a-ce9c069bc72d",
+    "name": "로프트가든344",
+    "source_url": "https://www.loftgarden344.com/reservation",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "e3123a7c4a7a7c2aa08d6ee24c8c3d04a9577b5c86c51ee2f72ddde65bdae5bb",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "9ca4a22f-67ff-47d7-8a0d-c363e87f22e7",
+    "name": "코모도호텔 부산 그랜드볼룸",
+    "source_url": "https://www.commodore.co.kr/html/04_banquet/02.php",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "41702a42b68bc555e3534deabb6c791b807d8b27678d1637ef55f1ea3654ed1b",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ae1b1bd7-9404-44e2-aed9-cd094149ab81",
+    "name": "씨엘드레브",
+    "source_url": "https://www.cieldereve.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "a083fbf925c5ec010a273d1af9299e3e4e28d6061f9858cb6749f25d64079916",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "7ae6c140-f8ab-4a9d-99a4-5bed3a65c050",
+    "name": "알펜시아리조트 웨딩",
+    "source_url": "https://www.alpensia.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "4e92b6ab9034c40b6a13723d22eebb7ead592502359d322f115749b7941f1ba8",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "b8b5403e-2185-467a-aa96-cc0e016b666a",
+    "name": "서울문화예술교육센터(은평)",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 은평구 수색로 322-2",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서울문화예술교육센터(은평)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "100명~210명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "불가",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "불가",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "(오전)900천원, (오후)1,800천원 등록공연장 시설로 공연법에 따른 안전절차 준수",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1월~12월.  월 4주 일(1식) 예식불가일자(26년) : 추석연휴 9월27일 예식가능일자(27년) : 1월~12월.  월 4주 일(1식) ※ 자체 사업 일정으로 1,9,10,11월 사용 불가",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3213",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "fcb9c8f1d18cc9b4bce9c55fb57c8a06c62b115938cf9be51bec5df2583aac82",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "52c099cd-86cc-467c-b165-0fc3873e2153",
+    "name": "아모르웨딩컨벤션 순천",
+    "source_url": "https://loveamor.co.kr/34",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "f1bce1f0ab9272b2ccb2252730d047ece5b927dfa68eea3abd9ce90fcdeca4d5",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ac04fa36-365a-44e0-8726-5a192fd4438f",
+    "name": "서울도시건축전시관",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/401",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "404",
+    "sha256": "abc6ef3f9f80c4ba1839d033a98b9bfb7527dd09b5b285c49954b3c2d0c7d6c0",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "bfb75d22-8945-4755-8c7c-7e5114e052bb",
+    "name": "북서울 꿈의숲(창녕위궁재사)",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f257ef4b-8f89-4e12-9abb-c6ed75ea28db",
+    "name": "광진구청 대강당홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2c5cad44-dc7b-4b4c-8e2c-74c431163596",
+    "name": "용산가족공원(연못광장)",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/4187",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 시설 운영자료 확보, 도로명주소 추가 대조 필요",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "e98ae7f1d97ea5e954bfbc18461454cf10b20ef7896bc7e15e7f8d2533677fe4",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1f320c63-962d-4ac2-9fbf-b2fcc415c7c8",
+    "name": "어린이대공원 포시즌가든",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "7e9b3071-648d-476b-a1e6-68e1e6b053cb",
+    "name": "여의도 루프탑 웨딩홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 영등포구 여의동로 338",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "여의도 루프탑 웨딩홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~80명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "633대 가능(유료)(※주말 만차 가능성 높음)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료 (예약불가:  ’27년 4월, 5월, 9월, 10월)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "위치 : 여의도 한강버스 선착장 루프탑 예식가능일자(26년) : 10월~12월.  월 2주, 4주 일(2식) 예식가능일자(27년) : 1월~12월.  월 2주, 4주 일(2식) 예식불가일자 :  ~’26년9월까지 (자체 행사), 결혼식장 예약은 3개월 직전에는 불가",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3194",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "e391ad39f38500ba69bb5ac7adfd6cdef2381e8485beb7169a6a20e013b0e7a5",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "baa1a3e3-ec42-4f06-a0e0-4b84816338d9",
+    "name": "서교생활문화센터 서교스퀘어",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울 마포구 양화로 72",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서교생활문화센터 서교스퀘어",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "80~160명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "불가",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "461대(유료) 가능",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1월~12월.  매주 화(1식) 수(1식) 목(1식) 예식불가일자(26년) : 추석연휴 9월24일 예식가능일자(27년) : 1월~12월.  둘째주 화(1식) 수(1식) 목(1식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3210",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "7219ecabb5b6473c2aa40b42a2ff4b3f1db43840f7273def10b9a947eeb42a50",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8a23852c-a2a1-4e76-bc34-d3afca176a66",
+    "name": "불암산 힐링타운 철쭉동산",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/761",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 시설 운영자료 확보, 도로명주소 추가 대조 필요",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "78eebf059cca67bae79f01599b292363b24a7befa37d34cc443056ab3d1bdeb5",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "c4247bb6-4644-4cf2-9538-18bc4f11548b",
+    "name": "영중종합사회복지관 5층 체육관",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3215",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "effa02683be58024f1c4871432c16e618b18d74e0f8447ccb6f9e0feee83cd0d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "e0956e87-f0e0-44fc-8f9a-2c04b7fcd4e9",
+    "name": "조선 팰리스 서울 강남",
+    "source_url": "https://jpg.josunhotel.com/meeting/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "71acb3cdb0bb293350ec93b1675ee24c9776fa64fe17fe7927225860dd2a506c",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8fcc0fbc-22ba-49a1-9393-869aff665334",
+    "name": "보라매시민안전체험관(다목적홀)",
+    "source_url": "https://wedding.seoulwomen.or.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1f4f442bd150eac7e4250c92085e05b6109d0f3368d1af1d03e0fdcadb2bacca",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "51d0e9da-cc69-4bb6-b955-b538765b560b",
+    "name": "청년예술청 SAPY",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "096b79a3e10df3566c88b04849dfbf3b20889320e5a4141dbee5d97731c5fc9f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "de253e61-c871-4c7f-9793-b23d6196f01b",
+    "name": "강동아트센터 잔디마당",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "096b79a3e10df3566c88b04849dfbf3b20889320e5a4141dbee5d97731c5fc9f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1d2c265b-99b6-4cec-9a4f-e6662f5c351b",
+    "name": "문학의 집 서울(산림문학관)",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울 중구 퇴계로26길 65",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "문학의 집 서울(산림문학관)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "100명~150명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링, 도시락(한상차림)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "가능 (무료 8대)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "transit": {
+        "value": "지하철 이동 시 명동역 1번출구 하차(도보 12분), 충무로역 4번출구(도보 13분) / 버스 이동 시 ‘남산예장버스환승주차장’ 정류장 하차(도보 3분), ‘남산1호터널’ 정류장 하차(도보 7분)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "55만원(vat포함)(2층 세미나실 사용 시 22만원 별도(vat포함))(2층 이사장실 11만원 별도(vat포함))",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능 일자(26년): 5월~12월, 매주 토(2식) 예식가능 일자(27년):  1월~12월, 매주 토(2식)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/8080",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "d6721104e40c8c0368a70ac787b52617495ddf4103468830a41d1a5a18b1e4de",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "7e233c2e-d6a4-4b24-9a22-d12003717363",
+    "name": "잠실 루프탑 웨딩홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 송파구 백제고분로 2",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "잠실 루프탑 웨딩홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~80명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "471대 가능(유료, ※주말 만차 가능성 높음)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "위치 : 잠실 한강버스 선착장 루프탑 예식가능일자(26년) : 10월~12월.  월 2주, 4주 일(2식) 예식가능일자(27년) : 1월~12월.  월 2주, 4주 일(2식) 예식불가일자 :  ~’26년9월까지 (자체 행사), 결혼식장 예약은 3개월 직전에는 불가",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3197",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "e834f3b61cb96e0f4661e2986b2847327ce580db6676752e1102ec894708fdf7",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "dbc6757a-a454-4591-9c04-ae63f3771f4d",
+    "name": "한강공원 광나루 장미원",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 강동구 선사로 83-106",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "한강공원 광나루 장미원",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "80명~150명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "도시락",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "광나루2주차장 이용(유료,119면)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1월~12월. 토(2식) 일(2식) 예식가능일자(27년) : 1월~12월. 토(2식) 일(2식) 예식불가일정: 26년 10월 3일(토)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/549",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "2abf2f5151fe1ca90cc99841a1731f0f36663be3fe59f7b9c26e827346fb3f3f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8621c8be-ac32-424d-ba55-8e2d746ad5ba",
+    "name": "안다즈 서울 강남 웨딩",
+    "source_url": "https://www.hyatt.com/andaz/ko-KR/selaz-andaz-seoul-gangnam/hotel",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "90136ccf33516564616e2f5090fa98450f9e2996c47bb9988983efe487d7496d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a5ad1146-787c-4ed2-b98f-929dc0ace321",
+    "name": "메종글래드제주 웨딩홀",
+    "source_url": "https://www.glad-hotels.com/maisongladjeju/wedding/gladWedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "0f1043f88494be7cb5602ecbf5463736c9d9bc25719d64de901f108b5b6c1d65",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "421c6da5-36cc-4449-ad2f-d8be5a2be72a",
+    "name": "상록아트홀",
+    "source_url": "https://srwedding.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "4455819b-9eb4-412b-beb9-2a8c9f20fd34",
+    "name": "노블발렌티 대치",
+    "source_url": "https://noblevalentidaechi.co.kr/Reservation",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "cec64f849efc7aa950412f32aa8243ee001e8ef6ba98c766028d6861895c2599",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "60dcb781-5283-42d0-8508-1d67c01806ed",
+    "name": "보코 서울 강남",
+    "source_url": "https://www.vocohotels.com/seoulgangnam",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "403",
+    "sha256": "2d6022826ac6b36282978f0067944bdf8d9f7b673098b6a09e5b150047d3d4fb",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "4305d1e5-89a6-4ce4-ae1a-00912e585d07",
+    "name": "서울수상레포츠센터 루프탑 웨딩홀",
+    "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "서울시 공식 시설별 예식 운영기간·공간·도로명주소 대조 완료. 예약 제한과 비용 조건은 원문 확인 필요.",
+    "fields": {
+      "road_address": {
+        "value": "서울특별시 마포구 한강난지로 162",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "서울수상레포츠센터 루프탑 웨딩홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "capacity": {
+        "value": "50명~100명",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "케이터링",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "parking": {
+        "value": "351대 가능 (※주말 만차 가능성 높음)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "transit": {
+        "value": "월드컵 경기장역 6호선 하차(택시로 9분) 망원선착장 ↔ 한강해치카 ↔ 난지루프탑웨딩홀",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_terms": {
+        "value": "무료(3층(옥상)만 사용 가능)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "rental_fee": {
+        "value": 0,
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "operation_period": {
+        "value": "예식가능일자(26년) : 1월~12월.  매주 금(저녁 1식) 토(2식) 일(2식) 예식가능일자(27년) : 1월~12월.  매주 금(저녁 1식) 토(2식) 일(2식) 예식불가일정: 서울불꽃축제 2026년 10월 3일(토)",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "booking": {
+        "value": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "source_url": "https://wedding.seoulwomen.or.kr/facilities/3192",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "33acd0337924bd23ff1b651d112f1a9e7a3d2b2cb488c0c573099bdb99b7c651",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "419f2235-04c8-443b-b02e-17ee1e0246a8",
+    "name": "몬드리안 서울 이태원 웨딩",
+    "source_url": "https://mondrianhotels.com/ko/seoul-itaewon/meetings-gatherings/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "d2b4bd26efc954397f810910fa571bad7b9082489111c2e0ef4ae2b7621bb5e8",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "bfc5a709-6c2b-4d51-8132-5dae18373179",
+    "name": "웨스틴조선서울 웨딩",
+    "source_url": "https://www.marriott.com/en-us/hotels/selwi-the-westin-josun-seoul/events/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "e739340cff3e188dc00dbaa19789cfdf1f2cdd42d5179b3ede847aa1224c168c",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ce8e779f-b458-4a87-a4f2-34c080aa1c0c",
+    "name": "연암컨벤션",
+    "source_url": "https://yeon-am.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "eb1ac48f5ab48553579e59583ba97ad1b9477592e54098a052ba6f0cb3f8f796",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "751aaeb2-b464-4a25-a1ed-8aa188feeb23",
+    "name": "제이오스티엘",
+    "source_url": "https://www.j-ostiel.co.kr/official.php/home/index",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "3222b710-625a-4247-a9ce-eb5187506093",
+    "name": "대구AW호텔",
+    "source_url": "https://www.awhotel.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "dfcfa3a0-6587-48d8-ab36-ed177f07675a",
+    "name": "마리드메이",
+    "source_url": "https://marieedemay.com/wedding-hall",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "b75cbef6224b06a6a5630fbb28dd58847293c8514105edbe337e960a78946c57",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "443d99a5-9788-4e8b-93df-bfe421eade0a",
+    "name": "롤링힐스호텔 웨딩",
+    "source_url": "https://www.haevichi.com/rollinghills/ko/meeting/wedding/weding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "627e203c234484d12764dc58281dcf1fe9462663ecdb269c6e6910350eaaf158",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "c247e5e2-4379-44e8-920b-7206e9d0c696",
+    "name": "호텔푸르미르 웨딩",
+    "source_url": "https://www.hotelprumir.com/view/viewLink.do?page=homepage/KOR/facilities/house",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "0a59ecbe73c682dc1f5245aef75d4fb2936e6bfb815c09527d5a10a51ef3c42a",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d7f71655-468b-4f3f-9ac8-d01271fedc73",
+    "name": "보람컨벤션",
+    "source_url": "https://www.boramwed.com/index.php?sub=sub07_m01_c01",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "e901938277137f00a599d7e7196f145416605dc48dc48234727107d6bc4b23c2",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "535488ad-4269-4ee8-b6c6-dc4dd8757140",
+    "name": "안산엠블던호텔",
+    "source_url": "https://mvldonhotel.com/wedding/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "7dd6477c-09ab-4ca3-a94c-fbb84c378a7a",
+    "name": "라온몽드 하우스웨딩",
+    "source_url": "https://raonmonde.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "2063ff1d5d0bbf1195bcbcd7a40e3c5c91f089c07379dbdefbdd4509b60d84fa",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d4f50d7a-fd37-4634-8eed-7f1547162a12",
+    "name": "AW컨벤션",
+    "source_url": "https://www.awcon.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "396ec8da-7611-4421-941c-627accc39d2f",
+    "name": "삼원가든",
+    "source_url": "https://sgdinehill.co.kr/samwon-garden/wedding/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "5bf368db2918a89f7ea819ec84c232d1a559e01bd6feb2a14d0a110d7d40a648",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "24c6978c-dd17-42f3-8e30-d053958b8b9b",
+    "name": "아이벡스컨벤션",
+    "source_url": "https://www.ivexwed.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "5b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d606487e-0698-4c83-aca2-919805373cb7",
+    "name": "호텔인터시티 웨딩",
+    "source_url": "https://www.hotelinterciti.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "368961a83b2b78f91d570eec1ced72313be88cef259e688093fc94a13c546a0d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f812eda9-ba5e-45fd-b682-881bba0f9d8a",
+    "name": "광명무역센터컨벤션",
+    "source_url": "https://www.gtcwed.co.kr/reservation/wedding/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "6320ab66-d8f2-41d4-b76e-3ff12cb5a701",
+    "name": "호텔인터내셔널 창원 웨딩",
+    "source_url": "https://www.hotelinternational.co.kr/bbs/content.php?co_id=03_05",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "ee301aa7f8ebf66e859da1b532de96b002406a19e507665850ba360cc4a5ca34",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ccd0cbb1-f050-4fd6-90a5-eed646ba5b88",
+    "name": "다인오세아노호텔 웨딩",
+    "source_url": "https://www.dyneoceano.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "3b9f1bc8456d8ed2babbeb3cbaaa41d47f5fc9c717e9c4b9df333f512dc8709a",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d177a9bd-b622-4ab8-9e36-742374edcef1",
+    "name": "CA웨딩컨벤션",
+    "source_url": "https://www.ca-wedding.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "시설 자체 공식 예식 안내 및 도로명주소 수동 대조 완료. 미확인 계약 가격은 채우지 않음.",
+    "fields": {
+      "road_address": {
+        "value": "충청남도 아산시 배방읍 희망로 100 KTX천안아산역 역사내 2층",
+        "source_url": "https://www.ca-wedding.co.kr/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "hall_name": {
+        "value": "블리스홀 · 루체홀",
+        "source_url": "https://www.ca-wedding.co.kr/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "meal_type": {
+        "value": "뷔페",
+        "source_url": "https://www.ca-wedding.co.kr/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "transit": {
+        "value": "KTX 천안아산역 역사 내 2층",
+        "source_url": "https://www.ca-wedding.co.kr/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "4e8333560aec2661fbab88d593cf32056df0edb01b74faa3bbcc05e436f93465",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f4ebf3c1-6fb8-4a61-9b0f-26d76ee6ee83",
+    "name": "히든베이호텔 웨딩",
+    "source_url": "https://www.hiddenbay.co.kr/newpage.php?action=page&page=wedding01",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1503ebfa8b7bb54102580b8ac18c6d93ffb7dd71a4d134b9daae572b8c7a9d0f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "9c38e160-fdc9-4a98-af3d-9ee64192209b",
+    "name": "호텔더베이스 웨딩홀",
+    "source_url": "https://www.hotelthebase.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "764bb604-822b-4958-bb36-df1ab956bc36",
+    "name": "청풍리조트 웨딩",
+    "source_url": "https://www.cheongpungresort.co.kr/web/kor/asp/banquet/wedding_guide.asp",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "644bc7d3055e30112e3bc131ac34f506fd970f097a06b4e926e27fd775e822a3",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f9a17b72-5d44-4f5c-95ab-f6108b0ebc78",
+    "name": "어반폴",
+    "source_url": "https://urbanfall.kr/wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "fb28d1c4702f32e1664351de0443dae833458fb23a256393b723ac16055aec7d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5c47acd9-b1c3-43d4-8f90-072495a85150",
+    "name": "모나밸리 웨딩",
+    "source_url": "https://monavalley.co.kr/sub.php?Page=sub2-1",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "a06cba11d909ea087821d36632b0dfc68bb1e685b5da4cbc22ba6e9377484915",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2805a3fe-736d-4a68-af0c-d3ba4f6024b6",
+    "name": "스페이스566웨딩컨벤션",
+    "source_url": "https://space566.com/31",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "43a37b29-23f6-42cb-8cd5-ad1905e4e77d",
+    "name": "SY컨벤션웨딩홀",
+    "source_url": "https://syconvention.co.kr/reservation/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "000",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "45492a24-f3d6-4126-9c8c-8586ad2ff365",
+    "name": "여의도웨딩컨벤션",
+    "source_url": "https://www.ywedding.co.kr/about/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "b759fde1-570a-456e-9b82-6bc1a57fa896",
+    "name": "오크밸리 웨딩",
+    "source_url": "https://oakvalley.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "d9f6c930663488eb4e6a972c603b624f1fc3894f807d89884cd83fac1265e076",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1f98ca7f-a8b9-4223-85d5-316dd501afbf",
+    "name": "PJ호텔 웨딩",
+    "source_url": "https://www.hotelpj.co.kr/view/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "fae2fe8dab55e06e5bb3d899bd66d475b9bc88cdb88a540405466349167a0ee6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "716c51e0-7fec-4318-8a86-4f23886d9623",
+    "name": "라도무스아트센터",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "85971506-5e6e-4faf-be10-26d35d4db25d",
+    "name": "김해더파티웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "52b0d5e3-8729-4226-86c5-1e3520803fbb",
+    "name": "티웨딩 평택",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "d23fb317-5eae-4c1c-96ee-631151d81d99",
+    "name": "티웨딩 천안",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "173a2fa7-0052-4483-b898-2a3312b65765",
+    "name": "그랜드오스티엄",
+    "source_url": "https://www.grandostium.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a598e86e-6e59-489a-b92f-2065b10d9c51",
+    "name": "그랜드 인터컨티넨탈 서울 파르나스 웨딩",
+    "source_url": "https://seoul.intercontinental.com/ko/wedding/wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "400",
+    "sha256": "88f14d8833516f36b327fa4986a431eeafa2aeacad3cff47a238dd5839e8c85f",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a825e4b3-b2fd-4acc-8f4a-c2d4299ad164",
+    "name": "앰배서더 서울 풀만 웨딩",
+    "source_url": "https://www.ambatel.com/theambassador/seoul/kr/weddingList.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "1cb105f34691e53e7c3c8a5fce03106247aa5582804a4f131f235433267dc450",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ab116128-1b12-469e-b2c9-ec9f50472bfa",
+    "name": "더채플앳대치",
+    "source_url": "https://www.thechapel.co.kr/home/index",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "b36058ba1b6c61227cf97cb40cb5bc5bd19ac9737332ebcd6b9fab3d25cbac77",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2eff8f6d-745c-41a6-99de-fda8a38143c6",
+    "name": "그래비티조선 서울 판교웨딩",
+    "source_url": "https://grp.josunhotel.com/meeting/wedding.do",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "b3334d20c10330f18bb57ef22a78602ead2b955c868d8dbb4661f75dbb5714d4",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "fa96d429-296a-4cfb-adbe-fc4764d3c0d2",
+    "name": "메리빌리아 송도",
+    "source_url": "https://marryvilia.com/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "3ddd003d-57a5-47fa-96c7-2dbf1a877166",
+    "name": "규수당 문래점",
+    "source_url": "https://mm.kyusoodang.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "80cd0609-585b-4f0f-89f5-5d18075436a9",
+    "name": "하버파크호텔",
+    "source_url": "https://www.harborparkhotel.com/view/viewLink.do?page=homepage%2FKOR%2Fbanquet%2Fwedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "10356ae20e648902be733c21bfdc710c18b9c95ee8289893426e10ead902dff4",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "6b60cf23-ad25-4765-81fd-6d247979670d",
+    "name": "빌라드마리",
+    "source_url": "https://leehye.com/product/%EB%B9%8C%EB%9D%BC%EB%93%9C%EB%A7%88%EB%A6%AC/255/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "73b5e5a1f73311e7d2aed32b9a1bad15f328a91dbffd3f4f9fc8a4b34d1ad771",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a68e23bd-34f6-43c5-a892-3cd668bfd3db",
+    "name": "인천아시아드웨딩컨벤션",
+    "source_url": "https://www.asiadwed.co.kr/location/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "2f85832e31ca57711e6107af6b142363351ae516adb71c69afc643fac26be7f6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "eafe4c7a-bb4a-4c78-a104-8aca500ebd2d",
+    "name": "월드컵컨벤션",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f106f902-7416-4230-92f4-5e37bd98fc3b",
+    "name": "남산예술원웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2783d724-d10e-4612-970b-f263e1e8e327",
+    "name": "그랜드블랑 웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ebbd2b00-f04c-4389-b998-fed15a74234d",
+    "name": "디엘 웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "b68558c6-bf56-4dc2-b03e-ecce99825b3d",
+    "name": "W웨딩 더S웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5590428e-c95e-497c-b371-b619ad71bf46",
+    "name": "메이필드호텔 서울 웨딩",
+    "source_url": "https://www.mayfield.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "ec369c53a72482de1b9c9ddd4771a038fbfa8e42cdf0a37be2967262a2ce3f16",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "546007b7-2c28-4608-b148-73661a09c426",
+    "name": "롯데월드타워 시그니엘서울 웨딩",
+    "source_url": "https://www.lottehotel.com/seoul-signiel/ko/wedding-convention/hotel-wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "8784a81cb4186c7d7c1dcd58fbcd56bf667b5979065db3b7f4e481b597452bbf",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a306394e-627a-401d-ae75-638333bd86f5",
+    "name": "더플라자호텔 웨딩",
+    "source_url": "https://www.hoteltheplaza.com/kr/meeting_and_wedding/wedding.jsp",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "57279d10a11711db13629963dad868dfb68e029b8773b8710170dc1e5a575aa6",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "092ddeb6-cde1-4f56-a5f6-cd76cf0353ec",
+    "name": "삼정호텔",
+    "source_url": "https://www.samjunghotel.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "verified",
+    "reason": "시설 자체 공식 예식 안내 및 도로명주소 수동 대조 완료. 미확인 계약 가격은 채우지 않음.",
+    "fields": {
+      "road_address": {
+        "value": "서울 강남구 봉은사로 150",
+        "source_url": "https://www.samjunghotel.co.kr/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      },
+      "transit": {
+        "value": "9호선 언주역 8번 출구 도보 3분; 2호선 역삼역 6번 출구 도보 10분",
+        "source_url": "https://www.samjunghotel.co.kr/",
+        "verified_at": "2026-10-27",
+        "status": "official"
+      }
+    },
+    "http_status": "200",
+    "sha256": "417da71da0eb56f8044948b6643153fff804ec9e7e2debaf02a7daf39ca20d9d",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "ace60186-96bc-4ec4-b8bb-94df05a362e2",
+    "name": "더채플앳 청담",
+    "source_url": "https://www.thechapel.co.kr/home/index",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "b36058ba1b6c61227cf97cb40cb5bc5bd19ac9737332ebcd6b9fab3d25cbac77",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "465105d5-ac92-4b56-b754-5a8f58bd6d5c",
+    "name": "아펠가모 잠실",
+    "source_url": "https://www.apelgamo.com/home/index",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "b4b9fa2b79e89730d3da9a22cbf9f165eb0449cb4800f3840a0ad98bbd3c7c5e",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "962515cb-0333-4e74-ae91-43f5c0630b8b",
+    "name": "더컨벤션 잠실",
+    "source_url": "https://jamsil.theconvention.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "7cdaad9d22f41c836237c51c8b053f6bac8180726b1b073248cc2e8cc827f941",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "c912f180-beb4-46fd-8038-4a32214d0cc0",
+    "name": "라움아트센터",
+    "source_url": "https://www.theraum.co.kr/content/content.php?cont=wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "3c6aff4556b310b18aea1d21c2f09af9199b622a07f4eb7d925b228fac558898",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "8cc43c1d-099c-4757-90e0-1849f8134325",
+    "name": "신도림 라마다호텔 웨딩",
+    "source_url": "https://www.ramadasindorim.com/myboard/sub05",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1b914e43-402b-42ca-9ca6-a853536e246a",
+    "name": "더화이트베일",
+    "source_url": "https://www.thewhiteveil.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "4041f8eac4069e30fed295473212a38390ec65017866aa9869682c2a1b445f4e",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a2807caa-0080-43b1-b699-e4b62a62ff5a",
+    "name": "웨딩스퀘어 강변",
+    "source_url": "https://www.weddingsquare.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "74f6be99b4ff63c97e99625266e3466ec9514a9f793c1bf93bcde4668d1d6afe",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "540fadc9-5c2f-4780-83b4-43eb53cfe5e8",
+    "name": "해군호텔W웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "02848ed5-db24-4ae3-93ea-9004d34a09e4",
+    "name": "그랜드하우스",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "aaa119d4-5862-412f-8f46-281bbec904d9",
+    "name": "비렌티웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "2ade73ad-f084-4eea-82ea-1129a7a29735",
+    "name": "빌라드알티오라",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "9406e3d7-2a19-4b3b-9937-fc750fc4585c",
+    "name": "롯데호텔서울 웨딩",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "3d8e3e59-da86-4199-919d-84799ed91225",
+    "name": "그랜드컨벤션센터",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "f4432b1d-4ffb-442f-aa30-d16ee465c2f5",
+    "name": "빌라드지디 안산",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "1706631f-ad40-4cff-840c-614eab432222",
+    "name": "더 마리포사",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "0cc8668c-b02f-431f-8d45-5a924d32648c",
+    "name": "엠스타하우스",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5b8b86bb-79e4-4905-a5a8-24a6b9e761db",
+    "name": "국제웨딩컨벤션 평택",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "dd3ad305-7aa0-4aff-8cd4-aff7b54bc921",
+    "name": "까사그랑데 센트로",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "6ca6c2da-809a-41a9-a668-ffeabcd7316b",
+    "name": "그랜드워커힐서울 웨딩",
+    "source_url": "https://www.walkerhill.com/convention/Wedding",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "c3630049153bdac25ee88b37fa6b16e3db9d7a6e4cbc2450f664327bd5b3ed11",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "b722e619-a68b-4120-886c-2a86cfb2014b",
+    "name": "호텔ICC 웨딩홀",
+    "source_url": "https://www.iccwedding.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "219e6706f23d572bba01a7fa7df4e78882521d895d57533dac56ccb7effac970",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "002b545f-1bbb-4e92-97ea-6bbb5a8feb6b",
+    "name": "아펠가모 반포",
+    "source_url": "https://www.apelgamo.com/home/index",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "동적 페이지 또는 본문 부족",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "6f93afbf20b02a3d63ea6dc399d34e73bc3a0f96294a3781d0aedbb8e3971f5a",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "a5bdb482-3a3d-4342-b187-7194b783f03c",
+    "name": "WI컨벤션",
+    "source_url": "https://www.wiconvention.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "9a648bdddd35fc887acfbd3a5e1b84dc27d66047ca1d53e0b078d8f5fa135aff",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "af771fc1-9c1f-4578-a1ed-ab41de1a7a66",
+    "name": "다비다웨딩홀",
+    "source_url": "https://www.dabida.co.kr/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "503",
+    "sha256": "33fbc61ad080ef68dd7a6479f8c53f1bf864dba2930567dbbc4ceb47490a1909",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "5e470f68-1ce2-4fdb-b710-ab931bf80d53",
+    "name": "미래컨벤션웨딩홀",
+    "source_url": "https://www.saramin.co.kr/zf_user/company-info/view/csn/RjFWR3dBMkN5eEVnWTQ1WDQ4amVTdz09/company_nm/%EB%AF%B8%EB%9E%98%EC%BB%A8%EB%B2%A4%EC%85%98%EC%9B%A8%EB%94%A9%ED%99%80%EF%BC%8C%EB%B7%94%ED%8E%98",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 본문 접근 실패(시간초과·HTTP 오류 등)",
+    "fields": {},
+    "http_status": "307",
+    "sha256": "b8dc65e9d38ad306657bd0e979bbb871729fb3fb5869179904098a09d896ce23",
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "27e7d5d2-eb7b-4110-8c81-a858da826d14",
+    "name": "더아트라움 웨딩홀",
+    "source_url": "https://weddingrank.kr",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "공식 출처 미확보 또는 제3자·자체 사이트 연결",
+    "fields": {},
+    "batch_id": "2026-10-27-planning-v1"
+  },
+  {
+    "hall_id": "eb8aa0c3-49a9-4b88-b808-7c6857624ec2",
+    "name": "JW 메리어트 동대문 스퀘어 서울 웨딩",
+    "source_url": "https://www.marriott.com/ko/hotels/seldp-jw-marriott-dongdaemun-square-seoul/overview/",
+    "checked_at": "2026-10-27",
+    "status": "held",
+    "reason": "본문 확보, 공식 소유·현재 예식 운영·주소의 수동 대조 대기",
+    "fields": {},
+    "http_status": "200",
+    "sha256": "ef054c0415d1f59a1c167804d49a358c56c34d96435acbe15ac14a56880097f9",
+    "batch_id": "2026-10-27-planning-v1"
+  }
+]
