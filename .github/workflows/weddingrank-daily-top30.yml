@@ -34,14 +34,8 @@ jobs:
         env:
           WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
         run: python scripts/weddingrank_apply_verified_prices.py
-      - name: Review unpublished venue candidates on Sundays
-        if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
-        run: |
-          if [ "$(TZ=Asia/Seoul date +%u)" = "7" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            python scripts/weddingrank_expansion_candidates.py
-          else
-            echo 'Weekly expansion runs on Sunday KST only.'
-          fi
+      - name: Review unpublished venue candidates daily (read-only)
+        run: python scripts/weddingrank_expansion_candidates.py
       - name: Preserve audit results as workflow artifact
         if: always()
         uses: actions/upload-artifact@v4
