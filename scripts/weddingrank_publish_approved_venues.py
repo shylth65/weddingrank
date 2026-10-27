@@ -16,7 +16,7 @@ TODAY = dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date()
 OUT.parent.mkdir(parents=True, exist_ok=True)
 
 def norm(value):
-    value = re.sub(r"\\s+", "", str(value or "")).lower()
+    value = re.sub(r"\s+", "", str(value or "")).lower()
     for long, short in (("서울특별시","서울"),("경기도","경기"),("인천광역시","인천"),("부산광역시","부산"),("대구광역시","대구"),("광주광역시","광주"),("대전광역시","대전"),("울산광역시","울산"),("경상남도","경남"),("경상북도","경북"),("충청북도","충북"),("충청남도","충남"),("전라남도","전남"),("전북특별자치도","전북"),("전라북도","전북")):
         if value.startswith(long): value = short + value[len(long):]
     return value
@@ -66,6 +66,6 @@ def main():
             result["reason"]=str(ex)
         results.append(result)
     summary={"date_kst":TODAY.isoformat(),"reviewed":len(results),"published":sum(r["status"]=="published" for r in results),"results":results}
-    OUT.write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    OUT.write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(summary,ensure_ascii=False))
 if __name__=="__main__": main()
