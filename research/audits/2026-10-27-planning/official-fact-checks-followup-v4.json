@@ -1,0 +1,32 @@
+{
+  "batch_id": "2026-10-27-held-followup-v4",
+  "checked_at": "2026-10-27",
+  "table": "public.wedding_venue_fact_checks",
+  "facilities": [
+    {
+      "hall_id": "808a9672-908e-4767-8a41-d7fd7ebfa076",
+      "name": "파크하얏트서울 웨딩",
+      "source_url": "https://www.hyatt.com/park-hyatt/ko-KR/selph-park-hyatt-seoul/weddings",
+      "verified_fields": [
+        "road_address",
+        "hall_name",
+        "capacity",
+        "meal_type",
+        "booking"
+      ]
+    },
+    {
+      "hall_id": "a1599bd2-a866-42b5-af5b-2e484c2a2a96",
+      "name": "더블트리 바이 힐튼 서울 판교",
+      "source_url": "https://www.hilton.com/en/hotels/selsedi-doubletree-seoul-pangyo/events/weddings/",
+      "verified_fields": [
+        "road_address",
+        "hall_name",
+        "capacity",
+        "hall_type",
+        "booking"
+      ]
+    }
+  ],
+  "db_result": "2 verified rows inserted; verified operating 43 to 45, held 201 to 199. All prior records retained. No schedule, price, ranking, or public flags changed."
+}
