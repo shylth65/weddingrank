@@ -46,24 +46,27 @@ def run():
     def score(h):
         return (30 if h.get("verification_status") == "공식확인" else 0) + (15 if h.get("road_address") else 0) + (10 if h.get("phone") else 0) + (10 if h.get("website") else 0) + (15 if h.get("source_url") else 0) + (10 if h.get("verified_at") else 0) + (10 if h["hall_id"] in priced else 0)
     pending.sort(key=lambda h: (-score(h), str(h.get("name") or "")))
-    # Probe at most 8 distinct URLs weekly to minimize free-tier use.
+    # Probe at most 8 distinct URLs per day to minimize free-tier use.
     checks = {}
-    for h in pending[:30]:
+    rotation = (TODAY.toordinal() * 8) % len(pending)
+    rotating = (pending + pending)[rotation:rotation + min(len(pending), 30)]
+    for h in rotating:
         url = h.get("website") or h.get("source_url")
         if url and url not in checks and len(checks) < 8:
             checks[url] = check_url(url)
     candidates = []
-    for h in pending[:100]:
+    for h in pending:
         url = h.get("website") or h.get("source_url")
         duplicate = norm_address(h) in published_addresses or str(h.get("name") or "").replace(" ", "").lower() in published_names
         status = "duplicate_review" if duplicate else ("source_review" if h.get("verification_status") == "공식확인" and h.get("road_address") and url else "missing_evidence")
         candidates.append({"hall_id": h["hall_id"], "name": h.get("name"), "sido": h.get("sido"), "score": score(h), "verification_status": h.get("verification_status"), "has_price_source": h["hall_id"] in priced, "link_check": checks.get(url, "not_checked"), "review_required": True, "review_status": status})
     status_counts = {key: sum(c["review_status"] == key for c in candidates) for key in ("duplicate_review", "source_review", "missing_evidence")}
-    report = {"date_kst": TODAY.isoformat(), "review_status_counts_top100": status_counts, "newly_published_by_job": 0, "mode": "read_only", "total_halls": len(halls), "public_halls": sum(h.get("is_public") is True for h in halls), "unpublished_operating": len(pending), "priced_halls": len(priced), "checked_urls": len(checks), "candidates": candidates, "database_writes": 0}
+    top100_counts = {key: sum(c["review_status"] == key for c in candidates[:100]) for key in status_counts}
+    report = {"date_kst": TODAY.isoformat(), "review_status_counts_all": status_counts, "review_status_counts_top100": top100_counts, "newly_published_by_job": 0, "mode": "read_only", "total_halls": len(halls), "public_halls": sum(h.get("is_public") is True for h in halls), "unpublished_operating": len(pending), "priced_halls": len(priced), "checked_urls": len(checks), "candidates": candidates, "database_writes": 0}
     (OUT / "latest.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    lines = ["# WeddingRank daily expansion candidates", "", "Date: " + TODAY.isoformat(), "Unpublished operating venues: " + str(len(pending)), "Price-source venue count: " + str(len(priced)), "URL checks: " + str(len(checks)), "All candidates require source verification before public release.", "Top 100 review status counts: " + json.dumps(status_counts, ensure_ascii=False), "", "| Venue | Evidence score | Price source | URL check |", "|---|---:|---|---|"]
-    for h in candidates[:30]:
-        lines.append("| " + str(h["name"]).replace("|", "/") + " | " + str(h["score"]) + " | " + ("yes" if h["has_price_source"] else "no") + " | " + h["link_check"] + " |")
+    lines = ["# WeddingRank daily expansion candidates", "", "Date: " + TODAY.isoformat(), "Unpublished operating venues: " + str(len(pending)), "Price-source venue count: " + str(len(priced)), "URL checks: " + str(len(checks)), "All candidates require source verification before public release.", "All operating unpublished review status counts: " + json.dumps(status_counts, ensure_ascii=False), "Top 100 review status counts: " + json.dumps(top100_counts, ensure_ascii=False), "", "| Venue | Evidence score | Review status | Price source | URL check |", "|---|---:|---|---|---|"]
+    for h in candidates:
+        lines.append("| " + str(h["name"]).replace("|", "/") + " | " + str(h["score"]) + " | " + h["review_status"] + " | " + ("yes" if h["has_price_source"] else "no") + " | " + h["link_check"] + " |")
     (OUT / "latest.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines[:12]))
 if __name__ == "__main__":
