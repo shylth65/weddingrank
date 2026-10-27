@@ -1,0 +1,35 @@
+{
+  "before": {
+    "cron": [
+      {
+        "jobid": 1,
+        "active": true,
+        "schedule": "40 23 * * *",
+        "command_hash": "ab69d9d284c8f46c62dd43a55a13f516"
+      }
+    ],
+    "halls": "c094345dd8fd4fab306832cf5c7c4d08",
+    "prices": "55a2ed06bc737e31423d7970ab9c4752",
+    "ranking": "9fc0ae0fefe8e0b7b6d985cb17084623",
+    "policies": "c3dd98e8aa40af01832d56fad73d30c9"
+  },
+  "after": {
+    "cron": [
+      {
+        "jobid": 1,
+        "active": true,
+        "schedule": "40 23 * * *",
+        "command_hash": "ab69d9d284c8f46c62dd43a55a13f516"
+      }
+    ],
+    "halls": "c094345dd8fd4fab306832cf5c7c4d08",
+    "prices": "55a2ed06bc737e31423d7970ab9c4752",
+    "ranking": "9fc0ae0fefe8e0b7b6d985cb17084623",
+    "policies": "c3dd98e8aa40af01832d56fad73d30c9"
+  },
+  "unchanged": true,
+  "tables_written": [
+    "public.wedding_venue_fact_checks"
+  ],
+  "halls_prices_ranking_rls_cron_unchanged": true
+}

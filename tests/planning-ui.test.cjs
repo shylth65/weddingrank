@@ -1,13 +1,13 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),{readFileSync}=require('node:fs'),{join}=require('node:path');
 const {JSDOM}=require(process.env.WEDDINGRANK_QA_JSDOM||'jsdom');
 const settle=()=>new Promise(r=>setTimeout(r,35));
-async function setup(hash='',facts=[]){
+async function setup(hash='',facts=[],rooms=[]){
  const html=readFileSync(join(__dirname,'../index.html'),'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'');
  const d=new JSDOM(html,{url:'https://qa.invalid/'+hash,runScripts:'outside-only'}),w=d.window;
  const hs=Array.from({length:4},(_,i)=>({hall_id:`00000000-0000-0000-0000-00000000000${i+1}`,name:'테스트 예식장 '+(i+1),sido:'서울특별시',road_address:'검증용 주소',verification_status:'검색확인'}));
  w.scrollTo=()=>{};w.alert=()=>{};w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};w.HTMLDialogElement.prototype.close=function(){this.open=false;};
  w.WEDDINGRANK_CONFIG={SUPABASE_URL:'https://db.invalid',SUPABASE_ANON_KEY:'test-publishable-only'};
- w.fetch=async u=>{const path=String(u);const data=path.includes('wedding_halls?')?hs:path.includes('wedding_venue_fact_checks?')?facts:[];return {ok:true,status:200,text:async()=>JSON.stringify(data)};};
+ w.fetch=async u=>{const path=String(u);const data=path.includes('wedding_halls?')?hs:path.includes('wedding_venue_fact_checks?')?facts:path.includes('hall_rooms?')?rooms:[];return {ok:true,status:200,text:async()=>JSON.stringify(data)};};
  w.eval(['app.js','planning-math.js','planning-tools.js'].map(f=>readFileSync(join(__dirname,'../'+f),'utf8')).join('\n'));
  w.document.dispatchEvent(new w.Event('DOMContentLoaded'));await settle();return{d,w,hs};
 }
@@ -16,3 +16,5 @@ test('shared selections accept only currently public IDs',async()=>{const{d,w}=a
 test('calculator leaves unknown prices empty and tracks user-entered origin',async()=>{const{d,w}=await setup();w.document.querySelector('[data-plan="cost"]').click();assert.equal(w.document.querySelector('[data-cost-field="meal"]').value,'');for(const[k,v]of Object.entries({guests:150,meal:70000,guarantee:200,rental:3000000,flowers:1000000,required:500000,optional:0,discount:500000})){const el=w.document.querySelector(`[data-cost-field="${k}"]`);el.value=String(v);el.dispatchEvent(new w.Event('input',{bubbles:true}));}assert.match(w.document.querySelector('.wrCostOutput').textContent,/18,000,000원/);assert.match(w.document.querySelector('[data-origin="meal"]').textContent,/사용자/);await settle();d.window.close();});
 
 test('latest fact row takes precedence and conditional prices never prefill numeric inputs',async()=>{const id='00000000-0000-0000-0000-000000000001';const rows=[{hall_id:id,checked_at:'2026-10-27',status:'verified',fields:{meal_terms:{value:'낮 69,000~99,000원 · 저녁 별도',status:'official',source_url:'https://official.invalid',verified_at:'2026-10-27'}}},{hall_id:id,checked_at:'2026-10-27',status:'held',fields:{}}];const{d,w}=await setup('#compare='+id+',00000000-0000-0000-0000-000000000002',rows);assert.match(w.document.querySelector('dialog').textContent,/낮 69,000~99,000원/);w.document.querySelector('[data-plan="cost"]').click();assert.match(w.document.querySelector('.wrCostCard').textContent,/낮 69,000~99,000원/);assert.equal(w.document.querySelector('[data-cost-field="meal"]').value,'');assert.match(readFileSync(join(__dirname,'../planning-tools.js'),'utf8'),/order=checked_at.desc,created_at.desc/);await settle();d.window.close();});
+
+test('new official capacity and venue type remain visible alongside preserved legacy rooms',async()=>{const id='00000000-0000-0000-0000-000000000001';const field=value=>({value,status:'official',source_url:'https://official.invalid',verified_at:'2026-10-27'});const facts=[{hall_id:id,status:'verified',checked_at:'2026-10-27',fields:{hall_name:field('공식 새 홀'),capacity:field('예식홀 300석'),hall_type:field('독립 예식홀'),road_address:field('공식 주소 123')}}];const{d,w}=await setup('#compare='+id+',00000000-0000-0000-0000-000000000002',facts,[{room_name:'기존 홀',capacity_max:100}]);await settle();const text=w.document.querySelector('dialog').textContent;assert.match(text,/공식 새 홀/);assert.match(text,/예식홀 300석/);assert.match(text,/독립 예식홀/);assert.match(text,/공식 주소 123/);assert.match(text,/기존 DB 홀 자료/);assert.match(text,/기존 홀/);d.window.close();});
