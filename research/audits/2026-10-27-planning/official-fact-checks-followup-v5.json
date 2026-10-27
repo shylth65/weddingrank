@@ -1,0 +1,44 @@
+{
+  "batch_id": "2026-10-27-held-followup-v5",
+  "checked_at": "2026-10-27",
+  "database": "public.wedding_venue_fact_checks",
+  "facilities": [
+    {
+      "hall_id": "de3d58f0-43e8-49c1-8fe6-9227ef93c218",
+      "name": "그랜드 하얏트 서울 웨딩",
+      "source_url": "https://www.hyatt.com/grand-hyatt/ko-KR/selrs-grand-hyatt-seoul/weddings",
+      "fields": [
+        "road_address",
+        "hall_name",
+        "capacity",
+        "hall_type",
+        "meal_type",
+        "booking"
+      ]
+    },
+    {
+      "hall_id": "a408ba2b-f540-476b-934c-0329dfedd8e7",
+      "name": "JW메리어트호텔 서울 웨딩",
+      "source_url": "https://modules.marriott.com/weddings/seljw-jw-marriott-hotel-seoul/weddings",
+      "fields": [
+        "road_address",
+        "hall_name",
+        "capacity",
+        "minimum_guarantee_terms",
+        "booking"
+      ]
+    },
+    {
+      "hall_id": "e8e17048-e989-431c-9aa2-59e5e3e45ea1",
+      "name": "노보텔 앰배서더 서울 동대문",
+      "source_url": "https://www.ambatel.com/novotel/dongdaemun/ko/weddingList.do",
+      "fields": [
+        "hall_name",
+        "capacity",
+        "hall_type",
+        "booking"
+      ]
+    }
+  ],
+  "notes": "3 new verified rows, 15 field keys. Operating verified 45 to 48; held 199 to 196. Historical records and numeric pricing untouched. No schedule changes."
+}
