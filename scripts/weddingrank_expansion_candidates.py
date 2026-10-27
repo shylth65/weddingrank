@@ -4,9 +4,11 @@ import csv
 import datetime as dt
 import io
 import json
+import os
 import pathlib
 import urllib.parse
-from weddingrank_daily_audit import fetch, check_url
+import weddingrank_daily_audit as audit
+from weddingrank_daily_audit import check_url
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "reports" / "expansion"
@@ -16,18 +18,23 @@ TODAY = dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date()
 def all_rows(table, fields):
     rows = []
     for offset in range(0, 3000, 500):
-        batch = fetch(table, fields, "offset=" + str(offset), 500)
+        batch = audit.fetch(table, fields, "offset=" + str(offset), 500)
         rows.extend(batch)
         if len(batch) < 500:
             break
     return rows
 
 def run():
+    if not os.environ.get('WEDDINGRANK_PRICE_WRITE_KEY'):
+        raise RuntimeError('Private candidate audit requires existing authorized credential; public API hides unpublished halls')
+    audit.KEY = os.environ['WEDDINGRANK_PRICE_WRITE_KEY']
     halls = all_rows("wedding_halls", "hall_id,name,sido,sigungu,road_address,phone,website,source_url,verified_at,verification_status,operation_status,public_grade,is_public")
     prices = all_rows("wedding_prices", "hall_id,source_url,verified_at,effective_date")
     priced = {p["hall_id"] for p in prices if p.get("source_url")}
     pending = [h for h in halls if h.get("is_public") is False and h.get("operation_status") == "운영"]
     published = [h for h in halls if h.get("is_public") is True]
+    if not pending:
+        raise RuntimeError("Private candidate query returned zero operating unpublished halls; check credential/RLS rather than reporting zero")
     def norm_address(h):
         import re
         a = re.sub(r"\\s+", "", h.get("road_address") or "")
