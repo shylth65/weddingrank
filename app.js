@@ -82,7 +82,7 @@ async function load(){
     comparisonRankRows=ratingRows;
     buildPriceMap(priceRows,halls);
     if($("#publicCount")) $("#publicCount").textContent=halls.length+"곳";
-    if($("#ratedCount")) $("#ratedCount").textContent=Math.min(30,ratingRows.filter(r=>halls.some(h=>h.hall_id===r.hall_id)).length)+"곳";
+    if($("#ratedCount")) $("#ratedCount").textContent=window.WeddingRankTop30Status?window.WeddingRankTop30Status.shown+"곳":"확인 중";
     if($("#status")) $("#status").textContent=`공개 예식장 ${halls.length}곳 · 가격정보 ${priceByHall.size}곳`;
     setupRegions();
     render(true);
