@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "hall_id": "de253e61-c871-4c7f-9793-b23d6196f01b",
+    "name": "강동아트센터 잔디마당",
+    "road_address": "서울 강동구 동남로 870",
+    "official_url": "https://wedding.seoulwomen.or.kr/facilities",
+    "official_wedding_evidence": "서울시 더 아름다운 결혼식 공식 시설 상세 페이지 https://wedding.seoulwomen.or.kr/facilities/8120 에서 강동아트센터 잔디마당의 2026년 예식 운영, 대관료 무료, 수용인원 150~200명, 2027년 일정 추후 확정을 확인.",
+    "checked_at": "2026-10-27",
+    "approved": true
+  },
+  {
+    "hall_id": "530d3276-7111-4ca9-9fb0-8aacc9f1296d",
+    "name": "서울시립대 자작마루",
+    "road_address": "서울 동대문구 서울시립대로 163",
+    "official_url": "https://wedding.seoulwomen.or.kr/facilities",
+    "official_wedding_evidence": "서울시 더 아름다운 결혼식 공식 시설 상세 페이지 https://wedding.seoulwomen.or.kr/facilities/486 에서 서울시립대 자작마루의 2026년 및 2027년 예식 운영 기간, 무료 대관, 수용인원 100~200명 확인.",
+    "checked_at": "2026-10-27",
+    "approved": true
+  },
+  {
+    "hall_id": "bfb75d22-8945-4755-8c7c-7e5114e052bb",
+    "name": "북서울 꿈의숲(창녕위궁재사)",
+    "road_address": "서울 강북구 월계로 173",
+    "official_url": "https://wedding.seoulwomen.or.kr/",
+    "official_wedding_evidence": "서울시 더 아름다운 결혼식 공식 시설 상세 페이지 https://wedding.seoulwomen.or.kr/facilities/125 에서 북서울 꿈의숲 창녕위궁재사의 2026년 예식 운영과 2027년 9~11월 운영 재개, 무료 대관 및 100~200명 수용 확인.",
+    "checked_at": "2026-10-27",
+    "approved": true
+  }
+]
