@@ -1,0 +1,17 @@
+{
+  "hall_id": "a306394e-627a-401d-ae75-638333bd86f5",
+  "name": "더플라자호텔 웨딩",
+  "before": {
+    "operation_status": "운영",
+    "is_public": true,
+    "notes": "PICKRANK canonical sync snapshot c52285ae-db78-4c49-b9d1-69f37a72d147"
+  },
+  "after": {
+    "operation_status": "휴업",
+    "is_public": true
+  },
+  "checked_at": "2026-10-27",
+  "source_url": "https://www.hoteltheplaza.com/kr/meeting_and_wedding/wedding.jsp",
+  "reason": "공식 영업 중단 안내 확인: 2026-09-30 영업 중단, 2029년 재개관 목표. 운영 중인 예식장 검증과 별개이며 운영 목록에서 제외.",
+  "rollback": "Restore operation_status and notes from before only if subsequent evidence confirms reopening; no scheduled change."
+}
