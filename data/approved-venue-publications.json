@@ -7,5 +7,23 @@
     "official_wedding_evidence": "IHG 공식 보코 서울 강남 홈페이지에 Memorable Weddings 및 결혼식 행사 제공이 명시되어 있으며 공식 주소 144 Dosan-daero 일치. https://www.ihg.com/voco/hotels/kr/ko/seoul/seovc/hoteldetail/meetings-events",
     "checked_at": "2026-10-27",
     "approved": true
+  },
+  {
+    "hall_id": "d4f50d7a-fd37-4634-8eed-7f1547162a12",
+    "name": "AW컨벤션",
+    "road_address": "경기 안산시 단원구 광덕1로 171",
+    "official_url": "https://www.awcon.co.kr/",
+    "official_wedding_evidence": "공식 홈페이지에서 예식장 운영 및 웨딩홀 예약 서비스를 확인하였고 주소가 등록된 예식장 주소와 일치함.",
+    "checked_at": "2026-10-27",
+    "approved": true
+  },
+  {
+    "hall_id": "11156887-bc5f-402e-940c-02a6ca05523c",
+    "name": "더 바실리움",
+    "road_address": "경기도 성남시 분당구 양현로 322",
+    "official_url": "https://thebasilium.co.kr/",
+    "official_wedding_evidence": "공식 홈페이지에서 웨딩홀 및 예식 예약 서비스를 확인하였고 주소가 등록된 예식장 주소와 일치함.",
+    "checked_at": "2026-10-27",
+    "approved": true
   }
 ]
