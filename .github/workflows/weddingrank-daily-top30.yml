@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check syntax
-        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py scripts/weddingrank_apply_verified_prices.py scripts/weddingrank_expansion_candidates.py
+        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py scripts/weddingrank_apply_verified_prices.py scripts/weddingrank_expansion_candidates.py scripts/weddingrank_publish_approved_venues.py
       - name: Inspect public data and limited official websites
         run: python scripts/weddingrank_daily_audit.py
       - name: Check stale price sources (read-only, limited requests)
@@ -38,7 +38,7 @@ jobs:
         env:
           WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
         run: python scripts/weddingrank_expansion_candidates.py
-      - name: Preserve audit results as workflow artifact
+      - name: Publish individually approved and verified venues (maximum 10 per run)\n        env:\n          WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}\n        run: python scripts/weddingrank_publish_approved_venues.py\n      - name: Preserve audit results as workflow artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
