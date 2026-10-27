@@ -1,0 +1,24 @@
+[
+  {
+    "hall_id": "2ebd4ac3-0607-4539-a110-b6f9aade2814",
+    "name": "카리스호텔웨딩컨벤션",
+    "road_address": "인천광역시 계양구 계양대로 28",
+    "official_url": "https://www.hotelcharis.co.kr/weddingReservation",
+    "checked_at": "2026-10-27",
+    "approved": true,
+    "official_wedding_evidence": "새 공식 웨딩 사이트에서 예식일자·하객수·방문상담을 받는 예식 예약 양식, 예식 문의 032-554-6400, 계양대로 28 주소 확인. 공식 찾아오시는 길 및 2026년 9월 홀 오픈 안내 교차확인.",
+    "supporting_urls": [],
+    "distinct_subvenue": false,
+    "expected_before": {
+      "name": "카리스호텔웨딩컨벤션",
+      "road_address": "인천광역시 계양구 계양대로 28",
+      "operation_status": "운영",
+      "verification_status": "검색확인",
+      "website": null,
+      "source_url": "https://hallnote.product-pack.com/type/estimate-price/",
+      "verified_at": "2026-08-29",
+      "notes": "주소·전화·운영상태 2차 검증 필요 | 공개보류: 2차 검증 필요",
+      "is_public": false
+    }
+  }
+]

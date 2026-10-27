@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-10-27",
+  "starting_counts": {
+    "total": 966,
+    "public": 244,
+    "private": 722
+  },
+  "scope": "Review remaining official-flag candidates and follow up nationwide hotel/convention sources; no schedule changes.",
+  "approved": [
+    "카리스호텔웨딩컨벤션"
+  ],
+  "held": [
+    {
+      "name": "삼정호텔 웨딩",
+      "reason": "Existing public 삼정호텔 at normalized identical road address; duplicate."
+    },
+    {
+      "name": "동해보양온천컨벤션호텔웨딩홀",
+      "reason": "Official wedding operations found but official road number 6285 conflicts with DB 6281; do not infer relocation or exact venue."
+    },
+    {
+      "name": "HW컨벤션센터 웨딩홀",
+      "reason": "Official snippets exist, direct full body repeatedly unavailable."
+    },
+    {
+      "name": "송도 센트럴파크 호텔",
+      "reason": "Official snippets exist, full wedding body unavailable."
+    },
+    {
+      "name": "경원재 바이 워커힐",
+      "reason": "Official wedding page full body unavailable."
+    },
+    {
+      "name": "리첼호텔웨딩",
+      "reason": "Official contact found but full current wedding operations body unavailable."
+    },
+    {
+      "name": "안동그랜드호텔",
+      "reason": "Existing public 안동그랜드호텔 웨딩, same address; do not add duplicate."
+    }
+  ],
+  "write_scope": "Only the approved unpublished wedding_halls row. No schema, cron, secrets, prices, customer data, review or ranking changes."
+}
