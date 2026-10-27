@@ -35,6 +35,8 @@ jobs:
           WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
         run: python scripts/weddingrank_apply_verified_prices.py
       - name: Review unpublished venue candidates daily (read-only)
+        env:
+          WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
         run: python scripts/weddingrank_expansion_candidates.py
       - name: Preserve audit results as workflow artifact
         if: always()
