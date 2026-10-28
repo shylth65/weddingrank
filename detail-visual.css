@@ -1,0 +1,58 @@
+/* Venue detail presentation only; source values and ranking are unchanged. */
+#detailView{background:#faf8f7}
+#detailView .detailGrid{padding-top:32px;padding-bottom:44px;gap:24px;align-items:start}
+#detailView .detailMain{min-width:0;display:flex;flex-direction:column;gap:20px}
+#detailView .detailBlock{margin:0;padding:26px;border:1px solid #e8dfdc;border-radius:20px;box-shadow:0 8px 24px #49302605;overflow:hidden}
+#detailView .detailBlock>h2{font-size:25px;line-height:1.35;letter-spacing:-.8px;margin:0 0 20px;color:#33272d;display:flex;align-items:center;gap:12px}
+#detailView .detailBlock>h2::before{display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:11px;background:#f3e4e7;color:#8e5565;font:700 12px/1 sans-serif;letter-spacing:0}
+#detailView .venueBasics{background:linear-gradient(120deg,#fff8f8,#fff 70%);border-top:3px solid #a9697c}
+#detailView .venueBasics>h2::before{content:'01'}
+#detailView .venueRooms>h2::before{content:'02';background:#efeaf4;color:#7b628c}
+#detailView .venuePrices>h2::before{content:'03';background:#f1e9da;color:#8c703b}
+#detailView .venueReviews>h2::before{content:'04'}
+#detailView .kv{grid-template-columns:84px minmax(0,1fr);gap:16px;padding:15px 0;border-bottom:1px solid #eee5e4;line-height:1.65;font-size:14px}
+#detailView .kv:last-child{border:0;padding-bottom:0}
+#detailView .kv>b{color:#8a6470;font-size:13px}
+#detailView .kv>span{color:#453d40;overflow-wrap:anywhere}
+#detailView #detailPhone{font-variant-numeric:tabular-nums}
+#detailView #detailWebsite a{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border-radius:9px;background:#8c5868;color:#fff;font-size:13px;font-weight:700;box-sizing:border-box}
+#detailView #detailWebsite a:hover{background:#704553}
+#detailView #rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+#detailView #rooms .info-row{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;padding:20px;border:1px solid #e7dfea;border-radius:14px;background:linear-gradient(145deg,#f6f2fa,#fffcff);min-width:0}
+#detailView #rooms .info-row b{color:#53415d;font-size:16px;line-height:1.5}
+#detailView #rooms .info-row span{display:block;color:#77677f;font-size:13px;line-height:1.7;overflow-wrap:anywhere}
+#detailView .venuePrices{background:linear-gradient(150deg,#fffdf8,#fff 55%)}
+#detailView .blockHint{padding:12px 14px;border-left:3px solid #d1b884;background:#f7f2e8;border-radius:0 9px 9px 0;color:#786a50;font-size:12px;line-height:1.7;margin-bottom:18px}
+#detailView .pricebox{padding:18px;background:white;border:1px solid #e9dfce;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;border-radius:14px}
+#detailView .pricebox>div{padding:14px;background:#faf7f2;border-radius:10px;min-width:0}
+#detailView .pricebox>div:first-child{grid-column:1/-1;display:block;padding:0 0 12px;background:none;border-radius:0;border-bottom:1px solid #eee5d8}
+#detailView .pricebox>div:first-child small{display:block;margin:0 0 5px;font-size:11px}
+#detailView .pricebox>div:first-child b{font-size:13px;color:#7e6b51;line-height:1.6}
+#detailView .pricebox>div small{font-size:12px;color:#8b7961;margin-bottom:7px}
+#detailView .pricebox>div b{color:#6c4d2a;font-size:20px;letter-spacing:-.5px;line-height:1.4;overflow-wrap:anywhere}
+#detailView .pricebox p{line-height:1.7;color:#766b5e;margin:0;overflow-wrap:anywhere}
+#detailView .pricebox a{color:#875b3d;text-decoration:underline;text-underline-offset:3px}
+#detailView .sideCard{border:1px solid #e6d4dc;background:linear-gradient(145deg,#fbf1f5,#fff);box-shadow:none;border-radius:20px}
+#detailView .sideCard>b{color:#734553;font-size:16px;line-height:1.6}
+#detailView #wrDetailPlanning{border-left:3px solid #ba8899;background:#fff}
+#detailView #wrDetailPlanning>h3{font-size:18px;color:#754858;margin:0 0 16px}
+#detailView #wrDetailPlanning p{font-size:13px;line-height:1.8;color:#67585f}
+#detailView #wrDetailPlanning summary{font-size:13px;color:#855568;cursor:pointer}
+@media(max-width:800px){
+ #detailView .detailGrid{padding:22px 16px 34px;gap:16px}
+ #detailView .detailGrid aside{order:0}
+ #detailView .detailMain{gap:16px}
+ #detailView .detailBlock{padding:20px;border-radius:16px}
+ #detailView .detailBlock>h2{font-size:22px;margin-bottom:16px;gap:10px}
+ #detailView .detailBlock>h2::before{flex-basis:32px;height:32px;border-radius:9px}
+ #detailView .kv{grid-template-columns:62px minmax(0,1fr);gap:12px;font-size:13px}
+ #detailView #rooms{grid-template-columns:1fr}
+ #detailView #rooms .info-row{flex-direction:row;align-items:center;justify-content:space-between;padding:16px;gap:12px}
+ #detailView #rooms .info-row span{text-align:right}
+ #detailView .pricebox{padding:12px;gap:9px;grid-template-columns:1fr 1fr}
+ #detailView .pricebox>div{padding:12px}
+ #detailView .pricebox>div:first-child{grid-column:1/-1}
+ #detailView .pricebox>div b{font-size:18px}
+ #detailView .pricebox p{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:no-preference){#detailView #detailWebsite a{transition:background .15s}}
