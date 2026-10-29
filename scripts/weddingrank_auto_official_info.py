@@ -56,7 +56,7 @@ def write(item):
 halls=all_rows("wedding_halls","hall_id,name,road_address,website,source_url,is_public,operation_status")
 checks=all_rows("wedding_venue_fact_checks","hall_id,status,checked_at,created_at")
 checks.sort(key=lambda x:(x.get("checked_at") or "",x.get("created_at") or ""),reverse=True)
-latest={x["hall_id"]:x for x in checks if x["hall_id"] not in locals().get("latest",{})} if False else {}
+latest={}
 for x in checks:latest.setdefault(x["hall_id"],x)
 eligible=[]
 for h in halls:
