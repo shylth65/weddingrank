@@ -26,9 +26,18 @@ counts={
  "operating_published_venues":count("wedding_halls","is_public=eq.true&operation_status=eq."+urllib.parse.quote("운영")),
  "price_records":count("wedding_prices"),
  "fact_check_records":count("wedding_venue_fact_checks"),
+ "new_public_venues_24h":count("wedding_halls","is_public=eq.true&updated_at=gte."+urllib.parse.quote((now-dt.timedelta(days=1)).astimezone(dt.timezone.utc).isoformat())),
  "new_price_records_24h":count("wedding_prices","created_at=gte."+urllib.parse.quote((now-dt.timedelta(days=1)).astimezone(dt.timezone.utc).isoformat())),
  "new_fact_checks_24h":count("wedding_venue_fact_checks","created_at=gte."+urllib.parse.quote((now-dt.timedelta(days=1)).astimezone(dt.timezone.utc).isoformat()))
 }
+publication=ROOT/"reports"/"expansion"/"publication-results.json"
+price_updates=ROOT/"reports"/"prices"/"updates.json"
+if publication.exists():
+    p=json.loads(publication.read_text(encoding="utf-8"))
+    counts["published_by_this_run"]=p.get("published",0)
+if price_updates.exists():
+    p=json.loads(price_updates.read_text(encoding="utf-8"))
+    counts["price_updates_by_this_run"]=sum(x.get("status")=="updated" for x in p.get("results",[]))
 previous=OUT.parent/"outcomes-baseline.json"
 # Baseline must be explicit and persisted outside ephemeral Actions runners.
 # Without a prior durable snapshot, do not invent a daily change in published totals.
