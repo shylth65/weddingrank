@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check syntax
-        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py scripts/weddingrank_apply_verified_prices.py scripts/weddingrank_expansion_candidates.py scripts/weddingrank_publish_approved_venues.py scripts/weddingrank_outcome_scorecard.py
+        run: python -m py_compile scripts/weddingrank_daily_audit.py scripts/weddingrank_price_source_audit.py scripts/weddingrank_apply_verified_prices.py scripts/weddingrank_expansion_candidates.py scripts/weddingrank_publish_approved_venues.py scripts/weddingrank_outcome_scorecard.py scripts/weddingrank_auto_official_info.py
       - name: Inspect public data and limited official websites
         run: python scripts/weddingrank_daily_audit.py
       - name: Check stale price sources (read-only, limited requests)
@@ -42,6 +42,10 @@ jobs:
         env:
           WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
         run: python scripts/weddingrank_publish_approved_venues.py
+      - name: Verify and save official practical info from matched official sites
+        env:
+          WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
+        run: python scripts/weddingrank_auto_official_info.py
       - name: Report actual database outcomes
         if: always()
         env:
