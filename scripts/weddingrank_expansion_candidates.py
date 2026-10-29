@@ -37,7 +37,7 @@ def run():
         raise RuntimeError("Private candidate query returned zero operating unpublished halls; check credential/RLS rather than reporting zero")
     def norm_address(h):
         import re
-        a = re.sub(r"\\s+", "", h.get("road_address") or "")
+        a = re.sub(r"\s+", "", h.get("road_address") or "")
         for long, short in (("서울특별시","서울"),("경기도","경기"),("경상남도","경남"),("경상북도","경북"),("충청북도","충북"),("충청남도","충남"),("전라남도","전남"),("전라북도","전북")):
             a = a.replace(long, short, 1) if a.startswith(long) else a
         return a
