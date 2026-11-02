@@ -74,7 +74,24 @@ for h in halls:
     eligible.append((h,source))
 eligible.sort(key=lambda x:x[0]["hall_id"])
 start=((TODAY.toordinal()-dt.date(2026,1,1).toordinal())*8)%max(1,len(eligible))
-sample=(eligible+eligible)[start:start+min(8,len(eligible))]
+# Rotate across all candidates, but skip recently failed sites for a short cooldown.
+cooldown_path=ROOT/"reports"/"daily"/"official-info-failures.json"
+# GitHub runners are ephemeral; read recent failures from the last uploaded report when available.
+try:
+    previous=json.loads(cooldown_path.read_text(encoding="utf-8"))
+except (OSError,ValueError):
+    previous={}
+
+def cooling_down(h):
+    last=previous.get(h["hall_id"],{})
+    try:
+        age=(TODAY-dt.date.fromisoformat(last["date"])).days
+    except (KeyError,TypeError,ValueError):
+        return False
+    return age<3 and last.get("reason") in ("timeout","dns","tls_certificate","connection_reset")
+
+ordered=(eligible+eligible)[start:start+len(eligible)]
+sample=[item for item in ordered if not cooling_down(item[0])][:min(8,len(eligible))]
 # Do not weaken SSL validation or treat a failed connection as official evidence.
 results=[]
 for h,url in sample:
@@ -123,4 +140,6 @@ reasons=Counter(classify(x.get("reason","verified")) for x in results)
 report={"date_kst":TODAY.isoformat(),"eligible":len(eligible),"checked":len(results),"failure_reasons":dict(reasons),
     "verified":sum(x["status"]=="verified" for x in results),"results":results}
 OUT.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+failures={x["hall_id"]:{"date":TODAY.isoformat(),"reason":classify(x.get("reason","verified"))} for x in results if x["status"]!="verified"}
+cooldown_path.write_text(json.dumps(failures,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps(report,ensure_ascii=False))
