@@ -66,11 +66,14 @@ for h in halls:
     source=h.get("source_url") or h["website"]
     if not source.startswith("https://"):continue
     host=canonical_host(source)
-    if host!=canonical_host(h["website"]):continue
+    if host!=canonical_host(h["website"]):
+        # A distinct official source domain needs independent operator verification.
+        # Do not silently accept third-party URLs.
+        continue
     if any(x in host for x in ("blog.","naver.","youtube.","instagram.","weddingrank.kr")):continue
     eligible.append((h,source))
 eligible.sort(key=lambda x:x[0]["hall_id"])
-start=(TODAY.toordinal()*8)%max(1,len(eligible))
+start=((TODAY.toordinal()-dt.date(2026,1,1).toordinal())*8)%max(1,len(eligible))
 sample=(eligible+eligible)[start:start+min(8,len(eligible))]
 results=[]
 for h,url in sample:
@@ -104,7 +107,9 @@ for h,url in sample:
     except Exception as exc:
         result["reason"]=str(exc)[:180]
     results.append(result)
-report={"date_kst":TODAY.isoformat(),"eligible":len(eligible),"checked":len(results),
+from collections import Counter
+reasons=Counter(x.get("reason","verified") for x in results)
+report={"date_kst":TODAY.isoformat(),"eligible":len(eligible),"checked":len(results),"failure_reasons":dict(reasons),
     "verified":sum(x["status"]=="verified" for x in results),"results":results}
 OUT.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps(report,ensure_ascii=False))
