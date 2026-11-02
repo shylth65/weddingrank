@@ -75,6 +75,7 @@ for h in halls:
 eligible.sort(key=lambda x:x[0]["hall_id"])
 start=((TODAY.toordinal()-dt.date(2026,1,1).toordinal())*8)%max(1,len(eligible))
 sample=(eligible+eligible)[start:start+min(8,len(eligible))]
+# Do not weaken SSL validation or treat a failed connection as official evidence.
 results=[]
 for h,url in sample:
     result={"hall_id":h["hall_id"],"name":h["name"],"status":"held"}
@@ -108,7 +109,17 @@ for h,url in sample:
         result["reason"]=str(exc)[:180]
     results.append(result)
 from collections import Counter
-reasons=Counter(x.get("reason","verified") for x in results)
+def classify(reason):
+    r=reason.lower()
+    if "timed out" in r:return "timeout"
+    if "certificate" in r or "ssl" in r:return "tls_certificate"
+    if "name resolution" in r or "no address associated" in r:return "dns"
+    if "reset by peer" in r:return "connection_reset"
+    if "address not matched" in r:return "address_mismatch"
+    if "wedding operation" in r:return "wedding_evidence_missing"
+    if reason=="verified":return "verified"
+    return "other"
+reasons=Counter(classify(x.get("reason","verified")) for x in results)
 report={"date_kst":TODAY.isoformat(),"eligible":len(eligible),"checked":len(results),"failure_reasons":dict(reasons),
     "verified":sum(x["status"]=="verified" for x in results),"results":results}
 OUT.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
