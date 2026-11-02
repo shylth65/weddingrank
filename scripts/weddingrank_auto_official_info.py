@@ -79,7 +79,19 @@ for h,url in sample:
         text=fetch_text(url)
         if not re.search(r"웨딩|결혼식|예식|wedding",text,re.I):raise ValueError("Wedding operation not explicit in page text")
         address=norm(h["road_address"])
-        if len(address)<9 or address not in norm(text):raise ValueError("Registered address not found verbatim on official page")
+        if len(address)<9 or address not in norm(text):
+            # Look for the registered address on same-domain directions pages.
+            base=urllib.parse.urlparse(url)
+            matched=False
+            for path in ("/location","/directions","/contact","/about/location"):
+                try:
+                    location_url=urllib.parse.urlunparse((base.scheme,base.netloc,path,"","",""))
+                    if address in norm(fetch_text(location_url)):
+                        matched=True
+                        break
+                except (ValueError,OSError):
+                    continue
+            if not matched:raise ValueError("Official homepage/directions address not matched")
         fields={k:{"value":v,"status":"official","source_url":url,"verified_at":TODAY.isoformat()} for k,v in {
             "road_address":h["road_address"],"booking":url}.items()}
         record={"batch_id":"weddingrank-official-auto-"+TODAY.isoformat(),"hall_id":h["hall_id"],
