@@ -37,7 +37,7 @@ def canonical_host(url):
 
 def fetch_text(url):
     req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 WeddingRankOfficialVerifier/1.0"})
-    with urllib.request.urlopen(req,timeout=10) as response:
+    with urllib.request.urlopen(req,timeout=5) as response:
         if response.status!=200:raise ValueError("HTTP not 200")
         if "text/html" not in response.headers.get("Content-Type",""):raise ValueError("Not HTML")
         final=response.geturl()
@@ -63,13 +63,15 @@ for h in halls:
     if h.get("is_public") is not True or h.get("operation_status")!="운영":continue
     if latest.get(h["hall_id"],{}).get("status")!="held":continue
     if not h.get("road_address") or not h.get("website"):continue
+    # Prefer the official source, but permit a same-owner website fallback if it differs.
     source=h.get("source_url") or h["website"]
     if not source.startswith("https://"):continue
     host=canonical_host(source)
     if host!=canonical_host(h["website"]):
-        # A distinct official source domain needs independent operator verification.
-        # Do not silently accept third-party URLs.
-        continue
+        # Cross-domain official ownership is not established; use the venue website instead.
+        source=h["website"]
+        if not source.startswith("https://"):continue
+        host=canonical_host(source)
     if any(x in host for x in ("blog.","naver.","youtube.","instagram.","weddingrank.kr")):continue
     eligible.append((h,source))
 eligible.sort(key=lambda x:x[0]["hall_id"])
