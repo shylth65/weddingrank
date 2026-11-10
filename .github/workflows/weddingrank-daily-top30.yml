@@ -42,10 +42,23 @@ jobs:
         env:
           WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
         run: python scripts/weddingrank_publish_approved_venues.py
+      - name: Restore prior official-site failure history
+        uses: actions/cache/restore@v4
+        with:
+          path: reports/daily/official-info-failures.json
+          key: weddingrank-official-failures-${{ github.run_id }}
+          restore-keys: |
+            weddingrank-official-failures-
       - name: Verify and save official practical info from matched official sites
         env:
           WEDDINGRANK_PRICE_WRITE_KEY: ${{ secrets.WEDDINGRANK_PRICE_WRITE_KEY }}
         run: python scripts/weddingrank_auto_official_info.py
+      - name: Save official-site failure history for the next scheduled run
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: reports/daily/official-info-failures.json
+          key: weddingrank-official-failures-${{ github.run_id }}
       - name: Report actual database outcomes
         if: always()
         env:
