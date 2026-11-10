@@ -78,7 +78,7 @@ eligible.sort(key=lambda x:x[0]["hall_id"])
 start=((TODAY.toordinal()-dt.date(2026,1,1).toordinal())*8)%max(1,len(eligible))
 # Rotate across all candidates, but skip recently failed sites for a short cooldown.
 cooldown_path=ROOT/"reports"/"daily"/"official-info-failures.json"
-# GitHub runners are ephemeral; read recent failures from the last uploaded report when available.
+# Prior failures are restored by the existing daily workflow cache.
 try:
     previous=json.loads(cooldown_path.read_text(encoding="utf-8"))
 except (OSError,ValueError):
@@ -93,6 +93,7 @@ def cooling_down(h):
     return age<3 and last.get("reason") in ("timeout","dns","tls_certificate","connection_reset")
 
 ordered=(eligible+eligible)[start:start+len(eligible)]
+skipped_cooldown=sum(cooling_down(item[0]) for item in ordered)
 sample=[item for item in ordered if not cooling_down(item[0])][:min(8,len(eligible))]
 # Do not weaken SSL validation or treat a failed connection as official evidence.
 results=[]
@@ -140,8 +141,18 @@ def classify(reason):
     return "other"
 reasons=Counter(classify(x.get("reason","verified")) for x in results)
 report={"date_kst":TODAY.isoformat(),"eligible":len(eligible),"checked":len(results),"failure_reasons":dict(reasons),
-    "verified":sum(x["status"]=="verified" for x in results),"results":results}
+    "verified":sum(x["status"]=="verified" for x in results),"skipped_cooldown":skipped_cooldown,"results":results}
 OUT.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-failures={x["hall_id"]:{"date":TODAY.isoformat(),"reason":classify(x.get("reason","verified"))} for x in results if x["status"]!="verified"}
+failures={hall_id:record for hall_id,record in previous.items() if isinstance(record,dict) and record.get("date") and record.get("reason")}
+for x in results:
+    if x["status"]=="verified":
+        failures.pop(x["hall_id"],None)
+    else:
+        failures[x["hall_id"]]={"date":TODAY.isoformat(),"reason":classify(x.get("reason","verified"))}
+for hall_id,record in list(failures.items()):
+    try:
+        if (TODAY-dt.date.fromisoformat(record["date"])).days>=3:failures.pop(hall_id,None)
+    except (ValueError,TypeError,KeyError):
+        failures.pop(hall_id,None)
 cooldown_path.write_text(json.dumps(failures,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps(report,ensure_ascii=False))
