@@ -65,13 +65,23 @@ def run():
         if not h.get("road_address"): blockers.append("missing_road_address")
         if not h.get("website"): blockers.append("missing_website")
         if not h.get("source_url"): blockers.append("missing_source_url")
+        elif not str(h["source_url"]).startswith("https://"): blockers.append("source_not_https")
+        if h.get("website") and not str(h["website"]).startswith("https://"): blockers.append("website_not_https")
+        if h.get("source_url") and h.get("website"):
+            source_host = urllib.parse.urlparse(h["source_url"]).hostname or ""
+            website_host = urllib.parse.urlparse(h["website"]).hostname or ""
+            if source_host.lower().removeprefix("www.") != website_host.lower().removeprefix("www."):
+                blockers.append("source_domain_review")
+        # Venue-specific source mismatch must be resolved before approval.
+        if "강촌" in str(h.get("name") or "") and "/about-jeju/" in str(h.get("source_url") or "").lower():
+            blockers.append("possible_wrong_venue_source")
         if h.get("verification_status") != "공식확인": blockers.append("not_officially_verified")
         if venue_type_review: blockers.append("venue_type_review")
         candidates.append({"publication_blockers": blockers, "preliminary_evidence_complete": not blockers, "venue_type_review": venue_type_review, "road_address": h.get("road_address"), "website": h.get("website"), "source_url": h.get("source_url"), "hall_id": h["hall_id"], "name": h.get("name"), "sido": h.get("sido"), "score": score(h), "verification_status": h.get("verification_status"), "has_price_source": h["hall_id"] in priced, "link_check": checks.get(url, "not_checked"), "review_required": True, "review_status": status})
     status_counts = {key: sum(c["review_status"] == key for c in candidates) for key in ("duplicate_review", "source_review", "missing_evidence")}
     top100_counts = {key: sum(c["review_status"] == key for c in candidates[:100]) for key in status_counts}
     officially_verified_pending = [c for c in candidates if c["verification_status"] == "공식확인"]
-    blockers_summary = {key: sum(key in c["publication_blockers"] for c in officially_verified_pending) for key in ("possible_public_duplicate","missing_road_address","missing_website","missing_source_url","venue_type_review")}
+    blockers_summary = {key: sum(key in c["publication_blockers"] for c in officially_verified_pending) for key in ("possible_public_duplicate","missing_road_address","missing_website","missing_source_url","source_not_https","website_not_https","source_domain_review","possible_wrong_venue_source","venue_type_review")}
     report = {"officially_verified_unpublished": len(officially_verified_pending), "preliminary_evidence_complete": sum(c["preliminary_evidence_complete"] for c in officially_verified_pending), "official_candidate_blockers": blockers_summary, "date_kst": TODAY.isoformat(), "review_status_counts_all": status_counts, "venue_type_review_count": sum(c["venue_type_review"] for c in candidates), "review_status_counts_top100": top100_counts, "newly_published_by_job": 0, "mode": "read_only", "total_halls": len(halls), "public_halls": sum(h.get("is_public") is True for h in halls), "unpublished_operating": len(pending), "priced_halls": len(priced), "checked_urls": len(checks), "candidates": candidates, "database_writes": 0}
     (OUT / "latest.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = ["# WeddingRank daily expansion candidates", "", "Date: " + TODAY.isoformat(), "Unpublished operating venues: " + str(len(pending)), "Price-source venue count: " + str(len(priced)), "URL checks: " + str(len(checks)), "All candidates require independent same-day source verification and explicit approval before public release.", "Officially verified but unpublished: " + str(len(officially_verified_pending)), "Preliminary evidence-complete (NOT approved): " + str(report["preliminary_evidence_complete"]), "Official candidate blockers: " + json.dumps(blockers_summary, ensure_ascii=False), "All operating unpublished review status counts: " + json.dumps(status_counts, ensure_ascii=False), "Top 100 review status counts: " + json.dumps(top100_counts, ensure_ascii=False), "Venue-type manual review flags: " + str(sum(c["venue_type_review"] for c in candidates)), "", "| Venue | Evidence score | Review status | Venue type review | Price source | URL check |", "|---|---:|---|---|---|---|"]
