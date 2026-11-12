@@ -57,6 +57,19 @@ def check_url(url):
 def run():
     featured = fetch("weddingrank_featured_top100", "hall_id,name,sido,selection_rank", "order=selection_rank.asc", 200)
     halls = fetch("wedding_halls", "hall_id,name,sido,road_address,phone,website,verified_at,source_updated_at,operation_status,is_public", "is_public=eq.true&operation_status=eq.%EC%9A%B4%EC%98%81", 1000)
+    # Public-key visibility smoke check for recently published venues.
+    expected_public = {
+        "271484c4-6f4a-47de-b49b-f5b4c2b7344d": "삼정호텔 웨딩",
+        "7aa79bf6-f70a-443c-86a4-76524e79410e": "소노캄거제 웨딩",
+    }
+    visible = {str(h["hall_id"]): h for h in halls}
+    visibility = {name: {"visible": hid in visible, "name_matches": visible.get(hid, {}).get("name") == name}
+                  for hid, name in expected_public.items()}
+    (OUT / "public-visibility.json").write_text(
+        json.dumps({"date_kst": TODAY.isoformat(), "checks": visibility}, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8")
+    if any(not row["visible"] or not row["name_matches"] for row in visibility.values()):
+        raise RuntimeError("Public API visibility regression for a published wedding venue")
     prices = fetch("wedding_prices", "hall_id,source_url,verified_at", limit=1000)
     rooms = fetch("hall_rooms", "hall_id,source_url,verified_at", limit=1000)
     specialist = fetch("weddingrank_top30_competition", "hall_id,rank_position,source_count,evidence_publication_dates_complete", limit=100)
