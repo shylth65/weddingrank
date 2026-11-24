@@ -49,8 +49,12 @@ def probe(url):
         return {"status": "unreachable"}
 
 def main():
-    halls = fetch("wedding_halls", "hall_id,name,is_public", limit=500)
+    halls = fetch("wedding_halls", "hall_id,name,is_public,website", limit=1000)
+    hall_map = {h["hall_id"]: h for h in halls}
     names = {h["hall_id"]: h["name"] for h in halls}
+    def host(url):
+        try: return (urllib.parse.urlparse(url or "").hostname or "").lower().removeprefix("www.")
+        except ValueError: return ""
     prices = fetch("wedding_prices", "hall_id,effective_date,rental_fee,meal_price_per_person,source_name,source_url", "order=effective_date.desc", 1000)
     rows = []
     for p in prices:
@@ -59,7 +63,10 @@ def main():
             age = (TODAY - dt.date.fromisoformat(date)).days if date else None
         except ValueError:
             age = None
-        rows.append({"hall_id": p.get("hall_id"), "hall_name": names.get(p.get("hall_id"), ""),
+        venue = hall_map.get(p.get("hall_id"), {})
+        source_host, venue_host = host(p.get("source_url")), host(venue.get("website"))
+        source_type = "official_same_domain" if source_host and venue_host and source_host == venue_host else ("third_party_or_unmatched" if source_host else "missing_source")
+        rows.append({"hall_id": p.get("hall_id"), "hall_name": names.get(p.get("hall_id"), ""), "venue_website": venue.get("website"), "source_host": source_host, "source_type": source_type,
             "effective_date": date, "days_since_effective_date": age,
             "source_name": p.get("source_name"), "source_url": p.get("source_url"),
             "stored_rental_fee": p.get("rental_fee"), "stored_meal_price": p.get("meal_price_per_person")})
@@ -70,16 +77,17 @@ def main():
     offset = (TODAY.toordinal() * 12) % max(len(sources), 1)
     selected = (sources + sources)[offset:offset + 12]
     checks = [{**r, **probe(r["source_url"])} for r in selected]
-    report = {"date_kst": TODAY.isoformat(), "mode": "read_only", "total_price_records": len(rows),
+    source_type_counts = {kind: sum(r["source_type"] == kind for r in rows) for kind in ("official_same_domain", "third_party_or_unmatched", "missing_source")}
+    report = {"date_kst": TODAY.isoformat(), "mode": "read_only", "total_price_records": len(rows), "source_type_counts": source_type_counts,
         "stale_over_30_days": len(candidates), "source_url_probes": checks,
         "database_writes": 0, "automatic_price_updates": 0,
         "warning": "Effective date is not source verification date. HTTP status and price terms do not verify stored amounts. Human/source-level comparison required before updates."}
     (OUT / "latest.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = ["## WeddingRank price source audit — " + TODAY.isoformat(), "",
         "- Price records: " + str(len(rows)), "- Effective dates older than 30 days: " + str(len(candidates)),
-        "- Source links checked: " + str(len(checks)), "- Database writes: **0**",
+        "- Source links checked: " + str(len(checks)), "- Source classification: " + json.dumps(source_type_counts, ensure_ascii=False), "- Database writes: **0**",
         "- HTTP success does not verify the listed prices.", "", "### Source checks"]
-    lines += ["- " + r["hall_name"] + " | " + r["status"] + " | " + str(r.get("price_terms_present", "unknown")) + " | " + r["source_url"] for r in checks]
+    lines += ["- " + r["hall_name"] + " | " + r["source_type"] + " | " + r["status"] + " | " + str(r.get("price_terms_present", "unknown")) + " | " + r["source_url"] for r in checks]
     summary = "\n".join(lines) + "\n"
     (OUT / "latest.md").write_text(summary, encoding="utf-8")
     print(summary)
