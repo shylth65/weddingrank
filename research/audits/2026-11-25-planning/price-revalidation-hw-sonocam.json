@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-25",
+  "task": "Recheck official wedding prices for HW Convention Center and Sono Calm Geoje",
+  "sources": [
+    {
+      "venue": "HW컨벤션센터",
+      "url": "https://www.hwcc.co.kr/wedding/price/",
+      "scope": "2027 Jan-Dec, VAT included",
+      "verified": "2026-11-25",
+      "records": [
+        {
+          "hall": "Grand",
+          "type": "normal",
+          "rental": 21000000,
+          "meal": 133000
+        },
+        {
+          "hall": "Grand",
+          "type": "peak discount",
+          "rental": 12300000,
+          "meal": 103000
+        },
+        {
+          "hall": "Grand",
+          "type": "off-peak discount",
+          "rental": 9800000,
+          "meal": 89000
+        },
+        {
+          "hall": "Crystal/Emerald",
+          "type": "normal",
+          "rental": 14500000,
+          "meal": 93000
+        },
+        {
+          "hall": "Crystal/Emerald",
+          "type": "peak discount",
+          "rental": 9100000,
+          "meal": 91000
+        },
+        {
+          "hall": "Crystal/Emerald",
+          "type": "off-peak discount",
+          "rental": 7400000,
+          "meal": 74000
+        }
+      ]
+    },
+    {
+      "venue": "소노캄 거제",
+      "url": "https://mice.sonohotelsresorts.com/daemyung.front.saupjang.geoje.facility_wedding.ds/dmparse.dm?menuNo=02",
+      "scope": "Grand Ballroom single hall; wedding buffet 50,000 won/person; minimum 200 guests; capacity up to 500; ceremony times 11:00/13:00; parking approx. 1,000 cars",
+      "verified": "2026-11-25"
+    }
+  ],
+  "db_changes": {
+    "new_price_rows": 2,
+    "existing_price_rows_reverified": 5,
+    "existing_amounts_overwritten": 0
+  },
+  "notes": "HW two normal-price rows added; four existing 2027 discounted rows verification date and source notes refreshed. Sono Calm existing meal price/minimum guarantee unchanged; verified_at refreshed and official hall details appended. No scheduled jobs or ranking/customer data modified."
+}
