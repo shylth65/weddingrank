@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-25",
+  "project": "WeddingRank",
+  "task": "Revalidate officially-confirmed unpublished hotel venues before publication",
+  "results": {
+    "checked": 5,
+    "official_wedding_sources_confirmed": 5,
+    "unique_new_publications": 1,
+    "duplicate_aliases_not_published": 4
+  },
+  "published": [
+    {
+      "hall_id": "3b3be865-7f68-4e00-baa3-c5b23a719260",
+      "name": "Le Méridien Seoul Myeongdong Wedding",
+      "road_address": "서울특별시 중구 명동8나길 38",
+      "official_source": "https://www.marriott.com/ko/hotels/selmm-le-meridien-seoul-myeongdong/weddings/",
+      "verified_facts": [
+        "official wedding operation",
+        "Mid-Century Room 50-200 guests",
+        "Le Salon Suite 8-16 guests",
+        "official hotel address"
+      ],
+      "db": "wedding_halls updated and is_public=true; fact-check history inserted"
+    }
+  ],
+  "not_published_duplicates": [
+    {
+      "name": "Josun Palace Wedding",
+      "canonical_public": "조선 팰리스 서울 강남",
+      "address": "서울특별시 강남구 테헤란로 231"
+    },
+    {
+      "name": "Conrad Seoul Wedding",
+      "canonical_public": "콘래드 서울",
+      "address": "서울특별시 영등포구 국제금융로 10"
+    },
+    {
+      "name": "Grand Hyatt Seoul Wedding",
+      "canonical_public": "그랜드 하얏트 서울 웨딩",
+      "address": "서울특별시 용산구 소월로 322"
+    },
+    {
+      "name": "JW Marriott Hotel Seoul Wedding",
+      "canonical_public": "JW메리어트호텔 서울 웨딩",
+      "address": "서울특별시 서초구 신반포로 176"
+    }
+  ],
+  "notes": "Four English-named records duplicate already-public Korean records by address; kept unpublished to avoid duplicate public listings. No prices changed. No scheduled jobs, Cron, workflows, RLS, rankings or customer data modified."
+}
