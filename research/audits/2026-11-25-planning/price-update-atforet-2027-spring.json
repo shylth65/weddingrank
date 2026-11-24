@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-25",
+  "project": "WeddingRank",
+  "task": "Official source price update",
+  "venue": "aT포레웨딩홀",
+  "hall_id": "1a991ee9-32ee-4860-8999-0af95076c538",
+  "source_url": "https://atforet.co.kr/guide/price/",
+  "source_name": "aT포레 공식 예식비용안내",
+  "verified_scope": "2027년 3월~6월 그랜드홀 비용. VAT 포함, 음·주류 별도. 개별 할인율에 따라 실제 견적 변동.",
+  "records": [
+    {
+      "price_id": "5ff5fcee-5c62-438c-a6f9-c4330e586632",
+      "season_type": "2027.03~06 정상가",
+      "rental_fee": 9000000,
+      "meal_price_per_person": 90000
+    },
+    {
+      "price_id": "ecd7a5d8-4119-47e9-9475-ce52500d781d",
+      "season_type": "2027.03~06 성수기 할인가",
+      "rental_fee": 8500000,
+      "meal_price_per_person": 85000
+    },
+    {
+      "price_id": "c1b53c5d-3204-4e2d-87ce-a937b929f5d4",
+      "season_type": "2027.03~06 비수기 할인가",
+      "rental_fee": 8000000,
+      "meal_price_per_person": 80000
+    }
+  ],
+  "db_result": "3 new price rows inserted; old records preserved; no old prices overwritten.",
+  "reservation_changes": "none"
+}
