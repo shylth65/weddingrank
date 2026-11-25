@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-25",
+  "venue": "코트야드 메리어트 서울 명동 웨딩",
+  "hall_id": "41c6c3e8-0713-4396-964b-1a0ad984b4a0",
+  "official_sources": [
+    "https://www.marriott.com/ko/offers/packages/wedding.mi",
+    "https://www.marriott.com/ko/offers/2027-wedding-off-228003/selsn-courtyard-seoul-myeongdong"
+  ],
+  "verified": {
+    "starting_course_price_krw": 99000,
+    "starting_price_is_not_fixed_2027_quote": true,
+    "minimum_guarantee_2027": 40,
+    "wedding_period": "2027-01-01~2027-12-31",
+    "rental_fee": "not published",
+    "venues": [
+      "Terrace 194 outdoor",
+      "Hanyang Room indoor"
+    ]
+  },
+  "db": {
+    "new_price_id": "0b697b92-b496-47d4-8a29-299b784d045c",
+    "new_price_rows": 1,
+    "new_fact_check_rows": 1,
+    "prices_after": 302,
+    "fact_checks_after": 521
+  },
+  "excluded": "Times Square 9.3 million KRW is a 20-person package total, not a rental fee; not inserted as rental_fee",
+  "scheduled_jobs_changed": false
+}
