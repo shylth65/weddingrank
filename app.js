@@ -49,24 +49,38 @@ function buildPriceMap(prices,publicHalls){
   priceByHall=new Map();
   const today=todayKst();
   const publicIds=new Set(publicHalls.map(h=>h.hall_id));
+  // The API returns effective_date descending. Prefer the latest applicable
+  // price, but show an upcoming published price if no current price exists.
+  const upcoming=new Map();
   for(const p of prices){
-    if(!p.hall_id||!publicIds.has(p.hall_id)||priceByHall.has(p.hall_id)||(p.effective_date&&p.effective_date>today)) continue;
-    priceByHall.set(p.hall_id,p);
+    if(!p.hall_id||!publicIds.has(p.hall_id))continue;
+    if(p.effective_date&&p.effective_date>today){
+      if(!upcoming.has(p.hall_id)||p.effective_date<upcoming.get(p.hall_id).effective_date)
+        upcoming.set(p.hall_id,p);
+      continue;
+    }
+    if(!priceByHall.has(p.hall_id))priceByHall.set(p.hall_id,p);
   }
+  for(const [id,p] of upcoming)if(!priceByHall.has(id))priceByHall.set(id,p);
 }
-function priceDateLabel(date){
- if(!date)return " · 확인일 미상";
- const today=todayKst();
- if(date>today)return " · 적용 예정";
- const age=Math.floor((Date.parse(today+"T00:00:00Z")-Date.parse(date+"T00:00:00Z"))/86400000);
- return age>30?" · 과거 자료 / 최신 가격 미확인":" · 최근 30일 내 기준일";
+function priceDateLabel(date,verifiedAt){
+  if(!date)return " · 적용일 미상";
+  const today=todayKst();
+  if(date>today)return " · 적용 예정";
+  if(!verifiedAt)return " · 최신 가격 확인 필요";
+  const age=Math.floor((Date.parse(today+"T00:00:00Z")-Date.parse(verifiedAt+"T00:00:00Z"))/86400000);
+  return age>30?" · 가격 재확인 필요":" · 최근 확인";
 }
 function priceBadge(hallId){
   const p=priceByHall.get(hallId);
-  if(!p) return '<span class="badge price pendingPrice">가격정보 확인중</span>';
-  if(p.meal_price_per_person!=null) return `<span class="badge price ${priceDateLabel(p.effective_date).includes("과거 자료")?"pendingPrice":"verifiedPrice"}">식대 ${Number(p.meal_price_per_person).toLocaleString("ko-KR")}원${priceDateLabel(p.effective_date).includes("과거 자료")?" (과거 기준)":""}</span>`;
-  if(p.rental_fee!=null) return `<span class="badge price ${priceDateLabel(p.effective_date).includes("과거 자료")?"pendingPrice":"verifiedPrice"}">대관 ${Number(p.rental_fee).toLocaleString("ko-KR")}원${priceDateLabel(p.effective_date).includes("과거 자료")?" (과거 기준)":""}</span>`;
-  return '<span class="badge price verifiedPrice">가격정보 있음</span>';
+  if(!p)return '<span class="badge price pendingPrice">가격정보 확인중</span>';
+  const label=priceDateLabel(p.effective_date,p.verified_at);
+  const pending=label.includes("재확인")||label.includes("확인 필요")||label.includes("적용 예정");
+  const cls=pending?"pendingPrice":"verifiedPrice";
+  const suffix=label.includes("적용 예정")?" (적용 예정)":label.includes("재확인")||label.includes("확인 필요")?" (재확인 필요)":"";
+  if(p.meal_price_per_person!=null)return `<span class="badge price ${cls}">식대 ${Number(p.meal_price_per_person).toLocaleString("ko-KR")}원${suffix}</span>`;
+  if(p.rental_fee!=null)return `<span class="badge price ${cls}">대관 ${Number(p.rental_fee).toLocaleString("ko-KR")}원${suffix}</span>`;
+  return '<span class="badge price pendingPrice">일부 가격정보 확인중</span>';
 }
 
 async function load(){
