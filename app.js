@@ -220,7 +220,18 @@ async function showDetail(id){
     const externalSources=results[4].status==="fulfilled"?results[4].value:[];
     const approvedTop30=results[5].status==="fulfilled"?results[5].value[0]:null;
     $("#rooms").innerHTML=rooms.length?rooms.map(r=>`<div class="info-row"><b>${esc(r.room_name)}</b><span>${esc(r.floor||"")} ${r.capacity_min?`· 최소 ${r.capacity_min}명`:""} ${r.capacity_max?`· 최대 ${r.capacity_max}명`:""}</span></div>`).join(""):'<div class="pending">홀 정보 확인중</div>';
-    $("#prices").innerHTML=prices.length?prices.map(p=>`<div class="pricebox"><div><small>가격 조건</small><b>${esc(p.season_type||"조건 미확인")}</b></div><div><small>적용 기준일</small><b>${esc(p.effective_date||"-")}${priceDateLabel(p.effective_date,p.verified_at)}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p><p><small>가격 출처: ${esc(p.source_name||"추가 확인중")}${/^https?:\/\//i.test(p.source_url||"")?` · <a href="${esc(p.source_url)}" target="_blank" rel="noopener noreferrer">출처 보기 ↗</a>`:""} · 확인일 ${esc(p.verified_at||"미상")} · 계약 전 재확인</small></p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
+    // Display currently applicable rows first, then upcoming schedules. Within
+    // the same effective date retain every distinct season/room price option.
+    const todayForPrices=todayKst();
+    const displayPrices=[...prices].sort((a,b)=>{
+      const af=!!(a.effective_date&&a.effective_date>todayForPrices);
+      const bf=!!(b.effective_date&&b.effective_date>todayForPrices);
+      if(af!==bf)return af?1:-1;
+      const ad=a.effective_date||"",bd=b.effective_date||"";
+      if(ad!==bd)return af?ad.localeCompare(bd):bd.localeCompare(ad);
+      return String(a.season_type||"").localeCompare(String(b.season_type||""),"ko");
+    });
+    $("#prices").innerHTML=displayPrices.length?displayPrices.map(p=>`<div class="pricebox"><div><small>가격 조건</small><b>${esc(p.season_type||"조건 미확인")}</b></div><div><small>적용 기준일</small><b>${esc(p.effective_date||"-")}${priceDateLabel(p.effective_date,p.verified_at)}</b></div><div><small>대관료</small><b>${money(p.rental_fee)}</b></div><div><small>1인 식대</small><b>${money(p.meal_price_per_person)}</b></div><div><small>최소보증</small><b>${p.minimum_guarantee?`${p.minimum_guarantee}명`:"확인중"}</b></div><p>${esc(p.notes||"가격은 계약 전 재확인이 필요합니다.")}</p><p><small>가격 출처: ${esc(p.source_name||"추가 확인중")}${/^https?:\/\//i.test(p.source_url||"")?` · <a href="${esc(p.source_url)}" target="_blank" rel="noopener noreferrer">출처 보기 ↗</a>`:""} · 확인일 ${esc(p.verified_at||"미상")} · 계약 전 재확인</small></p></div>`).join(""):'<div class="pending big">가격정보 확인중<br><small>확인되는 순서대로 업데이트합니다.</small></div>';
     renderExternalReviews(id,approvedTop30,externalSources);renderReviews(reviews);renderAuth();
     renderApprovedQualitativeReviews(id).catch(e=>console.warn('Qualitative reviews unavailable:',e));
   }catch(e){console.error(e)}
